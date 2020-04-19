@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "html.format.enable": false,
+  "json.format.enable": false,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2
+}

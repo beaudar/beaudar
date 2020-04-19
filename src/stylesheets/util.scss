@@ -1,0 +1,38 @@
+.text-link {
+  color: $text-gray;
+}
+
+.octicon {
+  display: inline-block;
+  fill: currentColor;
+}
+
+.v-align-bottom {
+  vertical-align: bottom !important;
+}
+
+.markdown-body-scrollable {
+  max-height: 450px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-body .highlight-source-js > pre {
+  -webkit-overflow-scrolling: touch;
+}
+
+.btn-outline {
+  border-color: $border-gray;
+}
+
+.details-popover {
+  position: relative;
+
+  & > summary {
+    list-style-type: none;
+    &::-webkit-details-marker {
+        display: none;
+    }
+  }
+}

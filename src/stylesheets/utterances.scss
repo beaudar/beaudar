@@ -1,0 +1,38 @@
+@import "@primer/css/base/index";
+@import "@primer/css/utilities/details";
+@import "@primer/css/utilities/box-shadow";
+@import "@primer/css/buttons/index";
+@import "@primer/css/markdown/index";
+@import "@primer/css/alerts/index";
+@import "@primer/css/navigation/tabnav";
+@import "@primer/css/forms/form-control";
+@import "@primer/css/popover/index";
+@import "./util";
+@import "./timeline";
+@import "./timeline-comment";
+@import "./permalink-code";
+@import "./email-fragment";
+@import "./zigzag";
+@import "./reactions";
+
+html,
+body {
+  background-color: transparent;
+}
+
+body {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.form-control {
+  font-size: $body-font-size;
+}
+
+.flash-not-installed {
+  margin-bottom: $spacer-3;
+}
+
+textarea[disabled] {
+  cursor: not-allowed;
+}

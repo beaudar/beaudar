@@ -1,0 +1,46 @@
+@import "@primer/css/base/index";
+@import "@primer/css/buttons/button";
+@import "@primer/css/forms/form-control";
+@import "@primer/css/forms/form-select";
+@import "@primer/css/forms/form-group";
+@import "@primer/css/forms/input-group";
+@import "@primer/css/markdown/index";
+@import "./util";
+@import "./timeline";
+@import "./timeline-comment";
+
+.timeline {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown-body {
+  font-size: 16px;
+}
+
+form {
+  font-size: $body-font-size;
+}
+
+fieldset {
+  border: none;
+  margin: 0 $spacer-3;
+  padding: 0;
+}
+
+input:not([type=radio]) {
+  margin: $spacer-1 0;
+}
+
+.form-checkbox label {
+  display: block;
+  cursor: pointer;
+}
+
+.code-action {
+  float: right;
+  margin-top: -$spacer-2;
+  margin-bottom: $spacer-3;
+}
