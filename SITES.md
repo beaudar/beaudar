@@ -1,3 +1,3 @@
-# Sites using Utterances
+# Sites using Beauder
 
 * TODO
