@@ -5,12 +5,12 @@ import { getReactionsMenuHtml, getReactionHtml, getSignInToReactMenuHtml } from 
 
 const avatarArgs = '?v=3&s=88';
 const displayAssociations: Record<CommentAuthorAssociation, string> = {
-  COLLABORATOR: 'Collaborator',
-  CONTRIBUTOR: 'Contributor',
-  MEMBER: 'Member',
-  OWNER: 'Owner',
-  FIRST_TIME_CONTRIBUTOR: 'First time contributor',
-  FIRST_TIMER: 'First timer',
+  COLLABORATOR: '合作者',
+  CONTRIBUTOR: '贡献者',
+  MEMBER: '会员',
+  OWNER: '作者',
+  FIRST_TIME_CONTRIBUTOR: '初次贡献者',
+  FIRST_TIMER: '沙发',
   NONE: ''
 };
 
@@ -50,7 +50,7 @@ export class CommentComponent {
         <header class="comment-header">
           <span class="comment-meta">
             <a class="text-link" href="${user.html_url}" target="_blank"><strong>${user.login}</strong></a>
-            commented
+            评论
             <a class="text-link" href="${html_url}" target="_blank">${timeAgo(Date.now(), new Date(created_at))}</a>
           </span>
           <div class="comment-actions">

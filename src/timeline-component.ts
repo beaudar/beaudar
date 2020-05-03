@@ -18,10 +18,6 @@ export class TimelineComponent {
     this.element.innerHTML = `
       <h1 class="timeline-header">
         <a class="text-link" target="_blank"></a>
-        <em>
-          - powered by
-          <a class="text-link" href="https://utteranc.es" target="_blank">utteranc.es</a>
-        </em>
       </h1>`;
     this.countAnchor = this.element.firstElementChild!.firstElementChild as HTMLAnchorElement;
     this.marker = document.createComment('marker');
@@ -84,8 +80,8 @@ export class TimelineComponent {
       <div class="page-loader">
         <div class="zigzag"></div>
         <button type="button" class="btn btn-outline btn-large">
-          ${count} hidden items<br/>
-          <span>Load more...</span>
+          ${count} 条评论被收起<br/>
+          <span>展开...</span>
         </button>
       </div>
     `);
@@ -96,7 +92,7 @@ export class TimelineComponent {
 
     return {
       setBusy() {
-        statusSpan.textContent = 'Loading...';
+        statusSpan.textContent = '加载中...';
         button.disabled = true;
       },
       remove() {
@@ -107,6 +103,6 @@ export class TimelineComponent {
   }
 
   private renderCount() {
-    this.countAnchor.textContent = `${this.count} Comment${this.count === 1 ? '' : 's'}`;
+    this.countAnchor.textContent = `${this.count >= 1 ? `${this.count}条评论` : '还没有评论'}`;
   }
 }

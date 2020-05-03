@@ -10,7 +10,7 @@ const anonymousAvatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14
 // base64 encoding works in IE, Edge. UTF-8 does not.
 const anonymousAvatarUrl = `data:image/svg+xml;base64,${btoa(anonymousAvatar)}`;
 
-const nothingToPreview = 'Nothing to preview';
+const nothingToPreview = '没有可预览的内容';
 
 export class NewCommentComponent {
   public readonly element: HTMLElement;
@@ -42,11 +42,11 @@ export class NewCommentComponent {
           <nav class="tabnav-tabs" role="tablist">
             <button type="button" class="tabnav-tab tab-write"
                     role="tab" aria-selected="true">
-              Write
+              编辑
             </button>
             <button type="button" class="tabnav-tab tab-preview"
                     role="tab">
-              Preview
+              预览
             </button>
           </nav>
         </header>
@@ -66,10 +66,10 @@ export class NewCommentComponent {
                 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z">
               </path>
             </svg>
-            Styling with Markdown is supported
+            评论支持使用 Markdown 编辑
           </a>
-          <button class="btn btn-primary" type="submit">Comment</button>
-          <a class="btn btn-primary" href="${getLoginUrl(page.url)}" target="_top">Sign in to comment</a>
+          <button class="btn btn-primary" type="submit">评论</button>
+          <a class="btn btn-primary" href="${getLoginUrl(page.url)}" target="_top">登录</a>
         </footer>
       </form>`;
 
@@ -100,13 +100,13 @@ export class NewCommentComponent {
       this.avatar.alt = '@' + user.login;
       this.avatar.src = user.avatar_url + '?v=3&s=88';
       this.textarea.disabled = false;
-      this.textarea.placeholder = 'Leave a comment';
+      this.textarea.placeholder = '发表评论';
     } else {
       this.avatarAnchor.removeAttribute('href');
       this.avatar.alt = '@anonymous';
       this.avatar.src = anonymousAvatarUrl;
       this.textarea.disabled = true;
-      this.textarea.placeholder = 'Sign in to comment';
+      this.textarea.placeholder = '登录后评论';
     }
   }
 
@@ -128,7 +128,7 @@ export class NewCommentComponent {
     if (isWhitespace) {
       this.preview.textContent = nothingToPreview;
     } else {
-      this.preview.textContent = 'Loading preview...';
+      this.preview.textContent = '加载预览中...';
       this.renderTimeout = setTimeout(
         () => renderMarkdown(text).then(html => this.preview.innerHTML = html)
           .then(() => processRenderedMarkdown(this.preview))

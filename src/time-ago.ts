@@ -1,12 +1,12 @@
 // todo: take a dependency on some relative time library.
 
 const thresholds = [
-  1000, 'second',
-  1000 * 60, 'minute',
-  1000 * 60 * 60, 'hour',
-  1000 * 60 * 60 * 24, 'day',
-  1000 * 60 * 60 * 24 * 7, 'week',
-  1000 * 60 * 60 * 24 * 27, 'month'
+  1000, '秒',
+  1000 * 60, '分钟',
+  1000 * 60 * 60, '小时',
+  1000 * 60 * 60 * 24, '天',
+  1000 * 60 * 60 * 24 * 7, '周',
+  1000 * 60 * 60 * 24 * 27, '月'
 ];
 
 const formatOptions: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' };
@@ -14,7 +14,7 @@ const formatOptions: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeri
 export function timeAgo(current: number, value: Date) {
   const elapsed = current - value.getTime();
   if (elapsed < 5000) {
-    return 'just now';
+    return '刚刚';
   }
   let i = 0;
   while (i + 2 < thresholds.length && elapsed * 1.1 > thresholds[i + 2]) {
@@ -26,7 +26,7 @@ export function timeAgo(current: number, value: Date) {
   const units = Math.round(elapsed / divisor);
 
   if (units > 3 && i === thresholds.length - 2) {
-    return `on ${value.toLocaleDateString(undefined, formatOptions)}`;
+    return `于 ${value.toLocaleDateString(undefined, formatOptions)}`;
   }
-  return units === 1 ? `${text === 'hour' ? 'an' : 'a'} ${text} ago` : `${units} ${text}s ago`;
+  return units === 1 ? `一 ${text} 前` : `${units} ${text} 前`;
 }

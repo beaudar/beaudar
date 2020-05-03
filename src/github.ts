@@ -180,7 +180,7 @@ export function loadCommentsPage(issueNumber: number, page: number): Promise<Iss
   const request = commentsRequest(issueNumber, page);
   return githubFetch(request).then(response => {
     if (!response.ok) {
-      throw new Error('Error fetching comments.');
+      throw new Error('提取评论时出错。');
     }
     return response.json();
   });
@@ -212,7 +212,7 @@ export function createIssue(issueTerm: string, documentUrl: string, title: strin
   request.headers.set('Authorization', `token ${token.value}`);
   return fetch(request).then<Issue>(response => {
     if (!response.ok) {
-      throw new Error('Error creating comments container issue');
+      throw new Error('创建评论 issue 时出错。');
     }
     return response.json();
   });
@@ -226,7 +226,7 @@ export function postComment(issueNumber: number, markdown: string) {
   request.headers.set('Accept', accept);
   return githubFetch(request).then<IssueComment>(response => {
     if (!response.ok) {
-      throw new Error('Error posting comment.');
+      throw new Error('发布评论时出错。');
     }
     return response.json();
   });

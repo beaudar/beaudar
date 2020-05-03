@@ -8,122 +8,104 @@ export class ConfigurationComponent {
   constructor() {
     this.element = document.createElement('form');
     this.element.innerHTML = `
-      <h3 id="heading-repository">Repository</h3>
+      <h3 id="heading-repository">仓库</h3>
       <p>
-        Choose the repository utterances will connect to.
+        选择 Beaudar 将要连接的仓库。
       </p>
       <ol>
-        <li>Make sure the repo is public, otherwise your readers will not be able to view the issues/comments.</li>
-        <li>Make sure the <a href="https://github.com/apps/utterances">utterances app</a>
-          is installed on the repo, otherwise users will not be able to post comments.
+        <li>确保仓库是公开的，否则您的读者将无法查看 Issue(评论)。</li>
+        <li>确保 <a href="https://github.com/apps/utterances">Beauder app</a>
+          已在仓库中安装，否则用户将无法发表评论。
         </li>
-        <li>If your repo is a fork, navigate to it's <em>settings</em> tab and confirm
-          the <em>issues</em> feature is turned on. </li>
+        <li>如果你的仓库是一个分叉，请到设置中，确保 Issues 功能已打开。</li>
       </ol>
       <fieldset>
         <div>
-          <label for="repo">repo:</label><br/>
-          <input id="repo" class="form-control" type="text" placeholder="owner/repo">
+          <label for="repo">仓库:</label><br/>
+          <input id="repo" class="form-control" type="text" placeholder="例：\"作者/仓库\"">
           <p class="note">
-            A <strong>public</strong> GitHub repository. This is where the blog
-            post issues and issue-comments will be posted.
+            一个 <strong>public</strong> 的 GitHub 仓库。这是将发布博客文章 Issue 和 Issue 评论的地方。
           </p>
         </div>
       </fieldset>
 
-      <h3 id="heading-mapping">Blog Post ↔️ Issue Mapping</h3>
-      <p>Choose the mapping between blog posts and GitHub issues.</p>
+      <h3 id="heading-mapping">博客文章 ↔️ Issue 映射</h3>
+      <p>选择博客文章和 GitHub Issue 之间的映射。</p>
       <fieldset>
         <div class="form-checkbox">
           <label>
             <input type="radio" value="pathname" name="mapping" checked="checked">
-            Issue title contains page pathname
+              Issue 标题包含页面路径名。
             <p class="note">
-              Utterances will search for an issue whose title contains the blog post's pathname
-              URL component. If a matching issue is not found, Utterances will automatically
-              create one the first time someone comments on your post.
+              Beaudar 将搜索标题包含博客文章 URL 路径的Issue。如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
         <div class="form-checkbox">
           <label>
             <input type="radio" value="url" name="mapping">
-            Issue title contains page URL
+              Issue 标题包含页面 URL。
             <p class="note">
-              Utterances will search for an issue whose title contains the blog post's URL.
-              If a matching issue is not found, Utterances will automatically create one the first
-              time someone comments on your post.
+              Beaudar 将搜索标题包含博客文章 URL 的Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
         <div class="form-checkbox">
           <label>
             <input type="radio" value="title" name="mapping">
-            Issue title contains page title
+              Issue 标题包含页面标题
             <p class="note">
-              Utterances will search for an issue whose title contains the blog post's title.
-              If a matching issue is not found, Utterances will automatically create one the first
-              time someone comments on your post.
+              Beaudar 将搜索标题包含博客文章标题的Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
         <div class="form-checkbox">
           <label>
             <input type="radio" value="og:title" name="mapping">
-            Issue title contains page og:title
+            Issue 标题包含页面 meta 的 og:title
             <p class="note">
-              Utterances will search for an issue whose title contains the page's
-              <a href="http://ogp.me/">Open Graph</a> title meta.
-              If a matching issue is not found, Utterances will automatically create one the first
-              time someone comments on your post.
+              Beaudar 将搜索标题包含博客文章页面 meta 元素 <a href="http://ogp.me/">og:title</a> 的 Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
         <div class="form-checkbox">
           <label>
-            <input type="radio" value="issue-number" name="mapping">
-            Specific issue number
+            <input type="radio" value="Issue-number" name="mapping">
+              特定问题编号
             <p class="note">
-              You configure Utterances to load a specific issue by number. Issues are not automatically
-              created.
+              您可以配置 Beaudar 以按编号加载特定的 Issue。 问题不会自动创建。
             </p>
           </label>
         </div>
         <div class="form-checkbox">
           <label>
             <input type="radio" value="specific-term" name="mapping">
-            Issue title contains specific term
+              问题标题包含特定术语
             <p class="note">
-              You configure Utterances to search for an issue whose title contains a specific term of your choosing.
-              If a matching issue is not found, Utterances will automatically create one the first
-              time someone comments on your post. The issue's title will be the term you chose.
+              将 Beaudar 配置为搜索标题包含您选择的特定术语的问题。如果未找到匹配问题，Beauder 将自动创建第一次有人评论您的帖子时。Issue 的标题将是您选择的术语。
             </p>
           </label>
         </div>
       </fieldset>
 
-      <h3 id="heading-issue-label">Issue Label</h3>
+      <h3 id="heading-Issue-label">Issue 标签</h3>
       <p>
-        Choose the label that will be assigned to issues created by Utterances.
+        选择将分配给 Beaudar 创建的问题的标签。
       </p>
       <fieldset>
         <div>
-          <label for="label">label (optional):</label><br/>
-          <input id="label" class="form-control" type="text" placeholder="Comment">
+          <label for="label">标签 (可选):</label><br/>
+          <input id="label" class="form-control" type="text" placeholder="标签名">
           <p class="note">
-            Label names are case sensitive.
-            The label must exist in your repo-
-            Utterances cannot attach labels that do not exist.
-            Emoji are supported in label names.✨💬✨
+          标签名称区分大小写。该标签必须存在于您的仓库中，无法附加不存在的标签。标签名称支持添加表情符号。✨💬✨
           </p>
         </div>
       </fieldset>
 
-      <h3 id="heading-theme">Theme</h3>
+      <h3 id="heading-theme">主题</h3>
       <p>
-        Choose an Utterances theme that matches your blog.
-        Can't find a theme you like?
-        <a href="https://github.com/utterance/utterances/blob/master/CONTRIBUTING.md">Contribute</a> a custom theme.
+        选择与您的博客匹配的 Beaudar 主题。找不到你喜欢的主题？
+        <a href="https://github.com/utterance/utterances/blob/master/CONTRIBUTING.md">贡献</a> 一个自定义主题。
       </p>
 
       <select id="theme" class="form-select" value="github-light" aria-label="Theme">
@@ -134,17 +116,12 @@ export class ConfigurationComponent {
         <option value="dark-blue">Dark Blue</option>
         <option value="photon-dark">Photon Dark</option>
       </select>
-
-      <h3 id="heading-enable">Enable Utterances</h3>
-
-      <p>Add the following script tag to your blog's template. Position it where you want the
-      comments to appear. Customize the layout using the <code>.utterances</code> and
-      <code>.utterances-frame</code> selectors.
+      <h3 id="heading-enable">使用 Beaudar</h3>
+      <p>
+        将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .utterances </code>和<code> .utterances-frame </code>选择器自定义布局。
       </p>
       <div class="config-field" id="script" class="highlight highlight-text-html-basic"></div>
-      <button id="copy-button" type="button" class="btn btn-blue code-action">Copy</button>
-      <br/>
-      <br/>`;
+      <button id="copy-button" type="button" class="btn btn-blue code-action">复制</button>`;
 
     this.element.addEventListener('submit', event => event.preventDefault());
     this.element.action = 'javascript:';
@@ -182,15 +159,15 @@ export class ConfigurationComponent {
     const mapping = this.element.querySelector('input[name="mapping"]:checked') as HTMLInputElement;
     let mappingAttr: string;
     // tslint:disable-next-line:prefer-conditional-expression
-    if (mapping.value === 'issue-number') {
-      mappingAttr = this.makeConfigScriptAttribute('issue-number', '[ENTER ISSUE NUMBER HERE]');
+    if (mapping.value === 'Issue-number') {
+      mappingAttr = this.makeConfigScriptAttribute('Issue-number', '[在此处输入 Issue 编号]');
     } else if (mapping.value === 'specific-term') {
-      mappingAttr = this.makeConfigScriptAttribute('issue-term', '[ENTER TERM HERE]');
+      mappingAttr = this.makeConfigScriptAttribute('Issue-term', '[在此输入术语]');
     } else {
-      mappingAttr = this.makeConfigScriptAttribute('issue-term', mapping.value);
+      mappingAttr = this.makeConfigScriptAttribute('Issue-term', mapping.value);
     }
     this.script.innerHTML = this.makeConfigScript(
-      this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '[ENTER REPO HERE]' : this.repo.value) + '\n' +
+      this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '[在此处输入仓库]' : this.repo.value) + '\n' +
       mappingAttr + '\n' +
       (this.label.value ? this.makeConfigScriptAttribute('label', this.label.value) + '\n' : '') +
       this.makeConfigScriptAttribute('theme', this.theme.value) + '\n' +
