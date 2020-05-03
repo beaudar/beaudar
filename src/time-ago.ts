@@ -28,5 +28,5 @@ export function timeAgo(current: number, value: Date) {
   if (units > 3 && i === thresholds.length - 2) {
     return `于 ${value.toLocaleDateString(undefined, formatOptions)}`;
   }
-  return units === 1 ? `一 ${text} 前` : `${units} ${text} 前`;
+  return units === 1 ? `于 一 ${text} 前` : `于 ${units} ${text} 前`;
 }

@@ -81,11 +81,9 @@ addEventListener('not-installed', function handleNotInstalled() {
   removeEventListener('not-installed', handleNotInstalled);
   document.querySelector('.timeline')!.insertAdjacentHTML('afterbegin', `
   <div class="flash flash-error">
-    Error: utterances is not installed on <code>${page.owner}/${page.repo}</code>.
-    If you own this repo,
-    <a href="https://github.com/apps/utterances" target="_top"><strong>install the app</strong></a>.
-    Read more about this change in
-    <a href="https://github.com/utterance/utterances/pull/25" target="_top">the PR</a>.
+    错误: Beaudar 没有安装在 <code>${page.owner}/${page.repo}</code>。
+    如果你拥有这仓库，
+    <a href="https://github.com/apps/utterances" target="_top"><strong>安装 app</strong></a>。
   </div>`);
   scheduleMeasure();
 });
@@ -144,15 +142,15 @@ export async function assertOrigin() {
 
   document.querySelector('.timeline')!.lastElementChild!.insertAdjacentHTML('beforebegin', `
   <div class="flash flash-error flash-not-installed">
-    Error: <code>${origin}</code> is not permitted to post to <code>${owner}/${repo}</code>.
-    Confirm this is the correct repo for this site's comments. If you own this repo,
+    错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>。
+    确认这是该站点评论的正确仓库。 如果您拥有此仓库，
     <a href="https://github.com/${owner}/${repo}/edit/master/utterances.json" target="_top">
-      <strong>update the utterances.json</strong>
+      <strong>更新 utterances.json</strong>
     </a>
-    to include <code>${origin}</code> in the list of origins.<br/><br/>
-    Suggested configuration:<br/>
+    添加 <code>${origin}</code> 到来源列表。<br/><br/>
+    建议配置：<br/>
     <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
   </div>`);
   scheduleMeasure();
-  throw new Error('Origin not permitted.');
+  throw new Error('没有权限。');
 }
