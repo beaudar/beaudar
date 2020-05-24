@@ -1,6 +1,6 @@
 import { token } from './oauth';
 import { decodeBase64UTF8 } from './encoding';
-import { UTTERANCES_API } from './utterances-api';
+import { BEAUDAR_API } from './beaudar-api';
 
 const GITHUB_API = 'https://api.github.com/';
 const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
@@ -200,7 +200,7 @@ export function loadUser(): Promise<User | null> {
 }
 
 export function createIssue(issueTerm: string, documentUrl: string, title: string, description: string, label: string) {
-  const url = `${UTTERANCES_API}/repos/${owner}/${repo}/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
+  const url = `${BEAUDAR_API}/repos/${owner}/${repo}/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({

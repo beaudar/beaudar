@@ -68,7 +68,7 @@ export class NewCommentComponent {
             </svg>
             评论支持使用 Markdown 编辑
           </a>
-          <button class="btn btn-primary" type="submit">评论</button>
+          <button class="btn btn-primary" type="submit">发表评论</button>
           <a class="btn btn-primary" href="${getLoginUrl(page.url)}" target="_top">登录</a>
         </footer>
       </form>`;

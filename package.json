@@ -17,10 +17,10 @@
     "url": "https://github.com/beaudar/beaudar.git"
   },
   "scripts": {
-    "start": "parcel serve src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --no-hmr --port 4000",
+    "start": "parcel serve src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --no-hmr --port 4000 --open http://localhost:4000/index.html",
     "build": "parcel build src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --experimental-scope-hoisting",
     "lint": "tslint --project tsconfig.json",
-    "predeploy": "yarn run build && touch dist/.nojekyll && echo 'zsdycs.cn' > dist/CNAME",
+    "predeploy": "yarn run build && echo zsdycs.cn > dist/CNAME",
     "deploy": "gh-pages --dist dist"
   },
   "devDependencies": {

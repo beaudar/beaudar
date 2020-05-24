@@ -103,6 +103,6 @@ export class TimelineComponent {
   }
 
   private renderCount() {
-    this.countAnchor.textContent = `${this.count >= 1 ? `${this.count}条评论` : '还没有评论'}`;
+    this.countAnchor.textContent = `${this.count >= 1 ? `${this.count} 条评论` : '还没有评论'}`;
   }
 }

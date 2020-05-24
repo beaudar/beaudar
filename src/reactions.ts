@@ -4,20 +4,20 @@ import { pageAttributes } from './page-attributes';
 import { scheduleMeasure } from './measure';
 
 export const reactionNames: Record<ReactionID, string> = {
-  '+1': 'Thumbs Up',
-  '-1': 'Thumbs Down',
-  'laugh': 'Laugh',
-  'hooray': 'Hooray',
-  'confused': 'Confused',
-  'heart': 'Heart',
-  'rocket': 'Rocket',
-  'eyes': 'Eyes'
+  '+1': '赞同',
+  '-1': '不赞同',
+  'laugh': '笑脸',
+  'hooray': '撒花',
+  'confused': '疑问',
+  'heart': '喜欢',
+  'rocket': '火箭',
+  'eyes': '眼睛'
 };
 
 export const reactionEmoji: Record<ReactionID, string> = {
   '+1': '👍',
   '-1': '👎',
-  'laugh': '️😂',
+  'laugh': '️😄',
   'hooray': '️🎉',
   'confused': '😕',
   'heart': '❤️',
@@ -86,7 +86,7 @@ export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
     <summary ${align === 'center' ? 'tabindex="-1"' : ''}>${addReactionSvgs}</summary>
     <div class="Popover" style="${position}">
       <form class="Popover-message ${alignmentClass} box-shadow-large" action="javascript:">
-        <span class="reaction-name">Pick your reaction</span>
+        <span class="reaction-name">选择你的表情符号</span>
         <div class="BtnGroup">
           ${reactionTypes.slice(0, 4).map(getButtonAndSpan).join('')}
         </div>
@@ -106,7 +106,7 @@ export function getSignInToReactMenuHtml(align: 'center' | 'right') {
     <summary aria-label="Reactions Menu">${addReactionSvgs}</summary>
     <div class="Popover" style="${position}">
       <div class="Popover-message ${alignmentClass} box-shadow-large" style="padding: 16px">
-        <span><a href="${getLoginUrl(pageAttributes.url)}" target="_top">Sign in</a> to add your reaction.</span>
+        <span><a href="${getLoginUrl(pageAttributes.url)}" target="_top">登录</a> 后你可以添加表情符号</span>
       </div>
     </div>
   </details>`;
