@@ -2,7 +2,7 @@
 
 > Beaudar 名称源于粤语“表达”的发音，是 [Utterances](http://utteranc.es) 的中文版本。
 
-- [于 Github 开源](http://github.com/beadar/beadar)。
+- [在 Github 开源](http://github.com/beaudar/beaudar)。
 - 没有追踪，没有广告，永久免费。
 - 不保留数据，所有数据保存在用户 GitHub issue 中。
 - 有源于 Github 风格的多种主题，支持黑夜主题。

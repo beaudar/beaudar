@@ -44,3 +44,7 @@ input:not([type=radio]) {
   margin-top: -$spacer-2;
   margin-bottom: $spacer-3;
 }
+
+.clear-both {
+  clear: both;
+}
