@@ -411,7 +411,7 @@ query IssueComments($owner: String!, $repo: String!, $issueQuery: String!) {
   }
 
   repository(owner: $owner, name: $repo) {
-    object(expression: "master:utterances.json") {
+    object(expression: "master:beaudar.json") {
       ... on Blob {
         text
       }
@@ -420,8 +420,8 @@ query IssueComments($owner: String!, $repo: String!, $issueQuery: String!) {
 }
 
 {
-  "issueQuery": "user:jdanyow repo:utterances-demo debug",
-  "owner": "jdanyow",
-  "repo": "utterances-demo"
+  "issueQuery": "user:zsdycs repo:beaudar-demo debug",
+  "owner": "zsdycs",
+  "repo": "beaudar-demo"
 }
 */

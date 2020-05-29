@@ -1,7 +1,7 @@
 {
   "name": "beaudar",
   "version": "1.0.0",
-  "description": "A lightweight comments widget built on GitHub issues.",
+  "description": "Chinese version of 'utterances'.",
   "private": true,
   "license": "MIT",
   "keywords": [

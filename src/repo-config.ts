@@ -9,7 +9,7 @@ let promise: Promise<RepoConfig>;
 
 export function getRepoConfig() {
   if (!promise) {
-    promise = loadJsonFile<RepoConfig>('utterances.json').then(
+    promise = loadJsonFile<RepoConfig>('beaudar.json').then(
       data => {
         if (!Array.isArray(data.origins)) {
           data.origins = [];

@@ -7,7 +7,7 @@ const avatarArgs = '?v=3&s=88';
 const displayAssociations: Record<CommentAuthorAssociation, string> = {
   COLLABORATOR: '合作者',
   CONTRIBUTOR: '贡献者',
-  MEMBER: '会员',
+  MEMBER: '成员',
   OWNER: '作者',
   FIRST_TIME_CONTRIBUTOR: '初次贡献者',
   FIRST_TIMER: '沙发',

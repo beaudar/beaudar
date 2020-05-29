@@ -11,7 +11,7 @@ export const reactionNames: Record<ReactionID, string> = {
   'confused': '疑问',
   'heart': '喜欢',
   'rocket': '火箭',
-  'eyes': '眼睛'
+  'eyes': '瞩目'
 };
 
 export const reactionEmoji: Record<ReactionID, string> = {
