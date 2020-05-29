@@ -10,7 +10,7 @@
     "comments",
     "blog"
   ],
-  "homepage": "https://zsdycs.cn",
+  "homepage": "https://beaudar.lipk.org",
   "bugs": "https://github.com/beaudar/beaudar/issues",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "start": "parcel serve src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --no-hmr --port 4000 --open http://localhost:4000/index.html",
     "build": "parcel build src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --experimental-scope-hoisting",
     "lint": "tslint --project tsconfig.json",
-    "predeploy": "yarn run build && echo zsdycs.cn > dist/CNAME",
+    "predeploy": "yarn run build && echo beaudar.lipk.org > dist/CNAME",
     "deploy": "gh-pages --dist dist"
   },
   "devDependencies": {

@@ -1,128 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 
 <head>
-  <meta charset="UTF-8">
+  <title>Beaudar</title>
+  <meta name="description" content="A lightweight commenting system using GitHub issues.">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>公告</title>
-  <link rel="shortcut icon" type="image/x-icon" href="https://zsdycs.sirv.com/zsdycs.cn/zsdycs_favicon.ico" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #E6EAEB;
-      font-family: Arial, '微软雅黑', '宋体', sans-serif
-    }
-
-    .alert-box {
-      position: relative;
-      margin: 200px auto 0;
-      padding: 1px 85px 22px;
-      background: #FFF;
-      box-shadow: 5px 9px 17px rgba(102, 102, 102, 0.75);
-      width: 286px;
-      color: #FFF;
-      text-align: center
-    }
-
-    .alert-box p {
-      margin: 0
-    }
-
-    .alert-sec-circle {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 735;
-      transition: stroke-dashoffset 1s linear
-    }
-
-    .alert-sec-text {
-      color: #000;
-      margin: 10px auto;
-      width: 150px;
-      font-size: 14px
-    }
-
-    .alert-sec-unit {
-      font-size: 34px
-    }
-
-    .alert-body {
-      margin: 35px 0
-    }
-
-    .alert-head {
-      color: #242424;
-      font-size: 30px;
-      font-weight: bold;
-    }
-
-    .alert-concent {
-      margin: 25px 0 14px;
-      color: #7B7B7B;
-      font-size: 18px
-    }
-
-    .alert-concent p {
-      letter-spacing: 2px;
-      line-height: 27px;
-      margin-top: 5px;
-      margin-bottom: 14px;
-    }
-
-    .alert-concent a {
-      margin-left: 25px;
-      font-size: 25px;
-      color: #484848;
-      font-weight: bold;
-      padding-bottom: 5px;
-      text-decoration: none;
-      border-bottom: 2px solid #4f4f4f;
-    }
-
-    .alert-concent a:hover {
-      border-bottom: none;
-      color: #4AB0F7
-    }
-    @media screen and (max-width: 720px)
-    {
-      .alert-box {
-        padding: 10px 20px;
-
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="preconnect" href="https://avatars3.githubusercontent.com">
+  <if condition="NODE_ENV === 'production'">
+    <link id="theme-stylesheet" rel="stylesheet"
+      href="https://beaudar.lipk.org/stylesheets/themes/github-light/index.css">
+  </if>
+  <else>
+    <link id="theme-stylesheet" rel="stylesheet" href="http://localhost:4000/stylesheets/themes/github-light/index.css">
+  </else>
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+  <link rel="manifest" href="./icons/manifest.webmanifest">
+  <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#4c2889">
+  <link rel="shortcut icon" href="./icons/favicon.ico">
+  <if condition="NODE_ENV === 'production'">
+    <link rel="canonical" href="https://beaudar.lipk.org">
+  </if>
+  <else>
+    <link rel="canonical" href="http://localhost:4000/index.html">
+  </else>
+  <meta name="apple-mobile-web-app-title" content="beaudar">
+  <meta name="application-name" content="beaudar">
+  <meta name="msapplication-config" content="icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="beaudar">
+  <script>
+    if (Array.from === undefined) {
+      Array.from = function (x) {
+        return Array.prototype.slice.call(x);
       }
     }
-  </style>
+    if (!window.Promise || !window.fetch) {
+      document.write(
+        '<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.0/bluebird.min.js" integrity="sha256-/l7dZnd9iW5Iw9P2Qn/0ghByeFDKnIcPd4DTptDaK20=" crossorigin="anonymous"><\/script>',
+        '<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js" integrity="sha256-aB35laj7IZhLTx58xw/Gm1EKOoJJKZt6RY+bH1ReHxs=" crossorigin="anonymous"><\/script>',
+        '<script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js" integrity="sha384-hmjwm4yehDT6Ezcxh87+SDcTlQYHxrisDyYCrBHPc0VFPfUqGl8jGF7I7gprJpIr" crossorigin="anonymous"><\/script>',
+        '<script src="https://cdn.jsdelivr.net/npm/custom-event-polyfill@0.3.0/custom-event-polyfill.min.js" integrity="sha384-LA1yvfV5pKonJnGIRvMu236XXaEJvI11iV52RIkwsE4QAWpgge1OcxfBHk/0t3UP" crossorigin="anonymous"><\/script>'
+      );
+    }
+
+  </script>
 </head>
 
-<body class="ie8">
-  <div class="alert-box">
-    <div class="alert-body">
-      <div id="js-alert-head" class="alert-head"></div>
-      <div class="alert-concent">
-        <del> zsdycs.cn </del>
-        <p>本站域名已正式更改为</p>
-        <a href="https://lipk.org">lipk.org</a> ✔️
+<body>
+  <main class="timeline">
+    <article class="timeline-comment">
+      <a class="avatar" href="https://github.com/beaudar" tabindex="-1">
+        <img alt="@beaudar" height="44" width="44" src="./icons/Beaudar-240.png">
+      </a>
+      <div class="comment">
+        <header class="comment-header">
+          <span class="comment-meta">
+            <a class="text-link" href="https://github.com/utterance">
+              <strong>Beauder</strong>
+            </a>
+          </span>
+        </header>
+        <article class="markdown-body" md>
+          <include src="./README.md"></include>
+          <h2 id="configuration"> </h2>
+        </article>
       </div>
-    </div>
-    <div class="alert-sec-text"><span id="js-sec-text"></span>秒后自动跳转...</div>
-  </div>
+    </article>
+  </main>
+
+  <script src="./index.ts"></script>
+
+  <if condition="NODE_ENV === 'production'">
+    <script src="https://beaudar.lipk.org/client.js" repo="beaudar/beaudar" issue-term="homepage"
+      crossorigin="anonymous" theme="github-light" async>
+    </script>
+  </if>
+  <else>
+    <script src="http://localhost:4000/client.js" repo="beaudar/beaudar-demo" issue-term="pathname" label="💬 comment"
+      crossorigin="anonymous" theme="github-light" async>
+    </script>
+  </else>
 </body>
 
 </html>
-<script>
-  function alertSet(e) {
-    document.getElementById("js-alert-head").innerHTML = e;
-    var t = 30; // 跳转倒数时间
-    document.getElementById("js-sec-text").innerHTML = t;
-    var interval = setInterval(function () {
-      if (0 == t) {
-        location.href = "https://lipk.org/"; // 跳转URL
-        window.clearInterval(interval);
-      } else {
-        t -= 1;
-        document.getElementById("js-sec-text").innerHTML = t;
-      }
-    }, 1000);
-  }
-
-  alertSet('公 告');
-</script>

@@ -83,7 +83,7 @@ addEventListener('not-installed', function handleNotInstalled() {
   <div class="flash flash-error">
     错误: Beaudar 没有安装在 <code>${page.owner}/${page.repo}</code>。
     如果你拥有这仓库，
-    <a href="https://github.com/apps/utterances" target="_top"><strong>安装 app</strong></a>。
+    <a href="https://github.com/apps/beaudar" target="_top"><strong>安装 app</strong></a>。
   </div>`);
   scheduleMeasure();
 });
