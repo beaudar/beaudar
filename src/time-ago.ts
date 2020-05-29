@@ -3,10 +3,10 @@
 const thresholds = [
   1000, '秒',
   1000 * 60, '分钟',
-  1000 * 60 * 60, '小时',
+  1000 * 60 * 60, '个小时',
   1000 * 60 * 60 * 24, '天',
   1000 * 60 * 60 * 24 * 7, '周',
-  1000 * 60 * 60 * 24 * 27, '月'
+  1000 * 60 * 60 * 24 * 27, '个月'
 ];
 
 const formatOptions: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' };
@@ -28,5 +28,5 @@ export function timeAgo(current: number, value: Date) {
   if (units > 3 && i === thresholds.length - 2) {
     return `于 ${value.toLocaleDateString(undefined, formatOptions)}`;
   }
-  return units === 1 ? `于 一 ${text} 前` : `于 ${units} ${text} 前`;
+  return units === 1 ? `于 1 ${text} 前` : `于 ${units} ${text} 前`;
 }
