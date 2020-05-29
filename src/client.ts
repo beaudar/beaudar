@@ -66,7 +66,7 @@ document.head.insertAdjacentHTML(
   </style>`);
 
 // create the comments iframe and it's responsive container
-const beaudarOrigin = script.src.match(/^https:\/\/zsdycs\.cn|http:\/\/localhost:\d+/)![0];
+const beaudarOrigin = script.src.match(/^https:\/\/beaudar.lipk\.org|http:\/\/localhost:\d+/)![0];
 const url = `${beaudarOrigin}/beaudar.html`;
 script.insertAdjacentHTML(
   'afterend',
