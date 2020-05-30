@@ -22,7 +22,7 @@ export class ConfigurationComponent {
       <fieldset>
         <div>
           <label for="repo">仓库:</label><br/>
-          <input id="repo" class="form-control" type="text" placeholder="例：\"作者/仓库\"">
+          <input id="repo" class="form-control" type="text" placeholder="例：beaudar/beaudar">
           <p class="note">
             一个 <strong>public</strong> 的 GitHub 仓库。这是将发布博客文章 Issue 和 Issue 评论的地方。
           </p>
@@ -37,7 +37,7 @@ export class ConfigurationComponent {
             <input type="radio" value="pathname" name="mapping" checked="checked">
               Issue 标题包含页面路径名。
             <p class="note">
-              Beaudar 将搜索标题包含博客文章 URL 路径的Issue。如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
+              Beaudar 将搜索标题包含博客文章 URL <strong>路径</strong>的 Issue。如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
@@ -46,7 +46,7 @@ export class ConfigurationComponent {
             <input type="radio" value="url" name="mapping">
               Issue 标题包含页面 URL。
             <p class="note">
-              Beaudar 将搜索标题包含博客文章 URL 的Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
+              Beaudar 将搜索标题包含博客文章 URL 的 Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
@@ -55,7 +55,7 @@ export class ConfigurationComponent {
             <input type="radio" value="title" name="mapping">
               Issue 标题包含页面标题
             <p class="note">
-              Beaudar 将搜索标题包含博客文章标题的Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
+              Beaudar 将搜索标题包含博客文章标题的 Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
@@ -80,9 +80,9 @@ export class ConfigurationComponent {
         <div class="form-checkbox">
           <label>
             <input type="radio" value="specific-term" name="mapping">
-              问题标题包含特定术语
+              问题标题包含特定名称
             <p class="note">
-              将 Beaudar 配置为搜索标题包含您选择的特定术语的问题。如果未找到匹配问题，Beaudar 将自动创建第一次有人评论您的帖子时。Issue 的标题将是您选择的术语。
+              将 Beaudar 配置为搜索标题包含您选择的特定名称的问题。如果未找到匹配问题，Beaudar 将自动创建第一次有人评论您的帖子时。Issue 的标题将是您选择的名称。
             </p>
           </label>
         </div>
@@ -118,7 +118,7 @@ export class ConfigurationComponent {
       </select>
       <h3 id="heading-enable">使用 Beaudar</h3>
       <p>
-        将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .beaudar </code>和<code> .beaudar-frame </code>选择器自定义布局。
+      &emsp;&emsp;将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .beaudar </code>和<code> .beaudar-frame </code>选择器自定义布局。
       </p>
       <div class="config-field" id="script" class="highlight highlight-text-html-basic"></div>
       <button id="copy-button" type="button" class="btn btn-blue code-action">复制</button>`;
@@ -162,7 +162,7 @@ export class ConfigurationComponent {
     if (mapping.value === 'Issue-number') {
       mappingAttr = this.makeConfigScriptAttribute('Issue-number', '在此处输入 Issue 编号');
     } else if (mapping.value === 'specific-term') {
-      mappingAttr = this.makeConfigScriptAttribute('Issue-term', '在此输入术语');
+      mappingAttr = this.makeConfigScriptAttribute('Issue-term', '在此输入名称');
     } else {
       mappingAttr = this.makeConfigScriptAttribute('Issue-term', mapping.value);
     }
