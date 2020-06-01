@@ -48,3 +48,10 @@ input:not([type=radio]) {
 .clear-both {
   clear: both;
 }
+
+#confetti {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
