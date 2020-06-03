@@ -23,6 +23,7 @@ export class CommentComponent {
     locked: boolean
   ) {
     const { user, html_url, created_at, body_html, author_association, reactions } = comment;
+
     this.element = document.createElement('article');
     this.element.classList.add('timeline-comment');
     if (user.login === currentUser) {
@@ -98,9 +99,18 @@ export class CommentComponent {
 
 export function processRenderedMarkdown(markdownBody: Element) {
   Array.from(markdownBody.querySelectorAll<HTMLAnchorElement>(':not(.email-hidden-toggle) > a'))
-    .forEach(a => { a.target = '_top'; a.rel = 'noopener noreferrer'; });
+    .forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
   Array.from(markdownBody.querySelectorAll<HTMLImageElement>('img'))
-    .forEach(img => img.onload = scheduleMeasure);
+    .forEach(img => {
+      img.onload = scheduleMeasure;
+      img.title = img.alt;
+      img.src = img.getAttribute('data-canonical-src') as string;
+      const parent = img.parentElement
+      if (parent!.nodeName === 'A') {
+        // @ts-ignore
+        parent.href = img.getAttribute('data-canonical-src') as string;
+      }
+    });
   Array.from(markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'))
     .forEach(a => a.href = 'https://github.com' + a.pathname);
 }

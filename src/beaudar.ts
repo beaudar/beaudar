@@ -83,7 +83,7 @@ addEventListener('not-installed', function handleNotInstalled() {
   <div class="flash flash-error">
     错误: Beaudar 没有安装在 <code>${page.owner}/${page.repo}</code>。
     如果你拥有这仓库，
-    <a href="https://github.com/apps/beaudar" target="_top"><strong>安装 app</strong></a>。
+    <a href="https://github.com/apps/beaudar" target="_blank"><strong>安装 app</strong></a>。
   </div>`);
   scheduleMeasure();
 });
@@ -144,7 +144,7 @@ export async function assertOrigin() {
   <div class="flash flash-error flash-not-installed">
     错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>。
     确认这是该站点评论的正确仓库。 如果您拥有此仓库，
-    <a href="https://github.com/${owner}/${repo}/edit/master/bueadar.json" target="_top">
+    <a href="https://github.com/${owner}/${repo}/edit/master/bueadar.json" target="_blank">
       <strong>更新 beaudar.json</strong>
     </a>
     添加 <code>${origin}</code> 到来源列表。<br/><br/>
