@@ -126,10 +126,6 @@
     font-weight: $font-weight-semibold;
   }
 
-  .reactions-popover {
-    display: none;
-  }
-
   .avatar {
     display: block;
     margin-right: $spacer-3;
@@ -145,6 +141,16 @@
 
   .reactions-popover {
     display: inline-block;
+  }
+
+  .comment-footer {
+    .reactions-popover {
+      display: none;
+
+      @media screen and (min-width: 720px) {
+        display: inline-block;
+      }
+    }
   }
 
 }

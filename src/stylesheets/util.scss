@@ -18,21 +18,18 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.markdown-body .highlight-source-js > pre {
+.markdown-body .highlight-source-js>pre {
   -webkit-overflow-scrolling: touch;
-}
-
-.btn-outline {
-  border-color: $border-gray;
 }
 
 .details-popover {
   position: relative;
 
-  & > summary {
+  &>summary {
     list-style-type: none;
+
     &::-webkit-details-marker {
-        display: none;
+      display: none;
     }
   }
 }

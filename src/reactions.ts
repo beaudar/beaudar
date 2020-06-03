@@ -19,7 +19,7 @@ export const reactionEmoji: Record<ReactionID, string> = {
   '-1': '👎',
   'laugh': '️😄',
   'hooray': '️🎉',
-  'confused': '😕',
+  'confused': '😓',
   'heart': '❤️',
   'rocket': '🚀',
   'eyes': '👀'
