@@ -65,7 +65,7 @@ function processRateLimit(response: Response) {
     const mins = Math.round((resetDate.getTime() - new Date().getTime()) / 1000 / 60);
     const apiType = isSearch ? 'search API' : 'non-search APIs';
     // tslint:disable-next-line:no-console
-    console.warn(`Rate limit exceeded for ${apiType}. Resets in ${mins} minute${mins === 1 ? '' : 's'}.`);
+    console.warn(`超出了 ${apiType} 的速率限制 ${apiType}，在 ${mins} 分钟后重置`);
   }
 }
 
@@ -104,7 +104,10 @@ function githubFetch(request: Request): Promise<Response> {
       return githubFetch(request);
     }
     return response;
-  });
+  })
+    .catch(err => {
+      throw new Error(`请求失败，${err}`);
+    });
 }
 
 export function loadJsonFile<T>(path: string, html = false) {
@@ -114,10 +117,7 @@ export function loadJsonFile<T>(path: string, html = false) {
   }
   return githubFetch(request).then<FileContentsResponse | string>(response => {
     if (response.status === 404) {
-      throw new Error(`Repo "${owner}/${repo}" does not have a file named "${path}" in the "${branch}" branch.`);
-    }
-    if (!response.ok) {
-      throw new Error(`Error fetching ${path}.`);
+      throw new Error(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
     }
     return html ? response.text() : response.json();
   }).then<T>(file => {
@@ -127,16 +127,16 @@ export function loadJsonFile<T>(path: string, html = false) {
     const { content } = file as FileContentsResponse;
     const decoded = decodeBase64UTF8(content);
     return JSON.parse(decoded);
-  });
+  })
+    .catch(err => {
+      throw new Error(`${path} 提取失败，${err}`);
+    });
 }
 
 export function loadIssueByTerm(term: string) {
   const q = `"${term}" type:issue in:title repo:${owner}/${repo}`;
   const request = githubRequest(`search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`);
   return githubFetch(request).then<IssueSearchResponse>(response => {
-    if (!response.ok) {
-      throw new Error('Error fetching issue via search.');
-    }
     return response.json();
   }).then(results => {
     if (results.total_count === 0) {
@@ -144,7 +144,7 @@ export function loadIssueByTerm(term: string) {
     }
     if (results.total_count > 1) {
       // tslint:disable-next-line:no-console
-      console.warn(`Multiple issues match "${q}".`);
+      console.warn(`匹配到多个问题 "${q}"`);
     }
     term = term.toLowerCase();
     for (const result of results.items) {
@@ -153,19 +153,22 @@ export function loadIssueByTerm(term: string) {
       }
     }
     // tslint:disable-next-line:no-console
-    console.warn(`Issue search results do not contain an issue with title matching "${term}". Using first result.`);
+    console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论当前使用第一个匹配项`);
     return results.items[0];
-  });
+  })
+    .catch(err => {
+      throw new Error(`Issue 搜索失败，${err}`);
+    });
 }
 
 export function loadIssueByNumber(issueNumber: number) {
   const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
   return githubFetch(request).then<Issue>(response => {
-    if (!response.ok) {
-      throw new Error('Error fetching issue via issue number.');
-    }
     return response.json();
-  });
+  })
+    .catch(err => {
+      throw new Error(`通过 Issue 编号提取评论时出错，${err}`);
+    });
 }
 
 function commentsRequest(issueNumber: number, page: number) {
@@ -179,11 +182,11 @@ function commentsRequest(issueNumber: number, page: number) {
 export function loadCommentsPage(issueNumber: number, page: number): Promise<IssueComment[]> {
   const request = commentsRequest(issueNumber, page);
   return githubFetch(request).then(response => {
-    if (!response.ok) {
-      throw new Error('提取评论时出错。');
-    }
     return response.json();
-  });
+  })
+    .catch(err => {
+      throw new Error(`提取评论时出错，${err}`);
+    });
 }
 
 export function loadUser(): Promise<User | null> {
@@ -211,11 +214,11 @@ export function createIssue(issueTerm: string, documentUrl: string, title: strin
   request.headers.set('Accept', GITHUB_ENCODING__REACTIONS_PREVIEW);
   request.headers.set('Authorization', `token ${token.value}`);
   return fetch(request).then<Issue>(response => {
-    if (!response.ok) {
-      throw new Error('创建评论 issue 时出错。');
-    }
     return response.json();
-  });
+  })
+    .catch(err => {
+      throw new Error(`创建评论 issue 时出错，${err}`);
+    });
 }
 
 export function postComment(issueNumber: number, markdown: string) {
@@ -225,11 +228,11 @@ export function postComment(issueNumber: number, markdown: string) {
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
   request.headers.set('Accept', accept);
   return githubFetch(request).then<IssueComment>(response => {
-    if (!response.ok) {
-      throw new Error('发布评论时出错。');
-    }
     return response.json();
-  });
+  })
+    .catch(err => {
+      throw new Error(`发布评论时出错，${err}`);
+    });
 }
 
 export async function toggleReaction(url: string, content: ReactionID) {
@@ -245,7 +248,7 @@ export async function toggleReaction(url: string, content: ReactionID) {
     return { reaction, deleted: false };
   }
   if (response.status !== 200) {
-    throw new Error('expected "201 reaction created" or "200 reaction already exists"');
+    throw new Error('预期的“ 201 响应已创建”或“ 200 响应已存在”');
   }
   // reaction already exists... delete.
   const deleteRequest = githubRequest(`reactions/${reaction.id}`, { method: 'DELETE' });
