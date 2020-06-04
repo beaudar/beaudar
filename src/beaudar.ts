@@ -31,6 +31,7 @@ function loadIssue(): Promise<Issue | null> {
 }
 
 async function bootstrap() {
+  startMeasuring(page.origin);
   // tslint:disable-next-line: one-variable-per-declaration
   let issue: any, user: any;
   await loadToken();
@@ -41,11 +42,9 @@ async function bootstrap() {
       loadTheme(page.theme, page.origin)
     ]);
   } catch (error) {
-    errorElement.createMsgElement(` api.github.com 请求失败。`);
+    errorElement.createMsgElement(`api.github.com 请求失败。`);
     throw new Error(`api.github.com 请求失败。${error}`)
   }
-
-  startMeasuring(page.origin);
 
   // @ts-ignore
   const timeline = new TimelineComponent(user, issue);
