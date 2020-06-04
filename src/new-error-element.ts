@@ -9,7 +9,7 @@ export class NewErrorElement {
     this.element.classList.add('timeline');
     this.element.innerHTML = `
       <article class="timeline-comment">
-        <a class="avatar" href="https://github.com/beaudar" tabindex="-1">
+        <a class="avatar" href="https://github.com/beaudar" target="_blank" tabindex="-1">
           <img alt="@beaudar" height="44" width="44" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
         </a>
         <div class="comment">
