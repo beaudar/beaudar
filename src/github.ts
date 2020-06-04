@@ -1,6 +1,7 @@
 import { token } from './oauth';
 import { decodeBase64UTF8 } from './encoding';
 import { BEAUDAR_API } from './beaudar-api';
+import { NewErrorElement } from './new-error-element';
 
 const GITHUB_API = 'https://api.github.com/';
 const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
@@ -16,6 +17,7 @@ export const reactionTypes: ReactionID[] = ['+1', '-1', 'laugh', 'hooray', 'conf
 let owner: string;
 let repo: string;
 const branch = 'master';
+const errorElement = new NewErrorElement();
 
 export function setRepoContext(context: { owner: string; repo: string; }) {
   owner = context.owner;
@@ -105,9 +107,6 @@ function githubFetch(request: Request): Promise<Response> {
     }
     return response;
   })
-    .catch(err => {
-      throw new Error(`请求失败，${err}`);
-    });
 }
 
 export function loadJsonFile<T>(path: string, html = false) {
@@ -117,7 +116,11 @@ export function loadJsonFile<T>(path: string, html = false) {
   }
   return githubFetch(request).then<FileContentsResponse | string>(response => {
     if (response.status === 404) {
+      errorElement.createMsgElement(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
       throw new Error(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
+    }
+    if (response === undefined || !response.ok) {
+      throw new Error(`${path} 提取失败`);
     }
     return html ? response.text() : response.json();
   }).then<T>(file => {
@@ -128,15 +131,15 @@ export function loadJsonFile<T>(path: string, html = false) {
     const decoded = decodeBase64UTF8(content);
     return JSON.parse(decoded);
   })
-    .catch(err => {
-      throw new Error(`${path} 提取失败，${err}`);
-    });
 }
 
 export function loadIssueByTerm(term: string) {
   const q = `"${term}" type:issue in:title repo:${owner}/${repo}`;
   const request = githubRequest(`search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`);
   return githubFetch(request).then<IssueSearchResponse>(response => {
+    if (response === undefined || !response.ok) {
+      throw new Error('搜索 Issues 失败。');
+    }
     return response.json();
   }).then(results => {
     if (results.total_count === 0) {
@@ -156,19 +159,17 @@ export function loadIssueByTerm(term: string) {
     console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论当前使用第一个匹配项`);
     return results.items[0];
   })
-    .catch(err => {
-      throw new Error(`Issue 搜索失败，${err}`);
-    });
 }
 
 export function loadIssueByNumber(issueNumber: number) {
   const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
   return githubFetch(request).then<Issue>(response => {
+    if (response === undefined || !response.ok) {
+      errorElement.createMsgElement(`通过 Issue 编号提取评论时出错`);
+      throw new Error(`通过 Issue 编号提取评论时出错`);
+    }
     return response.json();
   })
-    .catch(err => {
-      throw new Error(`通过 Issue 编号提取评论时出错，${err}`);
-    });
 }
 
 function commentsRequest(issueNumber: number, page: number) {
@@ -182,11 +183,11 @@ function commentsRequest(issueNumber: number, page: number) {
 export function loadCommentsPage(issueNumber: number, page: number): Promise<IssueComment[]> {
   const request = commentsRequest(issueNumber, page);
   return githubFetch(request).then(response => {
+    if (response === undefined || !response.ok) {
+      throw new Error(`提取评论时出错。`);
+    }
     return response.json();
   })
-    .catch(err => {
-      throw new Error(`提取评论时出错，${err}`);
-    });
 }
 
 export function loadUser(): Promise<User | null> {
@@ -214,11 +215,11 @@ export function createIssue(issueTerm: string, documentUrl: string, title: strin
   request.headers.set('Accept', GITHUB_ENCODING__REACTIONS_PREVIEW);
   request.headers.set('Authorization', `token ${token.value}`);
   return fetch(request).then<Issue>(response => {
+    if (response === undefined || !response.ok) {
+      throw new Error(`创建评论 issue 时出错`);
+    }
     return response.json();
   })
-    .catch(err => {
-      throw new Error(`创建评论 issue 时出错，${err}`);
-    });
 }
 
 export function postComment(issueNumber: number, markdown: string) {
@@ -228,11 +229,11 @@ export function postComment(issueNumber: number, markdown: string) {
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
   request.headers.set('Accept', accept);
   return githubFetch(request).then<IssueComment>(response => {
+    if (response === undefined || !response.ok) {
+      throw new Error(`发布评论时出错`);
+    }
     return response.json();
   })
-    .catch(err => {
-      throw new Error(`发布评论时出错，${err}`);
-    });
 }
 
 export async function toggleReaction(url: string, content: ReactionID) {
@@ -248,6 +249,7 @@ export async function toggleReaction(url: string, content: ReactionID) {
     return { reaction, deleted: false };
   }
   if (response.status !== 200) {
+    errorElement.createMsgElement('预期的“ 201 响应已创建”或“ 200 响应已存在”');
     throw new Error('预期的“ 201 响应已创建”或“ 200 响应已存在”');
   }
   // reaction already exists... delete.

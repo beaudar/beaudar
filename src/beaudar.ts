@@ -18,8 +18,10 @@ import { loadTheme } from './theme';
 import { getRepoConfig } from './repo-config';
 import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
+import { NewErrorElement } from './new-error-element';
 
 setRepoContext(page);
+const errorElement = new NewErrorElement();
 
 function loadIssue(): Promise<Issue | null> {
   if (page.issueNumber !== null) {
@@ -29,25 +31,35 @@ function loadIssue(): Promise<Issue | null> {
 }
 
 async function bootstrap() {
+  // tslint:disable-next-line: one-variable-per-declaration
+  let issue: any, user: any;
   await loadToken();
-  // tslint:disable-next-line:prefer-const
-  let [issue, user] = await Promise.all([
-    loadIssue(),
-    loadUser(),
-    loadTheme(page.theme, page.origin)
-  ]);
+  try {
+    [issue, user] = await Promise.all([
+      loadIssue(),
+      loadUser(),
+      loadTheme(page.theme, page.origin)
+    ]);
+  } catch (error) {
+    errorElement.createMsgElement(` api.github.com 请求失败。`);
+    throw new Error(`api.github.com 请求失败。${error}`)
+  }
 
   startMeasuring(page.origin);
 
+  // @ts-ignore
   const timeline = new TimelineComponent(user, issue);
   document.body.appendChild(timeline.element);
 
+  // @ts-ignore
   if (issue && issue.comments > 0) {
+    // @ts-ignore
     renderComments(issue, timeline);
   }
 
   scheduleMeasure();
 
+  // @ts-ignore
   if (issue && issue.locked) {
     return;
   }
@@ -66,11 +78,13 @@ async function bootstrap() {
       );
       timeline.setIssue(issue);
     }
+    // @ts-ignore
     const comment = await postComment(issue.number, markdown);
     timeline.insertComment(comment, true);
     newCommentComponent.clear();
   };
 
+  // @ts-ignore
   const newCommentComponent = new NewCommentComponent(user, submit);
   timeline.element.appendChild(newCommentComponent.element);
 }
