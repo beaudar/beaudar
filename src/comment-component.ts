@@ -51,8 +51,7 @@ export class CommentComponent {
         <header class="comment-header">
           <span class="comment-meta">
             <a class="text-link" href="${user.html_url}" target="_blank"><strong>${user.login}</strong></a>
-            评论
-            <a class="text-link" href="${html_url}" target="_blank">${timeAgo(Date.now(), new Date(created_at))}</a>
+            评论<a class="text-link" href="${html_url}" target="_blank">${timeAgo(Date.now(), new Date(created_at))}</a>
           </span>
           <div class="comment-actions">
             ${association ? `<span class="author-association-badge">${association}</span>` : ''}
