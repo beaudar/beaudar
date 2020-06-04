@@ -9,7 +9,7 @@ const displayAssociations: Record<CommentAuthorAssociation, string> = {
   CONTRIBUTOR: '贡献者',
   MEMBER: '成员',
   OWNER: '作者',
-  FIRST_TIME_CONTRIBUTOR: '初次贡献者',
+  FIRST_TIME_CONTRIBUTOR: '初期贡献者',
   FIRST_TIMER: '沙发',
   NONE: ''
 };
