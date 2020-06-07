@@ -14,7 +14,7 @@ const formatOptions: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeri
 export function timeAgo(current: number, value: Date) {
   const elapsed = current - value.getTime();
   if (elapsed < 5000) {
-    return '刚刚';
+    return ' 刚刚';
   }
   let i = 0;
   while (i + 2 < thresholds.length && elapsed * 1.1 > thresholds[i + 2]) {
