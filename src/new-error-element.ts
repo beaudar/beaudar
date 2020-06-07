@@ -19,7 +19,7 @@ export class NewErrorElement {
             </span>
           </header>
           <article class="markdown-body">
-            <h4>请求出错...</h4>
+            <h3>请求出错...</h3>
             <blockquote>更多详情，请于浏览器控制台查询。</blockquote>
             <ol id="msgList">
             </ol>

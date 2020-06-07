@@ -157,7 +157,7 @@ export async function assertOrigin() {
   <div class="flash flash-error flash-not-installed">
     错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>。
     确认这是该站点评论的正确仓库。 如果您拥有此仓库，
-    <a href="https://github.com/${owner}/${repo}/edit/master/bueadar.json" target="_blank">
+    <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
       <strong>更新 beaudar.json</strong>
     </a>
     添加 <code>${origin}</code> 到来源列表。<br/><br/>
