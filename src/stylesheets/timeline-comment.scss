@@ -34,6 +34,10 @@
   .comment-meta {
     padding: 10px $spacer-3;
     font-size: 12px;
+
+    .comment-author {
+      font-size: 16px;
+    }
   }
 
   .comment-actions {

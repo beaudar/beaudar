@@ -50,7 +50,7 @@ export class CommentComponent {
       <div class="comment">
         <header class="comment-header">
           <span class="comment-meta">
-            <a class="text-link" href="${user.html_url}" target="_blank"><strong>${user.login}</strong></a>
+            <a class="text-link comment-author" href="${user.html_url}" target="_blank"><strong>${user.login}</strong></a>
             评论<a class="text-link" href="${html_url}" target="_blank">${timeAgo(Date.now(), new Date(created_at))}</a>
           </span>
           <div class="comment-actions">
