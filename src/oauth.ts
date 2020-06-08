@@ -14,9 +14,9 @@ export async function loadToken(): Promise<string | null> {
     return token.value;
   }
   const url = `${BEAUDAR_API}/token`;
-  const errorElement = new NewErrorElement();
   const response = await fetch(url, { method: 'POST', mode: 'cors', credentials: 'include' }).catch(err => {
-    errorElement.createMsgElement(`token 请求失败。`);
+    const errorElement = new NewErrorElement();
+    errorElement.createMsgElement(`token 请求失败`, `网络断开或网络不稳定，请刷新重试。`);
     throw new Error(`token 请求失败，${err}`);
   });
   if (response.ok) {

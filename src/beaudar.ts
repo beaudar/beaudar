@@ -21,7 +21,6 @@ import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
 
 setRepoContext(page);
-const errorElement = new NewErrorElement();
 
 function loadIssue(): Promise<Issue | null> {
   if (page.issueNumber !== null) {
@@ -42,7 +41,9 @@ async function bootstrap() {
       loadTheme(page.theme, page.origin)
     ]);
   } catch (error) {
-    errorElement.createMsgElement(`api.github.com 请求失败。`);
+    const errorElement = new NewErrorElement();
+    errorElement.createMsgElement(`api.github.com 请求失败`,
+      `<p>可刷新页面，尝试解决此问题。</p>`);
     throw new Error(`api.github.com 请求失败。${error}`)
   }
 
@@ -153,17 +154,14 @@ export async function assertOrigin() {
     return;
   }
 
-  document.querySelector('.timeline')!.lastElementChild!.insertAdjacentHTML('beforebegin', `
-  <div class="flash flash-error flash-not-installed">
-    错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>。
-    确认这是该站点评论的正确仓库。 如果您拥有此仓库，
-    <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
-      <strong>更新 beaudar.json</strong>
-    </a>
-    添加 <code>${origin}</code> 到来源列表。<br/><br/>
-    建议配置：<br/>
-    <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
-  </div>`);
-  scheduleMeasure();
-  throw new Error('没有权限。');
+  const errorElement = new NewErrorElement();
+  errorElement.createMsgElement(`错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>`, `
+  <p>&emsp;&emsp;确认 <code>${owner}/${repo}</code> 是该站点评论的正确仓库。如果您拥有此仓库，
+  <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
+    <strong>添加或更新 beaudar.json</strong>
+  </a>
+  添加 <code>${origin}</code> 到来源列表。</p>
+  <p>需要配置：</p>
+  <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
+  `);
 }

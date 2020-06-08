@@ -17,7 +17,6 @@ export const reactionTypes: ReactionID[] = ['+1', '-1', 'laugh', 'hooray', 'conf
 let owner: string;
 let repo: string;
 const branch = 'master';
-const errorElement = new NewErrorElement();
 
 export function setRepoContext(context: { owner: string; repo: string; }) {
   owner = context.owner;
@@ -116,7 +115,9 @@ export function loadJsonFile<T>(path: string, html = false) {
   }
   return githubFetch(request).then<FileContentsResponse | string>(response => {
     if (response.status === 404) {
-      errorElement.createMsgElement(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
+      const errorElement = new NewErrorElement();
+      errorElement.createMsgElement(`缺少 "${path}" 配置`,
+        `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`);
       throw new Error(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
     }
     if (response === undefined || !response.ok) {
@@ -165,7 +166,6 @@ export function loadIssueByNumber(issueNumber: number) {
   const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
   return githubFetch(request).then<Issue>(response => {
     if (response === undefined || !response.ok) {
-      errorElement.createMsgElement(`通过 Issue 编号提取评论时出错`);
       throw new Error(`通过 Issue 编号提取评论时出错`);
     }
     return response.json();
@@ -249,7 +249,6 @@ export async function toggleReaction(url: string, content: ReactionID) {
     return { reaction, deleted: false };
   }
   if (response.status !== 200) {
-    errorElement.createMsgElement('预期的“ 201 响应已创建”或“ 200 响应已存在”');
     throw new Error('预期的“ 201 响应已创建”或“ 200 响应已存在”');
   }
   // reaction already exists... delete.

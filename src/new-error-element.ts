@@ -3,36 +3,50 @@ import { scheduleMeasure } from './measure';
 
 export class NewErrorElement {
   public readonly element: HTMLElement;
-  constructor(
-  ) {
-    this.element = document.createElement('main');
-    this.element.classList.add('timeline');
-    this.element.innerHTML = `
-      <article class="timeline-comment">
-        <a class="avatar" href="https://github.com/beaudar" target="_blank" tabindex="-1">
-          <img alt="@beaudar" height="44" width="44" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
-        </a>
-        <div class="comment">
-          <header class="comment-header">
-            <span class="comment-meta">
-              <strong>Beaudar 提示</strong>
-            </span>
-          </header>
-          <article class="markdown-body">
-            <h3>请求出错...</h3>
-            <blockquote>更多详情，请于浏览器控制台查询。</blockquote>
-            <ol id="msgList">
-            </ol>
-          </article>
-        </div>
+  isTimelineNull: boolean;
+  beaudarArticle = `
+  <article class="timeline-comment">
+    <a class="avatar" href="https://github.com/beaudar" target="_blank">
+      <img alt="@beaudar" height="44" width="44" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <span class="comment-meta">
+          <strong class="comment-author">Beaudar</strong> 系统消息
+        </span>
+      </header>
+      <article id="beaudarMsg" class="markdown-body">
       </article>
-    `
+    </div>
+  </article>
+`
+  constructor() {
+    if (document.querySelector('.timeline') === null) {
+      this.isTimelineNull = true;
+      this.element = document.createElement('main');
+      this.element.classList.add('timeline');
+      this.element.innerHTML = this.beaudarArticle;
+    } else {
+      this.isTimelineNull = false;
+      // @ts-ignore
+      this.element = document.querySelector('.timeline');
+      if (document.querySelector('#beaudarMsg') === null) {
+        this.element!.lastElementChild!.insertAdjacentHTML('beforebegin', this.beaudarArticle)
+      }
+    }
   }
 
-  public createMsgElement(msg: string) {
-    const msgList = this.element.querySelector('#msgList')!;
-    msgList.insertAdjacentHTML('beforeend', `<li>${msg}</li>`);
-    document.body.appendChild(this.element);
+  public createMsgElement(header: string, body: any) {
+    this.element.querySelector('#beaudarMsg')!.insertAdjacentHTML('beforeend', `
+    <h3>${header}</h3>
+    ${body}
+    <p> 获取帮助：<a href="https://lipk.org/blog/2020/06/08/beauder-qa/" target="_blank">关于 Beaudar 的 Q&amp;A</a></p>`);
+    if (this.isTimelineNull) {
+      document.body.appendChild(this.element);
+    } else {
+      // @ts-ignore 已经获取了 issue 内容时，屏蔽评论功能
+      this.element.lastElementChild.style.display = 'none';
+    }
     scheduleMeasure();
   }
 }

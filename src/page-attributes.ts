@@ -11,11 +11,11 @@ function readPageAttributes() {
     issueTerm = params['issue-term'];
     if (issueTerm !== undefined) {
       if (issueTerm === '') {
-        throw new Error('When issue-term is specified, it cannot be blank.');
+        throw new Error('指定的 issue-term 不能为空');
       }
       if (['title', 'url', 'pathname', 'og:title'].indexOf(issueTerm) !== -1) {
         if (!params[issueTerm]) {
-          throw new Error(`Unable to find "${issueTerm}" metadata.`);
+          throw new Error(`找不到 "${issueTerm}" 这个 issue 的信息`);
         }
         issueTerm = params[issueTerm];
       }
@@ -23,23 +23,23 @@ function readPageAttributes() {
   } else if ('issue-number' in params) {
     issueNumber = +params['issue-number'];
     if (issueNumber.toString(10) !== params['issue-number']) {
-      throw new Error(`issue-number is invalid. "${params['issue-number']}`);
+      throw new Error(`issue-number 无效，${params['issue-number']}`);
     }
   } else {
-    throw new Error('"issue-term" or "issue-number" must be specified.');
+    throw new Error('"issue-term" 或 "issue-number" 是必须项');
   }
 
   if (!('repo' in params)) {
-    throw new Error('"repo" is required.');
+    throw new Error('仓库 "repo" 是必须项');
   }
 
   if (!('origin' in params)) {
-    throw new Error('"origin" is required.');
+    throw new Error('来源 "origin" 是必须项');
   }
 
   const matches = repoRegex.exec(params.repo);
   if (matches === null) {
-    throw new Error(`Invalid repo: "${params.repo}"`);
+    throw new Error(`无效的仓库 repo: "${params.repo}"`);
   }
 
   if (params.token) {

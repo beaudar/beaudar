@@ -34,7 +34,7 @@ export class NewCommentComponent {
     this.element.classList.add('timeline-comment');
 
     this.element.innerHTML = `
-      <a class="avatar" target="_blank" tabindex="-1">
+      <a class="avatar" target="_blank">
         <img height="44" width="44">
       </a>
       <form class="comment" accept-charset="UTF-8" action="javascript:">
@@ -57,7 +57,7 @@ export class NewCommentComponent {
           </div>
         </div>
         <footer class="new-comment-footer">
-          <a class="text-link markdown-info" tabindex="-1" target="_blank"
+          <a class="text-link markdown-info" target="_blank"
              href="https://guides.github.com/features/mastering-markdown/">
             <svg class="octicon v-align-bottom" viewBox="0 0 16 16" version="1.1"
               width="16" height="16" aria-hidden="true">
@@ -115,7 +115,7 @@ export class NewCommentComponent {
   }
 
   private handleInput = () => {
-    getRepoConfig(); // preload repo config
+    getRepoConfig(); // 预加载仓库 repo 配置
     const text = this.textarea.value;
     const isWhitespace = /^\s*$/.test(text);
     this.submitButton.disabled = isWhitespace;
