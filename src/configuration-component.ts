@@ -14,7 +14,7 @@ export class ConfigurationComponent {
       </p>
       <ol>
         <li>确保仓库是公开的，否则您的读者将无法查看 Issue(评论)。</li>
-        <li>确保 <a href="https://github.com/apps/beaudar">Beaudar app</a>
+        <li>确保 <a href="https://github.com/apps/beaudar" target="_blank">Beaudar app</a>
           已在仓库中安装，否则用户将无法发表评论。
         </li>
         <li>如果你的仓库是一个分叉，请到设置中，确保 Issues 功能已打开。</li>
@@ -64,7 +64,7 @@ export class ConfigurationComponent {
             <input type="radio" value="og:title" name="mapping">
             Issue 标题包含页面 meta 的 og:title
             <p class="note">
-              Beaudar 将搜索标题包含博客文章页面 meta 元素 <a href="http://ogp.me/">og:title</a> 的 Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
+              Beaudar 将搜索标题包含博客文章页面 meta 元素 <a href="http://ogp.me/" target="_blank">og:title</a> 的 Issue。 如果未找到匹配的 Issue，则当有人首次对您的信息发表评论时，Beaudar 会自动创建一个 Issue。
             </p>
           </label>
         </div>
@@ -105,7 +105,7 @@ export class ConfigurationComponent {
       <h3 id="heading-theme">主题</h3>
       <p>
         选择与您的博客匹配的 Beaudar 主题。找不到你喜欢的主题？
-        <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.MD">贡献</a> 一个自定义主题。
+        <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.MD" target="_blank">贡献</a> 一个自定义主题。
       </p>
 
       <select id="theme" class="form-select" value="github-light" aria-label="Theme">
