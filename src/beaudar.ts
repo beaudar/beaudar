@@ -67,21 +67,36 @@ async function bootstrap() {
   enableReactions(!!user);
 
   const submit = async (markdown: string) => {
-    await assertOrigin();
-    if (!issue) {
-      issue = await createIssue(
-        page.issueTerm as string,
-        page.url,
-        page.title,
-        page.description || '',
-        page.label
-      );
-      timeline.setIssue(issue);
+    const { origins } = await getRepoConfig();
+    const { origin, owner, repo } = page;
+    if (origins.indexOf(origin) !== -1) {
+      if (!issue) {
+        issue = await createIssue(
+          page.issueTerm as string,
+          page.url,
+          page.title,
+          page.description || '',
+          page.label
+        );
+        timeline.setIssue(issue);
+      }
+      // @ts-ignore
+      const comment = await postComment(issue.number, markdown);
+      timeline.insertComment(comment, true);
+      newCommentComponent.clear();
+    } else {
+      const errorElement = new NewErrorElement();
+      errorElement.createMsgElement(`错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`, `
+      <p>&emsp;&emsp;请确认 <code>${owner}/${repo}</code> 是本站点评论的正确仓库。如果您拥有此仓库，
+      <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
+        <strong>添加或更新 beaudar.json</strong>
+      </a>
+      添加 <code>${origin}</code> 到来源列表。</p>
+      <p>需要配置：</p>
+      <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
+      `);
+      throw new Error(`评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`)
     }
-    // @ts-ignore
-    const comment = await postComment(issue.number, markdown);
-    timeline.insertComment(comment, true);
-    newCommentComponent.clear();
   };
 
   // @ts-ignore
@@ -145,23 +160,4 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
     const loader = timeline.insertPageLoader(afterComment, hiddenPageCount * PAGE_SIZE, load);
   };
   renderLoader(pages[0]);
-}
-
-export async function assertOrigin() {
-  const { origins } = await getRepoConfig();
-  const { origin, owner, repo } = page;
-  if (origins.indexOf(origin) !== -1) {
-    return;
-  }
-
-  const errorElement = new NewErrorElement();
-  errorElement.createMsgElement(`错误: <code>${origin}</code> 不允许发布到 <code>${owner}/${repo}</code>`, `
-  <p>&emsp;&emsp;确认 <code>${owner}/${repo}</code> 是该站点评论的正确仓库。如果您拥有此仓库，
-  <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
-    <strong>添加或更新 beaudar.json</strong>
-  </a>
-  添加 <code>${origin}</code> 到来源列表。</p>
-  <p>需要配置：</p>
-  <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
-  `);
 }
