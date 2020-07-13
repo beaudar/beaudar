@@ -21,6 +21,21 @@ import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
 
 setRepoContext(page);
+const setTheme = loadTheme(page.theme, page.origin);
+const linkToHome = document.createElement('a');
+linkToHome.href = 'https://beaudar.lipk.org';
+linkToHome.target = '_blank';
+const beaudaring = document.createElement('div');
+linkToHome.appendChild(beaudaring);
+if (JSON.parse(page.loading)) {
+  beaudaring.classList.add('beaudarLoading');
+  beaudaring.innerHTML = `<img width="50px" height="50px" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png" alt="beaudar loading">`;
+  setTheme.then(() => {
+    // 添加加载状态
+    document.body.appendChild(linkToHome);
+  });
+  scheduleMeasure();
+}
 
 function loadIssue(): Promise<Issue | null> {
   if (page.issueNumber !== null) {
@@ -37,8 +52,7 @@ async function bootstrap() {
   try {
     [issue, user] = await Promise.all([
       loadIssue(),
-      loadUser(),
-      loadTheme(page.theme, page.origin)
+      loadUser()
     ]);
   } catch (error) {
     const errorElement = new NewErrorElement();
@@ -50,6 +64,8 @@ async function bootstrap() {
   // @ts-ignore
   const timeline = new TimelineComponent(user, issue);
   document.body.appendChild(timeline.element);
+  // 移除加载状态
+  beaudaring.remove();
 
   // @ts-ignore
   if (issue && issue.comments > 0) {

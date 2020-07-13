@@ -1,0 +1,28 @@
+.beaudarLoading {
+  position: relative;
+  margin: 20px auto;
+  background-color: $gray-200;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+
+  img {
+    width: 50px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    right: 46px;
+    width: 0px;
+    top: 62px;
+    height: 0;
+    border-top: 49px solid $gray-200;
+    border-right: 33px solid #ffffff00;
+    border-left: 22px solid #ffffff00;
+    transform: rotate(47deg);
+  }
+}

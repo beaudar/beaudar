@@ -37,6 +37,8 @@ export class NewErrorElement {
   }
 
   public createMsgElement(header: string, body: any) {
+    const beaudarLoading = document.querySelector('.beaudarLoading') as HTMLDivElement;
+    if (beaudarLoading) beaudarLoading.remove();
     this.element.querySelector('#beaudarMsg')!.insertAdjacentHTML('beforeend', `
     <h3>${header}</h3>
     ${body}
@@ -45,7 +47,7 @@ export class NewErrorElement {
       document.body.appendChild(this.element);
     } else {
       // @ts-ignore 已经获取了 issue 内容时，屏蔽评论功能
-      this.element.lastElementChild.style.display = 'none';
+      this.element.lastElementChild.remove();
     }
     scheduleMeasure();
   }
