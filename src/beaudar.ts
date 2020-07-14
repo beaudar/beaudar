@@ -57,7 +57,7 @@ async function bootstrap() {
   } catch (error) {
     const errorElement = new NewErrorElement();
     errorElement.createMsgElement(`api.github.com 请求失败`,
-      `<p>可刷新页面，尝试解决此问题。</p>`);
+      `<p>可点击“刷新”，尝试解决此问题。</p>`, true);
     throw new Error(`api.github.com 请求失败。${error}`)
   }
 
