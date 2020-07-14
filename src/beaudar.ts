@@ -21,7 +21,11 @@ import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
 
 setRepoContext(page);
-const setTheme = loadTheme(page.theme, page.origin);
+let setTheme = loadTheme(page.theme, page.origin);
+if (sessionStorage.getItem('beaudar-set-theme')) {
+  // @ts-ignore
+  setTheme = loadTheme(sessionStorage.getItem('beaudar-set-theme'), page.origin);
+}
 const linkToHome = document.createElement('a');
 linkToHome.href = 'https://beaudar.lipk.org';
 linkToHome.target = '_blank';

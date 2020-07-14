@@ -8,6 +8,7 @@ export function loadTheme(theme: string, origin: string) {
     document.head.appendChild(link);
 
     addEventListener('message', event => {
+      sessionStorage.setItem('beaudar-set-theme', event.data.theme);
       if (event.origin === origin && event.data.type === 'set-theme') {
         link.href = `/stylesheets/themes/${event.data.theme}/beaudar.css`;
       }

@@ -135,6 +135,11 @@ export class ConfigurationComponent {
     this.theme = this.element.querySelector('#theme') as HTMLSelectElement;
 
     const themeStylesheet = document.getElementById('theme-stylesheet') as HTMLLinkElement;
+    if (sessionStorage.getItem('beaudar-set-theme')) {
+      // @ts-ignore
+      this.theme.value = sessionStorage.getItem('beaudar-set-theme');
+      themeStylesheet.href = `/stylesheets/themes/${this.theme.value}/index.css`;
+    }
     this.theme.addEventListener('change', () => {
       themeStylesheet.href = `/stylesheets/themes/${this.theme.value}/index.css`;
       const message = {
