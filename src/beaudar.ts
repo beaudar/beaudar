@@ -14,32 +14,13 @@ import {
 import { TimelineComponent } from './timeline-component';
 import { NewCommentComponent } from './new-comment-component';
 import { startMeasuring, scheduleMeasure } from './measure';
-import { loadTheme } from './theme';
 import { getRepoConfig } from './repo-config';
 import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
+import { beaudarLoadingStatus } from './beaudar-loading';
 
 setRepoContext(page);
-let setTheme = loadTheme(page.theme, page.origin);
-if (sessionStorage.getItem('beaudar-set-theme')) {
-  // @ts-ignore
-  setTheme = loadTheme(sessionStorage.getItem('beaudar-set-theme'), page.origin);
-}
-const linkToHome = document.createElement('a');
-linkToHome.href = 'https://beaudar.lipk.org';
-linkToHome.target = '_blank';
-const beaudaring = document.createElement('div');
-linkToHome.appendChild(beaudaring);
-if (JSON.parse(page.loading)) {
-  beaudaring.classList.add('beaudarLoading');
-  beaudaring.innerHTML = `<img width="50px" height="50px" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png" alt="beaudar loading">`;
-  setTheme.then(() => {
-    // 添加加载状态
-    document.body.appendChild(linkToHome);
-  });
-  scheduleMeasure();
-}
 
 function loadIssue(): Promise<Issue | null> {
   if (page.issueNumber !== null) {
@@ -50,6 +31,10 @@ function loadIssue(): Promise<Issue | null> {
 
 async function bootstrap() {
   startMeasuring(page.origin);
+  const loadingParam = await beaudarLoadingStatus(page);
+  if (loadingParam.IS_IE) {
+    throw new Error(`本项目放弃兼容 IE。`);
+  }
   // tslint:disable-next-line: one-variable-per-declaration
   let issue: any, user: any;
   await loadToken();
@@ -69,7 +54,7 @@ async function bootstrap() {
   const timeline = new TimelineComponent(user, issue);
   document.body.appendChild(timeline.element);
   // 移除加载状态
-  beaudaring.remove();
+  loadingParam.loadingElement.remove();
 
   // @ts-ignore
   if (issue && issue.comments > 0) {

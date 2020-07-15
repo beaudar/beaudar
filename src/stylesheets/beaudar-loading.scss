@@ -21,8 +21,8 @@
     top: 62px;
     height: 0;
     border-top: 49px solid $gray-200;
-    border-right: 33px solid #ffffff00;
-    border-left: 22px solid #ffffff00;
+    border-right: 33px solid transparent;
+    border-left: 22px solid transparent;
     transform: rotate(47deg);
   }
 }
