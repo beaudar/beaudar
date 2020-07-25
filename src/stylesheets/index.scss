@@ -56,3 +56,29 @@ input:not([type=radio]) {
   top: 0;
   width: 100%;
 }
+
+.copyright {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-weight: 100;
+  }
+
+  img {
+    float: left;
+  }
+
+  p {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 0px 0px 0px 5px;
+    color: #939393;
+  }
+}
