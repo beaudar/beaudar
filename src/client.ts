@@ -1,5 +1,6 @@
 import { param, deparam } from './deparam';
 import { ResizeMessage } from './measure';
+import { preferredThemeId, preferredTheme } from './preferred-theme';
 
 // slice access token from query string
 const params = deparam(location.search.substr(1));
@@ -25,6 +26,10 @@ const attrs: Record<string, string> = {};
 for (let i = 0; i < script.attributes.length; i++) {
   const attribute = script.attributes.item(i)!;
   attrs[attribute.name.replace(/^data-/, '')] = attribute.value; // permit using data-theme instead of theme.
+}
+// 如果是根据浏览器模式选择
+if (attrs.theme === preferredThemeId) {
+  attrs.theme = preferredTheme;
 }
 
 // gather page attributes
