@@ -103,7 +103,7 @@ export class ConfigurationComponent {
         </div>
       </fieldset>
 
-      <h3 id="heading-theme">主题</h3>
+      <h3 id="heading-theme">选择主题 🌈</h3>
       <p>
         选择与您的博客匹配的 Beaudar 主题。找不到你喜欢的主题？
         <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.MD" target="_blank">贡献</a> 一个自定义主题。
@@ -118,7 +118,7 @@ export class ConfigurationComponent {
         <option value="dark-blue">Dark Blue</option>
         <option value="photon-dark">Photon Dark</option>
       </select>
-      <h3 id="heading-enable">使用 Beaudar</h3>
+      <h3 id="heading-enable">使用 Beaudar 🎊</h3>
       <p>
       &emsp;&emsp;将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .beaudar </code>和<code> .beaudar-frame </code>选择器自定义布局。
       </p>
