@@ -71,7 +71,7 @@ export class ConfigurationComponent {
         </div>
         <div class="form-checkbox">
           <label>
-            <input type="radio" value="Issue-number" name="mapping">
+            <input type="radio" value="issue-number" name="mapping">
               特定问题编号
             <p class="note">
               您可以配置 Beaudar 以按编号加载特定的 Issue。 问题不会自动创建。
@@ -171,12 +171,12 @@ export class ConfigurationComponent {
     const mapping = this.element.querySelector('input[name="mapping"]:checked') as HTMLInputElement;
     let mappingAttr: string;
     // tslint:disable-next-line:prefer-conditional-expression
-    if (mapping.value === 'Issue-number') {
-      mappingAttr = this.makeConfigScriptAttribute('Issue-number', '在此处输入 Issue 编号');
+    if (mapping.value === 'issue-number') {
+      mappingAttr = this.makeConfigScriptAttribute('issue-number', '在此处输入 Issue 编号');
     } else if (mapping.value === 'specific-term') {
-      mappingAttr = this.makeConfigScriptAttribute('Issue-term', '在此输入名称');
+      mappingAttr = this.makeConfigScriptAttribute('issue-term', '在此输入名称');
     } else {
-      mappingAttr = this.makeConfigScriptAttribute('Issue-term', mapping.value);
+      mappingAttr = this.makeConfigScriptAttribute('issue-term', mapping.value);
     }
     this.script.innerHTML = this.makeConfigScript(
       this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '在此处输入仓库' : this.repo.value) + '\n' +
