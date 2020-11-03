@@ -26,7 +26,7 @@
 
 #### Beaudar 是如何工作的？
 
-&emsp;&emsp;Beaudar 加载时，将使用 GitHub issue 搜索 API 根据 url，“路径名”或“标题”查找与页面相关的 issue。如果找不到与页面匹配的 issue，即没有评论，当有人首次发表评论时，[Beaudar-bot](https://github.com/beaudar-bot) 会自动创建一个 issue。
+Beaudar 加载时，将使用 GitHub issue 搜索 API 根据 url，“路径名”或“标题”查找与页面相关的 issue。如果找不到与页面匹配的 issue，即没有评论，当有人首次发表评论时，[Beaudar-bot](https://github.com/beaudar-bot) 会自动创建一个 issue。
 [查看如何在本地运行](https://lipk.org/blog/2020/06/08/run-utterances/)。
 
 #### 更多详情
