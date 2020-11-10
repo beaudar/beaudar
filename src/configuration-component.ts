@@ -190,9 +190,9 @@ export class ConfigurationComponent {
     }
     this.script.innerHTML = this.makeConfigScript(
       this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '在此处输入仓库' : this.repo.value) + '\n' +
+      (this.branch.value ? this.makeConfigScriptAttribute('branch', this.branch.value) + '\n' : '') +
       mappingAttr + '\n' +
       (this.label.value ? this.makeConfigScriptAttribute('label', this.label.value) + '\n' : '') +
-      (this.branch.value ? this.makeConfigScriptAttribute('branch', this.branch.value) + '\n' : '') +
       this.makeConfigScriptAttribute('theme', this.theme.value) + '\n' +
       this.makeConfigScriptAttribute('crossorigin', 'anonymous'));
   }
