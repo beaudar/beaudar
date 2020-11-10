@@ -49,6 +49,7 @@ function readPageAttributes() {
   return {
     owner: matches[1],
     repo: matches[2],
+    branch: params.branch || 'master',
     issueTerm,
     issueNumber,
     origin: params.origin,
