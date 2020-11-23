@@ -3,6 +3,7 @@ export class ConfigurationComponent {
   public readonly element: HTMLFormElement;
   private readonly script: HTMLDivElement;
   private readonly repo: HTMLInputElement;
+  private readonly branch: HTMLInputElement;
   private readonly label: HTMLInputElement;
   private readonly theme: HTMLSelectElement;
 
@@ -26,6 +27,13 @@ export class ConfigurationComponent {
           <input id="repo" class="form-control" type="text" placeholder="例：beaudar/beaudar">
           <p class="note">
             一个 <strong>public</strong> 的 GitHub 仓库。这是将发布博客文章 Issue 和 Issue 评论的地方。
+          </p>
+        </div>
+        <div>
+          <label for="branch">分支 (可选):</label><br/>
+          <input id="branch" class="form-control" type="text" placeholder="默认：master">
+          <p class="note">
+            仓库的分支名，用于校验仓库 beaudar.json 配置，以保证评论不会随意添加到目标仓库中。
           </p>
         </div>
       </fieldset>
@@ -132,6 +140,8 @@ export class ConfigurationComponent {
 
     this.repo = this.element.querySelector('#repo') as HTMLInputElement;
 
+    this.branch = this.element.querySelector('#branch') as HTMLInputElement;
+
     this.label = this.element.querySelector('#label') as HTMLInputElement;
 
     this.theme = this.element.querySelector('#theme') as HTMLSelectElement;
@@ -180,6 +190,7 @@ export class ConfigurationComponent {
     }
     this.script.innerHTML = this.makeConfigScript(
       this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '在此处输入仓库' : this.repo.value) + '\n' +
+      (this.branch.value ? this.makeConfigScriptAttribute('branch', this.branch.value) + '\n' : '') +
       mappingAttr + '\n' +
       (this.label.value ? this.makeConfigScriptAttribute('label', this.label.value) + '\n' : '') +
       this.makeConfigScriptAttribute('theme', this.theme.value) + '\n' +

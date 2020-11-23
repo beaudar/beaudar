@@ -16,11 +16,12 @@ export const reactionTypes: ReactionID[] = ['+1', '-1', 'laugh', 'hooray', 'conf
 
 let owner: string;
 let repo: string;
-const branch = 'master';
+let branch: string;
 
-export function setRepoContext(context: { owner: string; repo: string; }) {
+export function setRepoContext(context: { owner: string; repo: string; branch: string }) {
   owner = context.owner;
   repo = context.repo;
+  branch = context.branch;
 }
 
 function githubRequest(relativeUrl: string, init?: RequestInit) {
@@ -389,7 +390,7 @@ query IssueComments($owner: String!, $repo: String!, $issueQuery: String!) {
           id
           title,
           comments(first: 100) {
-          	totalCount
+            totalCount
             edges {
               node {
                 id,
