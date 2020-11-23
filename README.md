@@ -32,7 +32,7 @@ Beaudar 加载时，将使用 GitHub issue 搜索 API 根据 url，“路径名�
 
 #### 更多详情
 
-- [关于 Beaudar 的 Q&A](https://lipk.org/blog/2020/06/08/beauder-qa/)
+- [关于 Beaudar 的 QA](https://lipk.org/blog/2020/06/08/beauder-qa/)
 - [使用评论插件 Beaudar 表达](https://lipk.org/blog/2020/05/31/how-to-use-beaudar/)
 - [安全评估报告](https://lipk.org/blog/2020/07/16/beaudar-safety-assessment-report/)
 - [隐私政策](https://github.com/beaudar/beaudar/blob/master/PRIVACY-POLICY.md)
