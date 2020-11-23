@@ -3,7 +3,7 @@
 使用 Beaudar 的网站
 
 * [lipk.org - 执手对影成双](https://lipk.org)
-* CC康纳百川 [Github](https://ccknbc.github.io)、[Gitee](https://ccknbc.gitee.io) 和 [Vercel](https://ccknbc.now.sh)
+* [ccknbc - CC的部落格](https://blog.ccknbc.cc)
 * [antmoe - 小康博客](https://www.antmoe.com/)
 * [Hajeekn - 个人主页](https://slqwq.cn/)
 * [更多……](https://github.com/beaudar/beaudar/blob/master/SITES.md)
