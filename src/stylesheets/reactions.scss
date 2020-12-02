@@ -10,6 +10,8 @@
   font-weight: normal;
   padding: $spacer-2 $spacer-3;
   border: 0;
+  box-shadow: unset;
+  border-radius: 0px;
 
   &[reaction-count="0"] {
     display: none;
@@ -19,6 +21,12 @@
     display: inline-block;
     margin-left: 2px;
     content: attr(reaction-count);
+  }
+}
+
+.BtnGroup-item {
+  &:first-child {
+    border-bottom-left-radius: 6px;
   }
 }
 
@@ -44,7 +52,7 @@
     padding: $spacer-1;
     display: flex;
     flex-wrap: wrap;
-    width: 48px * 4;
+    width: 220px;
     background-color: $bg-white;
     border: $border;
     border-radius: $border-radius;
@@ -52,6 +60,9 @@
 
   .BtnGroup {
     margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 
     &:first-of-type {
       margin-top: $spacer-6;
@@ -63,6 +74,9 @@
     transition: transform .15s cubic-bezier(.2, 0, .13, 2);
     background: transparent !important;
     white-space: nowrap;
+    box-shadow: unset;
+    border-radius: 0px;
+    flex-grow: 1;
 
     &:hover {
       transform: scale(1.2);

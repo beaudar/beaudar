@@ -88,10 +88,7 @@ export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
       <form class="Popover-message ${alignmentClass} box-shadow-large" action="javascript:">
         <span class="reaction-name">选择你的表情符号</span>
         <div class="BtnGroup">
-          ${reactionTypes.slice(0, 4).map(getButtonAndSpan).join('')}
-        </div>
-        <div class="BtnGroup">
-          ${reactionTypes.slice(4).map(getButtonAndSpan).join('')}
+          ${reactionTypes.map(getButtonAndSpan).join('')}
         </div>
       </form>
     </div>
