@@ -7,8 +7,8 @@ export const reactionNames: Record<ReactionID, string> = {
   '+1': '赞同',
   '-1': '不赞同',
   'laugh': '笑脸',
-  'hooray': '撒花',
-  'confused': '疑问',
+  'hooray': '庆祝',
+  'confused': '困惑',
   'heart': '喜欢',
   'rocket': '火箭',
   'eyes': '瞩目'
@@ -19,7 +19,7 @@ export const reactionEmoji: Record<ReactionID, string> = {
   '-1': '👎',
   'laugh': '️😄',
   'hooray': '️🎉',
-  'confused': '😓',
+  'confused': '😕',
   'heart': '❤️',
   'rocket': '🚀',
   'eyes': '👀'
