@@ -1,6 +1,7 @@
 import { BEAUDAR_API } from './beaudar-api';
 import { param } from './deparam';
 import { NewErrorElement } from './new-error-element';
+import { pageAttributes } from './page-attributes';
 
 export const token = { value: null as null | string };
 
@@ -13,8 +14,19 @@ export async function loadToken(): Promise<string | null> {
   if (token.value) {
     return token.value;
   }
+  if (!pageAttributes.session) {
+    return null;
+  }
   const url = `${BEAUDAR_API}/token`;
-  const response = await fetch(url, { method: 'POST', mode: 'cors', credentials: 'include' }).catch(err => {
+  const response = await fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(pageAttributes.session)
+  }).catch(err => {
     const errorElement = new NewErrorElement();
     errorElement.createMsgElement(`token 请求失败`, `网络断开或网络不稳定，检查网络连接正常后，点击“刷新”重试。`, true);
     throw new Error(`token 请求失败，${err}`);

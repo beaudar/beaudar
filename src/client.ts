@@ -2,10 +2,11 @@ import { param, deparam } from './deparam';
 import { ResizeMessage } from './measure';
 import { preferredThemeId, preferredTheme } from './preferred-theme';
 
-// slice access token from query string
+// slice session from query string
 const params = deparam(location.search.substr(1));
-const token = params.beaudar;
-if (token) {
+const session = params.beaudar;
+if (session) {
+  localStorage.setItem('beaudar-session', session);
   delete params.beaudar;
   let search = param(params);
   if (search.length) {
@@ -42,7 +43,7 @@ const descriptionMeta = document.querySelector(`meta[name='description']`) as HT
 attrs.description = descriptionMeta ? descriptionMeta.content : '';
 const ogtitleMeta = document.querySelector(`meta[property='og:title'],meta[name='og:title']`) as HTMLMetaElement;
 attrs['og:title'] = ogtitleMeta ? ogtitleMeta.content : '';
-attrs.token = token;
+attrs.session = session || localStorage.getItem('beaudar-session') || '';
 
 // create the standard beaudar styles and insert them at the beginning of the
 // <head> for easy overriding.
@@ -76,7 +77,7 @@ const url = `${beaudarOrigin}/beaudar.html`;
 script.insertAdjacentHTML(
   'afterend',
   `<div class="beaudar">
-    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${url}?${param(attrs)}"></iframe>
+    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${url}?${param(attrs)}" loading="lazy"></iframe>
   </div>`);
 const container = script.nextElementSibling as HTMLDivElement;
 script.parentElement!.removeChild(script);
