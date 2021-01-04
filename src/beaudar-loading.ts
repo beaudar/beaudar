@@ -4,11 +4,11 @@ import { loadTheme } from './theme';
 export async function beaudarLoadingStatus(page: any): Promise<LoadingParam> {
   const loadingElement = document.createElement('div');
   // tslint:disable-next-line: one-variable-per-declaration
-  let setTheme = loadTheme(page.theme, page.origin), IS_IE = false;
+  let setTheme = await loadTheme(page.theme, page.origin), IS_IE = false;
 
   if (sessionStorage.getItem('beaudar-set-theme')) {
     // @ts-ignore
-    setTheme = loadTheme(sessionStorage.getItem('beaudar-set-theme'), page.origin);
+    setTheme = await loadTheme(sessionStorage.getItem('beaudar-set-theme'), page.origin);
   }
   // 放弃 IE
   if (window.navigator.userAgent.indexOf('MSIE') !== -1 || 'ActiveXObject' in window) {
@@ -43,12 +43,11 @@ export async function beaudarLoadingStatus(page: any): Promise<LoadingParam> {
     loadingElement.appendChild(beaudarLoading);
   }
 
-  setTheme.then(() => {
+  return new Promise(resolve => {
     document.body.appendChild(loadingElement);
     scheduleMeasure();
+    resolve({ loadingElement, IS_IE });
   });
-
-  return { loadingElement, IS_IE };
 }
 
 export interface LoadingParam {
