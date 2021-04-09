@@ -114,7 +114,7 @@ export class ConfigurationComponent {
       <h3 id="heading-theme">选择主题 🌈</h3>
       <p>
         选择与您的博客匹配的 Beaudar 主题。找不到你喜欢的主题？
-        <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.MD" target="_blank">贡献</a> 一个自定义主题。
+        <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.md" target="_blank">贡献</a> 一个自定义主题。
       </p>
 
       <select id="theme" class="form-select" value="github-light" aria-label="Theme">
