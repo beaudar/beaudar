@@ -1,0 +1,29 @@
+name: deploy to aliyun
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Owner'
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: run npm install && build
+        run: |
+          npm install
+          npm run build
+      - name: ssh-deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-avz --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.TARGET }}
