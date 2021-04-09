@@ -29,6 +29,8 @@
     color: $text-gray;
     background-color: $bg-gray;
     border-bottom: $border;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
 
   .comment-meta {
@@ -50,6 +52,8 @@
     background-color: $bg-gray;
     border-bottom: $border;
     margin-bottom: 0;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
 
   .markdown-body {
@@ -114,6 +118,7 @@
 
     .markdown-info {
       font-size: $font-size-small;
+      margin-right: $spacer-1;
     }
   }
 
@@ -138,11 +143,11 @@
   }
 
   .comment {
-    @include double-caret($bg-gray, $border-gray-dark);
+    @include double-caret($bg-gray, $border-color);
   }
 
   &.current-user .comment {
-    @include double-caret($bg-blue-light, $border-gray-dark);
+    @include double-caret($bg-blue-light, $border-color);
   }
 
   .reactions-popover {
