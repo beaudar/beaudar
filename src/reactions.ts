@@ -77,7 +77,7 @@ export function enableReactions(authenticated: boolean) {
 }
 
 export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
-  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:6px';
+  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:11px';
   const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
   const getButtonAndSpan = (id: ReactionID) => getReactionHtml(url, id, false, 0)
     + `<span class="reaction-name" aria-hidden="true">${reactionNames[id]}</span>`;
@@ -99,7 +99,7 @@ export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
 }
 
 export function getSignInToReactMenuHtml(align: 'center' | 'right') {
-  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:6px';
+  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:11px';
   const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
   return `
   <details class="details-overlay details-popover reactions-popover">

@@ -19,7 +19,8 @@
     min-width: 0px;
     background-color: $bg-white;
     border: $border;
-    border-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
   }
 
   .comment-header {
