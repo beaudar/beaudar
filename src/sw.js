@@ -5,6 +5,17 @@ if (workbox) {
     debug: false
   });
 
+  workbox.googleAnalytics.initialize();
+
+  workbox.routing.setDefaultHandler(
+    (args) => {
+      if (args.event.request.method === 'GET') {
+        return new workbox.strategies.NetworkFirst().handle(args);
+      }
+      return fetch(args.event.request);
+    }
+  );
+
   workbox.routing.registerRoute(
     new RegExp(/.*\.(?:js|css|html)/g),
     new workbox.strategies.NetworkFirst()
@@ -12,8 +23,17 @@ if (workbox) {
 
   workbox.routing.registerRoute(
     new RegExp(/.*\.(?:png|jpg|jpeg|svg|gif|webp)/g),
-    new workbox.strategies.CacheFirst()
+    new workbox.strategies.CacheFirst({
+      cacheName: 'images',
+      plugins: [
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 60,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+        }),
+      ],
+    })
   );
-} else {
-  console.log(`No workbox on this browser 😬`);
 }
