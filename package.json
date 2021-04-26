@@ -32,7 +32,7 @@
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "^0.0.6",
     "posthtml-expressions": "^1.7.1",
-    "posthtml-include": "^1.6.0",
+    "posthtml-include": "^1.7.1",
     "posthtml-md": "^1.1.0",
     "sass": "^1.32.6",
     "tslint": "^6.1.3",
