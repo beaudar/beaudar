@@ -121,6 +121,14 @@
       font-size: $font-size-small;
       margin-right: $spacer-1;
     }
+
+    @media screen and (max-width:385px) {
+      flex-direction: column;
+
+      & a.btn {
+        white-space: initial;
+      }
+    }
   }
 
   &.current-user .comment-header {
