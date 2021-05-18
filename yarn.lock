@@ -923,19 +923,17 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@primer/css@^15.2.0":
-  version "15.2.0"
-  resolved "https://registry.yarnpkg.com/@primer/css/-/css-15.2.0.tgz#ddf9651a9db2b9be03e7dfccfa612284ba1325ae"
-  integrity sha512-/vNDchWrxlXqd6E+SWQcChPHJVzGia9aCaTYoz8O9sJTnUSiTKOgSNCQuOXyUInPruTRSqj+z3MZxayKcTsWhA==
+"@primer/css@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@primer/css/-/css-17.0.2.tgz#49d244712f24a3289f660612eeafccdd1d00dc64"
+  integrity sha512-Y5l2vUBPsl41d9lFl+F5tsRYeKV94s+A3TCVPTZNb+NgGKfnCWkQhEdVf/0n4VriuVn6YsRDQMihDzhfC16DXw==
   dependencies:
-    "@primer/octicons" "^9.1.1"
+    "@primer/primitives" "4.3.3"
 
-"@primer/octicons@^9.1.1":
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/@primer/octicons/-/octicons-9.6.0.tgz#e195f2dd5f30b6918ad5d8ff224c12f778d02408"
-  integrity sha512-B5Wzk5izRXXz0JqEXJkVUtqhCXSpUKgqYkVwegMkp5sziBW+ksd9LPbONlCWyyLODwf9GsI2sBXekR7m+JJDBw==
-  dependencies:
-    object-assign "^4.1.1"
+"@primer/primitives@4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@primer/primitives/-/primitives-4.3.3.tgz#9cbeffd76f27c98e2dda33eb9a5a9b1a1d674dbe"
+  integrity sha512-S2VvxGQBnKhggTqY6hQSNf/nyH4KR0mJp3H2/bWTKR/RM7ptCo+ajxgxmW16WaDTIQ2cvrHeqTD/qnuZ8yf6bg==
 
 "@types/q@^1.5.1":
   version "1.5.4"
