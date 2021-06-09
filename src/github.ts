@@ -197,10 +197,8 @@ export function loadIssueByTerm(term: string) {
         }
       }
       // tslint:disable-next-line:no-console
-      console.warn(
-        `Issue 搜索结果中没有与 "${term}" 标题匹配的评论当前使用第一个匹配项`,
-      );
-      return results.items[0];
+      console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论。`);
+      return null;
     });
 }
 
