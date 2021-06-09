@@ -1,0 +1,26 @@
+@import './variables';
+
+.btn-primary {
+  color: $text-gray-dark;
+  border-color: $gray-900;
+  background: $orange;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $gray-900;
+    background: $orange;
+  }
+
+  &:disabled {
+    color: $gray-900;
+    background: $orange-200;
+  }
+}
+
+button[role='tab'] {
+  color: $gray-600;
+  .selected {
+    color: $text-gray-dark;
+  }
+}
