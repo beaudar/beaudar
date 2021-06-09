@@ -24,3 +24,7 @@ button[role='tab'] {
     color: $text-gray-dark;
   }
 }
+
+.tabnav-tab:focus-visible {
+  border-radius: 6px 6px 0 0 !important;
+}
