@@ -9,17 +9,15 @@ export class TimelineComponent {
   private readonly marker: Node;
   private count: number = 0;
 
-  constructor(
-    private user: User | null,
-    private issue: Issue | null
-  ) {
+  constructor(private user: User | null, private issue: Issue | null) {
     this.element = document.createElement('main');
     this.element.classList.add('timeline');
     this.element.innerHTML = `
       <h1 class="timeline-header">
         <a class="text-link" target="_blank"></a>
       </h1>`;
-    this.countAnchor = this.element.firstElementChild!.firstElementChild as HTMLAnchorElement;
+    this.countAnchor = this.element.firstElementChild!
+      .firstElementChild as HTMLAnchorElement;
     this.marker = document.createComment('marker');
     this.element.appendChild(this.marker);
     this.setIssue(this.issue);
@@ -50,9 +48,10 @@ export class TimelineComponent {
     const component = new CommentComponent(
       comment,
       this.user ? this.user.login : null,
-      this.issue!.locked);
+      this.issue!.locked,
+    );
 
-    const index = this.timeline.findIndex(x => x.comment.id >= comment.id);
+    const index = this.timeline.findIndex((x) => x.comment.id >= comment.id);
     if (index === -1) {
       this.timeline.push(component);
       this.element.insertBefore(component.element, this.marker);
@@ -74,9 +73,17 @@ export class TimelineComponent {
     scheduleMeasure();
   }
 
-  public insertPageLoader(insertAfter: IssueComment, count: number, callback: () => void) {
-    const { element: insertAfterElement } = this.timeline.find(x => x.comment.id >= insertAfter.id)!;
-    insertAfterElement.insertAdjacentHTML('afterend', `
+  public insertPageLoader(
+    insertAfter: IssueComment,
+    count: number,
+    callback: () => void,
+  ) {
+    const { element: insertAfterElement } = this.timeline.find(
+      (x) => x.comment.id >= insertAfter.id,
+    )!;
+    insertAfterElement.insertAdjacentHTML(
+      'afterend',
+      `
       <div class="page-loader">
         <div class="zigzag"></div>
         <button type="button" class="btn btn-outline btn-large">
@@ -84,7 +91,8 @@ export class TimelineComponent {
           <span>展开...</span>
         </button>
       </div>
-    `);
+    `,
+    );
     const element = insertAfterElement.nextElementSibling!;
     const button = element.lastElementChild! as HTMLButtonElement;
     const statusSpan = button.lastElementChild!;
@@ -98,11 +106,13 @@ export class TimelineComponent {
       remove() {
         button.onclick = null;
         element.remove();
-      }
+      },
     };
   }
 
   private renderCount() {
-    this.countAnchor.textContent = `${this.count >= 1 ? `${this.count} 条评论` : '还没有评论'}`;
+    this.countAnchor.textContent = `${
+      this.count >= 1 ? `${this.count} 条评论` : '还没有评论'
+    }`;
   }
 }

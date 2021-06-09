@@ -1,7 +1,15 @@
-import { CommentAuthorAssociation, IssueComment, reactionTypes } from './github';
+import {
+  CommentAuthorAssociation,
+  IssueComment,
+  reactionTypes,
+} from './github';
 import { timeAgo } from './time-ago';
 import { scheduleMeasure } from './measure';
-import { getReactionsMenuHtml, getReactionHtml, getSignInToReactMenuHtml } from './reactions';
+import {
+  getReactionsMenuHtml,
+  getReactionHtml,
+  getSignInToReactMenuHtml,
+} from './reactions';
 
 const avatarArgs = '?v=3&s=88';
 const displayAssociations: Record<CommentAuthorAssociation, string> = {
@@ -11,7 +19,7 @@ const displayAssociations: Record<CommentAuthorAssociation, string> = {
   OWNER: '作者',
   FIRST_TIME_CONTRIBUTOR: '初期贡献者',
   FIRST_TIMER: '沙发',
-  NONE: ''
+  NONE: '',
 };
 
 export class CommentComponent {
@@ -20,9 +28,16 @@ export class CommentComponent {
   constructor(
     public comment: IssueComment,
     private currentUser: string | null,
-    locked: boolean
+    locked: boolean,
   ) {
-    const { user, html_url, created_at, body_html, author_association, reactions } = comment;
+    const {
+      user,
+      html_url,
+      created_at,
+      body_html,
+      author_association,
+      reactions,
+    } = comment;
 
     this.element = document.createElement('article');
     this.element.classList.add('timeline-comment');
@@ -30,13 +45,22 @@ export class CommentComponent {
       this.element.classList.add('current-user');
     }
     const association = displayAssociations[author_association];
-    const reactionCount = reactionTypes.reduce((sum, id) => sum + reactions[id], 0);
+    const reactionCount = reactionTypes.reduce(
+      (sum, id) => sum + reactions[id],
+      0,
+    );
     let headerReactionsMenu = '';
     let footerReactionsMenu = '';
     if (!locked) {
       if (currentUser) {
-        headerReactionsMenu = getReactionsMenuHtml(comment.reactions.url, 'right');
-        footerReactionsMenu = getReactionsMenuHtml(comment.reactions.url, 'center');
+        headerReactionsMenu = getReactionsMenuHtml(
+          comment.reactions.url,
+          'right',
+        );
+        footerReactionsMenu = getReactionsMenuHtml(
+          comment.reactions.url,
+          'center',
+        );
       } else {
         headerReactionsMenu = getSignInToReactMenuHtml('right');
         footerReactionsMenu = getSignInToReactMenuHtml('center');
@@ -50,30 +74,54 @@ export class CommentComponent {
       <div class="comment">
         <header class="comment-header">
           <span class="comment-meta">
-            <a class="text-link comment-author" href="${user.html_url}" target="_blank"><strong>${user.login}</strong></a>
-            评论<a class="text-link" href="${html_url}" target="_blank">${timeAgo(Date.now(), new Date(created_at))}</a>
+            <a class="text-link comment-author" href="${
+              user.html_url
+            }" target="_blank"><strong>${user.login}</strong></a>
+            评论<a class="text-link" href="${html_url}" target="_blank">${timeAgo(
+      Date.now(),
+      new Date(created_at),
+    )}</a>
           </span>
           <div class="comment-actions">
-            ${association ? `<span class="author-association-badge">${association}</span>` : ''}
+            ${
+              association
+                ? `<span class="author-association-badge">${association}</span>`
+                : ''
+            }
             ${headerReactionsMenu}
           </div>
         </header>
         <div class="markdown-body markdown-body-scrollable">
           ${body_html}
         </div>
-        <div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${reactions.url}">
+        <div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
+      reactions.url
+    }">
           <form class="reaction-list BtnGroup" action="javascript:">
-            ${reactionTypes.map(id => getReactionHtml(reactions.url, id, !currentUser || locked, reactions[id])).join('')}
+            ${reactionTypes
+              .map((id) =>
+                getReactionHtml(
+                  reactions.url,
+                  id,
+                  !currentUser || locked,
+                  reactions[id],
+                ),
+              )
+              .join('')}
           </form>
           ${footerReactionsMenu}
         </div>
       </div>`;
 
     const markdownBody = this.element.querySelector('.markdown-body')!;
-    const emailToggle = markdownBody.querySelector('.email-hidden-toggle a') as HTMLAnchorElement;
+    const emailToggle = markdownBody.querySelector(
+      '.email-hidden-toggle a',
+    ) as HTMLAnchorElement;
     if (emailToggle) {
-      const emailReply = markdownBody.querySelector('.email-hidden-reply') as HTMLDivElement;
-      emailToggle.onclick = event => {
+      const emailReply = markdownBody.querySelector(
+        '.email-hidden-reply',
+      ) as HTMLDivElement;
+      emailToggle.onclick = (event) => {
         event.preventDefault();
         emailReply.classList.toggle('expanded');
       };
@@ -97,19 +145,27 @@ export class CommentComponent {
 }
 
 export function processRenderedMarkdown(markdownBody: Element) {
-  Array.from(markdownBody.querySelectorAll<HTMLAnchorElement>(':not(.email-hidden-toggle) > a'))
-    .forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
-  Array.from(markdownBody.querySelectorAll<HTMLImageElement>('img'))
-    .forEach(img => {
+  Array.from(
+    markdownBody.querySelectorAll<HTMLAnchorElement>(
+      ':not(.email-hidden-toggle) > a',
+    ),
+  ).forEach((a) => {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+  Array.from(markdownBody.querySelectorAll<HTMLImageElement>('img')).forEach(
+    (img) => {
       img.onload = scheduleMeasure;
       img.title = img.alt;
       img.src = img.getAttribute('data-canonical-src') as string;
-      const parent = img.parentElement
+      const parent = img.parentElement;
       if (parent!.nodeName === 'A') {
         // @ts-ignore
         parent.href = img.getAttribute('data-canonical-src') as string;
       }
-    });
-  Array.from(markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'))
-    .forEach(a => a.href = 'https://github.com' + a.pathname);
+    },
+  );
+  Array.from(
+    markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'),
+  ).forEach((a) => (a.href = 'https://github.com' + a.pathname));
 }

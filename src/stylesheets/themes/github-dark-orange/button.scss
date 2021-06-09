@@ -1,10 +1,10 @@
-@import "./variables";
+@import './variables';
 
 .btn-primary:disabled {
   background: #376b39;
 }
 
-button[role=tab] {
+button[role='tab'] {
   color: $gray-600;
   .selected {
     color: $text-gray-dark;

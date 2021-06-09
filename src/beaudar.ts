@@ -9,7 +9,7 @@ import {
   postComment,
   createIssue,
   PAGE_SIZE,
-  IssueComment
+  IssueComment,
 } from './github';
 import { TimelineComponent } from './timeline-component';
 import { NewCommentComponent } from './new-comment-component';
@@ -39,15 +39,15 @@ async function bootstrap() {
   let issue: any, user: any;
   await loadToken();
   try {
-    [issue, user] = await Promise.all([
-      loadIssue(),
-      loadUser()
-    ]);
+    [issue, user] = await Promise.all([loadIssue(), loadUser()]);
   } catch (error) {
     const errorElement = new NewErrorElement();
-    errorElement.createMsgElement(`api.github.com 请求失败`,
-      `<p>可点击“刷新”，尝试解决此问题。</p>`, true);
-    throw new Error(`api.github.com 请求失败。${error}`)
+    errorElement.createMsgElement(
+      `api.github.com 请求失败`,
+      `<p>可点击“刷新”，尝试解决此问题。</p>`,
+      true,
+    );
+    throw new Error(`api.github.com 请求失败。${error}`);
   }
 
   // @ts-ignore
@@ -81,7 +81,7 @@ async function bootstrap() {
           page.url,
           page.title,
           page.description || '',
-          page.label
+          page.label,
         );
         timeline.setIssue(issue);
       }
@@ -91,7 +91,9 @@ async function bootstrap() {
       newCommentComponent.clear();
     } else {
       const errorElement = new NewErrorElement();
-      errorElement.createMsgElement(`错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`, `
+      errorElement.createMsgElement(
+        `错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`,
+        `
       <p>&emsp;&emsp;请确认 <code>${owner}/${repo}</code> 是本站点评论的正确仓库。如果您拥有此仓库，
       <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
         <strong>添加或更新 beaudar.json</strong>
@@ -99,8 +101,11 @@ async function bootstrap() {
       添加 <code>${origin}</code> 到来源列表。</p>
       <p>需要配置：</p>
       <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
-      `);
-      throw new Error(`评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`)
+      `,
+      );
+      throw new Error(
+        `评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`,
+      );
     }
   };
 
@@ -113,12 +118,15 @@ bootstrap();
 
 addEventListener('not-installed', function handleNotInstalled() {
   removeEventListener('not-installed', handleNotInstalled);
-  document.querySelector('.timeline')!.insertAdjacentHTML('afterbegin', `
+  document.querySelector('.timeline')!.insertAdjacentHTML(
+    'afterbegin',
+    `
   <div class="flash flash-error">
     错误: Beaudar 没有安装在 <code>${page.owner}/${page.repo}</code>。
     如果你拥有这仓库，
     <a href="https://github.com/apps/beaudar" target="_blank"><strong>安装 app</strong></a>。
-  </div>`);
+  </div>`,
+  );
   scheduleMeasure();
 });
 
@@ -162,7 +170,11 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
       renderLoader(page);
     };
     const afterComment = afterPage.pop()!;
-    const loader = timeline.insertPageLoader(afterComment, hiddenPageCount * PAGE_SIZE, load);
+    const loader = timeline.insertPageLoader(
+      afterComment,
+      hiddenPageCount * PAGE_SIZE,
+      load,
+    );
   };
   renderLoader(pages[0]);
 }

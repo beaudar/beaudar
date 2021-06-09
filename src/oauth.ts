@@ -23,12 +23,16 @@ export async function loadToken(): Promise<string | null> {
     mode: 'cors',
     credentials: 'include',
     headers: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     },
-    body: JSON.stringify(pageAttributes.session)
-  }).catch(err => {
+    body: JSON.stringify(pageAttributes.session),
+  }).catch((err) => {
     const errorElement = new NewErrorElement();
-    errorElement.createMsgElement(`token 请求失败`, `网络断开或网络不稳定，检查网络连接正常后，点击“刷新”重试。`, true);
+    errorElement.createMsgElement(
+      `token 请求失败`,
+      `网络断开或网络不稳定，检查网络连接正常后，点击“刷新”重试。`,
+      true,
+    );
     throw new Error(`token 请求失败，${err}`);
   });
   if (response.ok) {

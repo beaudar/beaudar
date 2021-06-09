@@ -12,14 +12,20 @@ if (session) {
   if (search.length) {
     search = '?' + search;
   }
-  history.replaceState(undefined, document.title, location.pathname + search + location.hash);
+  history.replaceState(
+    undefined,
+    document.title,
+    location.pathname + search + location.hash,
+  );
 }
 
 let script = document.currentScript as HTMLScriptElement;
 if (script === undefined) {
   // Internet Explorer :(
   // tslint:disable-next-line:max-line-length
-  script = document.querySelector('script[src^="https://beaudar.lipk.org/client.js"],script[src^="http://localhost:4000/client.js"]') as HTMLScriptElement;
+  script = document.querySelector(
+    'script[src^="https://beaudar.lipk.org/client.js"],script[src^="http://localhost:4000/client.js"]',
+  ) as HTMLScriptElement;
 }
 
 // gather script element's attributes
@@ -34,14 +40,25 @@ if (attrs.theme === preferredThemeId) {
 }
 
 // gather page attributes
-const canonicalLink = document.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
-attrs.url = canonicalLink ? canonicalLink.href : location.origin + location.pathname + location.search;
+const canonicalLink = document.querySelector(
+  `link[rel='canonical']`,
+) as HTMLLinkElement;
+attrs.url = canonicalLink
+  ? canonicalLink.href
+  : location.origin + location.pathname + location.search;
 attrs.origin = location.origin;
-attrs.pathname = location.pathname.length < 2 ? 'index' : location.pathname.substr(1).replace(/\.\w+$/, '');
+attrs.pathname =
+  location.pathname.length < 2
+    ? 'index'
+    : location.pathname.substr(1).replace(/\.\w+$/, '');
 attrs.title = document.title;
-const descriptionMeta = document.querySelector(`meta[name='description']`) as HTMLMetaElement;
+const descriptionMeta = document.querySelector(
+  `meta[name='description']`,
+) as HTMLMetaElement;
 attrs.description = descriptionMeta ? descriptionMeta.content : '';
-const ogtitleMeta = document.querySelector(`meta[property='og:title'],meta[name='og:title']`) as HTMLMetaElement;
+const ogtitleMeta = document.querySelector(
+  `meta[property='og:title'],meta[name='og:title']`,
+) as HTMLMetaElement;
 attrs['og:title'] = ogtitleMeta ? ogtitleMeta.content : '';
 attrs.session = session || localStorage.getItem('beaudar-session') || '';
 
@@ -70,20 +87,26 @@ document.head.insertAdjacentHTML(
       height: 100%;
       border: 0;
     }
-  </style>`);
+  </style>`,
+);
 
 // create the comments iframe and it's responsive container
-const beaudarOrigin = script.src.match(/^https:\/\/beaudar.lipk\.org|http:\/\/localhost:\d+/)![0];
+const beaudarOrigin = script.src.match(
+  /^https:\/\/beaudar.lipk\.org|http:\/\/localhost:\d+/,
+)![0];
 const url = `${beaudarOrigin}/beaudar.html`;
 script.insertAdjacentHTML(
   'afterend',
   `<div class="beaudar">
-    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${url}?${param(attrs)}" loading="lazy"></iframe>
-  </div>`);
+    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${url}?${param(
+    attrs,
+  )}" loading="lazy"></iframe>
+  </div>`,
+);
 const container = script.nextElementSibling as HTMLDivElement;
 script.parentElement!.removeChild(script);
 // adjust the iframe's height when the height of it's content changes
-addEventListener('message', event => {
+addEventListener('message', (event) => {
   if (event.origin !== beaudarOrigin) {
     return;
   }

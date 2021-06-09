@@ -18,14 +18,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.markdown-body .highlight-source-js>pre {
+.markdown-body .highlight-source-js > pre {
   -webkit-overflow-scrolling: touch;
 }
 
 .details-popover {
   position: relative;
 
-  &>summary {
+  & > summary {
     list-style-type: none;
 
     &::-webkit-details-marker {

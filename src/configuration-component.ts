@@ -133,7 +133,7 @@ export class ConfigurationComponent {
       <div class="config-field" id="script" class="highlight highlight-text-html-basic"></div>
       <button id="copy-button" type="button" class="btn btn-blue code-action">复制</button>`;
 
-    this.element.addEventListener('submit', event => event.preventDefault());
+    this.element.addEventListener('submit', (event) => event.preventDefault());
     this.element.action = 'javascript:';
 
     this.script = this.element.querySelector('#script') as HTMLDivElement;
@@ -146,7 +146,9 @@ export class ConfigurationComponent {
 
     this.theme = this.element.querySelector('#theme') as HTMLSelectElement;
 
-    const themeStylesheet = document.getElementById('theme-stylesheet') as HTMLLinkElement;
+    const themeStylesheet = document.getElementById(
+      'theme-stylesheet',
+    ) as HTMLLinkElement;
     // 如果 sessionStorage 中存在主题，使用 sessionStorage 的值
     if (sessionStorage.getItem('beaudar-set-theme')) {
       // @ts-ignore
@@ -156,21 +158,23 @@ export class ConfigurationComponent {
     this.theme.addEventListener('change', () => {
       let theme = this.theme.value;
       if (theme === preferredThemeId) {
-        theme = preferredTheme
+        theme = preferredTheme;
       }
       themeStylesheet.href = `/stylesheets/themes/${theme}/index.css`;
       const message = {
         type: 'set-theme',
-        theme
+        theme,
       };
       const beaudar = document.querySelector('iframe')!;
       beaudar.contentWindow!.postMessage(message, location.origin);
     });
 
-    const copyButton = this.element.querySelector('#copy-button') as HTMLButtonElement;
-    copyButton.addEventListener(
-      'click',
-      () => this.copyTextToClipboard(this.script.textContent as string));
+    const copyButton = this.element.querySelector(
+      '#copy-button',
+    ) as HTMLButtonElement;
+    copyButton.addEventListener('click', () =>
+      this.copyTextToClipboard(this.script.textContent as string),
+    );
 
     this.element.addEventListener('change', () => this.outputConfig());
     this.element.addEventListener('input', () => this.outputConfig());
@@ -178,23 +182,42 @@ export class ConfigurationComponent {
   }
 
   private outputConfig() {
-    const mapping = this.element.querySelector('input[name="mapping"]:checked') as HTMLInputElement;
+    const mapping = this.element.querySelector(
+      'input[name="mapping"]:checked',
+    ) as HTMLInputElement;
     let mappingAttr: string;
     // tslint:disable-next-line:prefer-conditional-expression
     if (mapping.value === 'issue-number') {
-      mappingAttr = this.makeConfigScriptAttribute('issue-number', '在此处输入 Issue 编号');
+      mappingAttr = this.makeConfigScriptAttribute(
+        'issue-number',
+        '在此处输入 Issue 编号',
+      );
     } else if (mapping.value === 'specific-term') {
-      mappingAttr = this.makeConfigScriptAttribute('issue-term', '在此输入名称');
+      mappingAttr = this.makeConfigScriptAttribute(
+        'issue-term',
+        '在此输入名称',
+      );
     } else {
       mappingAttr = this.makeConfigScriptAttribute('issue-term', mapping.value);
     }
     this.script.innerHTML = this.makeConfigScript(
-      this.makeConfigScriptAttribute('repo', this.repo.value === '' ? '在此处输入仓库' : this.repo.value) + '\n' +
-      (this.branch.value ? this.makeConfigScriptAttribute('branch', this.branch.value) + '\n' : '') +
-      mappingAttr + '\n' +
-      (this.label.value ? this.makeConfigScriptAttribute('label', this.label.value) + '\n' : '') +
-      this.makeConfigScriptAttribute('theme', this.theme.value) + '\n' +
-      this.makeConfigScriptAttribute('crossorigin', 'anonymous'));
+      this.makeConfigScriptAttribute(
+        'repo',
+        this.repo.value === '' ? '在此处输入仓库' : this.repo.value,
+      ) +
+        '\n' +
+        (this.branch.value
+          ? this.makeConfigScriptAttribute('branch', this.branch.value) + '\n'
+          : '') +
+        mappingAttr +
+        '\n' +
+        (this.label.value
+          ? this.makeConfigScriptAttribute('label', this.label.value) + '\n'
+          : '') +
+        this.makeConfigScriptAttribute('theme', this.theme.value) +
+        '\n' +
+        this.makeConfigScriptAttribute('crossorigin', 'anonymous'),
+    );
   }
 
   private makeConfigScriptAttribute(name: string, value: string) {
@@ -217,7 +240,7 @@ export class ConfigurationComponent {
     try {
       document.execCommand('copy');
       // tslint:disable-next-line:no-empty
-    } catch (err) { }
+    } catch (err) {}
     document.body.removeChild(textArea);
   }
 }

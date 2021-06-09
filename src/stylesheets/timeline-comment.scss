@@ -8,7 +8,7 @@
     background-color: transparent;
   }
 
-  .avatar>img {
+  .avatar > img {
     border-radius: $border-radius;
   }
 
@@ -94,7 +94,7 @@
     display: flex;
     border-top: $border;
 
-    &[reaction-count="0"] {
+    &[reaction-count='0'] {
       height: 0;
       overflow: hidden;
       opacity: 0;
@@ -122,7 +122,7 @@
       margin-right: $spacer-1;
     }
 
-    @media screen and (max-width:385px) {
+    @media screen and (max-width: 385px) {
       flex-direction: column;
 
       & a.btn {
@@ -172,5 +172,4 @@
       }
     }
   }
-
 }

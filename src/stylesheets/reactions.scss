@@ -6,14 +6,14 @@
   }
 }
 
-.reaction-list>.reaction-button {
+.reaction-list > .reaction-button {
   font-weight: normal;
   padding: $spacer-2 $spacer-3;
   border: 0;
   box-shadow: unset;
   border-radius: 0px;
 
-  &[reaction-count="0"] {
+  &[reaction-count='0'] {
     display: none;
   }
 
@@ -79,7 +79,7 @@
 
   .reaction-button {
     border: 0;
-    transition: transform .15s cubic-bezier(.2, 0, .13, 2);
+    transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
     background: transparent !important;
     white-space: nowrap;
     box-shadow: unset;
@@ -104,11 +104,11 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 
-  .reaction-button+& {
+  .reaction-button + & {
     display: none;
   }
 
-  .reaction-button:hover+& {
+  .reaction-button:hover + & {
     display: block;
   }
 }

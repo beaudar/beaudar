@@ -1,15 +1,25 @@
 // todo: take a dependency on some relative time library.
 
 const thresholds = [
-  1000, '秒',
-  1000 * 60, '分钟',
-  1000 * 60 * 60, '个小时',
-  1000 * 60 * 60 * 24, '天',
-  1000 * 60 * 60 * 24 * 7, '周',
-  1000 * 60 * 60 * 24 * 27, '个月'
+  1000,
+  '秒',
+  1000 * 60,
+  '分钟',
+  1000 * 60 * 60,
+  '个小时',
+  1000 * 60 * 60 * 24,
+  '天',
+  1000 * 60 * 60 * 24 * 7,
+  '周',
+  1000 * 60 * 60 * 24 * 27,
+  '个月',
 ];
 
-const formatOptions: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+const formatOptions: Intl.DateTimeFormatOptions = {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+};
 
 export function timeAgo(current: number, value: Date) {
   const elapsed = current - value.getTime();

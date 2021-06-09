@@ -54,7 +54,7 @@ function readPageAttributes() {
     label: params.label,
     theme: params.theme || 'github-light',
     loading: params.loading || 'true',
-    session: params.session
+    session: params.session,
   };
 }
 

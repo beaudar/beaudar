@@ -6,19 +6,41 @@ import { NewErrorElement } from './new-error-element';
 const GITHUB_API = 'https://api.github.com/';
 const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
 const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
-const GITHUB_ENCODING__REACTIONS_PREVIEW = 'application/vnd.github.squirrel-girl-preview';
+const GITHUB_ENCODING__REACTIONS_PREVIEW =
+  'application/vnd.github.squirrel-girl-preview';
 
 export const PAGE_SIZE = 25;
 
-export type ReactionID = '+1' | '-1' | 'laugh' | 'hooray' | 'confused' | 'heart' | 'rocket' | 'eyes';
+export type ReactionID =
+  | '+1'
+  | '-1'
+  | 'laugh'
+  | 'hooray'
+  | 'confused'
+  | 'heart'
+  | 'rocket'
+  | 'eyes';
 
-export const reactionTypes: ReactionID[] = ['+1', '-1', 'laugh', 'hooray', 'confused', 'heart', 'rocket', 'eyes'];
+export const reactionTypes: ReactionID[] = [
+  '+1',
+  '-1',
+  'laugh',
+  'hooray',
+  'confused',
+  'heart',
+  'rocket',
+  'eyes',
+];
 
 let owner: string;
 let repo: string;
 let branch: string;
 
-export function setRepoContext(context: { owner: string; repo: string; branch: string }) {
+export function setRepoContext(context: {
+  owner: string;
+  repo: string;
+  branch: string;
+}) {
   owner = context.owner;
   repo = context.repo;
   branch = context.branch;
@@ -40,13 +62,13 @@ const rateLimit = {
   standard: {
     limit: Number.MAX_VALUE,
     remaining: Number.MAX_VALUE,
-    reset: 0
+    reset: 0,
   },
   search: {
     limit: Number.MAX_VALUE,
     remaining: Number.MAX_VALUE,
-    reset: 0
-  }
+    reset: 0,
+  },
 };
 
 function processRateLimit(response: Response) {
@@ -64,10 +86,14 @@ function processRateLimit(response: Response) {
   if (response.status === 403 && rate.remaining === 0) {
     const resetDate = new Date(0);
     resetDate.setUTCSeconds(rate.reset);
-    const mins = Math.round((resetDate.getTime() - new Date().getTime()) / 1000 / 60);
+    const mins = Math.round(
+      (resetDate.getTime() - new Date().getTime()) / 1000 / 60,
+    );
     const apiType = isSearch ? 'search API' : 'non-search APIs';
     // tslint:disable-next-line:no-console
-    console.warn(`超出了 ${apiType} 的速率限制 ${apiType}，在 ${mins} 分钟后重置`);
+    console.warn(
+      `超出了 ${apiType} 的速率限制 ${apiType}，在 ${mins} 分钟后重置`,
+    );
   }
 }
 
@@ -84,12 +110,12 @@ export function readRelNext(response: Response) {
 }
 
 function githubFetch(request: Request): Promise<Response> {
-  return fetch(request).then(response => {
+  return fetch(request).then((response) => {
     if (response.status === 401) {
       token.value = null;
     }
     if (response.status === 403) {
-      response.json().then(data => {
+      response.json().then((data) => {
         if (data.message === 'Resource not accessible by integration') {
           window.dispatchEvent(new CustomEvent('not-installed'));
         }
@@ -98,79 +124,94 @@ function githubFetch(request: Request): Promise<Response> {
 
     processRateLimit(response);
 
-    if (request.method === 'GET'
-      && [401, 403].indexOf(response.status) !== -1
-      && request.headers.has('Authorization')
+    if (
+      request.method === 'GET' &&
+      [401, 403].indexOf(response.status) !== -1 &&
+      request.headers.has('Authorization')
     ) {
       request.headers.delete('Authorization');
       return githubFetch(request);
     }
     return response;
-  })
+  });
 }
 
 export function loadJsonFile<T>(path: string, html = false) {
-  const request = githubRequest(`repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
+  const request = githubRequest(
+    `repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
+  );
   if (html) {
     request.headers.set('accept', GITHUB_ENCODING__HTML);
   }
-  return githubFetch(request).then<FileContentsResponse | string>(response => {
-    if (response.status === 404) {
-      const errorElement = new NewErrorElement();
-      errorElement.createMsgElement(`缺少 "${path}" 配置`,
-        `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`);
-      throw new Error(`在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`);
-    }
-    if (response === undefined || !response.ok) {
-      throw new Error(`${path} 提取失败`);
-    }
-    return html ? response.text() : response.json();
-  }).then<T>(file => {
-    if (html) {
-      return file;
-    }
-    const { content } = file as FileContentsResponse;
-    const decoded = decodeBase64UTF8(content);
-    return JSON.parse(decoded);
-  })
+  return githubFetch(request)
+    .then<FileContentsResponse | string>((response) => {
+      if (response.status === 404) {
+        const errorElement = new NewErrorElement();
+        errorElement.createMsgElement(
+          `缺少 "${path}" 配置`,
+          `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`,
+        );
+        throw new Error(
+          `在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`,
+        );
+      }
+      if (response === undefined || !response.ok) {
+        throw new Error(`${path} 提取失败`);
+      }
+      return html ? response.text() : response.json();
+    })
+    .then<T>((file) => {
+      if (html) {
+        return file;
+      }
+      const { content } = file as FileContentsResponse;
+      const decoded = decodeBase64UTF8(content);
+      return JSON.parse(decoded);
+    });
 }
 
 export function loadIssueByTerm(term: string) {
   const q = `"${term}" type:issue in:title repo:${owner}/${repo}`;
-  const request = githubRequest(`search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`);
-  return githubFetch(request).then<IssueSearchResponse>(response => {
-    if (response === undefined || !response.ok) {
-      throw new Error('搜索 Issues 失败。');
-    }
-    return response.json();
-  }).then(results => {
-    if (results.total_count === 0) {
-      return null;
-    }
-    if (results.total_count > 1) {
-      // tslint:disable-next-line:no-console
-      console.warn(`匹配到多个问题 "${q}"`);
-    }
-    term = term.toLowerCase();
-    for (const result of results.items) {
-      if (result.title.toLowerCase().indexOf(term) !== -1) {
-        return result;
+  const request = githubRequest(
+    `search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`,
+  );
+  return githubFetch(request)
+    .then<IssueSearchResponse>((response) => {
+      if (response === undefined || !response.ok) {
+        throw new Error('搜索 Issues 失败。');
       }
-    }
-    // tslint:disable-next-line:no-console
-    console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论当前使用第一个匹配项`);
-    return results.items[0];
-  })
+      return response.json();
+    })
+    .then((results) => {
+      if (results.total_count === 0) {
+        return null;
+      }
+      if (results.total_count > 1) {
+        // tslint:disable-next-line:no-console
+        console.warn(`匹配到多个问题 "${q}"`);
+      }
+      term = term.toLowerCase();
+      for (const result of results.items) {
+        if (result.title.toLowerCase().indexOf(term) !== -1) {
+          return result;
+        }
+      }
+      // tslint:disable-next-line:no-console
+      console.warn(
+        `Issue 搜索结果中没有与 "${term}" 标题匹配的评论当前使用第一个匹配项`,
+      );
+      return results.items[0];
+    });
 }
 
 export function loadIssueByNumber(issueNumber: number) {
   const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
-  return githubFetch(request).then<Issue>(response => {
+  return githubFetch(request).then<Issue>((response) => {
     if (response === undefined || !response.ok) {
       throw new Error(`通过 Issue 编号提取评论时出错`);
     }
     return response.json();
-  })
+  });
 }
 
 function commentsRequest(issueNumber: number, page: number) {
@@ -181,46 +222,56 @@ function commentsRequest(issueNumber: number, page: number) {
   return request;
 }
 
-export function loadCommentsPage(issueNumber: number, page: number): Promise<IssueComment[]> {
+export function loadCommentsPage(
+  issueNumber: number,
+  page: number,
+): Promise<IssueComment[]> {
   const request = commentsRequest(issueNumber, page);
-  return githubFetch(request).then(response => {
+  return githubFetch(request).then((response) => {
     if (response === undefined || !response.ok) {
       throw new Error(`提取评论时出错。`);
     }
     return response.json();
-  })
+  });
 }
 
 export function loadUser(): Promise<User | null> {
   if (token.value === null) {
     return Promise.resolve(null);
   }
-  return githubFetch(githubRequest('user'))
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      return null;
-    });
+  return githubFetch(githubRequest('user')).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return null;
+  });
 }
 
-export function createIssue(issueTerm: string, documentUrl: string, title: string, description: string, label: string) {
-  const url = `${BEAUDAR_API}/repos/${owner}/${repo}/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
+export function createIssue(
+  issueTerm: string,
+  documentUrl: string,
+  title: string,
+  description: string,
+  label: string,
+) {
+  const url = `${BEAUDAR_API}/repos/${owner}/${repo}/issues${
+    label ? `?label=${encodeURIComponent(label)}` : ''
+  }`;
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
       title: issueTerm,
-      body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`
-    })
+      body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`,
+    }),
   });
   request.headers.set('Accept', GITHUB_ENCODING__REACTIONS_PREVIEW);
   request.headers.set('Authorization', `token ${token.value}`);
-  return fetch(request).then<Issue>(response => {
+  return fetch(request).then<Issue>((response) => {
     if (response === undefined || !response.ok) {
       throw new Error(`创建评论 issue 时出错`);
     }
     return response.json();
-  })
+  });
 }
 
 export function postComment(issueNumber: number, markdown: string) {
@@ -229,12 +280,12 @@ export function postComment(issueNumber: number, markdown: string) {
   const request = githubRequest(url, { method: 'POST', body });
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
   request.headers.set('Accept', accept);
-  return githubFetch(request).then<IssueComment>(response => {
+  return githubFetch(request).then<IssueComment>((response) => {
     if (response === undefined || !response.ok) {
       throw new Error(`发布评论时出错`);
     }
     return response.json();
-  })
+  });
 }
 
 export async function toggleReaction(url: string, content: ReactionID) {
@@ -246,23 +297,31 @@ export async function toggleReaction(url: string, content: ReactionID) {
   postRequest.headers.set('Accept', GITHUB_ENCODING__REACTIONS_PREVIEW);
   const response = await githubFetch(postRequest);
   const reaction: Reaction = response.ok ? await response.json() : null;
-  if (response.status === 201) { // reaction created.
+  if (response.status === 201) {
+    // reaction created.
     return { reaction, deleted: false };
   }
   if (response.status !== 200) {
     throw new Error('预期的“ 201 响应已创建”或“ 200 响应已存在”');
   }
   // reaction already exists... delete.
-  const deleteRequest = githubRequest(`reactions/${reaction.id}`, { method: 'DELETE' });
+  const deleteRequest = githubRequest(`reactions/${reaction.id}`, {
+    method: 'DELETE',
+  });
   deleteRequest.headers.set('Accept', GITHUB_ENCODING__REACTIONS_PREVIEW);
   await githubFetch(deleteRequest);
   return { reaction, deleted: true };
 }
 
 export function renderMarkdown(text: string) {
-  const body = JSON.stringify({ text, mode: 'gfm', context: `${owner}/${repo}` });
-  return githubFetch(githubRequest('markdown', { method: 'POST', body }))
-    .then(response => response.text());
+  const body = JSON.stringify({
+    text,
+    mode: 'gfm',
+    context: `${owner}/${repo}`,
+  });
+  return githubFetch(githubRequest('markdown', { method: 'POST', body })).then(
+    (response) => response.text(),
+  );
 }
 
 interface IssueSearchResponse {
@@ -291,7 +350,7 @@ export interface User {
 }
 
 export type CommentAuthorAssociation =
-  'COLLABORATOR'
+  | 'COLLABORATOR'
   | 'CONTRIBUTOR'
   | 'FIRST_TIMER'
   | 'FIRST_TIME_CONTRIBUTOR'

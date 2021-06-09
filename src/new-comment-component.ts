@@ -28,7 +28,7 @@ export class NewCommentComponent {
 
   constructor(
     private user: User | null,
-    private readonly submit: (markdown: string) => Promise<void>
+    private readonly submit: (markdown: string) => Promise<void>,
   ) {
     this.element = document.createElement('article');
     this.element.classList.add('timeline-comment');
@@ -69,7 +69,9 @@ export class NewCommentComponent {
             支持 Markdown 编辑
           </a>
           <button class="btn btn-primary" type="submit">发表评论</button>
-          <a class="btn btn-primary" href="${getLoginUrl(page.url)}" target="_top"><svg class="octicon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          <a class="btn btn-primary" href="${getLoginUrl(
+            page.url,
+          )}" target="_top"><svg class="octicon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
           使用 Github 登录</a>
         </footer>
       </form>`;
@@ -77,10 +79,14 @@ export class NewCommentComponent {
     this.avatarAnchor = this.element.firstElementChild as HTMLAnchorElement;
     this.avatar = this.avatarAnchor.firstElementChild as HTMLImageElement;
     this.form = this.avatarAnchor.nextElementSibling as HTMLFormElement;
-    this.textarea = this.form!.firstElementChild!.nextElementSibling!.firstElementChild as HTMLTextAreaElement;
-    this.preview = this.form!.firstElementChild!.nextElementSibling!.lastElementChild as HTMLDivElement;
-    this.signInAnchor = this.form!.lastElementChild!.lastElementChild! as HTMLAnchorElement;
-    this.submitButton = this.signInAnchor.previousElementSibling! as HTMLButtonElement;
+    this.textarea = this.form!.firstElementChild!.nextElementSibling!
+      .firstElementChild as HTMLTextAreaElement;
+    this.preview = this.form!.firstElementChild!.nextElementSibling!
+      .lastElementChild as HTMLDivElement;
+    this.signInAnchor = this.form!.lastElementChild!
+      .lastElementChild! as HTMLAnchorElement;
+    this.submitButton = this.signInAnchor
+      .previousElementSibling! as HTMLButtonElement;
 
     this.setUser(user);
     this.submitButton.disabled = true;
@@ -120,7 +126,10 @@ export class NewCommentComponent {
     const text = this.textarea.value;
     const isWhitespace = /^\s*$/.test(text);
     this.submitButton.disabled = isWhitespace;
-    if (this.textarea.scrollHeight < 450 && this.textarea.offsetHeight < this.textarea.scrollHeight) {
+    if (
+      this.textarea.scrollHeight < 450 &&
+      this.textarea.offsetHeight < this.textarea.scrollHeight
+    ) {
       this.textarea.style.height = `${this.textarea.scrollHeight}px`;
       scheduleMeasure();
     }
@@ -131,12 +140,15 @@ export class NewCommentComponent {
     } else {
       this.preview.textContent = '加载预览中...';
       this.renderTimeout = setTimeout(
-        () => renderMarkdown(text).then(html => this.preview.innerHTML = html)
-          .then(() => processRenderedMarkdown(this.preview))
-          .then(scheduleMeasure),
-        500);
+        () =>
+          renderMarkdown(text)
+            .then((html) => (this.preview.innerHTML = html))
+            .then(() => processRenderedMarkdown(this.preview))
+            .then(scheduleMeasure),
+        500,
+      );
     }
-  }
+  };
 
   private handleSubmit = async (event: Event) => {
     event.preventDefault();
@@ -151,30 +163,38 @@ export class NewCommentComponent {
     this.textarea.disabled = !this.user;
     this.textarea.value = '';
     this.submitButton.disabled = false;
-    this.handleClick({ ...event, target: this.form.querySelector('.tabnav-tab.tab-write') });
+    this.handleClick({
+      ...event,
+      target: this.form.querySelector('.tabnav-tab.tab-write'),
+    });
     this.preview.textContent = nothingToPreview;
-  }
+  };
 
   private handleClick = ({ target }: Event) => {
-    if (!(target instanceof HTMLButtonElement) || !target.classList.contains('tabnav-tab')) {
+    if (
+      !(target instanceof HTMLButtonElement) ||
+      !target.classList.contains('tabnav-tab')
+    ) {
       return;
     }
     if (target.getAttribute('aria-selected') === 'true') {
       return;
     }
-    this.form.querySelector('.tabnav-tab[aria-selected="true"]')!.setAttribute('aria-selected', 'false');
+    this.form
+      .querySelector('.tabnav-tab[aria-selected="true"]')!
+      .setAttribute('aria-selected', 'false');
     target.setAttribute('aria-selected', 'true');
     const isPreview = target.classList.contains('tab-preview');
     this.textarea.style.display = isPreview ? 'none' : '';
     this.preview.style.display = isPreview ? '' : 'none';
     scheduleMeasure();
-  }
+  };
 
   private handleKeyDown = ({ which, ctrlKey }: KeyboardEvent) => {
     if (which === 13 && ctrlKey && !this.submitButton.disabled) {
       this.form.dispatchEvent(new CustomEvent('submit'));
     }
-  }
+  };
 }
 
 function handleTextAreaResize(textarea: HTMLTextAreaElement) {

@@ -10,15 +10,15 @@ let promise: Promise<RepoConfig>;
 export function getRepoConfig() {
   if (!promise) {
     promise = loadJsonFile<RepoConfig>('beaudar.json').then(
-      data => {
+      (data) => {
         if (!Array.isArray(data.origins)) {
           data.origins = [];
         }
         return data;
       },
       () => ({
-        origins: [pageAttributes.origin]
-      })
+        origins: [pageAttributes.origin],
+      }),
     );
   }
 
