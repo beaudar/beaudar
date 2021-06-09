@@ -53,8 +53,10 @@ function readPageAttributes() {
     description: params.description,
     label: params.label,
     theme: params.theme || 'github-light',
+    keepTheme: params['keep-theme'] || 'true',
     loading: params.loading || 'true',
-    session: params.session,
+    commentOrder: params['comment-order'] || 'asc',
+    inputPosition: params['input-position'] || 'bottom',
   };
 }
 

@@ -5,8 +5,10 @@ export async function beaudarLoadingStatus(page: any): Promise<LoadingParam> {
   const loadingElement = document.createElement('div');
   let setTheme = await loadTheme(page.theme, page.origin);
   let IS_IE = false;
-
-  if (sessionStorage.getItem('beaudar-set-theme')) {
+  if (
+    JSON.parse(page.keepTheme) &&
+    sessionStorage.getItem('beaudar-set-theme')
+  ) {
     setTheme = await loadTheme(
       sessionStorage.getItem('beaudar-set-theme') as string,
       page.origin,

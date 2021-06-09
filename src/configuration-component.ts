@@ -103,7 +103,8 @@ export class ConfigurationComponent {
       </p>
       <fieldset>
         <div>
-          <label for="label">标签 (可选):</label><br/>
+          <label for="label">标签（可选）：</label>
+          <br />
           <input id="label" class="form-control" type="text" placeholder="标签名">
           <p class="note">
           标签名称区分大小写。该标签必须存在于您的仓库中，无法附加不存在的标签。标签名称支持添加表情符号。✨💬✨
@@ -126,6 +127,66 @@ export class ConfigurationComponent {
         <option value="dark-blue">Dark Blue</option>
         <option value="photon-dark">Photon Dark</option>
       </select>
+      <h3 id="heading-keep-theme">主题保持</h3>
+      <p>
+        将主题设置保存到页面的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage" target="_blank">sessionStorage</a>，修改主题后刷新，主题设置不会丢失。
+        <br />
+        例：页面有深色模式和浅色模式，使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage" target="_blank">postMessage</a> 修改 Beaudar 主题后，刷新页面，Beaudar 主题不会被重置。
+      </p>
+      <fieldset>
+        <div>
+          <label for="keep-theme">
+            <input type="checkbox" id="keep-theme" />
+            不保持主题（默认保持）
+          </label>
+        </div>
+      </fieldset>
+      <h3 id="heading-loading">Loading 图标</h3>
+      <p>
+        点击加载图标可跳转至本页。
+      </p>
+      <fieldset>
+        <div>
+          <label for="loading">
+            <input type="checkbox" id="loading" />
+            不显示 Loading 图标（默认显示）
+          </label>
+        </div>
+      </fieldset>
+      <h3 id="heading-order">选择评论顺序</h3>
+      <p>
+        评论呈现顺序按评论的发表时间排序。
+        <br />
+        升序：从早到晚，晚发表的评论在后面；降序：从晚到早，晚发表的评论在前面。
+      </p>
+      <fieldset>
+        <div>
+          <label for="comment-order">
+            按时间：
+          </label>
+          <br />
+          <select id="comment-order" class="form-select" value="asc" aria-label="Comment order">
+            <option value="asc">升序（默认）</option>
+            <option value="desc">降序</option>
+          </select>
+        </div>
+      </fieldset>
+      <h3 id="heading-input-position">选择评论框位置</h3>
+      <p>
+        当选择将评论顺序设置为“降序”时，建议将评论框放置在“顶部”。因为当评论数量很多时候，发表评论后可以第一时间看到评论发表成功。
+      </p>
+      <fieldset>
+        <div>
+          <label for="input-position">
+            评论框放置在：
+          </label>
+          <br />
+          <select id="input-position" class="form-select" value="asc" aria-label="Comment order">
+            <option value="bottom">底部（默认）</option>
+            <option value="top">顶部</option>
+          </select>
+        </div>
+      </fieldset>
       <h3 id="heading-enable">使用 Beaudar 🎊</h3>
       <p>
       &emsp;&emsp;将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .beaudar </code>和<code> .beaudar-frame </code>选择器自定义布局。
@@ -145,6 +206,20 @@ export class ConfigurationComponent {
     this.label = this.element.querySelector('#label') as HTMLInputElement;
 
     this.theme = this.element.querySelector('#theme') as HTMLSelectElement;
+
+    this.keepTheme = this.element.querySelector(
+      '#keep-theme',
+    ) as HTMLInputElement;
+
+    this.loading = this.element.querySelector('#loading') as HTMLInputElement;
+
+    this.commentOrder = this.element.querySelector(
+      '#comment-order',
+    ) as HTMLSelectElement;
+
+    this.inputPositionTop = this.element.querySelector(
+      '#input-position',
+    ) as HTMLSelectElement;
 
     const themeStylesheet = document.getElementById(
       'theme-stylesheet',
@@ -216,6 +291,21 @@ export class ConfigurationComponent {
           : '') +
         this.makeConfigScriptAttribute('theme', this.theme.value) +
         '\n' +
+        (this.keepTheme.checked
+          ? this.makeConfigScriptAttribute('keep-theme', 'false') + '\n'
+          : '') +
+        (this.loading.checked
+          ? this.makeConfigScriptAttribute('loading', 'false') + '\n'
+          : '') +
+        (this.commentOrder.value === 'desc'
+          ? this.makeConfigScriptAttribute(
+              'comment-order',
+              this.commentOrder.value,
+            ) + '\n'
+          : '') +
+        (this.inputPositionTop.value === 'top'
+          ? this.makeConfigScriptAttribute('input-position', 'top') + '\n'
+          : '') +
         this.makeConfigScriptAttribute('crossorigin', 'anonymous'),
     );
   }

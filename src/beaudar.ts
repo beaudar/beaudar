@@ -111,7 +111,14 @@ async function bootstrap() {
 
   // @ts-ignore
   const newCommentComponent = new NewCommentComponent(user, submit);
-  timeline.element.appendChild(newCommentComponent.element);
+  if (page.inputPosition === 'top') {
+    timeline.element.insertAdjacentElement(
+      'afterbegin',
+      newCommentComponent.element,
+    );
+  } else {
+    timeline.element.appendChild(newCommentComponent.element);
+  }
 }
 
 bootstrap();
