@@ -9,7 +9,7 @@ const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
 const GITHUB_ENCODING__REACTIONS_PREVIEW =
   'application/vnd.github.squirrel-girl-preview';
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 10;
 
 export type ReactionID =
   | '+1'
