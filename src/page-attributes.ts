@@ -57,6 +57,7 @@ function readPageAttributes() {
     loading: params.loading || 'true',
     commentOrder: params['comment-order'] || 'asc',
     inputPosition: params['input-position'] || 'bottom',
+    session: params.session,
   };
 }
 
