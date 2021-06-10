@@ -18,7 +18,7 @@ import { getRepoConfig } from './repo-config';
 import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
-import { beaudarLoadingStatus } from './beaudar-loading';
+import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
 import { loadTheme } from './theme';
 
 setRepoContext(page);
@@ -32,50 +32,57 @@ function loadIssue(): Promise<Issue | null> {
 
 async function bootstrap() {
   startMeasuring(page.origin);
-  const loadingParam = beaudarLoadingStatus(page);
-  let setTheme = await loadTheme(page.theme, page.origin);
+
+  addLoadingStatus(page);
+
   if (
     JSON.parse(page.keepTheme) &&
     sessionStorage.getItem('beaudar-set-theme')
   ) {
-    setTheme = await loadTheme(
+    await loadTheme(
       sessionStorage.getItem('beaudar-set-theme') as string,
       page.origin,
     );
+  } else {
+    await loadTheme(page.theme, page.origin);
   }
-  if (loadingParam.IS_IE) {
-    throw new Error(`本项目放弃兼容 IE。`);
-  }
-  // tslint:disable-next-line: one-variable-per-declaration
+
+  // tslint:disable-next-line
   let issue: any, user: any;
   await loadToken();
+
   try {
     [issue, user] = await Promise.all([loadIssue(), loadUser()]);
   } catch (error) {
+    removeLoadingElement();
     const errorElement = new NewErrorElement();
     errorElement.createMsgElement(
-      `api.github.com 请求失败`,
-      `<p>可点击“刷新”，尝试解决此问题。</p>`,
+      `无法从 GitHub 获取数据`,
+      `<ol>
+        <li>点击<code>刷新</code>按钮，尝试解决此问题。</li>
+        <li>点击
+          <a href="https://github.com/${page.owner}/${page.repo}/issues" target="_blank">这里</a>
+          浏览或提交 Issue。
+        </li>
+      </ol>`,
+      '#q无法从-github-获取数据',
       true,
     );
     throw new Error(`api.github.com 请求失败。${error}`);
   }
 
-  // @ts-ignore
+  removeLoadingElement();
+
   const timeline = new TimelineComponent(user, issue);
-  // 移除加载状态
-  loadingParam.loadingElement.remove();
+
   document.body.appendChild(timeline.element);
 
-  // @ts-ignore
   if (issue && issue.comments > 0) {
-    // @ts-ignore
     renderComments(issue, timeline);
   }
 
   scheduleMeasure();
 
-  // @ts-ignore
   if (issue && issue.locked) {
     return;
   }
@@ -96,7 +103,6 @@ async function bootstrap() {
         );
         timeline.setIssue(issue);
       }
-      // @ts-ignore
       const comment = await postComment(issue.number, markdown);
       timeline.insertComment(comment, true);
       newCommentComponent.clear();
@@ -113,6 +119,7 @@ async function bootstrap() {
       <p>需要配置：</p>
       <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
       `,
+        '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
       );
       throw new Error(
         `评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`,
@@ -120,7 +127,6 @@ async function bootstrap() {
     }
   };
 
-  // @ts-ignore
   const newCommentComponent = new NewCommentComponent(user, submit);
   if (page.inputPosition === 'top') {
     timeline.element.insertAdjacentElement(

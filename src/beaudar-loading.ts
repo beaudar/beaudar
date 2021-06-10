@@ -1,46 +1,12 @@
 import { scheduleMeasure } from './measure';
 
-export interface LoadingParam {
-  loadingElement: HTMLDivElement;
-  IS_IE: boolean;
-}
+let loadingElement: HTMLDivElement;
 
-export const beaudarLoadingStatus = (page: {
-  loading: string;
-}): LoadingParam => {
-  const loadingElement = document.createElement('div');
-  let IS_IE = false;
-  // 放弃 IE
-  if (
-    window.navigator.userAgent.indexOf('MSIE') !== -1 ||
-    'ActiveXObject' in window
-  ) {
-    const ieContainer = document.createElement('div');
-    IS_IE = true;
-    ieContainer.style.cssText = `
-    width: 360px;
-    padding: 40px;
-    margin: auto;
-    `;
-    ieContainer.innerHTML = `
-    <h3>我身处 IE 的花海中......</h3>
-    <p>&emsp;&emsp;从前，有片花田。
-    <br/>&emsp;&emsp;那里很空旷，很寂静。
-    <br/>&emsp;&emsp;微风吹过脸颊，
-    <br/>&emsp;&emsp;有一丝丝甘甜的气息。
-    <br/>&emsp;&emsp;眺望远处，
-    <br/>&emsp;&emsp;绵延的花海仿佛在指引着我们，
-    <br/>&emsp;&emsp;透过它，
-    <br/>&emsp;&emsp;我们理解了这五彩斑斓的世界。
-    </p>
-    <a href='https://browsehappy.com' target='_blank'>
-    下载新一代浏览器后再次访问本页面。
-    </a>`;
-    loadingElement.appendChild(ieContainer);
-  }
+export const addLoadingStatus = (page: { loading: string }) => {
+  loadingElement = document.createElement('div');
 
   // 添加加载状态
-  if (JSON.parse(page.loading) && !IS_IE) {
+  if (JSON.parse(page.loading)) {
     const beaudarLoading = document.createElement('div');
     const beaudarLoadingPseudoBefore = document.createElement('div');
     beaudarLoading.style.cssText = `
@@ -74,6 +40,8 @@ export const beaudarLoadingStatus = (page: {
     document.body.appendChild(loadingElement);
     scheduleMeasure();
   }
+};
 
-  return { loadingElement, IS_IE };
+export const removeLoadingElement = () => {
+  loadingElement.remove();
 };

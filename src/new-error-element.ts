@@ -42,14 +42,16 @@ export class NewErrorElement {
    * 创建错误消息
    * @param header 错误标题
    * @param body 错误内容
+   * @param helpHash 错误信息锚点
    * @param reload 是否显示刷新按钮
    */
-  public createMsgElement(header: string, body: any, reload?: boolean) {
-    const beaudarLoading = document.querySelector(
-      '.beaudarLoading',
-    ) as HTMLDivElement;
+  public createMsgElement(
+    header: string,
+    body: string,
+    helpHash: string,
+    reload?: boolean,
+  ) {
     let reloadButtonStr = '';
-    if (beaudarLoading) beaudarLoading.remove();
     if (reload) {
       reloadButtonStr =
         '<button id="reload-button" type="button" class="btn btn-primary" >刷新</button>';
@@ -59,7 +61,7 @@ export class NewErrorElement {
       `
     <h3>${header}</h3>
     ${body}
-    <p> 获取帮助：<a href="https://lipk.org/blog/2020/06/08/beauder-qa/" target="_blank">关于 Beaudar 的 Q&amp;A</a></p>
+    <p><a href="https://lipk.org/blog/2020/06/08/beauder-qa/${helpHash}" target="_blank">获取此问题的帮助信息</a></p>
     ${reloadButtonStr}`,
     );
     if (this.isTimelineNull) {

@@ -150,6 +150,7 @@ export function loadJsonFile<T>(path: string, html = false) {
         errorElement.createMsgElement(
           `缺少 "${path}" 配置`,
           `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`,
+          '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
         );
         throw new Error(
           `在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`,

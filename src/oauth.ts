@@ -29,8 +29,9 @@ export async function loadToken(): Promise<string | null> {
   }).catch((err) => {
     const errorElement = new NewErrorElement();
     errorElement.createMsgElement(
-      `token 请求失败`,
-      `网络断开或网络不稳定，检查网络连接正常后，点击“刷新”重试。`,
+      `Token 请求失败`,
+      `网络断开或网络不稳定，检查网络连接，点击<code>刷新</code>重试。`,
+      '#qtoken-请求失败',
       true,
     );
     throw new Error(`token 请求失败，${err}`);
