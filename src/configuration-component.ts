@@ -6,6 +6,10 @@ export class ConfigurationComponent {
   private readonly branch: HTMLInputElement;
   private readonly label: HTMLInputElement;
   private readonly theme: HTMLSelectElement;
+  private readonly keepTheme: HTMLInputElement;
+  private readonly loading: HTMLInputElement;
+  private readonly commentOrder: HTMLSelectElement;
+  private readonly inputPosition: HTMLSelectElement;
 
   constructor() {
     this.element = document.createElement('form');
@@ -219,7 +223,7 @@ export class ConfigurationComponent {
       '#comment-order',
     ) as HTMLSelectElement;
 
-    this.inputPositionTop = this.element.querySelector(
+    this.inputPosition = this.element.querySelector(
       '#input-position',
     ) as HTMLSelectElement;
 
@@ -305,7 +309,7 @@ export class ConfigurationComponent {
               this.commentOrder.value,
             ) + '\n'
           : '') +
-        (this.inputPositionTop.value === 'top'
+        (this.inputPosition.value === 'top'
           ? this.makeConfigScriptAttribute('input-position', 'top') + '\n'
           : '') +
         this.makeConfigScriptAttribute('crossorigin', 'anonymous'),
