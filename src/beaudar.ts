@@ -19,6 +19,7 @@ import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorElement } from './new-error-element';
 import { beaudarLoadingStatus } from './beaudar-loading';
+import { loadTheme } from './theme';
 
 setRepoContext(page);
 
@@ -31,7 +32,17 @@ function loadIssue(): Promise<Issue | null> {
 
 async function bootstrap() {
   startMeasuring(page.origin);
-  const loadingParam = await beaudarLoadingStatus(page);
+  const loadingParam = beaudarLoadingStatus(page);
+  let setTheme = await loadTheme(page.theme, page.origin);
+  if (
+    JSON.parse(page.keepTheme) &&
+    sessionStorage.getItem('beaudar-set-theme')
+  ) {
+    setTheme = await loadTheme(
+      sessionStorage.getItem('beaudar-set-theme') as string,
+      page.origin,
+    );
+  }
   if (loadingParam.IS_IE) {
     throw new Error(`本项目放弃兼容 IE。`);
   }
@@ -52,9 +63,9 @@ async function bootstrap() {
 
   // @ts-ignore
   const timeline = new TimelineComponent(user, issue);
-  document.body.appendChild(timeline.element);
   // 移除加载状态
   loadingParam.loadingElement.remove();
+  document.body.appendChild(timeline.element);
 
   // @ts-ignore
   if (issue && issue.comments > 0) {

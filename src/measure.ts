@@ -14,7 +14,7 @@ export function startMeasuring(origin: string) {
 let lastHeight = -1;
 
 function measure() {
-  const height = document.body.scrollHeight;
+  const height = document.documentElement.scrollHeight;
   if (height === lastHeight) {
     return;
   }
