@@ -67,7 +67,9 @@ export class CommentComponent {
       }
     }
     this.element.innerHTML = `
-      <a class="avatar" href="${user.html_url}" target="_blank">
+      <a class="avatar" href="${user.html_url}" target="_blank" title="@${
+      user.login
+    }">
         <img alt="@${user.login}" height="44" width="44"
               src="${user.avatar_url}${avatarArgs}">
       </a>
