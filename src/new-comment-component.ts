@@ -138,7 +138,7 @@ export class NewCommentComponent {
     if (isWhitespace) {
       this.preview.textContent = nothingToPreview;
     } else {
-      this.preview.textContent = '加载预览中……';
+      this.preview.textContent = '加载预览中…';
       this.renderTimeout = setTimeout(
         () =>
           renderMarkdown(text)

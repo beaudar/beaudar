@@ -118,7 +118,7 @@ export class TimelineComponent {
 
     return {
       setBusy() {
-        statusSpan.textContent = '加载中……';
+        statusSpan.textContent = '加载中…';
         button.disabled = true;
       },
       remove() {
