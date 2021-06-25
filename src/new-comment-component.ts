@@ -107,7 +107,7 @@ export class NewCommentComponent {
       this.avatar.alt = '@' + user.login;
       this.avatar.src = user.avatar_url + '?v=3&s=88';
       this.textarea.disabled = false;
-      this.textarea.placeholder = '发表评论';
+      this.textarea.placeholder = '写下您的评论';
     } else {
       this.avatarAnchor.removeAttribute('href');
       this.avatar.alt = '@anonymous';
