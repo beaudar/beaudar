@@ -6,10 +6,10 @@
   .avatar {
     display: none;
     background-color: transparent;
-  }
 
-  .avatar > img {
-    border-radius: $border-radius;
+    img {
+      border-radius: 50%;
+    }
   }
 
   .comment {
@@ -37,6 +37,15 @@
   .comment-meta {
     padding: 10px $spacer-3;
     font-size: 12px;
+
+    .smallAvatar {
+      display: inline-block;
+
+      img {
+        border-radius: 50%;
+        vertical-align: bottom;
+      }
+    }
 
     .comment-author {
       font-size: 16px;
@@ -130,8 +139,10 @@
       margin-right: $spacer-1;
     }
 
-    @media screen and (max-width: 385px) {
-      flex-direction: column;
+    @media screen and (max-width: 345px) {
+      .useGithub {
+        display: none;
+      }
 
       & a.btn {
         white-space: initial;
@@ -154,21 +165,29 @@
     word-break: keep-all;
   }
 
-  .avatar {
-    display: inherit;
-    margin-right: $spacer-3;
-  }
+  @media screen and (min-width: 760px) {
+    .avatar {
+      display: inherit;
+      margin-right: $spacer-3;
+    }
 
-  .comment {
-    @include double-caret($bg-gray, $border-color);
-  }
+    .comment {
+      @include double-caret($bg-gray, $border-color);
+    }
 
-  &.current-user .comment {
-    @include double-caret($bg-blue-light, $border-color);
-  }
+    &.current-user .comment {
+      @include double-caret($bg-blue-light, $border-color);
+    }
 
-  .reactions-popover {
-    display: inline-block;
+    .reactions-popover {
+      display: inline-block;
+    }
+
+    .comment-meta {
+      .smallAvatar {
+        display: none;
+      }
+    }
   }
 
   .comment-footer {

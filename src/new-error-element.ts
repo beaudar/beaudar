@@ -6,11 +6,14 @@ export class NewErrorElement {
   beaudarArticle = `
   <article class="timeline-comment">
     <a class="avatar" href="https://github.com/beaudar" target="_blank">
-      <img alt="@beaudar" height="44" width="44" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
+      <img alt="@beaudar" height="40" width="40" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
     </a>
     <div class="comment">
       <header class="comment-header">
         <span class="comment-meta">
+          <a class="smallAvatar" href="https://github.com/beaudar" target="_blank">
+            <img alt="@beaudar" height="20" width="20" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png">
+          </a>
           <strong class="comment-author">Beaudar</strong> 系统消息
         </span>
       </header>

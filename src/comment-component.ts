@@ -70,12 +70,19 @@ export class CommentComponent {
       <a class="avatar" href="${user.html_url}" target="_blank" title="@${
       user.login
     }">
-        <img alt="@${user.login}" height="44" width="44"
+        <img alt="@${user.login}" height="40" width="40"
               src="${user.avatar_url}${avatarArgs}">
       </a>
       <div class="comment">
         <header class="comment-header">
           <span class="comment-meta">
+            <a class="smallAvatar" href="${
+              user.html_url
+            }" target="_blank" title="@${user.login}">
+              <img alt="@${user.login}" height="20" width="20" src="${
+      user.avatar_url
+    }${avatarArgs}">
+            </a>
             <a class="text-link comment-author" href="${
               user.html_url
             }" target="_blank"><strong>${user.login}</strong></a>
