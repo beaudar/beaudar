@@ -66,7 +66,7 @@ export class NewCommentComponent {
                 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z">
               </path>
             </svg>
-            支持 Markdown 编辑
+            支持 Markdown
           </a>
           <button class="btn btn-primary" type="submit" title="发表评论（Ctrl+Enter）">发表评论</button>
           <a class="btn btn-primary" href="${getLoginUrl(
