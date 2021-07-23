@@ -159,11 +159,14 @@ export function processRenderedMarkdown(markdownBody: Element) {
     (img) => {
       img.onload = scheduleMeasure;
       img.title = img.alt;
-      img.src = img.getAttribute('data-canonical-src') as string;
+      const imgSrc =
+        img.getAttribute('data-canonical-src') ??
+        (img.getAttribute('src') as string);
+      img.src = imgSrc;
       const parent = img.parentElement;
       if (parent!.nodeName === 'A') {
         // @ts-ignore
-        parent.href = img.getAttribute('data-canonical-src') as string;
+        parent.href = imgSrc;
       }
     },
   );
