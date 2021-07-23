@@ -5,10 +5,9 @@
 
 .timeline-header {
   margin: 0;
-  padding-left: $spacer-3;
+  padding-left: 0;
   font-size: $body-font-size;
   color: $text-gray;
-  padding-left: 44 + $spacer-3;
 }
 
 .timeline-header em {
@@ -24,5 +23,12 @@
     left: 50%;
     transform: translateX(-50%) translateY(calc(-50% - 8px));
     z-index: 1;
+  }
+}
+
+// 关联隐藏 .avatar 头像
+@media screen and (min-width: 760px) {
+  .timeline-header {
+    padding-left: 44 + $spacer-3;
   }
 }
