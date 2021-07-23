@@ -9,7 +9,7 @@ export class TimelineComponent {
   private readonly countAnchor: HTMLAnchorElement;
   private readonly marker: Node;
   private count: number = 0;
-  private readonly isDesc: boolean = false;
+  public readonly isDesc: boolean = false;
 
   constructor(private user: User | null, private issue: Issue | null) {
     this.element = document.createElement('main');
@@ -95,9 +95,8 @@ export class TimelineComponent {
         return x.comment.id >= insertAfter.id;
       }
     })!;
-    const insert = this.isDesc ? 'beforebegin' : 'afterend';
     insertAfterElement.insertAdjacentHTML(
-      insert,
+      'afterend',
       `
       <div class="page-loader">
         <div class="zigzag"></div>
@@ -108,10 +107,7 @@ export class TimelineComponent {
       </div>
     `,
     );
-    const sibling = this.isDesc
-      ? 'previousElementSibling'
-      : 'nextElementSibling';
-    const element = insertAfterElement[sibling]!;
+    const element = insertAfterElement['nextElementSibling']!;
     const button = element.lastElementChild! as HTMLButtonElement;
     const statusSpan = button.lastElementChild!;
     button.onclick = callback;

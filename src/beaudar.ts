@@ -162,28 +162,51 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
   };
 
   const pageCount = Math.ceil(issue.comments / PAGE_SIZE);
-  // always load the first page.
-  const pageLoads = [loadCommentsPage(issue.number, 1)];
-  // if there are multiple pages, load the last page.
-  if (pageCount > 1) {
-    pageLoads.push(loadCommentsPage(issue.number, pageCount));
+  let nextHiddenPage = timeline.isDesc ? pageCount - 1 : 2;
+  let pageLoads = [];
+  if (timeline.isDesc) {
+    // 倒叙，如果有多页，先加载最后一页
+    if (pageCount > 1) {
+      pageLoads.push(loadCommentsPage(issue.number, pageCount));
+      // 最后一页小于 3 条数据，再加载一页
+      if (
+        pageCount > 2 &&
+        issue.comments % PAGE_SIZE < 3 &&
+        issue.comments % PAGE_SIZE !== 0
+      ) {
+        nextHiddenPage = pageCount - 2;
+        pageLoads.push(loadCommentsPage(issue.number, pageCount - 1));
+      }
+      // 加载第一页
+      pageLoads.push(loadCommentsPage(issue.number, 1));
+    } else {
+      // 没有多页，仅加载一页
+      pageLoads.push(loadCommentsPage(issue.number, 1));
+    }
+  } else {
+    // 顺序，加载第一页
+    pageLoads = [loadCommentsPage(issue.number, 1)];
+    if (pageCount > 1) {
+      // 如果有多页，加载最后一页
+      pageLoads.push(loadCommentsPage(issue.number, pageCount));
+    }
+    // 最后一页小于 3 条数据，再加载一页
+    if (
+      pageCount > 2 &&
+      issue.comments % PAGE_SIZE < 3 &&
+      issue.comments % PAGE_SIZE !== 0
+    ) {
+      nextHiddenPage = 2;
+      pageLoads.push(loadCommentsPage(issue.number, pageCount - 1));
+    }
   }
-  // if the last page is small, load the penultimate page.
-  if (
-    pageCount > 2 &&
-    issue.comments % PAGE_SIZE < 3 &&
-    issue.comments % PAGE_SIZE !== 0
-  ) {
-    pageLoads.push(loadCommentsPage(issue.number, pageCount - 1));
-  }
-  // await all loads to reduce jank.
+  // await all loads to reduce
   const pages = await Promise.all(pageLoads);
   for (const page of pages) {
     renderPage(page);
   }
   // enable loading hidden pages.
   let hiddenPageCount = pageCount - pageLoads.length;
-  let nextHiddenPage = 2;
   const renderLoader = (afterPage: IssueComment[]) => {
     if (hiddenPageCount === 0) {
       return;
@@ -194,10 +217,12 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
       loader.remove();
       renderPage(page);
       hiddenPageCount--;
-      nextHiddenPage++;
+      nextHiddenPage = timeline.isDesc ? --nextHiddenPage : ++nextHiddenPage;
       renderLoader(page);
     };
-    const afterComment = afterPage.pop()!;
+    const afterComment = timeline.isDesc
+      ? afterPage.shift()!
+      : afterPage.pop()!;
     const loader = timeline.insertPageLoader(
       afterComment,
       hiddenPageCount * PAGE_SIZE,
