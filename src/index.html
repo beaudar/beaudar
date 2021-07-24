@@ -40,14 +40,6 @@
       sizes="16x16"
       href="./icons/favicon-16x16.png"
     />
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js');
-        });
-      }
-    </script>
     <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" />
     <link rel="shortcut icon" href="./icons/favicon.ico" />
     <if condition="NODE_ENV === 'production'">
@@ -94,7 +86,6 @@
   </head>
 
   <body>
-    <canvas id="confetti"> </canvas>
     <main class="timeline">
       <article class="timeline-comment">
         <a class="avatar" href="https://github.com/beaudar" target="_blank">
@@ -136,7 +127,6 @@
     </main>
 
     <script src="./index.ts"></script>
-    <script src="./confetti.js"></script>
 
     <section id="beaudar">
       <if condition="NODE_ENV === 'production'">
