@@ -1,17 +1,14 @@
 .reaction-list {
-  border-right: 0;
-
-  @media screen and (min-width: 720px) {
-    border-right: $border;
-  }
+  padding: $spacer-3 $spacer-2 0 $spacer-2;
 }
-
 .reaction-list > .reaction-button {
   font-weight: normal;
-  padding: $spacer-2 $spacer-3;
-  border: 0;
+  border: $border !important;
   box-shadow: unset;
-  border-radius: 0px;
+  padding: 0 $spacer-2;
+  border-radius: $border-radius;
+  margin: 0 $spacer-2 $spacer-3;
+  line-height: 26px;
 
   &[reaction-count='0'] {
     display: none;
@@ -101,8 +98,8 @@
   padding: $spacer-2 $spacer-3;
   background-color: $bg-white;
   pointer-events: none;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 
   .reaction-button + & {
     display: none;

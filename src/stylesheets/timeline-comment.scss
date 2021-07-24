@@ -19,8 +19,7 @@
     min-width: 0px;
     background-color: $bg-white;
     border: $border;
-    border-top-right-radius: $border-radius;
-    border-top-left-radius: $border-radius;
+    border-radius: $border-radius;
   }
 
   .comment-header {
@@ -35,7 +34,7 @@
   }
 
   .comment-meta {
-    padding: 10px $spacer-3;
+    padding: $spacer-2 $spacer-3;
     font-size: 12px;
 
     .smallAvatar {
@@ -48,7 +47,7 @@
     }
 
     .comment-author {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 
@@ -109,7 +108,6 @@
 
   .comment-footer {
     display: flex;
-    border-top: $border;
 
     &[reaction-count='0'] {
       height: 0;
@@ -189,8 +187,13 @@
   .comment-footer {
     .reactions-popover {
       display: none;
+      & > summary {
+        margin: $spacer-3 $spacer-2;
+        padding: 0;
+        line-height: 26px;
+      }
 
-      @media screen and (min-width: 720px) {
+      @media screen and (min-width: 755px) {
         display: inline-block;
       }
     }
