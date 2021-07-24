@@ -139,7 +139,7 @@
       margin-right: $spacer-1;
     }
 
-    @media screen and (max-width: 345px) {
+    @media screen and (max-width: 335px) {
       .useGithub {
         display: none;
       }
@@ -161,7 +161,7 @@
     word-break: keep-all;
   }
 
-  @media screen and (min-width: 760px) {
+  @media screen and (min-width: 375px) {
     .avatar {
       display: inherit;
       margin-right: $spacer-3;
@@ -192,6 +192,14 @@
 
       @media screen and (min-width: 720px) {
         display: inline-block;
+      }
+    }
+  }
+
+  &:last-child {
+    .comment-footer {
+      .reactions-popover {
+        display: none;
       }
     }
   }
