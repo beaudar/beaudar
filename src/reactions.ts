@@ -6,26 +6,31 @@ import { scheduleMeasure } from './measure';
 export const reactionNames: Record<ReactionID, string> = {
   '+1': '赞同',
   '-1': '不赞同',
-  'laugh': '笑脸',
-  'hooray': '庆祝',
-  'confused': '困惑',
-  'heart': '喜欢',
-  'rocket': '火箭',
-  'eyes': '瞩目'
+  laugh: '笑脸',
+  hooray: '庆祝',
+  confused: '困惑',
+  heart: '喜欢',
+  rocket: '火箭',
+  eyes: '瞩目',
 };
 
 export const reactionEmoji: Record<ReactionID, string> = {
   '+1': '👍',
   '-1': '👎',
-  'laugh': '️😄',
-  'hooray': '️🎉',
-  'confused': '😕',
-  'heart': '❤️',
-  'rocket': '🚀',
-  'eyes': '👀'
+  laugh: '️😄',
+  hooray: '️🎉',
+  confused: '😕',
+  heart: '❤️',
+  rocket: '🚀',
+  eyes: '👀',
 };
 
-export function getReactionHtml(url: string, reaction: ReactionID, disabled: boolean, count: number) {
+export function getReactionHtml(
+  url: string,
+  reaction: ReactionID,
+  disabled: boolean,
+  count: number,
+) {
   return `
   <button
     reaction
@@ -43,7 +48,8 @@ export function getReactionHtml(url: string, reaction: ReactionID, disabled: boo
 
 export function enableReactions(authenticated: boolean) {
   const submitReaction = async (event: Event) => {
-    const button = event.target instanceof HTMLElement && event.target.closest('button');
+    const button =
+      event.target instanceof HTMLElement && event.target.closest('button');
     if (!button) {
       return;
     }
@@ -68,7 +74,10 @@ export function enableReactions(authenticated: boolean) {
     for (const element of elements) {
       element.setAttribute(
         'reaction-count',
-        (parseInt(element.getAttribute('reaction-count')!, 10) + delta).toString());
+        (
+          parseInt(element.getAttribute('reaction-count')!, 10) + delta
+        ).toString(),
+      );
     }
     button.disabled = false;
     scheduleMeasure();
@@ -77,13 +86,19 @@ export function enableReactions(authenticated: boolean) {
 }
 
 export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
-  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:11px';
+  const position =
+    align === 'center'
+      ? 'left: 50%;top: 75%;transform: translateX(-50%)'
+      : 'right:11px';
   const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
-  const getButtonAndSpan = (id: ReactionID) => getReactionHtml(url, id, false, 0)
-    + `<span class="reaction-name" aria-hidden="true">${reactionNames[id]}</span>`;
+  const getButtonAndSpan = (id: ReactionID) =>
+    getReactionHtml(url, id, false, 0) +
+    `<span class="reaction-name" aria-hidden="true">${reactionNames[id]}</span>`;
   return `
   <details class="details-overlay details-popover reactions-popover">
-    <summary ${align === 'center' ? 'tabindex="-1"' : ''}>${addReactionSvgs}</summary>
+    <summary ${
+      align === 'center' ? 'tabindex="-1"' : ''
+    }>${addReactionSvgs}</summary>
     <div class="Popover" style="${position}">
       <form class="Popover-message ${alignmentClass} box-shadow-large" action="javascript:">
         <span class="reaction-name">选择你的表情符号</span>
@@ -99,18 +114,24 @@ export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
 }
 
 export function getSignInToReactMenuHtml(align: 'center' | 'right') {
-  const position = align === 'center' ? 'left: 50%;transform: translateX(-50%)' : 'right:11px';
+  const position =
+    align === 'center'
+      ? 'left: 50%;top: 75%;transform: translateX(-50%)'
+      : 'right:11px';
   const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
   return `
   <details class="details-overlay details-popover reactions-popover">
     <summary aria-label="Reactions Menu">${addReactionSvgs}</summary>
     <div class="Popover" style="${position}">
       <div class="Popover-message ${alignmentClass} box-shadow-large" style="padding: 16px">
-        <span><a href="${getLoginUrl(pageAttributes.url)}" target="_top">登录</a> 后你可以添加表情符号</span>
+        <span><a href="${getLoginUrl(
+          pageAttributes.url,
+        )}" target="_top">登录</a> 后你可以添加表情符号</span>
       </div>
     </div>
   </details>`;
 }
 
-// tslint:disable-next-line:max-line-length
-const addReactionSvgs = `<svg class="octicon" style="margin-right:3px" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg><svg class="octicon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>`;
+const addReactionSvgs = `<svg aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" height="16" width="16" class="octicon octicon-smiley">
+<path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path>
+</svg>`;
