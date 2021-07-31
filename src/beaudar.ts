@@ -154,6 +154,11 @@ addEventListener('not-installed', function handleNotInstalled() {
   scheduleMeasure();
 });
 
+// 判断最后一页数据是否小于 3 条
+const isLessDataOnLastPage = (comments: number, pageSize: number) => {
+  return comments % pageSize < 3 && comments % pageSize !== 0;
+};
+
 async function renderComments(issue: Issue, timeline: TimelineComponent) {
   const renderPage = (page: IssueComment[]) => {
     for (const comment of page) {
@@ -169,11 +174,7 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
     if (pageCount > 1) {
       pageLoads.push(loadCommentsPage(issue.number, pageCount));
       // 最后一页小于 3 条数据，再加载一页
-      if (
-        pageCount > 2 &&
-        issue.comments % PAGE_SIZE < 3 &&
-        issue.comments % PAGE_SIZE !== 0
-      ) {
+      if (pageCount > 2 && isLessDataOnLastPage(issue.comments, PAGE_SIZE)) {
         nextHiddenPage = pageCount - 2;
         pageLoads.push(loadCommentsPage(issue.number, pageCount - 1));
       }
@@ -191,11 +192,7 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
       pageLoads.push(loadCommentsPage(issue.number, pageCount));
     }
     // 最后一页小于 3 条数据，再加载一页
-    if (
-      pageCount > 2 &&
-      issue.comments % PAGE_SIZE < 3 &&
-      issue.comments % PAGE_SIZE !== 0
-    ) {
+    if (pageCount > 2 && isLessDataOnLastPage(issue.comments, PAGE_SIZE)) {
       nextHiddenPage = 2;
       pageLoads.push(loadCommentsPage(issue.number, pageCount - 1));
     }
@@ -229,5 +226,11 @@ async function renderComments(issue: Issue, timeline: TimelineComponent) {
       load,
     );
   };
-  renderLoader(pages[0]);
+  // 倒序时最后一页数据过少，需要多加载一页
+  // 将 Loader 加载在“第二页”
+  if (timeline.isDesc && isLessDataOnLastPage(issue.comments, PAGE_SIZE)) {
+    renderLoader(pages[1]);
+  } else {
+    renderLoader(pages[0]);
+  }
 }
