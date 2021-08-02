@@ -1,13 +1,15 @@
-# 在本地运行
+## 贡献指南
+
+### 本地运行
 
 1. 安装 yarn: [https://yarnpkg.com](https://yarnpkg.com)
-2. 克隆仓库:
+2. 克隆仓库
 
 ```bash
 git clone https://github.com/beaudar/beaudar
 ```
 
-3. 安装依赖:
+3. 安装依赖
 
 ```bash
 cd beaudar
@@ -25,6 +27,9 @@ yarn start
 
 > 最近 GitHub 处于半墙状态，在 host 中设置 `aip.github.com` 的重定向，使其请求不被重置。
 
-## 主题开发
+### 主题开发
 
-每个主题都位于 `src/stylesheets/themes` 的子目录中。主题必须具有 `index.scss` 和 `beaudar.scss` 文件。
+每个主题都位于 `src/stylesheets/themes` 的子目录中。
+
+- 主题必须具有 `index.scss` 和 `beaudar.scss` 文件。
+- **pull request** 请提交到 `develop` 分支。
