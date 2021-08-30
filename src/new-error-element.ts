@@ -1,7 +1,8 @@
 import { scheduleMeasure } from './measure';
+import { pageAttributes as page } from './page-attributes';
 
 export class NewErrorElement {
-  public readonly element: HTMLElement;
+  public readonly element: Element;
   isTimelineNull: boolean;
   beaudarArticle = `
   <article class="timeline-comment">
@@ -23,20 +24,29 @@ export class NewErrorElement {
   </article>
 `;
   constructor() {
-    if (document.querySelector('.timeline') === null) {
+    const timeline = document.querySelector('.timeline');
+    if (timeline === null) {
       this.isTimelineNull = true;
       this.element = document.createElement('main');
       this.element.classList.add('timeline');
       this.element.innerHTML = this.beaudarArticle;
     } else {
       this.isTimelineNull = false;
-      // @ts-ignore
-      this.element = document.querySelector('.timeline');
+      this.element = timeline;
+
       if (document.querySelector('#beaudarMsg') === null) {
-        this.element!.lastElementChild!.insertAdjacentHTML(
-          'beforebegin',
-          this.beaudarArticle,
-        );
+        if (page.inputPosition === 'top') {
+          this.element!.firstElementChild!.insertAdjacentHTML(
+            'afterend',
+            this.beaudarArticle,
+          );
+        }
+        if (page.inputPosition === 'bottom') {
+          this.element!.lastElementChild!.insertAdjacentHTML(
+            'beforebegin',
+            this.beaudarArticle,
+          );
+        }
       }
     }
   }
@@ -69,16 +79,13 @@ export class NewErrorElement {
     );
     if (this.isTimelineNull) {
       document.body.appendChild(this.element);
-    } else {
-      // @ts-ignore 已经获取了 issue 内容时，屏蔽评论功能
-      this.element.lastElementChild.remove();
     }
     const reloadButton = this.element.querySelector(
       '#reload-button',
     ) as HTMLButtonElement;
     if (reloadButton) {
       reloadButton.onclick = () => {
-        window.location.reload(true);
+        window.location.reload();
       };
     }
     scheduleMeasure();
