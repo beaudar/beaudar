@@ -187,8 +187,8 @@ export class NewCommentComponent {
     scheduleMeasure();
   };
 
-  private handleKeyDown = ({ which, ctrlKey }: KeyboardEvent) => {
-    if (which === 13 && ctrlKey && !this.submitButton.disabled) {
+  private handleKeyDown = ({ key, ctrlKey }: KeyboardEvent) => {
+    if (key === 'Enter' && ctrlKey && !this.submitButton.disabled) {
       this.form.dispatchEvent(new CustomEvent('submit'));
     }
   };
