@@ -7,7 +7,7 @@
 - 没有追踪，没有广告，永久免费。♻️
 - 不保留数据，所有数据保存在用户 GitHub issue 中。📚
 - 有源于 [Github primer](https://primer.style/) 的多个主题。🌈
-- 轻量化，没有字体下载，没有 JS 框架加载，没有 polyfills。🍜
+- 轻量化，没有字体下载，没有 JS 框架加载。🍜
 
 #### Beaudar 与 Utterances 有什么不同？
 

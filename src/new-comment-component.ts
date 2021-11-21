@@ -21,7 +21,7 @@ export class NewCommentComponent {
   private signInAnchor: HTMLAnchorElement;
 
   private submitting = false;
-  private renderTimeout = 0;
+  private renderTimeout = setTimeout(() => undefined);
 
   constructor(
     private user: User | null,

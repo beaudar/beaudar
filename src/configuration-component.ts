@@ -227,21 +227,18 @@ export class ConfigurationComponent {
       '#input-position',
     ) as HTMLSelectElement;
 
-    const themeStylesheet = document.getElementById(
-      'theme-stylesheet',
-    ) as HTMLLinkElement;
     // 如果 sessionStorage 中存在主题，使用 sessionStorage 的值
     if (sessionStorage.getItem('beaudar-set-theme')) {
       // @ts-ignore
       this.theme.value = sessionStorage.getItem('beaudar-set-theme');
-      themeStylesheet.href = `/stylesheets/themes/${this.theme.value}/index.css`;
+      document.documentElement.setAttribute('theme', this.theme.value);
     }
     this.theme.addEventListener('change', () => {
       let theme = this.theme.value;
       if (theme === preferredThemeId) {
         theme = preferredTheme;
       }
-      themeStylesheet.href = `/stylesheets/themes/${theme}/index.css`;
+      document.documentElement.setAttribute('theme', theme);
       const message = {
         type: 'set-theme',
         theme,
