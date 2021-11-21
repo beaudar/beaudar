@@ -1,5 +1,7 @@
+@use 'sass:math';
+
 $zz-height: 16px;
-$zz-halfheight: ($zz-height / 2);
+$zz-halfheight: math.div($zz-height, 2);
 $zz-thickness: 110%; // increase to make the line thicker
 $zz-offset: 4px;
 $zz-background-color: $bg-white;

@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" theme="github-light">
   <head>
     <title>Beaudar - 表达</title>
     <meta name="description" content="使用 GitHub issue 的轻量级评论插件。" />
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="baidu-site-verification" content="VJTgEhbeUg" />
     <link rel="preconnect" href="https://api.github.com" />
     <link rel="preconnect" href="https://avatars3.githubusercontent.com" />
-    <if condition="NODE_ENV === 'production'">
-      <link
-        id="theme-stylesheet"
-        rel="stylesheet"
-        href="https://beaudar.lipk.org/stylesheets/themes/github-light/index.css"
-      />
-    </if>
-    <else>
-      <link
-        id="theme-stylesheet"
-        rel="stylesheet"
-        href="http://localhost:4000/stylesheets/themes/github-light/index.css"
-      />
-    </else>
+    <link rel="stylesheet" href="./stylesheets/main-index.scss" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -45,13 +31,9 @@
     <if condition="NODE_ENV === 'production'">
       <link rel="canonical" href="http://beaudar.lipk.org" />
     </if>
-    <else>
-      <link rel="canonical" href="http://localhost:4000/index.html" />
-    </else>
     <meta name="apple-mobile-web-app-title" content="beaudar" />
     <meta name="application-name" content="beaudar" />
     <meta name="msapplication-config" content="icons/browserconfig.xml" />
-    <meta name="theme-color" content="#ffffff" />
     <meta property="og:title" content="beaudar" />
     <script>
       if (Array.from === undefined) {
@@ -125,8 +107,12 @@
         </div>
       </article>
     </main>
-
-    <script src="./index.ts"></script>
+    <if condition="NODE_ENV === 'production'">
+      <script src="./index.ts"></script>
+    </if>
+    <else>
+      <script type="module" src="./index.ts"></script>
+    </else>
 
     <section id="beaudar">
       <if condition="NODE_ENV === 'production'">
@@ -145,7 +131,8 @@
       </if>
       <else>
         <script
-          src="http://localhost:4000/client.js"
+          type="module"
+          src="http://localhost:3000/client.ts"
           repo="zsdycs/beaudar-demo"
           issue-term="pathname"
           label="💬 评论"

@@ -39,12 +39,12 @@ async function bootstrap() {
     JSON.parse(page.keepTheme) &&
     sessionStorage.getItem('beaudar-set-theme')
   ) {
-    await loadTheme(
+    loadTheme(
       sessionStorage.getItem('beaudar-set-theme') as string,
       page.origin,
     );
   } else {
-    await loadTheme(page.theme, page.origin);
+    loadTheme(page.theme, page.origin);
   }
 
   // tslint:disable-next-line

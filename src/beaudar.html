@@ -6,11 +6,11 @@
       name="description"
       content="使用 GitHub issue 的轻量级评论插件。官网地址: https://beaudar.lipk.org."
     />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://api.github.com" />
     <link rel="preconnect" href="https://avatars3.githubusercontent.com" />
+    <link rel="stylesheet" href="./stylesheets/main-beaudar.scss" />
     <script>
       if (!window.Promise || !window.fetch) {
         if (Array.from === undefined) {
@@ -38,6 +38,11 @@
   </head>
 
   <body>
-    <script src="./beaudar.ts"></script>
+    <if condition="NODE_ENV === 'production'">
+      <script src="./beaudar.ts"></script>
+    </if>
+    <else>
+      <script type="module" src="./beaudar.ts"></script>
+    </else>
   </body>
 </html>

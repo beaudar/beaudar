@@ -7,7 +7,7 @@ on:
         required: true
         default: 'Owner'
   push:
-    branches: [ master ]
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,14 +18,14 @@ jobs:
           persist-credentials: false
       - name: npm install
         run: npm install
-      - name: parcel build
-        run: sudo parcel build src/*.html src/client.ts src/stylesheets/themes/*/{index,beaudar}.scss --experimental-scope-hoisting
+      - name: run build
+        run: sudo npm run build
       - name: ssh-deploy
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
-          ARGS: "-avz --delete"
-          SOURCE: "dist/"
+          ARGS: '-avz --delete'
+          SOURCE: 'dist/'
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
