@@ -116,7 +116,7 @@ export class ConfigurationComponent {
         </div>
       </fieldset>
 
-      <h3 id="heading-theme">选择主题 🌈</h3>
+      <h3 id="heading-theme">选择主题 <span class="g-emoji">🌈</span></h3>
       <p>
         选择与您的博客匹配的 Beaudar 主题。找不到你喜欢的主题？
         <a href="https://github.com/beaudar/beaudar/blob/master/CONTRIBUTING.md" target="_blank">贡献</a> 一个自定义主题。
@@ -193,7 +193,7 @@ export class ConfigurationComponent {
           </select>
         </div>
       </fieldset>
-      <h3 id="heading-enable">使用 Beaudar 🎊</h3>
+      <h3 id="heading-enable">使用 Beaudar <span class="g-emoji">🎊</span></h3>
       <p>
       &emsp;&emsp;将以下脚本标记添加到博客的模板中。 将其放置在要显示注释的位置。 使用<code> .beaudar </code>和<code> .beaudar-frame </code>选择器自定义布局。
       </p>
