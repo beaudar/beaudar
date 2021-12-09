@@ -10,6 +10,10 @@
 @import './timeline';
 @import './timeline-comment';
 
+.g-emoji {
+  font-weight: 500; // 如果为 600 emoji 将会失去颜色
+}
+
 .timeline {
   width: 100%;
   max-width: 760px;
