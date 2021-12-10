@@ -53,6 +53,8 @@ async function bootstrap() {
 
   try {
     [issue, user] = await Promise.all([loadIssue(), loadUser()]);
+
+    removeLoadingElement();
   } catch (error) {
     removeLoadingElement();
     const errorElement = new NewErrorElement();
@@ -70,8 +72,6 @@ async function bootstrap() {
     );
     throw new Error(`api.github.com 请求失败。${error}`);
   }
-
-  removeLoadingElement();
 
   const timeline = new TimelineComponent(user, issue);
 

@@ -1,4 +1,5 @@
 import { BEAUDAR_API } from './beaudar-api';
+import { removeLoadingElement } from './beaudar-loading';
 import { param } from './deparam';
 import { NewErrorElement } from './new-error-element';
 import { pageAttributes } from './page-attributes';
@@ -34,6 +35,8 @@ export async function loadToken(): Promise<string | null> {
       '#qtoken-请求失败',
       true,
     );
+
+    removeLoadingElement();
     throw new Error(`token 请求失败，${err}`);
   });
   if (response.ok) {

@@ -72,6 +72,14 @@
     &:first-of-type {
       margin-top: $spacer-6;
     }
+
+    .reaction-button + .reaction-name {
+      display: none;
+    }
+
+    .reaction-button:hover + .reaction-name {
+      display: block;
+    }
   }
 
   .reaction-button {
@@ -87,25 +95,17 @@
       color: $text-blue !important;
     }
   }
-}
 
-.reaction-name {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-bottom: $border;
-  padding: $spacer-2 $spacer-3;
-  background-color: $bg-white;
-  pointer-events: none;
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
-
-  .reaction-button + & {
-    display: none;
-  }
-
-  .reaction-button:hover + & {
-    display: block;
+  .reaction-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: $border;
+    padding: $spacer-2 $spacer-3;
+    background-color: $bg-white;
+    pointer-events: none;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
 }
