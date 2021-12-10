@@ -59,11 +59,11 @@ export class CommentComponent {
         );
         footerReactionsMenu = getReactionsMenuHtml(
           comment.reactions.url,
-          'center',
+          'left',
         );
       } else {
         headerReactionsMenu = getSignInToReactMenuHtml('right');
-        footerReactionsMenu = getSignInToReactMenuHtml('center');
+        footerReactionsMenu = getSignInToReactMenuHtml('left');
       }
     }
     this.element.innerHTML = `
@@ -106,6 +106,7 @@ export class CommentComponent {
         <div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
       reactions.url
     }">
+          ${footerReactionsMenu}
           <form class="reaction-list BtnGroup" action="javascript:">
             ${reactionTypes
               .map((id) =>
@@ -118,7 +119,6 @@ export class CommentComponent {
               )
               .join('')}
           </form>
-          ${footerReactionsMenu}
         </div>
       </div>`;
 

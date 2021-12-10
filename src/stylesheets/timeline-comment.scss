@@ -108,6 +108,7 @@
 
   .comment-footer {
     display: flex;
+    margin: 0 $spacer-3 $spacer-3 $spacer-3;
 
     &[reaction-count='0'] {
       height: 0;
@@ -115,15 +116,16 @@
       opacity: 0;
     }
 
-    &:not(:hover) .reactions-popover:not([open]) {
-      height: 0;
-      overflow: hidden;
-      opacity: 0;
+    // 让评论底部的添加反馈显示，而不仅在 :hover 时
+    // &:not(:hover) .reactions-popover:not([open]) {
+    //   height: 0;
+    //   overflow: hidden;
+    //   opacity: 0;
 
-      summary {
-        opacity: 0;
-      }
-    }
+    //   summary {
+    //     opacity: 0;
+    //   }
+    // }
   }
 
   .new-comment-footer {
@@ -150,7 +152,6 @@
 
   .author-association-badge {
     margin-top: -1px;
-    margin-right: $spacer-1;
     padding: 2px 5px;
     border: $border;
     border-radius: $border-radius;
@@ -186,23 +187,9 @@
 
   .comment-footer {
     .reactions-popover {
-      display: none;
       & > summary {
-        margin: $spacer-3 $spacer-2;
         padding: 0;
         line-height: 26px;
-      }
-
-      @media screen and (min-width: 755px) {
-        display: inline-block;
-      }
-    }
-  }
-
-  &:last-child {
-    .comment-footer {
-      .reactions-popover {
-        display: none;
       }
     }
   }

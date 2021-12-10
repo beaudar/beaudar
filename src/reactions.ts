@@ -85,12 +85,21 @@ export function enableReactions(authenticated: boolean) {
   addEventListener('click', submitReaction, true);
 }
 
-export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
-  const position =
-    align === 'center'
-      ? 'left: 50%;top: 75%;transform: translateX(-50%)'
-      : 'right:11px';
-  const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
+export function getReactionsMenuHtml(
+  url: string,
+  align: 'center' | 'right' | 'left',
+) {
+  let position = '';
+  let alignmentClass = '';
+  if (align === 'center') {
+    position = 'left: 50%;top: 75%;transform: translateX(-50%)';
+  } else if (align === 'right') {
+    alignmentClass = 'Popover-message--top-right';
+    position = 'right:11px';
+  } else if (align === 'left') {
+    alignmentClass = 'Popover-message--bottom-left';
+    position = 'transform: translateX(-1%) translateY(-133%)';
+  }
   const getButtonAndSpan = (id: ReactionID) =>
     getReactionHtml(url, id, false, 0) +
     `<span class="reaction-name" aria-hidden="true">${reactionNames[id]}</span>`;
@@ -113,12 +122,18 @@ export function getReactionsMenuHtml(url: string, align: 'center' | 'right') {
   </details>`;
 }
 
-export function getSignInToReactMenuHtml(align: 'center' | 'right') {
-  const position =
-    align === 'center'
-      ? 'left: 50%;top: 75%;transform: translateX(-50%)'
-      : 'right:11px';
-  const alignmentClass = align === 'center' ? '' : 'Popover-message--top-right';
+export function getSignInToReactMenuHtml(align: 'center' | 'right' | 'left') {
+  let position = '';
+  let alignmentClass = '';
+  if (align === 'center') {
+    position = 'left: 50%;top: 75%;transform: translateX(-50%)';
+  } else if (align === 'right') {
+    alignmentClass = 'Popover-message--top-right';
+    position = 'right:11px';
+  } else if (align === 'left') {
+    alignmentClass = 'Popover-message--bottom-left';
+    position = 'transform: translateX(-1%) translateY(-133%)';
+  }
   return `
   <details class="details-overlay details-popover reactions-popover">
     <summary aria-label="Reactions Menu">${addReactionSvgs}</summary>
