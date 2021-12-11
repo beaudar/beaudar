@@ -90,9 +90,12 @@ function processRateLimit(response: Response) {
       (resetDate.getTime() - new Date().getTime()) / 1000 / 60,
     );
     const apiType = isSearch ? 'search API' : 'non-search APIs';
-    // tslint:disable-next-line:no-console
-    console.warn(
-      `超出了 ${apiType} 的速率限制 ${apiType}，在 ${mins} 分钟后重置`,
+    const errorElement = new NewErrorElement();
+    errorElement.createMsgElement(
+      `获取评论数据失败`,
+      `<p>超出了 ${apiType} 的速率限制，在 ${mins} 分钟后重置</p>`,
+      '',
+      true,
     );
   }
 }
