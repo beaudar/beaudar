@@ -1,6 +1,3 @@
-// stylelint-disable
-/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
-
 /**
  * 1. Change the default font family in all browsers (opinionated).
  * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
@@ -39,7 +36,8 @@ header,
 main, /* 2 */
 menu,
 nav,
-section { /* 1 */
+section {
+  /* 1 */
   display: block;
 }
 
@@ -278,7 +276,8 @@ optgroup {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -288,7 +287,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -310,9 +310,9 @@ html [type="button"], /* 1 */
  */
 
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -322,9 +322,9 @@ button::-moz-focus-inner,
  */
 
 button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -367,8 +367,8 @@ textarea {
  * 2. Remove the padding in IE 10-.
  */
 
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'],
+[type='radio'] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -377,8 +377,8 @@ textarea {
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -387,7 +387,7 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 
-[type="search"] {
+[type='search'] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -396,8 +396,8 @@ textarea {
  * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
  */
 
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -418,4 +418,212 @@ textarea {
 ::-webkit-file-upload-button {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+body {
+  font-family: $body-font;
+  font-size: $body-font-size;
+  line-height: $body-line-height;
+  color: $text-gray-dark;
+  background-color: $bg-white;
+}
+
+a {
+  color: $text-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+b,
+strong {
+  font-weight: $font-weight-bold;
+}
+
+// Horizontal lines
+//
+// TODO-MDO: Remove `.rule` from everywhere and replace with `<hr>`s
+hr,
+.rule {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+
+  border-bottom: $border-width $border-style lighten($gray-300, 5%);
+  @include clearfix();
+}
+
+//
+// Remove most spacing between table cells.
+//
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  // Remove border radius added by Chrome macOS
+  border-radius: 0;
+}
+
+// increase the selector specificity for [hidden]
+// so that it always overrides utility classes (.d-block, etc.)
+[hidden][hidden] {
+  display: none !important;
+}
+
+details {
+  summary {
+    cursor: pointer;
+  }
+
+  &:not([open]) {
+    // Set details content hidden by default for browsers that don't do this
+    > *:not(summary) {
+      display: none !important;
+    }
+  }
+}
+
+// Keyboard shortcuts
+
+kbd {
+  display: inline-block;
+  padding: ($spacer-1 - 1) ($spacer-1 + 1);
+  font: 11px $mono-font;
+
+  line-height: 10px;
+
+  color: $gray-700;
+  vertical-align: middle;
+  background-color: $bg-gray-light;
+
+  border: $border-style $border-width $border-gray-dark;
+  border-bottom-color: $border-gray-dark;
+  border-radius: $border-radius;
+
+  box-shadow: inset 0 -1px 0 $border-gray-dark;
+}
+
+// Headings
+// --------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1 {
+  @include h1;
+}
+h2 {
+  @include h2;
+}
+h3 {
+  @include h3;
+}
+h4 {
+  @include h4;
+}
+h5 {
+  @include h5;
+}
+h6 {
+  @include h6;
+}
+
+// Body text
+// --------------------------------------------------
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+small {
+  font-size: 90%;
+}
+
+blockquote {
+  margin: 0;
+}
+
+// Lists
+// --------------------------------------------------
+
+ul,
+ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dd {
+  margin-left: 0;
+}
+
+// Code
+// --------------------------------------------------
+
+tt,
+code {
+  font-family: $mono-font;
+  font-size: $font-size-small;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: $mono-font;
+  font-size: $font-size-small;
+}
+
+// Octicons
+// --------------------------------------------------
+
+// Move this over here as a temporary override to the octicons source repo
+// instead of updating that upstream.
+.octicon {
+  vertical-align: text-bottom;
 }

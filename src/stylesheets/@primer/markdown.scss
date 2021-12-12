@@ -1,0 +1,513 @@
+// All of our block level items should have the same margin
+
+// This is styling for generic markdownized text. Anything you put in a
+// container with .markdown-body on it should render generally well. It also
+// includes some GitHub Flavored Markdown specific styling (like @mentions)
+.markdown-body {
+  font-family: $body-font;
+  font-size: $h4-size;
+  line-height: $body-line-height;
+  word-wrap: break-word;
+
+  kbd {
+    display: inline-block;
+    padding: ($spacer-1 - 1) ($spacer-1 + 1);
+    font: 11px $mono-font;
+
+    line-height: 10px;
+
+    color: $gray-700;
+    vertical-align: middle;
+    background-color: $bg-gray-light;
+
+    border: $border-style $border-width $border-gray-dark;
+    border-bottom-color: $border-gray-dark;
+    border-radius: $border-radius;
+
+    box-shadow: inset 0 -1px 0 $border-gray-dark;
+  }
+
+  // Clearfix on the markdown body
+  &::before {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  > *:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  // Anchors like <a name="examples">. These sometimes end up wrapped around
+  // text when users mistakenly forget to close the tag or use self-closing tag
+  // syntax. We don't want them to appear like links.
+  // FIXME: a:not(:link):not(:visited) would be a little clearer here (and
+  // possibly faster to match), but it breaks styling of <a href> elements due
+  // to https://bugs.webkit.org/show_bug.cgi?id=142737.
+  a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  // Link Colors
+  .absent {
+    color: $text-red;
+  }
+
+  .anchor {
+    float: left;
+    padding-right: $spacer-1;
+    margin-left: -20px;
+    line-height: $lh-condensed-ultra;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  details {
+    margin-top: 0;
+    margin-bottom: $spacer-3;
+  }
+
+  hr {
+    height: $em-spacer-3;
+    padding: 0;
+    margin: $spacer-4 0;
+
+    background-color: $gray-200;
+    border: 0;
+  }
+
+  blockquote {
+    padding: 0 1em;
+    color: $text-gray-light;
+
+    border-left: 0.25em $border-style lighten($gray-300, 5%);
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Needs refactoring
+.markdown-body {
+  // Headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: $spacer-4;
+    margin-bottom: $spacer-3;
+    font-weight: $font-weight-bold;
+    line-height: $lh-condensed;
+
+    .octicon-link {
+      color: $text-black;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    &:hover .anchor {
+      text-decoration: none;
+
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+
+    tt,
+    code {
+      font-size: inherit;
+    }
+  }
+
+  h1 {
+    padding-bottom: 0.3em;
+
+    font-size: 2em;
+    border-bottom: $border-width $border-style $border-gray-light;
+  }
+
+  h2 {
+    padding-bottom: 0.3em;
+
+    font-size: 1.5em;
+    border-bottom: $border-width $border-style $border-gray-light;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+    color: $text-gray-light;
+  }
+}
+
+// Base styles
+
+.markdown-body {
+  // Lists, Blockquotes & Such
+  ul,
+  ol {
+    padding-left: 2em;
+
+    &.no-list {
+      padding: 0;
+      list-style-type: none;
+    }
+  }
+
+  // Did someone complain about list spacing? Encourage them
+  // to create the spacing with their markdown formatting.
+  // List behavior should be controled by the markup, not the css.
+  //
+  // For lists with padding between items, use blank
+  // lines between items. This will generate paragraphs with
+  // padding to space things out.
+  //
+  // - item
+  //
+  // - item
+  //
+  // - item
+  //
+  // For list without padding, don't use blank lines.
+  //
+  // - item
+  // - item
+  // - item
+  //
+  // Modifying the css to emulate these behaviors merely brakes
+  // one case in the process of solving another. Don't change
+  // this unless it's really really a bug.
+  ul ul,
+  ul ol,
+  ol ol,
+  ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    // TODO@16.0.0: Remove this. See https://github.com/primer/css/pull/1137.
+    word-wrap: break-all;
+  }
+
+  li > p {
+    margin-top: $spacer-3;
+  }
+
+  li + li {
+    margin-top: $em-spacer-3;
+  }
+
+  dl {
+    padding: 0;
+
+    dt {
+      padding: 0;
+      margin-top: $spacer-3;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: $font-weight-bold;
+    }
+
+    dd {
+      padding: 0 $spacer-3;
+      margin-bottom: $spacer-3;
+    }
+  }
+}
+
+// Needs refactoring
+
+.markdown-body {
+  // Tables
+  table {
+    display: block;
+    width: 100%; // keep for backwards compatibility
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+
+    th {
+      font-weight: $font-weight-bold;
+    }
+
+    th,
+    td {
+      padding: 6px 13px;
+
+      border: $border-width $border-style lighten($gray-300, 5%);
+    }
+
+    tr {
+      background-color: $bg-white;
+
+      border-top: $border-width $border-style darken($gray-300, 4%);
+
+      &:nth-child(2n) {
+        background-color: $bg-gray;
+      }
+    }
+
+    img {
+      background-color: transparent;
+    }
+  }
+}
+
+// Need to target base styles
+
+.markdown-body {
+  // Images & Stuff
+  img {
+    max-width: 100%;
+    // because we put padding on the images to hide header lines, and some people
+    // specify the width of their images in their markdown.
+    box-sizing: content-box;
+    background-color: $bg-white;
+
+    &[align='right'] {
+      padding-left: 20px;
+    }
+
+    &[align='left'] {
+      padding-right: 20px;
+    }
+  }
+
+  .emoji {
+    max-width: none;
+    vertical-align: text-top;
+    // Override `<img>` styles so Emjois don't clash with zebra striping in our tables
+    background-color: transparent;
+  }
+
+  // Gollum Image Tags
+
+  // Framed
+  span.frame {
+    display: block;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      float: left;
+      width: auto;
+      padding: 7px;
+      margin: 13px 0 0;
+      overflow: hidden;
+
+      border: $border-width $border-style lighten($gray-300, 5%);
+    }
+
+    span img {
+      display: block;
+      float: left;
+    }
+
+    span span {
+      display: block;
+      padding: 5px 0 0;
+      clear: both;
+      color: $text-gray-dark;
+    }
+  }
+
+  span.align-center {
+    display: block;
+    overflow: hidden;
+    clear: both;
+
+    > span {
+      display: block;
+      margin: 13px auto 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    span img {
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  span.align-right {
+    display: block;
+    overflow: hidden;
+    clear: both;
+
+    > span {
+      display: block;
+      margin: 13px 0 0;
+      overflow: hidden;
+      text-align: right;
+    }
+
+    span img {
+      margin: 0;
+      text-align: right;
+    }
+  }
+
+  span.float-left {
+    display: block;
+    float: left;
+    margin-right: 13px;
+    overflow: hidden;
+
+    span {
+      margin: 13px 0 0;
+    }
+  }
+
+  span.float-right {
+    display: block;
+    float: right;
+    margin-left: 13px;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      margin: 13px auto 0;
+      overflow: hidden;
+      text-align: right;
+    }
+  }
+}
+
+.markdown-body {
+  // Inline code snippets
+  code,
+  tt {
+    padding: 0.2em 0.4em;
+    margin: 0;
+
+    font-size: 85%;
+
+    background-color: rgba($black, 0.05);
+    border-radius: $border-radius;
+
+    br {
+      display: none;
+    }
+  }
+
+  del code {
+    text-decoration: inherit;
+  }
+
+  pre {
+    word-wrap: normal;
+
+    // Code tags within code blocks (<pre>s)
+    > code {
+      padding: 0;
+      margin: 0;
+
+      font-size: 100%;
+      word-break: normal;
+      white-space: pre;
+      background: transparent;
+      border: 0;
+    }
+  }
+
+  .highlight {
+    margin-bottom: $spacer-3;
+
+    pre {
+      margin-bottom: 0;
+      word-break: normal;
+    }
+  }
+
+  .highlight pre,
+  pre {
+    padding: $spacer-3;
+    overflow: auto;
+
+    font-size: 85%;
+
+    line-height: 1.45;
+    background-color: $bg-gray;
+    border-radius: $border-radius;
+  }
+
+  pre code,
+  pre tt {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+}
+
+.markdown-body .csv-data {
+  td,
+  th {
+    padding: 5px;
+    overflow: hidden;
+    font-size: $font-size-small;
+    line-height: $lh-condensed-ultra;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .blob-num {
+    padding: 10px $spacer-2 9px;
+    text-align: right;
+    background: $bg-white;
+    border: 0;
+  }
+
+  tr {
+    border-top: 0;
+  }
+
+  th {
+    font-weight: $font-weight-bold;
+    background: $bg-gray;
+    border-top: 0;
+  }
+}

@@ -1,0 +1,574 @@
+// Base button styles
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 5px $spacer-3;
+  font-size: $body-font-size;
+  font-weight: $font-weight-semibold;
+
+  line-height: 20px; // Specifically not inherit our `<body>` default
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $border-width $border-style;
+  border-radius: $border-radius;
+  appearance: none; // Corrects inability to style clickable `input` types in iOS.
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled='true'] {
+    cursor: default;
+
+    .octicon {
+      color: inherit;
+    }
+  }
+
+  i {
+    font-style: normal;
+    font-weight: $font-weight-semibold;
+    opacity: 0.75;
+  }
+
+  .octicon {
+    margin-right: $spacer-1;
+    color: $text-gray-light;
+    vertical-align: text-bottom;
+
+    &:only-child {
+      margin-right: 0;
+    }
+  }
+
+  .Counter {
+    margin-left: 2px;
+    color: inherit;
+    text-shadow: none;
+    vertical-align: top;
+
+    background-color: rgba(
+      $black,
+      0.08
+    ); // Darken for just a tad more contrast against the button background
+  }
+
+  .dropdown-caret {
+    margin-left: $spacer-1;
+    opacity: 0.8;
+  }
+}
+
+// Default button
+
+.btn {
+  $bg-default: $bg-gray-light;
+  $bg-hover: #f3f4f6; // custom gray
+  $bg-active: darken($bg-hover, 2%);
+  $bg-disabled: $bg-default;
+
+  color: $text-gray-dark;
+  background-color: $bg-default;
+  border-color: $border-color-button;
+  box-shadow: $box-shadow, $box-shadow-highlight;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+
+  &:hover,
+  &.hover,
+  [open] > & {
+    background-color: $bg-hover;
+    transition-duration: 0.1s;
+  }
+
+  &:active,
+  &.selected,
+  &[aria-selected='true'] {
+    background-color: $bg-active;
+    box-shadow: $box-shadow-inset;
+    transition: none;
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled='true'] {
+    color: $gray-400;
+    background-color: $bg-disabled;
+    border-color: $border-color-button;
+  }
+
+  // Keep :focus after :disabled. Allows to see the focus ring even on disabled buttons
+  &:focus,
+  &.focus {
+    outline: 1px dotted transparent; // Support Firfox custom colors
+    outline-offset: 2px;
+    box-shadow: $box-shadow-focus;
+  }
+}
+
+// Primary button
+
+.btn-primary {
+  $bg-default: #2ea44f; // custom green
+  $bg-hover: #2c974b; // custom green
+  $bg-active: darken($bg-hover, 2%);
+  $bg-disabled: #94d3a2; // custom green
+
+  $shadow: $green-900;
+  $box-shadow: 0 1px 0 rgba($black, 0.1), inset 0 1px 0 rgba($white, 0.03);
+
+  color: $text-white;
+  background-color: $bg-default;
+
+  border-color: rgba($black, 0.15);
+  box-shadow: $box-shadow;
+
+  &:hover,
+  &.hover,
+  [open] > & {
+    background-color: $bg-hover;
+  }
+
+  &:active,
+  &.selected,
+  &[aria-selected='true'] {
+    background-color: $bg-active;
+
+    box-shadow: inset 0 1px 0 rgba($shadow, 0.2);
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled='true'] {
+    color: rgba($text-white, 0.8);
+    background-color: $bg-disabled;
+
+    border-color: rgba($black, 0.1);
+    box-shadow: $box-shadow;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 3px rgba($bg-default, 0.4);
+  }
+
+  .Counter {
+    color: inherit;
+
+    background-color: rgba($bg-white, 0.2);
+  }
+
+  .octicon {
+    color: rgba($text-white, 0.8);
+  }
+}
+
+// Mixin: btn-inverse-on-hover
+
+@mixin btn-inverse-on-hover($color, $bg-hover, $bg-active, $shadow) {
+  color: $color;
+  transition: none;
+
+  &:hover,
+  [open] > & {
+    color: $text-white;
+    background-color: $bg-hover;
+    border-color: rgba($black, 0.15);
+    box-shadow: 0 1px 0 rgba($black, 0.1), inset 0 1px 0 rgba($white, 0.03);
+
+    .Counter {
+      background-color: rgba($bg-white, 0.2);
+    }
+
+    .octicon {
+      color: inherit;
+    }
+  }
+
+  &:active,
+  &.selected,
+  &[aria-selected='true'] {
+    color: $text-white;
+    background-color: $bg-active;
+    border-color: rgba($black, 0.15);
+    box-shadow: inset 0 1px 0 rgba($shadow, 0.2);
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled='true'] {
+    color: rgba($color, 0.5);
+    background-color: $bg-gray-light;
+    border-color: $border-color-button;
+    box-shadow: $box-shadow, $box-shadow-highlight;
+
+    .Counter {
+      background-color: rgba($color, 0.05);
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($bg-hover, 0.4);
+  }
+
+  .Counter {
+    color: inherit;
+    background-color: rgba($color, 0.1);
+  }
+}
+
+// Danger button
+
+.btn-danger {
+  @include btn-inverse-on-hover(
+    $color: $text-red,
+    $bg-hover: $red-600,
+    $bg-active: darken($red-600, 3%),
+    $shadow: $red-900
+  );
+}
+
+// Outline button
+
+.btn-outline {
+  @include btn-inverse-on-hover(
+    $color: $blue-500,
+    $bg-hover: $blue-500,
+    $bg-active: darken($blue-500, 3%),
+    $shadow: $blue-900
+  );
+}
+
+// Solid buttons TODO: Deprecate?
+//
+//
+.btn-blue {
+  @include btn-solid(
+    $text-white,
+    lighten($blue-500, 8%),
+    darken($blue-500, 2%)
+  );
+}
+
+// Sizes
+//
+// Tweak `line-height` to make them smaller.
+.btn-sm {
+  padding: 3px 12px;
+  font-size: $font-size-small;
+
+  line-height: 20px;
+
+  .octicon {
+    vertical-align: text-top;
+  }
+}
+
+// Large button adds more padding around text. Use font-size utils to increase font-size.. e.g, <p class="text-gamma"><button class="btn btn-large btn-primary" type="button">Big green button</button></p>
+.btn-large {
+  padding: $em-spacer-6 1.5em;
+  font-size: inherit;
+  line-height: $lh-default;
+
+  border-radius: 0.5em;
+}
+
+// Full-width button
+//
+// These buttons expand to the full width of their parent container
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+// Button group
+//
+// A button group is a series of buttons laid out next to each other, all part
+// of one visual button, but separated by rules to be separate.
+
+.BtnGroup {
+  display: inline-block;
+  vertical-align: middle;
+  @include clearfix();
+
+  // Proper spacing for multiple button groups (a la, gollum editor)
+  + .BtnGroup,
+  + .btn {
+    margin-left: $spacer-1;
+  }
+}
+
+.BtnGroup-item {
+  position: relative;
+  float: left;
+  border-right-width: 0;
+  border-radius: 0;
+
+  &:first-child {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-right-width: $border-width;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  &.selected,
+  &[aria-selected='true'],
+  &:focus,
+  &:active,
+  &:hover {
+    border-right-width: $border-width;
+
+    + .BtnGroup-item,
+    + .BtnGroup-parent .BtnGroup-item {
+      border-left-width: 0;
+    }
+  }
+}
+
+.BtnGroup-parent {
+  float: left;
+
+  &:first-child .BtnGroup-item {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &:last-child .BtnGroup-item {
+    border-right-width: $border-width;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  .BtnGroup-item {
+    border-right-width: 0;
+    border-radius: 0;
+  }
+
+  &.selected,
+  &[aria-selected='true'],
+  &:focus,
+  &:active,
+  &:hover {
+    .BtnGroup-item {
+      border-right-width: $border-width;
+    }
+
+    + .BtnGroup-item,
+    + .BtnGroup-parent .BtnGroup-item {
+      border-left-width: 0;
+    }
+  }
+}
+
+// ensure that the focus ring sits above the adjacent buttons
+.BtnGroup-item,
+.BtnGroup-parent {
+  &:focus,
+  &:active {
+    z-index: 1;
+  }
+}
+
+// Link-like buttons
+//
+// This class is for styling <button> and <input> elements to look like links
+.btn-link {
+  display: inline-block;
+  padding: 0;
+  font-size: inherit;
+  color: $text-blue;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 0;
+  appearance: none; // Corrects inability to style clickable `input` types in iOS.
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    &,
+    &:hover {
+      color: rgba($gray-600, 0.5);
+      cursor: default;
+    }
+  }
+}
+
+// Invisible button
+//
+// Typically used as a "cancel" button next to a .btn
+.btn-invisible {
+  color: $text-blue;
+  background-color: transparent; // Reset default gradient backgrounds and colors
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &.selected,
+  &[aria-selected='true'],
+  &.zeroclipboard-is-hover,
+  &.zeroclipboard-is-active {
+    color: $text-blue;
+    background: none;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+// Octicon button
+//
+// Icon-only buttons
+.btn-octicon {
+  display: inline-block;
+  padding: 5px;
+  margin-left: 5px;
+  line-height: $lh-condensed-ultra;
+  color: $text-gray;
+  vertical-align: middle;
+
+  // For `<button>` elements
+  background: transparent;
+  border: 0;
+
+  &:hover {
+    color: $text-blue;
+  }
+
+  &.disabled,
+  &[aria-disabled='true'] {
+    color: $gray-400;
+    cursor: default;
+
+    &:hover {
+      color: $gray-400;
+    }
+  }
+}
+
+.btn-octicon-danger:hover {
+  color: $text-red;
+}
+
+// Close button
+//
+// Typically used with an octicon-x
+.close-button {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+// Hidden text button
+//
+// Use `.hidden-text-expander` to indicate and expand hidden text.
+.hidden-text-expander {
+  display: block;
+
+  &.inline {
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    margin-left: 5px;
+    line-height: 0;
+  }
+}
+
+.hidden-text-expander a,
+.ellipsis-expander {
+  display: inline-block;
+  height: 12px;
+  padding: 0 5px 5px;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+
+  line-height: 6px;
+
+  color: $gray-700;
+  text-decoration: none;
+  vertical-align: middle;
+
+  background: lighten($gray-300, 5%);
+  border: 0;
+
+  border-radius: 1px;
+
+  &:hover {
+    text-decoration: none;
+
+    background-color: darken($gray-300, 4%);
+  }
+
+  &:active {
+    color: $text-white;
+
+    background-color: $blue-400;
+  }
+}
+
+// Social button count
+// TODO: Deprecate? Use BtnGroup instead?
+
+.btn-with-count {
+  float: left;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &:focus {
+    z-index: 1;
+  }
+}
+
+// Social count bubble
+//
+// A container that is used for social bubbles counts.
+
+.social-count {
+  position: relative;
+  float: left;
+  padding: 3px 12px;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+
+  line-height: 20px;
+  color: $text-gray-dark;
+  vertical-align: middle;
+  background-color: $bg-white;
+  border: $border-width $border-style $border-color-button;
+  border-left: 0;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  box-shadow: $box-shadow, $box-shadow-highlight;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $text-blue;
+    cursor: pointer;
+  }
+
+  &:focus {
+    z-index: 1;
+    outline: 0;
+    box-shadow: $box-shadow-focus;
+  }
+}
