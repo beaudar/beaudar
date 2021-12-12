@@ -1,11 +1,4 @@
-@import './@primer/css/support/variables/colors';
-@import './@primer/css/base/index';
-@import './@primer/css/buttons/button';
-@import './@primer/css/forms/form-control';
-@import './@primer/css/forms/form-select';
-@import './@primer/css/forms/form-group';
-@import './@primer/css/forms/input-group';
-@import './@primer/css/markdown/index';
+@import './@primer/index.scss';
 @import './util';
 @import './timeline';
 @import './timeline-comment';
