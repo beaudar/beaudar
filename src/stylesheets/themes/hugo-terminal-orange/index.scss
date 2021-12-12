@@ -1,10 +1,5 @@
 @import './variables';
 @import '../../index';
-@import './syntax';
-@import './button.scss';
-@import './glow.scss';
-@import './comment.scss';
-@import './selection.scss';
-@import './placeholder.scss';
-@import './combobox.scss';
-@import './code.scss';
+@import '../../github-syntax-dark/lib/github-dark';
+@import './cover.scss';
+@import '../../current-dark';
