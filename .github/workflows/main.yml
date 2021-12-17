@@ -18,8 +18,8 @@ jobs:
           persist-credentials: false
       - name: yarn install
         uses: CultureHQ/actions-yarn@master
-          with:
-            args: install
+        with:
+          args: install
       - name: run build
         run: sudo npm run build
       - name: ssh-deploy
