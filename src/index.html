@@ -112,12 +112,7 @@
         </div>
       </article>
     </main>
-    <if condition="NODE_ENV === 'production'">
-      <script src="./index.ts"></script>
-    </if>
-    <else>
-      <script type="module" src="./index.ts"></script>
-    </else>
+    <script type="module" src="./index.ts"></script>
 
     <section id="beaudar">
       <if condition="NODE_ENV === 'production'">
