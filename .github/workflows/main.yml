@@ -17,7 +17,7 @@ jobs:
         with:
           persist-credentials: false
       - name: yarn install
-      - uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
       - name: run build
