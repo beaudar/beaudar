@@ -3,379 +3,228 @@
 
 // Heading sizes - mobile
 // h4-h6 remain the same size on both mobile & desktop
-$h00-size-mobile: 40px !default;
-$h0-size-mobile: 32px !default;
-$h1-size-mobile: 26px !default;
-$h2-size-mobile: 22px !default;
-$h3-size-mobile: 18px !default;
+$h00-size-mobile: 40px;
+$h0-size-mobile: 32px;
+$h1-size-mobile: 26px;
+$h2-size-mobile: 22px;
+$h3-size-mobile: 18px;
 
 // Heading sizes - desktop
-$h00-size: 48px !default;
-$h0-size: 40px !default;
-$h1-size: 32px !default;
-$h2-size: 24px !default;
-$h3-size: 20px !default;
-$h4-size: 16px !default;
-$h5-size: 14px !default;
-$h6-size: 12px !default;
+$h00-size: 48px;
+$h0-size: 40px;
+$h1-size: 32px;
+$h2-size: 24px;
+$h3-size: 20px;
+$h4-size: 16px;
+$h5-size: 14px;
+$h6-size: 12px;
 
-$font-size-small: 12px !default;
+$font-size-small: 12px;
 
 // Font weights
-$font-weight-bold: 600 !default;
-$font-weight-semibold: 500 !default;
-$font-weight-normal: 400 !default;
-$font-weight-light: 300 !default;
+$font-weight-bold: 600;
+$font-weight-semibold: 500;
+$font-weight-normal: 400;
+$font-weight-light: 300;
 
 // Line heights
-$lh-condensed-ultra: 1 !default;
-$lh-condensed: 1.25 !default;
-$lh-default: 1.5 !default;
+$lh-condensed-ultra: 1;
+$lh-condensed: 1.25;
+$lh-default: 1.5;
 
 // Font stacks
 $body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji' !default;
+  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 
 // Monospace font stack
-$mono-font: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace !default;
+$mono-font: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 
 // The base body size
-$body-font-size: 14px !default;
-$body-line-height: $lh-default !default;
+$body-font-size: 14px;
+$body-line-height: $lh-default;
 
 // Black based on same hue as $gray-900
-$black: #1b1f23 !default;
-$white: #fff !default;
+$black: #1b1f23;
+$white: #fff;
 
 //
 //
 // -------- Grays --------
-$gray-000: #fafbfc !default;
-$gray-100: #f6f8fa !default;
-$gray-200: #e1e4e8 !default;
-$gray-300: #d1d5da !default;
-$gray-400: #959da5 !default;
-$gray-500: #6a737d !default;
-$gray-600: #586069 !default;
-$gray-700: #444d56 !default;
-$gray-800: #2f363d !default;
-$gray-900: #24292e !default; // body font color
+$gray-000: #fafbfc;
+$gray-100: #f6f8fa;
+$gray-200: #e1e4e8;
+$gray-300: #d1d5da;
+$gray-400: #959da5;
+$gray-500: #6a737d;
+$gray-600: #586069;
+$gray-700: #444d56;
+$gray-800: #2f363d;
+$gray-900: #24292e; // body font color
 
 // -------- Blue --------
-$blue-000: #f1f8ff !default;
-$blue-100: #dbedff !default;
-$blue-200: #c8e1ff !default;
-$blue-300: #79b8ff !default;
-$blue-400: #2188ff !default;
-$blue-500: #0366d6 !default; // Default: Passes AA with #fff
-$blue-600: #005cc5 !default;
-$blue-700: #044289 !default;
-$blue-800: #032f62 !default;
-$blue-900: #05264c !default; // Passes with 1/2/300 blues
+$blue-000: #f1f8ff;
+$blue-100: #dbedff;
+$blue-200: #c8e1ff;
+$blue-300: #79b8ff;
+$blue-400: #2188ff;
+$blue-500: #0366d6; // Default: Passes AA with #fff
+$blue-600: #005cc5;
+$blue-700: #044289;
+$blue-800: #032f62;
+$blue-900: #05264c; // Passes with 1/2/300 blues
 
 // -------- Green --------
-$green-000: #f0fff4 !default;
-$green-100: #dcffe4 !default;
-$green-200: #bef5cb !default;
-$green-300: #85e89d !default;
-$green-400: #34d058 !default;
-$green-500: #28a745 !default; // Default. passes AA Large
-$green-600: #22863a !default; // Text green, passes AA on #fff
-$green-700: #176f2c !default;
-$green-800: #165c26 !default;
-$green-900: #144620 !default;
+$green-000: #f0fff4;
+$green-100: #dcffe4;
+$green-200: #bef5cb;
+$green-300: #85e89d;
+$green-400: #34d058;
+$green-500: #28a745; // Default. passes AA Large
+$green-600: #22863a; // Text green, passes AA on #fff
+$green-700: #176f2c;
+$green-800: #165c26;
+$green-900: #144620;
 
 // -------- Yellow --------
-$yellow-000: #fffdef !default;
-$yellow-100: #fffbdd !default;
-$yellow-200: #fff5b1 !default;
-$yellow-300: #ffea7f !default;
-$yellow-400: #ffdf5d !default;
-$yellow-500: #ffd33d !default;
-$yellow-600: #f9c513 !default;
-$yellow-700: #dbab09 !default;
-$yellow-800: #b08800 !default;
-$yellow-900: #735c0f !default;
+$yellow-000: #fffdef;
+$yellow-100: #fffbdd;
+$yellow-200: #fff5b1;
+$yellow-300: #ffea7f;
+$yellow-400: #ffdf5d;
+$yellow-500: #ffd33d;
+$yellow-600: #f9c513;
+$yellow-700: #dbab09;
+$yellow-800: #b08800;
+$yellow-900: #735c0f;
 
 // -------- Orange --------
-$orange-000: #fff8f2 !default;
-$orange-100: #ffebda !default;
-$orange-200: #ffd1ac !default;
-$orange-300: #ffab70 !default;
-$orange-400: #fb8532 !default;
-$orange-500: #f66a0a !default; // Default. passes AA Large with #fff
-$orange-600: #e36209 !default;
-$orange-700: #d15704 !default;
-$orange-800: #c24e00 !default;
-$orange-900: #a04100 !default;
+$orange-000: #fff8f2;
+$orange-100: #ffebda;
+$orange-200: #ffd1ac;
+$orange-300: #ffab70;
+$orange-400: #fb8532;
+$orange-500: #f66a0a; // Default. passes AA Large with #fff
+$orange-600: #e36209;
+$orange-700: #d15704;
+$orange-800: #c24e00;
+$orange-900: #a04100;
 
 // -------- Red --------
-$red-000: #ffeef0 !default;
-$red-100: #ffdce0 !default;
-$red-200: #fdaeb7 !default;
-$red-300: #f97583 !default;
-$red-400: #ea4a5a !default;
-$red-500: #d73a49 !default; // Default. passes AA
-$red-600: #cb2431 !default;
-$red-700: #b31d28 !default;
-$red-800: #9e1c23 !default;
-$red-900: #86181d !default;
+$red-000: #ffeef0;
+$red-100: #ffdce0;
+$red-200: #fdaeb7;
+$red-300: #f97583;
+$red-400: #ea4a5a;
+$red-500: #d73a49; // Default. passes AA
+$red-600: #cb2431;
+$red-700: #b31d28;
+$red-800: #9e1c23;
+$red-900: #86181d;
 
 // -------- Purple --------
-$purple-000: #f5f0ff !default;
-$purple-100: #e6dcfd !default;
-$purple-200: #d1bcf9 !default;
-$purple-300: #b392f0 !default;
-$purple-400: #8a63d2 !default;
-$purple-500: #6f42c1 !default; // passes AA with #fff
-$purple-600: #5a32a3 !default;
-$purple-700: #4c2889 !default;
-$purple-800: #3a1d6e !default;
-$purple-900: #29134e !default;
+$purple-000: #f5f0ff;
+$purple-100: #e6dcfd;
+$purple-200: #d1bcf9;
+$purple-300: #b392f0;
+$purple-400: #8a63d2;
+$purple-500: #6f42c1; // passes AA with #fff
+$purple-600: #5a32a3;
+$purple-700: #4c2889;
+$purple-800: #3a1d6e;
+$purple-900: #29134e;
 
 // -------- Pink --------
-$pink-000: #ffeef8 !default;
-$pink-100: #fedbf0 !default;
-$pink-200: #f9b3dd !default;
-$pink-300: #f692ce !default;
-$pink-400: #ec6cb9 !default;
-$pink-500: #ea4aaa !default;
-$pink-600: #d03592 !default;
-$pink-700: #b93a86 !default;
-$pink-800: #99306f !default;
-$pink-900: #6d224f !default;
+$pink-000: #ffeef8;
+$pink-100: #fedbf0;
+$pink-200: #f9b3dd;
+$pink-300: #f692ce;
+$pink-400: #ec6cb9;
+$pink-500: #ea4aaa;
+$pink-600: #d03592;
+$pink-700: #b93a86;
+$pink-800: #99306f;
+$pink-900: #6d224f;
 
 // -------- Fades --------
-$black-fade-15: rgba($black, 0.15) !default;
-$black-fade-30: rgba($black, 0.3) !default;
-$black-fade-50: rgba($black, 0.5) !default;
-$black-fade-70: rgba($black, 0.7) !default;
-$black-fade-85: rgba($black, 0.85) !default;
+$black-fade-15: rgba($black, 0.15);
+$black-fade-30: rgba($black, 0.3);
+$black-fade-50: rgba($black, 0.5);
+$black-fade-70: rgba($black, 0.7);
+$black-fade-85: rgba($black, 0.85);
 
-$white-fade-15: rgba($white, 0.15) !default;
-$white-fade-30: rgba($white, 0.3) !default;
-$white-fade-50: rgba($white, 0.5) !default;
-$white-fade-70: rgba($white, 0.7) !default;
-$white-fade-85: rgba($white, 0.85) !default;
+$white-fade-15: rgba($white, 0.15);
+$white-fade-30: rgba($white, 0.3);
+$white-fade-50: rgba($white, 0.5);
+$white-fade-70: rgba($white, 0.7);
+$white-fade-85: rgba($white, 0.85);
 
 // -------- Color defaults --------
-$red: $red-500 !default;
-$purple: $purple-500 !default;
-$blue: $blue-500 !default;
-$green: $green-500 !default;
-$yellow: $yellow-500 !default;
-$orange: $orange-500 !default;
+$red: $red-500;
+$purple: $purple-500;
+$blue: $blue-500;
+$green: $green-500;
+$yellow: $yellow-500;
+$orange: $orange-500;
 
-$gray-dark: $gray-900 !default;
-$gray-light: $gray-400 !default;
-$gray: $gray-500 !default;
-
-// -------- Color gradient maps --------
-
-$grays: (
-  0: $gray-000,
-  1: $gray-100,
-  2: $gray-200,
-  3: $gray-300,
-  4: $gray-400,
-  5: $gray-500,
-  6: $gray-600,
-  7: $gray-700,
-  8: $gray-800,
-  9: $gray-900,
-) !default;
-
-$blues: (
-  0: $blue-000,
-  1: $blue-100,
-  2: $blue-200,
-  3: $blue-300,
-  4: $blue-400,
-  5: $blue-500,
-  6: $blue-600,
-  7: $blue-700,
-  8: $blue-800,
-  9: $blue-900,
-) !default;
-
-$greens: (
-  0: $green-000,
-  1: $green-100,
-  2: $green-200,
-  3: $green-300,
-  4: $green-400,
-  5: $green-500,
-  6: $green-600,
-  7: $green-700,
-  8: $green-800,
-  9: $green-900,
-) !default;
-
-$yellows: (
-  0: $yellow-000,
-  1: $yellow-100,
-  2: $yellow-200,
-  3: $yellow-300,
-  4: $yellow-400,
-  5: $yellow-500,
-  6: $yellow-600,
-  7: $yellow-700,
-  8: $yellow-800,
-  9: $yellow-900,
-) !default;
-
-$oranges: (
-  0: $orange-000,
-  1: $orange-100,
-  2: $orange-200,
-  3: $orange-300,
-  4: $orange-400,
-  5: $orange-500,
-  6: $orange-600,
-  7: $orange-700,
-  8: $orange-800,
-  9: $orange-900,
-) !default;
-
-$reds: (
-  0: $red-000,
-  1: $red-100,
-  2: $red-200,
-  3: $red-300,
-  4: $red-400,
-  5: $red-500,
-  6: $red-600,
-  7: $red-700,
-  8: $red-800,
-  9: $red-900,
-) !default;
-
-$purples: (
-  0: $purple-000,
-  1: $purple-100,
-  2: $purple-200,
-  3: $purple-300,
-  4: $purple-400,
-  5: $purple-500,
-  6: $purple-600,
-  7: $purple-700,
-  8: $purple-800,
-  9: $purple-900,
-) !default;
-
-$pinks: (
-  0: $pink-000,
-  1: $pink-100,
-  2: $pink-200,
-  3: $pink-300,
-  4: $pink-400,
-  5: $pink-500,
-  6: $pink-600,
-  7: $pink-700,
-  8: $pink-800,
-  9: $pink-900,
-) !default;
-
-$hue-maps: (
-  'gray': $grays,
-  'blue': $blues,
-  'green': $greens,
-  'yellow': $yellows,
-  'orange': $oranges,
-  'red': $reds,
-  'purple': $purples,
-  'pink': $pinks,
-) !default;
-
-// Color variables
+$gray-dark: $gray-900;
+$gray-light: $gray-400;
+$gray: $gray-500;
 
 // Border colors
-$border-white: $white !default;
-$border-black-fade: $black-fade-15 !default;
-$border-white-fade: $white-fade-15 !default;
-$border-gray-dark: $gray-300 !default;
-$border-gray-darker: $gray-700 !default;
-$border-gray-light: lighten($gray-200, 3%) !default;
-$border-gray: $gray-200 !default;
-$border-blue: $blue-500 !default;
-$border-blue-light: $blue-200 !default;
-$border-green: $green-400 !default;
-$border-green-light: desaturate($green-300, 40%) !default;
-$border-purple: $purple !default;
-$border-red: $red !default;
-$border-red-light: $red-300 !default;
-$border-yellow: $yellow-600 !default;
+$border-white: $white;
+$border-black-fade: $black-fade-15;
+$border-white-fade: $white-fade-15;
+$border-gray-dark: $gray-300;
+$border-gray-darker: $gray-700;
+$border-gray-light: lighten($gray-200, 3%);
+$border-gray: $gray-200;
+$border-blue: $blue-500;
+$border-blue-light: $blue-200;
+$border-green: $green-400;
+$border-green-light: desaturate($green-300, 40%);
+$border-purple: $purple;
+$border-red: $red;
+$border-red-light: $red-300;
+$border-yellow: $yellow-600;
 
 // Background colors
-$bg-white: $white !default;
-$bg-black: $black !default;
-$bg-black-fade: $black-fade-50 !default;
-$bg-blue-light: $blue-000 !default;
-$bg-blue: $blue-500 !default;
-$bg-gray-dark: $gray-900 !default;
-$bg-gray-light: $gray-000 !default;
-$bg-gray: $gray-100 !default;
-$bg-green: $green-500 !default;
-$bg-green-light: $green-100 !default;
-$bg-orange: $orange-700 !default;
-$bg-purple: $purple-500 !default;
-$bg-purple-light: $purple-000 !default;
-$bg-pink: $pink-500 !default;
-$bg-red: $red-500 !default;
-$bg-red-light: $red-000 !default;
-$bg-yellow: $yellow-500 !default;
-$bg-yellow-light: $yellow-200 !default;
-$bg-yellow-dark: $yellow-700 !default;
+$bg-white: $white;
+$bg-black: $black;
+$bg-black-fade: $black-fade-50;
+$bg-blue-light: $blue-000;
+$bg-blue: $blue-500;
+$bg-gray-dark: $gray-900;
+$bg-gray-light: $gray-000;
+$bg-gray: $gray-100;
+$bg-green: $green-500;
+$bg-green-light: $green-100;
+$bg-orange: $orange-700;
+$bg-purple: $purple-500;
+$bg-purple-light: $purple-000;
+$bg-pink: $pink-500;
+$bg-red: $red-500;
+$bg-red-light: $red-000;
+$bg-yellow: $yellow-500;
+$bg-yellow-light: $yellow-200;
+$bg-yellow-dark: $yellow-700;
 
 // Text colors
-$text-black: $black !default;
-$text-white: $white !default;
-$text-blue: $blue-500 !default;
-$text-gray-dark: $gray-900 !default;
-$text-gray-light: $gray-500 !default;
-$text-gray: $gray-600 !default;
-$text-green: $green-600 !default;
-$text-orange: $orange-900 !default;
-$text-orange-light: $orange-600 !default;
-$text-purple: $purple !default;
-$text-pink: $pink-500 !default;
-$text-red: $red-600 !default;
-$text-yellow: $yellow-800 !default;
+$text-black: $black;
+$text-white: $white;
+$text-blue: $blue-500;
+$text-gray-dark: $gray-900;
+$text-gray-light: $gray-500;
+$text-gray: $gray-600;
+$text-green: $green-600;
+$text-orange: $orange-900;
+$text-orange-light: $orange-600;
+$text-purple: $purple;
+$text-pink: $pink-500;
+$text-red: $red-600;
+$text-yellow: $yellow-800;
 
 @use 'sass:math';
 // Layout variables
-
-// these are values for the display CSS property
-$display-values: (
-  block,
-  flex,
-  inline,
-  inline-block,
-  inline-flex,
-  none,
-  table,
-  table-cell
-) !default;
-
-// maps edges to respective corners for border-radius
-$edges: (
-  top: (
-    top-left,
-    top-right,
-  ),
-  right: (
-    top-right,
-    bottom-right,
-  ),
-  bottom: (
-    bottom-right,
-    bottom-left,
-  ),
-  left: (
-    bottom-left,
-    top-left,
-  ),
-) !default;
 
 // These are our margin and padding utility spacers. The default step size we
 // use is 8px. This gives us a key of:
@@ -386,82 +235,59 @@ $edges: (
 //    4 => 24px
 //    5 => 32px
 //    6 => 40px
-$spacer: 8px !default;
+$spacer: 8px;
 
 // Our spacing scale
-$spacer-0: 0 !default; // 0
-$spacer-1: math.div($spacer, 2) !default; // 4px
-$spacer-2: $spacer !default; // 8px
-$spacer-3: $spacer * 2 !default; // 16px
-$spacer-4: $spacer * 3 !default; // 24px
-$spacer-5: $spacer * 4 !default; // 32px
-$spacer-6: $spacer * 5 !default; // 40px
-
-// The list of spacer values
-$spacers: (
-  $spacer-0,
-  $spacer-1,
-  $spacer-2,
-  $spacer-3,
-  $spacer-4,
-  $spacer-5,
-  $spacer-6
-) !default;
-
-// And the map of spacers, for easier looping:
-// @each $scale, $length in $spacer-map { ... }
-$spacer-map: (
-  0: $spacer-0,
-  1: $spacer-1,
-  2: $spacer-2,
-  3: $spacer-3,
-  4: $spacer-4,
-  5: $spacer-5,
-  6: $spacer-6,
-) !default;
+$spacer-0: 0; // 0
+$spacer-1: math.div($spacer, 2); // 4px
+$spacer-2: $spacer; // 8px
+$spacer-3: $spacer * 2; // 16px
+$spacer-4: $spacer * 3; // 24px
+$spacer-5: $spacer * 4; // 32px
+$spacer-6: $spacer * 5; // 40px
 
 // Em spacer variables
-$em-spacer-1: 0.0625em !default; // 1/16
-$em-spacer-2: 0.125em !default; // 1/8
-$em-spacer-3: 0.25em !default; // 1/4
-$em-spacer-4: 0.375em !default; // 3/8
-$em-spacer-5: 0.5em !default; // 1/2
-$em-spacer-6: 0.75em !default; // 3/4
+$em-spacer-1: 0.0625em; // 1/16
+$em-spacer-2: 0.125em; // 1/8
+$em-spacer-3: 0.25em; // 1/4
+$em-spacer-4: 0.375em; // 3/8
+$em-spacer-5: 0.5em; // 1/2
+$em-spacer-6: 0.75em; // 3/4
 
 // Size scale
 // Used for buttons, inputs, labels, avatars etc.
-$size: 16px !default;
+$size: 16px;
 
-$size-0: 0 !default;
-$size-1: $size !default; // 16px
-$size-2: $size-1 + 4px !default; // 20px
-$size-3: $size-2 + 4px !default; // 24px
-$size-4: $size-3 + 4px !default; // 28px
-$size-5: $size-4 + 4px !default; // 32px
-$size-6: $size-5 + 8px !default; // 40px
-$size-7: $size-6 + 8px !default; // 48px
-$size-8: $size-7 + 16px !default; // 64px
+$size-0: 0;
+$size-1: $size; // 16px
+$size-2: $size-1 + 4px; // 20px
+$size-3: $size-2 + 4px; // 24px
+$size-4: $size-3 + 4px; // 28px
+$size-5: $size-4 + 4px; // 32px
+$size-6: $size-5 + 8px; // 40px
+$size-7: $size-6 + 8px; // 48px
+$size-8: $size-7 + 16px; // 64px
 
 // Fixed-width container variables
-$container-width: 980px !default;
-$grid-gutter: 10px !default;
+$container-width: 980px;
+$grid-gutter: 10px;
 
 // Breakpoint widths
-$width-xs: 0 !default;
+$width-xs: 0;
 // Small screen / phone
-$width-sm: 544px !default;
+$width-sm: 544px;
 // Medium screen / tablet
-$width-md: 768px !default;
+$width-md: 768px;
 // Large screen / desktop (980 + (16 * 2)) <= container + gutters
-$width-lg: 1012px !default;
+$width-lg: 1012px;
 // Extra large screen / wide desktop
-$width-xl: 1280px !default;
+$width-xl: 1280px;
 
 // Responsive container widths
-$container-sm: $width-sm !default;
-$container-md: $width-md !default;
-$container-lg: $width-lg !default;
-$container-xl: $width-xl !default;
+$container-sm: $width-sm;
+$container-md: $width-md;
+$container-lg: $width-lg;
+$container-xl: $width-xl;
 
 // Breakpoints in the form (name: length)
 $breakpoints: (
@@ -469,83 +295,51 @@ $breakpoints: (
   md: $width-md,
   lg: $width-lg,
   xl: $width-xl,
-) !default;
-
-// This map in the form (breakpoint: variant) is used to iterate over
-// breakpoints and create both responsive and non-responsive classes in one
-// loop:
-//
-// ```scss
-// @each $breakpoint, $variant of $responsive-variants {
-//   @include breakpoint($breakpoint) {
-//     .foo#{$variant}-bar { foo: bar !important; }
-//   }
-// }
-// ```
-$responsive-variants: (
-  '': '',
-  sm: '-sm',
-  md: '-md',
-  lg: '-lg',
-  xl: '-xl',
-) !default;
-
-// responive utility position values
-$responsive-positions: (static, relative, absolute, fixed, sticky) !default;
+);
 
 // Miscellaneous variables
 
 // Border
-$border-width: 1px !default;
-$border-color: $border-gray !default;
-$border-style: solid !default;
-$border: $border-width $border-color $border-style !default;
+$border-width: 1px;
+$border-color: $border-gray;
+$border-style: solid;
+$border: $border-width $border-color $border-style;
 
 // Border Radius
-$border-radius-1: 4px !default;
-$border-radius-2: 6px !default;
-$border-radius-3: 8px !default;
-$border-radius: $border-radius-2 !default;
+$border-radius-1: 4px;
+$border-radius-2: 6px;
+$border-radius-3: 8px;
+$border-radius: $border-radius-2;
 
 // Box shadow
-$box-shadow: 0 1px 0 rgba($black, 0.04) !default;
-$box-shadow-medium: 0 3px 6px rgba($gray-400, 0.15) !default;
-$box-shadow-large: 0 8px 24px rgba($gray-400, 0.2) !default;
-$box-shadow-extra-large: 0 12px 48px rgba($gray-400, 0.3) !default;
+$box-shadow: 0 1px 0 rgba($black, 0.04);
+$box-shadow-medium: 0 3px 6px rgba($gray-400, 0.15);
+$box-shadow-large: 0 8px 24px rgba($gray-400, 0.2);
+$box-shadow-extra-large: 0 12px 48px rgba($gray-400, 0.3);
 
-$box-shadow-highlight: inset 0 1px 0 rgba($white, 0.25) !default; // top highlight
-$box-shadow-inset: inset 0 1px 0 rgba($border-color, 0.2) !default; // top inner shadow
-$box-shadow-focus: 0 0 0 3px rgba($border-blue, 0.3) !default; // blue focus ring
+$box-shadow-highlight: inset 0 1px 0 rgba($white, 0.25); // top highlight
+$box-shadow-inset: inset 0 1px 0 rgba($border-color, 0.2); // top inner shadow
+$box-shadow-focus: 0 0 0 3px rgba($border-blue, 0.3); // blue focus ring
 
 // Button variables
-$border-color-button: $black-fade-15 !default;
-$btn-active-shadow: inset 0 0.15em 0.3em $black-fade-15 !default; // TODO: Deprecate?
+$border-color-button: $black-fade-15;
+$btn-active-shadow: inset 0 0.15em 0.3em $black-fade-15; // TODO: Deprecate?
 
 // Form variables
-$form-control-shadow: inset 0 1px 2px rgba($black, 0.075) !default; // TODO: Deprecate?
-$btn-input-focus-shadow: 0 0 0 0.2em rgba($blue, 0.3) !default; // TODO: Deprecate? Replaced by $box-shadow-focus
+$form-control-shadow: inset 0 1px 2px rgba($black, 0.075); // TODO: Deprecate?
+$btn-input-focus-shadow: 0 0 0 0.2em rgba($blue, 0.3); // TODO: Deprecate? Replaced by $box-shadow-focus
 
 // Tooltips
-$tooltip-max-width: 250px !default;
-$tooltip-background-color: $black !default;
-$tooltip-text-color: $white !default;
-$tooltip-delay: 0.4s !default;
-$tooltip-duration: 0.1s !default;
+$tooltip-max-width: 250px;
+$tooltip-background-color: $black;
+$tooltip-text-color: $white;
+$tooltip-delay: 0.4s;
+$tooltip-duration: 0.1s;
 
 // diffstat background colors
-$bg-diffstat-added: darken($green-400, 5%) !default;
-$bg-diffstat-deleted: $red-600 !default;
-$bg-diffstat-neutral: $gray-300 !default;
-
-// mixins
-// Text hiding for image based text replacement.
-// Higher performance than -9999px because it only renders
-// the size of the actual text, not a full 9999px box.
-@mixin hide-text() {
-  overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap;
-}
+$bg-diffstat-added: darken($green-400, 5%);
+$bg-diffstat-deleted: $red-600;
+$bg-diffstat-neutral: $gray-300;
 
 // Heading mixins for use within components
 // These match heading utilities in utilities/typography
@@ -579,54 +373,6 @@ $bg-diffstat-neutral: $gray-300 !default;
   font-weight: $font-weight-bold;
 }
 
-// Responsive heading mixins
-// There are no responsive mixins for h4-h6 because they are small
-// and don't need to be smaller on mobile.
-@mixin f1-responsive {
-  font-size: $h1-size-mobile;
-
-  // 32px on desktop
-  @include breakpoint(md) {
-    font-size: $h1-size;
-  }
-}
-
-@mixin f2-responsive {
-  font-size: $h2-size-mobile;
-
-  // 24px on desktop
-  @include breakpoint(md) {
-    font-size: $h2-size;
-  }
-}
-
-@mixin f3-responsive {
-  font-size: $h3-size-mobile;
-
-  // 20px on desktop
-  @include breakpoint(md) {
-    font-size: $h3-size;
-  }
-}
-
-// These use the mixins from above for responsive heading sizes.
-// The following mixins can be used where it's convenient or necessary to
-// couple the responsive font-size with the font-weight.
-@mixin h1-responsive {
-  @include f1-responsive;
-  font-weight: $font-weight-bold;
-}
-
-@mixin h2-responsive {
-  @include f2-responsive;
-  font-weight: $font-weight-bold;
-}
-
-@mixin h3-responsive {
-  @include f3-responsive;
-  font-weight: $font-weight-bold;
-}
-
 // Responsive media queries
 
 @mixin breakpoint($breakpoint) {
@@ -649,20 +395,6 @@ $bg-diffstat-neutral: $gray-300 !default;
       @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
         + "Please make sure it is defined in `$breakpoints` map.";
     }
-  }
-}
-
-// Retina media query
-
-@mixin retina-media-query {
-  @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
-    only screen and (-moz-min-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
-    only screen and (min-device-pixel-ratio: 2),
-    only screen and (min-resolution: 192dpi),
-    only screen and (min-resolution: 2dppx) {
-    @content;
   }
 }
 
@@ -777,94 +509,6 @@ $bg-diffstat-neutral: $gray-300 !default;
       color: darken($bg, 8%);
       background-color: $white;
     }
-  }
-}
-
-// Inverse button hover style
-@mixin btn-inverse($color, $bg, $bg2) {
-  color: $color;
-  background-color: $bg;
-  background-image: linear-gradient(-180deg, $bg 0%, $bg2 90%);
-
-  &:focus {
-    box-shadow: 0 0 0 0.2em rgba($color, 0.4);
-  }
-
-  &:hover {
-    color: $text-white;
-    background-color: $color;
-    background-image: linear-gradient(
-      -180deg,
-      lighten($color, 10%) 0%,
-      $color 90%
-    );
-    border-color: $black-fade-50;
-
-    .Counter {
-      color: $text-white;
-    }
-  }
-
-  &:active,
-  &.selected,
-  &[aria-selected='true'],
-  [open] > & {
-    color: $text-white;
-    background-color: darken($color, 5%);
-    background-image: none;
-    border-color: $black-fade-50;
-    box-shadow: $btn-active-shadow;
-  }
-
-  &:disabled,
-  &.disabled,
-  &[aria-disabled='true'] {
-    color: rgba($color, 0.4);
-    background-color: $bg2;
-    background-image: none;
-    border-color: $border-color-button;
-    box-shadow: none;
-  }
-}
-
-// Outline color generator for btn-outline to make the hover state inverse the text and bg colors.
-@mixin btn-outline($text-color: $text-blue, $bg-color: $bg-white) {
-  color: $text-color;
-  background-color: $bg-color;
-  background-image: none;
-
-  .Counter {
-    background-color: rgba($black, 0.07);
-  }
-
-  &:hover,
-  &:active,
-  &.selected,
-  &[aria-selected='true'],
-  [open] > & {
-    color: $bg-color;
-    background-color: $text-color;
-    background-image: none;
-    border-color: $text-color;
-
-    .Counter {
-      color: $text-color;
-      background-color: $bg-color;
-    }
-  }
-
-  &:focus {
-    border-color: $text-color;
-    box-shadow: 0 0 0 0.2em rgba($text-color, 0.4);
-  }
-
-  &:disabled,
-  &.disabled,
-  &[aria-disabled='true'] {
-    color: $black-fade-30;
-    background-color: $bg-white;
-    border-color: $black-fade-15;
-    box-shadow: none;
   }
 }
 
