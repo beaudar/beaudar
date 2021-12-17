@@ -146,82 +146,82 @@ $pink-800: #99306f !default;
 $pink-900: #6d224f !default;
 
 // -------- Fades --------
-$black-fade-15: rgba($black, 0.15);
-$black-fade-30: rgba($black, 0.3);
-$black-fade-50: rgba($black, 0.5);
-$black-fade-70: rgba($black, 0.7);
-$black-fade-85: rgba($black, 0.85);
+$black-fade-15: rgba($black, 0.15) !default;
+$black-fade-30: rgba($black, 0.3) !default;
+$black-fade-50: rgba($black, 0.5) !default;
+$black-fade-70: rgba($black, 0.7) !default;
+$black-fade-85: rgba($black, 0.85) !default;
 
-$white-fade-15: rgba($white, 0.15);
-$white-fade-30: rgba($white, 0.3);
-$white-fade-50: rgba($white, 0.5);
-$white-fade-70: rgba($white, 0.7);
-$white-fade-85: rgba($white, 0.85);
+$white-fade-15: rgba($white, 0.15) !default;
+$white-fade-30: rgba($white, 0.3) !default;
+$white-fade-50: rgba($white, 0.5) !default;
+$white-fade-70: rgba($white, 0.7) !default;
+$white-fade-85: rgba($white, 0.85) !default;
 
 // -------- Color defaults --------
-$red: $red-500;
-$purple: $purple-500;
-$blue: $blue-500;
-$green: $green-500;
-$yellow: $yellow-500;
-$orange: $orange-500;
+$red: $red-500 !default;
+$purple: $purple-500 !default;
+$blue: $blue-500 !default;
+$green: $green-500 !default;
+$yellow: $yellow-500 !default;
+$orange: $orange-500 !default;
 
-$gray-dark: $gray-900;
-$gray-light: $gray-400;
-$gray: $gray-500;
+$gray-dark: $gray-900 !default;
+$gray-light: $gray-400 !default;
+$gray: $gray-500 !default;
 
 // Border colors
-$border-white: $white;
-$border-black-fade: $black-fade-15;
-$border-white-fade: $white-fade-15;
-$border-gray-dark: $gray-300;
-$border-gray-darker: $gray-700;
-$border-gray-light: lighten($gray-200, 3%);
-$border-gray: $gray-200;
-$border-blue: $blue-500;
-$border-blue-light: $blue-200;
-$border-green: $green-400;
-$border-green-light: desaturate($green-300, 40%);
-$border-purple: $purple;
-$border-red: $red;
-$border-red-light: $red-300;
-$border-yellow: $yellow-600;
+$border-white: $white !default;
+$border-black-fade: $black-fade-15 !default;
+$border-white-fade: $white-fade-15 !default;
+$border-gray-dark: $gray-300 !default;
+$border-gray-darker: $gray-700 !default;
+$border-gray-light: lighten($gray-200, 3%) !default;
+$border-gray: $gray-200 !default;
+$border-blue: $blue-500 !default;
+$border-blue-light: $blue-200 !default;
+$border-green: $green-400 !default;
+$border-green-light: desaturate($green-300, 40%) !default;
+$border-purple: $purple !default;
+$border-red: $red !default;
+$border-red-light: $red-300 !default;
+$border-yellow: $yellow-600 !default;
 
 // Background colors
-$bg-white: $white;
-$bg-black: $black;
-$bg-black-fade: $black-fade-50;
-$bg-blue-light: $blue-000;
-$bg-blue: $blue-500;
-$bg-gray-dark: $gray-900;
-$bg-gray-light: $gray-000;
-$bg-gray: $gray-100;
-$bg-green: $green-500;
-$bg-green-light: $green-100;
-$bg-orange: $orange-700;
-$bg-purple: $purple-500;
-$bg-purple-light: $purple-000;
-$bg-pink: $pink-500;
-$bg-red: $red-500;
-$bg-red-light: $red-000;
-$bg-yellow: $yellow-500;
-$bg-yellow-light: $yellow-200;
-$bg-yellow-dark: $yellow-700;
+$bg-white: $white !default;
+$bg-black: $black !default;
+$bg-black-fade: $black-fade-50 !default;
+$bg-blue-light: $blue-000 !default;
+$bg-blue: $blue-500 !default;
+$bg-gray-dark: $gray-900 !default;
+$bg-gray-light: $gray-000 !default;
+$bg-gray: $gray-100 !default;
+$bg-green: $green-500 !default;
+$bg-green-light: $green-100 !default;
+$bg-orange: $orange-700 !default;
+$bg-purple: $purple-500 !default;
+$bg-purple-light: $purple-000 !default;
+$bg-pink: $pink-500 !default;
+$bg-red: $red-500 !default;
+$bg-red-light: $red-000 !default;
+$bg-yellow: $yellow-500 !default;
+$bg-yellow-light: $yellow-200 !default;
+$bg-yellow-dark: $yellow-700 !default;
 
 // Text colors
-$text-black: $black;
-$text-white: $white;
-$text-blue: $blue-500;
-$text-gray-dark: $gray-900;
-$text-gray-light: $gray-500;
-$text-gray: $gray-600;
-$text-green: $green-600;
-$text-orange: $orange-900;
-$text-orange-light: $orange-600;
-$text-purple: $purple;
-$text-pink: $pink-500;
-$text-red: $red-600;
-$text-yellow: $yellow-800;
+$text-black: $black !default;
+$text-white: $white !default;
+$text-blue: $blue-500 !default;
+$text-gray-dark: $gray-900 !default;
+$text-gray-light: $gray-500 !default;
+$text-gray: $gray-600 !default;
+$text-green: $green-600 !default;
+$text-orange: $orange-900 !default;
+$text-orange-light: $orange-600 !default;
+$text-purple: $purple !default;
+$text-pink: $pink-500 !default;
+$text-red: $red-600 !default;
+$text-yellow: $yellow-800 !default;
 
 @use 'sass:math';
 // Layout variables
@@ -235,59 +235,59 @@ $text-yellow: $yellow-800;
 //    4 => 24px
 //    5 => 32px
 //    6 => 40px
-$spacer: 8px;
+$spacer: 8px !default;
 
 // Our spacing scale
 $spacer-0: 0; // 0
-$spacer-1: math.div($spacer, 2); // 4px
-$spacer-2: $spacer; // 8px
-$spacer-3: $spacer * 2; // 16px
-$spacer-4: $spacer * 3; // 24px
-$spacer-5: $spacer * 4; // 32px
-$spacer-6: $spacer * 5; // 40px
+$spacer-1: math.div($spacer, 2) !default; // 4px
+$spacer-2: $spacer !default; // 8px
+$spacer-3: $spacer * 2 !default; // 16px
+$spacer-4: $spacer * 3 !default; // 24px
+$spacer-5: $spacer * 4 !default; // 32px
+$spacer-6: $spacer * 5 !default; // 40px
 
 // Em spacer variables
-$em-spacer-1: 0.0625em; // 1/16
-$em-spacer-2: 0.125em; // 1/8
-$em-spacer-3: 0.25em; // 1/4
-$em-spacer-4: 0.375em; // 3/8
-$em-spacer-5: 0.5em; // 1/2
-$em-spacer-6: 0.75em; // 3/4
+$em-spacer-1: 0.0625em !default; // 1/16
+$em-spacer-2: 0.125em !default; // 1/8
+$em-spacer-3: 0.25em !default; // 1/4
+$em-spacer-4: 0.375em !default; // 3/8
+$em-spacer-5: 0.5em !default; // 1/2
+$em-spacer-6: 0.75em !default; // 3/4
 
 // Size scale
 // Used for buttons, inputs, labels, avatars etc.
-$size: 16px;
+$size: 16px !default;
 
-$size-0: 0;
-$size-1: $size; // 16px
-$size-2: $size-1 + 4px; // 20px
-$size-3: $size-2 + 4px; // 24px
-$size-4: $size-3 + 4px; // 28px
-$size-5: $size-4 + 4px; // 32px
-$size-6: $size-5 + 8px; // 40px
-$size-7: $size-6 + 8px; // 48px
-$size-8: $size-7 + 16px; // 64px
+$size-0: 0 !default;
+$size-1: $size !default; // 16px
+$size-2: $size-1 + 4px !default; // 20px
+$size-3: $size-2 + 4px !default; // 24px
+$size-4: $size-3 + 4px !default; // 28px
+$size-5: $size-4 + 4px !default; // 32px
+$size-6: $size-5 + 8px !default; // 40px
+$size-7: $size-6 + 8px !default; // 48px
+$size-8: $size-7 + 16px !default; // 64px
 
 // Fixed-width container variables
-$container-width: 980px;
-$grid-gutter: 10px;
+$container-width: 980px !default;
+$grid-gutter: 10px !default;
 
 // Breakpoint widths
-$width-xs: 0;
+$width-xs: 0 !default;
 // Small screen / phone
-$width-sm: 544px;
+$width-sm: 544px !default;
 // Medium screen / tablet
-$width-md: 768px;
+$width-md: 768px !default;
 // Large screen / desktop (980 + (16 * 2)) <= container + gutters
-$width-lg: 1012px;
+$width-lg: 1012px !default;
 // Extra large screen / wide desktop
-$width-xl: 1280px;
+$width-xl: 1280px !default;
 
 // Responsive container widths
-$container-sm: $width-sm;
-$container-md: $width-md;
-$container-lg: $width-lg;
-$container-xl: $width-xl;
+$container-sm: $width-sm !default;
+$container-md: $width-md !default;
+$container-lg: $width-lg !default;
+$container-xl: $width-xl !default;
 
 // Breakpoints in the form (name: length)
 $breakpoints: (
@@ -300,46 +300,46 @@ $breakpoints: (
 // Miscellaneous variables
 
 // Border
-$border-width: 1px;
-$border-color: $border-gray;
-$border-style: solid;
-$border: $border-width $border-color $border-style;
+$border-width: 1px !default;
+$border-color: $border-gray !default;
+$border-style: solid !default;
+$border: $border-width $border-color $border-style !default;
 
 // Border Radius
-$border-radius-1: 4px;
-$border-radius-2: 6px;
-$border-radius-3: 8px;
-$border-radius: $border-radius-2;
+$border-radius-1: 4px !default;
+$border-radius-2: 6px !default;
+$border-radius-3: 8px !default;
+$border-radius: $border-radius-2 !default;
 
 // Box shadow
-$box-shadow: 0 1px 0 rgba($black, 0.04);
-$box-shadow-medium: 0 3px 6px rgba($gray-400, 0.15);
-$box-shadow-large: 0 8px 24px rgba($gray-400, 0.2);
-$box-shadow-extra-large: 0 12px 48px rgba($gray-400, 0.3);
+$box-shadow: 0 1px 0 rgba($black, 0.04) !default;
+$box-shadow-medium: 0 3px 6px rgba($gray-400, 0.15) !default;
+$box-shadow-large: 0 8px 24px rgba($gray-400, 0.2) !default;
+$box-shadow-extra-large: 0 12px 48px rgba($gray-400, 0.3) !default;
 
-$box-shadow-highlight: inset 0 1px 0 rgba($white, 0.25); // top highlight
-$box-shadow-inset: inset 0 1px 0 rgba($border-color, 0.2); // top inner shadow
-$box-shadow-focus: 0 0 0 3px rgba($border-blue, 0.3); // blue focus ring
+$box-shadow-highlight: inset 0 1px 0 rgba($white, 0.25) !default; // top highlight
+$box-shadow-inset: inset 0 1px 0 rgba($border-color, 0.2) !default; // top inner shadow
+$box-shadow-focus: 0 0 0 3px rgba($border-blue, 0.3) !default; // blue focus ring
 
 // Button variables
-$border-color-button: $black-fade-15;
-$btn-active-shadow: inset 0 0.15em 0.3em $black-fade-15; // TODO: Deprecate?
+$border-color-button: $black-fade-15 !default;
+$btn-active-shadow: inset 0 0.15em 0.3em $black-fade-15 !default; // TODO: Deprecate?
 
 // Form variables
-$form-control-shadow: inset 0 1px 2px rgba($black, 0.075); // TODO: Deprecate?
-$btn-input-focus-shadow: 0 0 0 0.2em rgba($blue, 0.3); // TODO: Deprecate? Replaced by $box-shadow-focus
+$form-control-shadow: inset 0 1px 2px rgba($black, 0.075) !default; // TODO: Deprecate?
+$btn-input-focus-shadow: 0 0 0 0.2em rgba($blue, 0.3) !default; // TODO: Deprecate? Replaced by $box-shadow-focus
 
 // Tooltips
-$tooltip-max-width: 250px;
-$tooltip-background-color: $black;
-$tooltip-text-color: $white;
-$tooltip-delay: 0.4s;
-$tooltip-duration: 0.1s;
+$tooltip-max-width: 250px !default;
+$tooltip-background-color: $black !default;
+$tooltip-text-color: $white !default;
+$tooltip-delay: 0.4s !default;
+$tooltip-duration: 0.1s !default;
 
 // diffstat background colors
-$bg-diffstat-added: darken($green-400, 5%);
-$bg-diffstat-deleted: $red-600;
-$bg-diffstat-neutral: $gray-300;
+$bg-diffstat-added: darken($green-400, 5%) !default;
+$bg-diffstat-deleted: $red-600 !default;
+$bg-diffstat-neutral: $gray-300 !default;
 
 // Heading mixins for use within components
 // These match heading utilities in utilities/typography
