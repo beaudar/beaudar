@@ -1,0 +1,121 @@
+/* Default flash */
+.flash {
+  position: relative;
+  padding: 20px var(--spacer-3);
+  color: var(--text-gray-dark);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+}
+
+.flash p:last-child {
+  margin-bottom: 0;
+}
+
+.flash .octicon {
+  margin-right: 12px;
+}
+
+/* Contain the flash messages */
+.flash-messages {
+  margin-bottom: var(--spacer-4);
+}
+
+/* Close button */
+.flash-close {
+  float: right;
+  padding: var(--spacer-3);
+  margin: -(var(--spacer-3));
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  appearance: none;
+}
+
+.flash-close:hover {
+  opacity: 0.7;
+}
+
+.flash-close:active {
+  opacity: 0.5;
+}
+
+.flash-close .octicon {
+  margin-right: 0;
+}
+
+
+/* Action button */
+.flash-action {
+  float: right;
+  margin-top: -3px;
+  margin-left: var(--spacer-4);
+  background-clip: padding-box;
+}
+
+
+/* Color variations */
+.flash {
+  background-color: var(--blue-100);
+  border-color: rgba(var(--blue-700), 0.2);
+}
+
+.flash .octicon {
+  color: rgba(var(--blue-700), 0.6);
+}
+
+.flash-warn {
+  background-color: var(--yellow-100);
+  border-color: rgba(var(--yellow-800), 0.2);
+}
+
+.flash-warn .octicon {
+  color: rgba(var(--yellow-800), 1);
+}
+
+.flash-error {
+  background-color: #ffe3e6;
+  border-color: rgba(var(--red-800), 0.2);
+}
+
+.flash-error .octicon {
+  color: rgba(var(--red-800), 0.6);
+}
+
+.flash-success {
+  background-color: var(--bg-green-light);
+  border-color: rgba(var(--green-700), 0.2);
+}
+
+.flash-success .octicon {
+  color: rgba(var(--green-700), 0.8);
+}
+
+/* Layout variations */
+.flash-full {
+  margin-top: -1px;
+  border-width: var(--border-width) 0;
+  border-radius: 0;
+}
+
+/* A banner rendered at the top of the page. */
+.flash-banner {
+  position: fixed;
+  top: 0;
+  z-index: 90;
+  width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+
+/* FIXME deprecate this */
+.warning {
+  padding: var(--em-spacer-5);
+  margin-bottom: 0.8em;
+  font-weight: var(--font-weight-bold);
+
+  background-color: var(--yellow-100);
+}

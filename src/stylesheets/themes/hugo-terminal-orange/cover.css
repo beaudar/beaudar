@@ -1,0 +1,79 @@
+[theme='hugo-terminal-orange'] .btn-primary {
+  color: var(--text-gray-dark);
+  border-color: var(--gray-900);
+  background: var(--orange);
+}
+
+[theme='hugo-terminal-orange'] .btn-primary:hover,
+[theme='hugo-terminal-orange'] .btn-primary:active,
+[theme='hugo-terminal-orange'] .btn-primary:focus {
+  border-color: var(--gray-900);
+  background: var(--orange);
+}
+
+[theme='hugo-terminal-orange'] .btn-primary:disabled {
+  color: var(--gray-900);
+  background: var(--orange-200);
+}
+
+[theme='hugo-terminal-orange'] button[role='tab'] {
+  color: var(--gray-600);
+}
+
+[theme='hugo-terminal-orange'] button[role='tab'] .selected {
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] .tabnav-tab:focus-visible {
+  border-radius: 6px 6px 0 0 !important;
+}
+
+[theme='hugo-terminal-orange'] *:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0.2em 0.1em var(--highlight);
+  border-radius: 1px;
+}
+
+[theme='hugo-terminal-orange'] .form-control.focus,
+[theme='hugo-terminal-orange'] .form-control:focus,
+[theme='hugo-terminal-orange'] .form-select.focus,
+[theme='hugo-terminal-orange'] .form-select:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0.11em var(--highlight) !important;
+  outline-color: transparent;
+}
+
+[theme='hugo-terminal-orange'] .form-select {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUAgMAAAD5DFXkAAAACVBMVEXMzMzMzMzMzMzgWE1NAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCwMFBDi4mDGnAAAAR0lEQVQI123JIRUAIQAE0eUEgghEIAV5SEEEIiAQMCnZh74RX+xKr6+bNE3ZBjxBV4KpAlt/NTjKsBRhKED1ePzkZeIwoeoCtokT7bjAVYwAAAAASUVORK5CYII=) no-repeat right 8px center;
+  background-size: 8px 10px;
+}
+
+[theme='hugo-terminal-orange'] .markdown-body kbd {
+  background-color: transparent;
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] ::selection {
+  background: var(--highlight);
+  color: var(--text-gray-dark) !important;
+}
+
+[theme='hugo-terminal-orange'] img::selection {
+  background: var(--highlight);
+}
+
+[theme='hugo-terminal-orange'] ::placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] .form-control,
+[theme='hugo-terminal-orange'] .form-select {
+  color: var(--text-gray-dark);
+  background-color: var(--bg-white) !important;
+  border-radius: 3px;
+}
+
+[theme='hugo-terminal-orange'] .bg-gray-light,
+[theme='hugo-terminal-orange'] .bg-white {
+  background-color: var(--bg-gray) !important;
+}

@@ -1,0 +1,99 @@
+[theme='github-dark-orange'] .btn-primary:disabled {
+  background: #376b39;
+}
+
+[theme='github-dark-orange'] button[role='tab'] {
+  color: var(--gray-600);
+}
+
+[theme='github-dark-orange'] button[role='tab'] .selected {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] .tabnav-tab:focus-visible {
+  border-radius: 6px 6px 0 0 !important;
+}
+
+[theme='github-dark-orange'] *:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0.2em 0.1em var(--highlight);
+  border-radius: 1px;
+}
+
+[theme='github-dark-orange'] .form-control.focus,
+[theme='github-dark-orange'] .form-control:focus,
+[theme='github-dark-orange'] .form-select.focus,
+[theme='github-dark-orange'] .form-select:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0.11em var(--highlight) !important;
+  outline-color: transparent;
+}
+
+[theme='github-dark-orange'] h1,
+[theme='github-dark-orange'] h2,
+[theme='github-dark-orange'] h3,
+[theme='github-dark-orange'] h4,
+[theme='github-dark-orange'] h5,
+[theme='github-dark-orange'] h6 {
+  border-color: var(--line) !important;
+}
+
+[theme='github-dark-orange'] .form-select {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUAgMAAAD5DFXkAAAACVBMVEXMzMzMzMzMzMzgWE1NAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCwMFBDi4mDGnAAAAR0lEQVQI123JIRUAIQAE0eUEgghEIAV5SEEEIiAQMCnZh74RX+xKr6+bNE3ZBjxBV4KpAlt/NTjKsBRhKED1ePzkZeIwoeoCtokT7bjAVYwAAAAASUVORK5CYII=) no-repeat right 8px center;
+  background-size: 8px 10px;
+}
+
+[theme='github-dark-orange'] .markdown-body kbd {
+  background-color: transparent;
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] ::-moz-selection {
+  background: var(--highlight);
+  color: var(--text-gray-dark) !important;
+}
+
+[theme='github-dark-orange'] ::selection {
+  background: var(--highlight);
+  color: var(--text-gray-dark) !important;
+}
+
+[theme='github-dark-orange'] img::-moz-selection {
+  background: var(--highlight);
+}
+
+[theme='github-dark-orange'] img::selection {
+  background: var(--highlight);
+}
+
+[theme='github-dark-orange'] ::placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] ::-webkit-input-placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] ::-moz-placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] :-moz-placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] :-ms-input-placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='github-dark-orange'] .form-control,
+[theme='github-dark-orange'] .form-select {
+  color: var(--text-gray-dark);
+  background-color: var(--bg-white) !important;
+  border-radius: 3px;
+}
+
+[theme='github-dark-orange'] .bg-gray-light,
+[theme='github-dark-orange'] .bg-white {
+  background-color: var(--bg-gray) !important;
+}
