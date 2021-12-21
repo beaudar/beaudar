@@ -1,12 +1,18 @@
-[theme='github-dark-orange'] {
+[theme='github-dark-orange'],
+::before,
+::after {
   --gray-000: #181818;
   --gray-100: #222222;
   --gray-200: #24292e;
+  --RGB_gray-200: 36, 41, 46;
   --gray-300: #4e4c4b;
   --gray-400: #586069;
+  --RGB_gray-400: 88, 96, 105;
   --gray-600: #bbbbbb;
+  --RGB_gray-600: 187, 187, 187;
   --gray-700: #959da5;
   --bg-white: #2d2833;
+  --RGB_bg-white: 45, 40, 51;
   --bg-gray: var(--gray-100);
   --bg-gray-light: var(--bg-gray);
   --border-gray: var(--gray-300);

@@ -1,12 +1,18 @@
-[theme='photon-dark'] {
+[theme='photon-dark'],
+::before,
+::after {
   --gray-000: #0c0c0d;
   --gray-100: #0c0c0d;
   --gray-200: #2a2a2e;
+  --RGB_gray-200: 42, 42, 46;
   --gray-300: #38383d;
   --gray-400: #4a4a4f;
+  --RGB_gray-400: 74, 74, 79;
   --gray-600: #737373;
+  --RGB_gray-600: 115, 115, 115;
   --gray-700: #b1b1b3;
   --bg-white: var(--gray-200);
+  --RGB_bg-white: var(--RGB_gray-200);
   --bg-gray: var(--gray-200);
   --bg-gray-light: var(--bg-gray);
   --border-gray: var(--gray-300);

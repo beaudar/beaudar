@@ -1,4 +1,6 @@
-:root {
+:root,
+::before,
+::after {
   --zz-height: 16px;
   --zz-halfheight: calc(var(--zz-height) / 2);
   --zz-thickness: 110%;
