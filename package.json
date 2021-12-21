@@ -17,7 +17,7 @@
     "url": "https://github.com/beaudar/beaudar.git"
   },
   "scripts": {
-    "start": "vite serve src --config vite.config.ts",
+    "start": "vite serve src --config vite.config.ts --host",
     "build": "parcel build src/*.html src/client.ts --no-scope-hoist --no-source-maps",
     "lint": "tslint --project tsconfig.json",
     "predeploy": "yarn run build && echo beaudar.lipk.org > dist/CNAME",
