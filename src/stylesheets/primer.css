@@ -3155,7 +3155,7 @@ the buttons to be floated or inline-block. */
 .Popover-message--bottom-right::before,
 .Popover-message--bottom-left::before {
   bottom: calc(var(--spacer-3) * -1);
-  border-top-color: var(--border-black-fade);
+  border-top-color: var(--border-color);
 }
 
 .Popover-message--bottom::after,

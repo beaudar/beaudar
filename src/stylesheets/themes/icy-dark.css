@@ -1,6 +1,6 @@
 [theme='icy-dark'],
-::before,
-::after {
+[theme='icy-dark'] ::before,
+[theme='icy-dark'] ::after {
   --gray-000: #021012;
   --gray-100: #051a1d;
   --gray-200: #0a3238;

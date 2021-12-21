@@ -1,6 +1,6 @@
 [theme='github-dark-orange'],
-::before,
-::after {
+[theme='github-dark-orange'] ::before,
+[theme='github-dark-orange'] ::after {
   --gray-000: #181818;
   --gray-100: #222222;
   --gray-200: #24292e;

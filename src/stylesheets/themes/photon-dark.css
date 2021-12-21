@@ -1,6 +1,6 @@
 [theme='photon-dark'],
-::before,
-::after {
+[theme='photon-dark'] ::before,
+[theme='photon-dark'] ::after {
   --gray-000: #0c0c0d;
   --gray-100: #0c0c0d;
   --gray-200: #2a2a2e;

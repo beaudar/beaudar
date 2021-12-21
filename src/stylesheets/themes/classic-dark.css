@@ -1,6 +1,6 @@
 [theme='classic-dark'],
-::before,
-::after {
+[theme='classic-dark'] ::before,
+[theme='classic-dark'] ::after {
   --gray-000: #0d1117;
   --gray-100: #222;
   --gray-200: #24292e;

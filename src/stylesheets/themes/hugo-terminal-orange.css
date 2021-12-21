@@ -1,6 +1,6 @@
 [theme='hugo-terminal-orange'],
-::before,
-::after {
+[theme='hugo-terminal-orange'] ::before,
+[theme='hugo-terminal-orange'] ::after {
   --orange: rgb(255, 168, 106);
   --orange-200: #ffd1ac;
   --gray-000: #181818;
