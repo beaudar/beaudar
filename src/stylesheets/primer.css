@@ -1,0 +1,3288 @@
+/* ******************************** support ******************************** */
+:root {
+  /* variables
+  Typography variables */
+  --h00-size-mobile: 40px;
+  --h0-size-mobile: 32px;
+  --h1-size-mobile: 26px;
+  --h2-size-mobile: 22px;
+  --h3-size-mobile: 18px;
+
+  /* Heading sizes - mobile
+  h4-h6 remain the same size on both mobile & desktop */
+
+  /* Heading sizes - desktop */
+  --h00-size: 48px;
+  --h0-size: 40px;
+  --h1-size: 32px;
+  --h2-size: 24px;
+  --h3-size: 20px;
+  --h4-size: 16px;
+  --h5-size: 14px;
+  --h6-size: 12px;
+
+  --font-size-small: 12px;
+
+  /* Font weights */
+  --font-weight-bold: 600;
+  --font-weight-semibold: 500;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+
+  /* Line heights */
+  --lh-condensed-ultra: 1;
+  --lh-condensed: 1.25;
+  --lh-default: 1.5;
+
+  /* Font stacks */
+  --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* Monospace font stack */
+  --mono-font: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* The base body size */
+  --body-font-size: 14px;
+  --body-line-height: var(--lh-default);
+
+  /* Black based on same hue as --gray-900 */
+  --black: #1b1f23;
+  --white: #fff;
+  /* -------- Grays -------- */
+  --gray-000: #fafbfc;
+  --gray-100: #f6f8fa;
+  --gray-200: #e1e4e8;
+  --gray-300: #d1d5da;
+  --gray-400: #959da5;
+  --gray-500: #6a737d;
+  --gray-600: #586069;
+  --gray-700: #444d56;
+  --gray-800: #2f363d;
+  --gray-900: #24292e;
+
+  /* -------- Blue -------- */
+  --blue-000: #f1f8ff;
+  --blue-100: #dbedff;
+  --blue-200: #c8e1ff;
+  --blue-300: #79b8ff;
+  --blue-400: #2188ff;
+  --blue-500: #0366d6;
+  --blue-600: #005cc5;
+  --blue-700: #044289;
+  --blue-800: #032f62;
+  --blue-900: #05264c;
+
+  /* -------- Green -------- */
+  --green-000: #f0fff4;
+  --green-100: #dcffe4;
+  --green-200: #bef5cb;
+  --green-300: #85e89d;
+  --green-400: #34d058;
+  --green-500: #28a745;
+  --green-600: #22863a;
+  --green-700: #176f2c;
+  --green-800: #165c26;
+  --green-900: #144620;
+
+  /* -------- Yellow -------- */
+  --yellow-000: #fffdef;
+  --yellow-100: #fffbdd;
+  --yellow-200: #fff5b1;
+  --yellow-300: #ffea7f;
+  --yellow-400: #ffdf5d;
+  --yellow-500: #ffd33d;
+  --yellow-600: #f9c513;
+  --yellow-700: #dbab09;
+  --yellow-800: #b08800;
+  --yellow-900: #735c0f;
+
+  /* -------- Orange -------- */
+  --orange-000: #fff8f2;
+  --orange-100: #ffebda;
+  --orange-200: #ffd1ac;
+  --orange-300: #ffab70;
+  --orange-400: #fb8532;
+  --orange-500: #f66a0a;
+  --orange-600: #e36209;
+  --orange-700: #d15704;
+  --orange-800: #c24e00;
+  --orange-900: #a04100;
+
+  /* -------- Red -------- */
+  --red-000: #ffeef0;
+  --red-100: #ffdce0;
+  --red-200: #fdaeb7;
+  --red-300: #f97583;
+  --red-400: #ea4a5a;
+  --red-500: #d73a49;
+  --red-600: #cb2431;
+  --red-700: #b31d28;
+  --red-800: #9e1c23;
+  --red-900: #86181d;
+
+  /* -------- Purple -------- */
+  --purple-000: #f5f0ff;
+  --purple-100: #e6dcfd;
+  --purple-200: #d1bcf9;
+  --purple-300: #b392f0;
+  --purple-400: #8a63d2;
+  --purple-500: #6f42c1;
+  --purple-600: #5a32a3;
+  --purple-700: #4c2889;
+  --purple-800: #3a1d6e;
+  --purple-900: #29134e;
+
+  /* -------- Pink -------- */
+  --pink-000: #ffeef8;
+  --pink-100: #fedbf0;
+  --pink-200: #f9b3dd;
+  --pink-300: #f692ce;
+  --pink-400: #ec6cb9;
+  --pink-500: #ea4aaa;
+  --pink-600: #d03592;
+  --pink-700: #b93a86;
+  --pink-800: #99306f;
+  --pink-900: #6d224f;
+
+  /* -------- Fades -------- */
+  --black-fade-15: rgba(var(--black), 0.15);
+  --black-fade-30: rgba(var(--black), 0.3);
+  --black-fade-50: rgba(var(--black), 0.5);
+  --black-fade-70: rgba(var(--black), 0.7);
+  --black-fade-85: rgba(var(--black), 0.85);
+
+  --white-fade-15: rgba(var(--white), 0.15);
+  --white-fade-30: rgba(var(--white), 0.3);
+  --white-fade-50: rgba(var(--white), 0.5);
+  --white-fade-70: rgba(var(--white), 0.7);
+  --white-fade-85: rgba(var(--white), 0.85);
+
+  /* -------- Color defaults -------- */
+  --red: var(--red-500);
+  --purple: var(--purple-500);
+  --blue: var(--blue-500);
+  --green: var(--green-500);
+  --yellow: var(--yellow-500);
+  --orange: var(--orange-500);
+
+  --gray-dark: var(--gray-900);
+  --gray-light: var(--gray-400);
+  --gray: var(--gray-500);
+
+  /* Border colors */
+  --border-white: var(--white);
+  --border-black-fade: var(--black-fade-15);
+  --border-white-fade: var(--white-fade-15);
+  --border-gray-dark: var(--gray-300);
+  --border-gray-darker: var(--gray-700);
+  --border-gray-light: var(--gray-200);
+  --border-gray: var(--gray-200);
+  --border-blue: var(--blue-500);
+  --border-blue-light: var(--blue-200);
+  --border-green: var(--green-400);
+  --border-green-light: var(--green-300);
+  --border-purple: var(--purple);
+  --border-red: var(--red);
+  --border-red-light: var(--red-300);
+  --border-yellow: var(--yellow-600);
+
+  /* Background colors */
+  --bg-white: var(--white);
+  --bg-black: var(--black);
+  --bg-black-fade: var(--black-fade-50);
+  --bg-blue-light: var(--blue-000);
+  --bg-blue: var(--blue-500);
+  --bg-gray-dark: var(--gray-900);
+  --bg-gray-light: var(--gray-000);
+  --bg-gray: var(--gray-100);
+  --bg-green: var(--green-500);
+  --bg-green-light: var(--green-100);
+  --bg-orange: var(--orange-700);
+  --bg-purple: var(--purple-500);
+  --bg-purple-light: var(--purple-000);
+  --bg-pink: var(--pink-500);
+  --bg-red: var(--red-500);
+  --bg-red-light: var(--red-000);
+  --bg-yellow: var(--yellow-500);
+  --bg-yellow-light: var(--yellow-200);
+  --bg-yellow-dark: var(--yellow-700);
+
+  /* Text colors */
+  --text-black: var(--black);
+  --text-white: var(--white);
+  --text-blue: var(--blue-500);
+  --text-gray-dark: var(--gray-900);
+  --text-gray-light: var(--gray-500);
+  --text-gray: var(--gray-600);
+  --text-green: var(--green-600);
+  --text-orange: var(--orange-900);
+  --text-orange-light: var(--orange-600);
+  --text-purple: var(--purple);
+  --text-pink: var(--pink-500);
+  --text-red: var(--red-600);
+  --text-yellow: var(--yellow-800);
+  /* Layout variables */
+
+  /* These are our margin and padding utility spacers. The default step size we */
+  /* use is 8px. This gives us a key of:
+     0 => 0px
+     1 => 4px
+     2 => 8px
+     3 => 16px
+     4 => 24px
+     5 => 32px
+     6 => 40px */
+  --spacer: 8px;
+
+  /* Our spacing scale */
+  --spacer-0: 0;
+  --spacer-1: calc(var(--spacer) / 2);
+  --spacer-2: var(--spacer);
+  --spacer-3: calc(var(--spacer) * 2);
+  --spacer-4: calc(var(--spacer) * 3);
+  --spacer-5: calc(var(--spacer) * 4);
+  --spacer-6: calc(var(--spacer) * 5);
+
+  /* Em spacer variables */
+  --em-spacer-1: 0.0625em;
+  --em-spacer-2: 0.125em;
+  --em-spacer-3: 0.25em;
+  --em-spacer-4: 0.375em;
+  --em-spacer-5: 0.5em;
+  --em-spacer-6: 0.75em;
+
+  /* Size scale
+  Used for buttons, inputs, labels, avatars etc. */
+  --size: 16px;
+
+  --size-0: 0;
+  --size-1: var(--size);
+  --size-2: calc(var(--size-1) + 4px);
+  --size-3: calc(var(--size-2) + 4px);
+  --size-4: calc(var(--size-3) + 4px);
+  --size-5: calc(var(--size-4) + 4px);
+  --size-6: calc(var(--size-5) + 8px);
+  --size-7: calc(var(--size-6) + 8px);
+  --size-8: calc(var(--size-7) + 16px);
+
+  /* Fixed-width container variables */
+  --container-width: 980px;
+  --grid-gutter: 10px;
+
+  /* Breakpoint widths */
+  --width-xs: 0;
+  /* Small screen / phone */
+  --width-sm: 544px;
+  /* Medium screen / tablet */
+  --width-md: 768px;
+  /* Large screen / desktop (980 + (16 * 2)) <= container + gutters */
+  --width-lg: 1012px;
+  /* Extra large screen / wide desktop */
+  --width-xl: 1280px;
+
+  /* Responsive container widths */
+  --container-sm: var(--width-sm);
+  --container-md: var(--width-md);
+  --container-lg: var(--width-lg);
+  --container-xl: var(--width-xl);
+
+  /* Miscellaneous variables */
+
+  /* Border */
+  --border-width: 1px;
+  --border-color: var(--border-gray);
+  --border-style: solid;
+  --border: var(--border-width) var(--border-color) var(--border-style);
+
+  /* Border Radius */
+  --border-radius-1: 4px;
+  --border-radius-2: 6px;
+  --border-radius-3: 8px;
+  --border-radius: var(--border-radius-2);
+
+  /* Box shadow */
+  --box-shadow: 0 1px 0 rgba(var(--black), 0.04);
+  --box-shadow-medium: 0 3px 6px rgba(var(--gray-400), 0.15);
+  --box-shadow-large: 0 8px 24px rgba(var(--gray-400), 0.2);
+  --box-shadow-extra-large: 0 12px 48px rgba(var(--gray-400), 0.3);
+
+  --box-shadow-highlight: inset 0 1px 0 rgba(var(--white), 0.25);
+  --box-shadow-inset: inset 0 1px 0 rgba(var(--border-color), 0.2);
+  --box-shadow-focus: 0 0 0 3px rgba(var(--border-blue), 0.3);
+
+  /* Button variables */
+  --border-color-button: var(--black-fade-15);
+  --btn-active-shadow: inset 0 0.15em 0.3em var(--black-fade-15);
+
+  /* Form variables */
+  --form-control-shadow: inset 0 1px 2px rgba(var(--black), 0.075);
+  --btn-input-focus-shadow: 0 0 0 0.2em rgba(var(--blue), 0.3);
+
+  /* Tooltips */
+  --tooltip-max-width: 250px;
+  --tooltip-background-color: var(--black);
+  --tooltip-text-color: var(--white);
+  --tooltip-delay: 0.4s;
+  --tooltip-duration: 0.1s;
+
+  /* diffstat background colors */
+  --bg-diffstat-added: darken(var(--green-400), 5%);
+  --bg-diffstat-deleted: var(--red-600);
+  --bg-diffstat-neutral: var(--gray-300);
+}
+
+/* ******************************** base ******************************** */
+/**
+ * 1. Change the default font family in all browsers (opinionated).
+ * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
+ */
+
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ * 2. Add the correct display in IE.
+ */
+
+article,
+aside,
+details,
+/* 1 */
+figcaption,
+figure,
+footer,
+header,
+main,
+/* 2 */
+menu,
+nav,
+section {
+  /* 1 */
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Add the correct display in IE 10-.
+ * 1. Add the correct display in IE.
+ */
+
+template,
+/* 1 */
+[hidden] {
+  display: none !important;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+  /* 1 */
+}
+
+/**
+ * Remove the outline on focused links when they are also active or hovered
+ * in all browsers (opinionated).
+ */
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+
+b,
+strong {
+  font-weight: inherit;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * Add the correct font style in Android 4.3-.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Add the correct background and color in IE 9-.
+ */
+
+mark {
+  background-color: #ff0;
+  color: --text-black;
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+
+img {
+  border-style: none;
+}
+
+/**
+ * Hide the overflow in IE.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct margin in IE 8.
+ */
+
+figure {
+  margin: 1em --spacer-6;
+}
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change font properties to `inherit` in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Restore the font weight unset by the previous rule.
+ */
+
+optgroup {
+  font-weight: --font-weight-bold;
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+html [type="button"],
+/* 1 */
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+
+fieldset {
+  border: var(--border-width) var(--border-style) #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em var(--em-spacer-6);
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * Remove the default vertical scrollbar in IE.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10-.
+ * 2. Remove the padding in IE 10-.
+ */
+
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
+ */
+
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Correct the text style of placeholders in Chrome, Edge, and Safari.
+ */
+
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  color: var(--text-gray-dark);
+  background-color: var(--bg-white);
+}
+
+a {
+  color: var(--text-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Horizontal lines */
+hr,
+.rule {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+
+  border-bottom: var(--border-width) var(--border-style) var(--gray-300);
+}
+
+hr::before,
+.rule::before {
+  display: table;
+  content: '';
+}
+
+hr::after,
+.rule::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+/* Remove most spacing between table cells. */
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 0;
+}
+
+[hidden][hidden] {
+  display: none !important;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details:not([open])>*:not(summary) {
+  display: none !important;
+}
+
+
+/* Keyboard shortcuts */
+
+kbd {
+  display: inline-block;
+  padding: calc(var(--spacer-1) - 1) calc(var(--spacer-1) + 1);
+  font: 11px var(--mono-font);
+
+  line-height: 10px;
+
+  color: var(--gray-700);
+  vertical-align: middle;
+  background-color: var(--bg-gray-light);
+
+  border: var(--border-style) var(--border-width) var(--border-gray-dark);
+  border-bottom-color: var(--border-gray-dark);
+  border-radius: var(--border-radius);
+
+  box-shadow: inset 0 -1px 0 var(--border-gray-dark);
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: var(--h1-size);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--h2-size);
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  font-size: var(--h3-size);
+  font-weight: var(--font-weight-bold);
+}
+
+h4 {
+  font-size: var(--h4-size);
+  font-weight: var(--font-weight-bold);
+}
+
+h5 {
+  font-size: var(--h5-size);
+  font-weight: var(--font-weight-bold);
+}
+
+h6 {
+  font-size: var(--h6-size);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Body text */
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+small {
+  font-size: 90%;
+}
+
+blockquote {
+  margin: 0;
+}
+
+/* Lists */
+
+ul,
+ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dd {
+  margin-left: 0;
+}
+
+/* Code */
+
+tt,
+code {
+  font-family: var(--mono-font);
+  font-size: var(--font-size-small);
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--mono-font);
+  font-size: var(--font-size-small);
+}
+
+/* Octicons */
+
+/* Move this over here as a temporary override to the octicons source repo
+instead of updating that upstream. */
+.octicon {
+  vertical-align: text-bottom;
+}
+
+/* ******************************** utilities ******************************** */
+/* Box shadow utilities
+
+Box shadows */
+
+.box-shadow {
+  box-shadow: var(--box-shadow) !important;
+}
+
+.box-shadow-medium {
+  box-shadow: var(--box-shadow-medium) !important;
+}
+
+.box-shadow-large {
+  box-shadow: var(--box-shadow-large) !important;
+}
+
+.box-shadow-extra-large {
+  box-shadow: var(--box-shadow-extra-large) !important;
+}
+
+/* Turn off box shadow */
+
+.box-shadow-none {
+  box-shadow: none !important;
+}
+
+.details-overlay[open]>summary::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 80;
+  display: block;
+  cursor: default;
+  content: ' ';
+  background: transparent;
+}
+
+.details-overlay-dark[open]>summary::before {
+  z-index: 99;
+  background: var(--bg-black-fade);
+}
+
+.details-reset>summary {
+  list-style: none;
+}
+
+.details-reset>summary::before {
+  display: none;
+}
+
+.details-reset>summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ******************************** buttons ******************************** */
+/* Base button styles */
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 5px var(--spacer-3);
+  font-size: var(--body-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: var(--border-width) var(--border-style);
+  border-radius: var(--border-radius);
+  appearance: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:disabled,
+.btn.disabled,
+.btn[aria-disabled='true'] {
+  cursor: default;
+}
+
+.btn:disabled .octicon,
+.btn.disabled .octicon,
+.btn[aria-disabled='true'] .octicon {
+  color: inherit;
+}
+
+.btn i {
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+  opacity: 0.75;
+}
+
+.btn .octicon {
+  margin-right: var(--spacer-1);
+  color: var(--text-gray-light);
+  vertical-align: text-bottom;
+}
+
+.btn .octicon:only-child {
+  margin-right: 0;
+}
+
+.btn .Counter {
+  margin-left: 2px;
+  color: inherit;
+  text-shadow: none;
+  vertical-align: top;
+  background-color: rgba(var(--black), 0.08);
+}
+
+.btn .dropdown-caret {
+  margin-left: var(--spacer-1);
+  opacity: 0.8;
+}
+
+
+/* Default button */
+.btn {
+  --bg-default: var(--bg-gray-light);
+  --bg-hover: #f3f4f6;
+  --bg-active: var(--bg-hover);
+  --bg-disabled: var(--bg-default);
+  color: var(--text-gray-dark);
+  background-color: var(--bg-default);
+  border-color: var(--border-color-button);
+  box-shadow: var(--box-shadow), var(--box-shadow-highlight);
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  /* Keep :focus after :disabled. Allows to see the focus ring even on disabled buttons */
+}
+
+.btn:hover,
+.btn.hover,
+[open]>.btn {
+  background-color: var(--bg-hover);
+  transition-duration: 0.1s;
+}
+
+.btn:active,
+.btn.selected,
+.btn[aria-selected='true'] {
+  background-color: var(--bg-active);
+  box-shadow: var(--box-shadow-inset);
+  transition: none;
+}
+
+.btn:disabled,
+.btn.disabled,
+.btn[aria-disabled='true'] {
+  color: var(--gray-400);
+  background-color: var(--bg-disabled);
+  border-color: var(--border-color-button);
+}
+
+.btn:focus,
+.btn.focus {
+  outline: 1px dotted transparent;
+  outline-offset: 2px;
+  box-shadow: var(--box-shadow-focus);
+}
+
+
+
+/* Primary button */
+
+.btn-primary {
+  --bg-default: #2ea44f;
+  --bg-hover: #2c974b;
+  --bg-active: var(--bg-hover);
+  --bg-disabled: #94d3a2;
+  --shadow: var(--green-900);
+  --box-shadow: 0 1px 0 rgba(var(--black), 0.1),
+    inset 0 1px 0 rgba(var(--white), 0.03);
+  color: var(--text-white);
+  background-color: var(--bg-default);
+  border-color: rgba(var(--black), 0.15);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-primary:hover,
+.btn-primary.hover,
+[open]>.btn-primary {
+  background-color: var(--bg-hover);
+}
+
+.btn-primary:active,
+.btn-primary.selected,
+.btn-primary[aria-selected='true'] {
+  background-color: var(--bg-active);
+  box-shadow: inset 0 1px 0 rgba(var(--shadow), 0.2);
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled,
+.btn-primary[aria-disabled='true'] {
+  color: rgba(var(--text-white), 0.8);
+  background-color: var(--bg-disabled);
+  border-color: rgba(var(--black), 0.1);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 3px rgba(var(--bg-default), 0.4);
+}
+
+.btn-primary .Counter {
+  color: inherit;
+  background-color: rgba(var(--bg-white), 0.2);
+}
+
+.btn-primary .octicon {
+  color: rgba(var(--text-white), 0.8);
+}
+
+
+/* Danger button */
+.btn-danger {
+  color: var(--text-red);
+  transition: none;
+}
+
+.btn-danger:hover,
+[open]>.btn-danger {
+  color: var(--text-white);
+  background-color: var(--red-600);
+  border-color: rgba(var(--black), 0.15);
+  box-shadow: 0 1px 0 rgba(var(--black), 0.1), inset 0 1px 0 rgba(var(--white), 0.03);
+}
+
+.btn-danger:hover .Counter,
+[open]>.btn-danger .Counter {
+  background-color: rgba(var(--bg-white), 0.2);
+}
+
+.btn-danger:hover .octicon,
+[open]>.btn-danger .octicon {
+  color: inherit;
+}
+
+.btn-danger:active,
+.btn-danger.selected,
+.btn-danger[aria-selected='true'] {
+  color: var(--text-white);
+  background-color: var(--red-600);
+  border-color: rgba(var(--black), 0.15);
+  box-shadow: inset 0 1px 0 rgba(var(--red-900), 0.2);
+}
+
+.btn-danger:disabled,
+.btn-danger.disabled,
+.btn-danger[aria-disabled='true'] {
+  color: rgba(var(--text-red), 0.5);
+  background-color: var(--bg-gray-light);
+  border-color: var(--border-color-button);
+  box-shadow: var(--box-shadow), var(--box-shadow-highlight);
+}
+
+.btn-danger:disabled .Counter,
+.btn-danger.disabled .Counter,
+.btn-danger[aria-disabled='true'] .Counter {
+  background-color: rgba(var(--text-red), 0.05);
+}
+
+.btn-danger:focus {
+  box-shadow: 0 0 0 3px rgba(var(--red-600), 0.4);
+}
+
+.btn-danger .Counter {
+  color: inherit;
+  background-color: rgba(var(--text-red), 0.1);
+}
+
+
+/* Outline button */
+.btn-outline {
+  color: var(--blue-500);
+  transition: none;
+}
+
+.btn-outline:hover,
+[open]>.btn-outline {
+  color: var(--text-white);
+  background-color: var(--blue-500);
+  border-color: rgba(var(--black), 0.15);
+  box-shadow: 0 1px 0 rgba(var(--black), 0.1), inset 0 1px 0 rgba(var(--white), 0.03);
+}
+
+.btn-outline:hover .Counter,
+[open]>.btn-outline .Counter {
+  background-color: rgba(var(--bg-white), 0.2);
+}
+
+.btn-outline:hover .octicon,
+[open]>.btn-outline .octicon {
+  color: inherit;
+}
+
+.btn-outline:active,
+.btn-outline.selected,
+.btn-outline[aria-selected='true'] {
+  color: var(--text-white);
+  background-color: var(--blue-500);
+  border-color: rgba(var(--black), 0.15);
+  box-shadow: inset 0 1px 0 rgba(var(--blue-900), 0.2);
+}
+
+.btn-outline:disabled,
+.btn-outline.disabled,
+.btn-outline[aria-disabled='true'] {
+  color: rgba(var(--blue-500), 0.5);
+  background-color: var(--bg-gray-light);
+  border-color: var(--border-color-button);
+  box-shadow: var(--box-shadow), var(--box-shadow-highlight);
+}
+
+.btn-outline:disabled .Counter,
+.btn-outline.disabled .Counter,
+.btn-outline[aria-disabled='true'] .Counter {
+  background-color: rgba(var(--blue-500), 0.05);
+}
+
+.btn-outline:focus {
+  box-shadow: 0 0 0 3px rgba(var(--blue-500), 0.4);
+}
+
+.btn-outline .Counter {
+  color: inherit;
+  background-color: rgba(var(--blue-500), 0.1);
+}
+
+
+
+/* Solid buttons TODO: Deprecate? */
+
+.btn-blue {
+  color: var(--text-white);
+  background-color: var(--blue-500);
+  background-image: linear-gradient(-180deg,
+      var(--blue-500) 0%,
+      var(--blue-500) 90%);
+}
+
+.btn-blue:focus,
+.btn-blue.focus {
+  box-shadow: 0 0 0 0.2em rgba(var(--blue-500), 0.4);
+}
+
+.btn-blue:hover,
+.btn-blue.hover {
+  background-color: var(--blue-500);
+  background-image: linear-gradient(-180deg,
+      var(--blue-500) 0%,
+      var(--blue-500) 90%);
+  background-position: 0 -(var(--em-spacer-5));
+  border-color: var(--black-fade-50);
+}
+
+.btn-blue:active,
+.btn-blue.selected,
+.btn-blue[aria-selected='true'],
+[open]>.btn-blue {
+  background-color: var(--blue-500);
+  background-image: none;
+  border-color: var(--black-fade-50);
+  box-shadow: var(--btn-active-shadow);
+}
+
+.btn-blue:disabled,
+.btn-blue.disabled,
+.btn-blue[aria-disabled='true'] {
+  color: rgba(var(--text-white), 0.75);
+  background-color: var(--blue-500);
+  background-image: none;
+  border-color: var(--border-color-button);
+  box-shadow: none;
+}
+
+.btn-blue .Counter {
+  color: var(--blue-500);
+  background-color: var(--white);
+}
+
+.btn-blue {
+  color: var(--text-white);
+  background-color: var(--blue-500);
+  background-image: linear-gradient(-180deg,
+      var(--blue-500) 0%,
+      var(--blue-500) 90%);
+}
+
+.btn-blue:focus,
+.btn-blue.focus {
+  box-shadow: 0 0 0 0.2em rgba(var(--blue-500), 0.4);
+}
+
+.btn-blue:hover,
+.btn-blue.hover {
+  background-color: var(--blue-500);
+  background-image: linear-gradient(-180deg,
+      var(--blue-500) 0%,
+      var(--blue-500) 90%);
+  background-position: 0 -(var(--em-spacer-5));
+  border-color: var(--black-fade-50);
+}
+
+.btn-blue:active,
+.btn-blue.selected,
+.btn-blue[aria-selected='true'],
+[open]>.btn-blue {
+  background-color: var(--blue-500);
+  background-image: none;
+  border-color: var(--black-fade-50);
+  box-shadow: var(--btn-active-shadow);
+}
+
+.btn-blue:disabled,
+.btn-blue.disabled,
+.btn-blue[aria-disabled='true'] {
+  color: rgba(var(--text-white), 0.75);
+  background-color: var(--blue-500);
+  background-image: none;
+  border-color: var(--border-color-button);
+  box-shadow: none;
+}
+
+.btn-blue .Counter {
+  color: var(--blue-500);
+  background-color: var(--white);
+}
+
+/* Sizes */
+/* Tweak `line-height` to make them smaller. */
+.btn-sm {
+  padding: 3px 12px;
+  font-size: var(--font-size-small);
+  line-height: 20px;
+}
+
+.btn-sm .octicon {
+  vertical-align: text-top;
+}
+
+
+/* Large button adds more padding around text. Use font-size utils to increase font-size.. e.g, <p class="text-gamma"><button class="btn btn-large btn-primary" type="button">Big green button</button></p> */
+.btn-large {
+  padding: var(--em-spacer-6) 1.5em;
+  font-size: inherit;
+  line-height: var(--lh-default);
+
+  border-radius: 0.5em;
+}
+
+/* Full-width button */
+/* These buttons expand to the full width of their parent container */
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Button group */
+/* A button group is a series of buttons laid out next to each other, all part
+of one visual button, but separated by rules to be separate. */
+
+.BtnGroup {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.BtnGroup+.BtnGroup,
+.BtnGroup+.btn {
+  margin-left: var(--spacer-1);
+}
+
+.BtnGroup::before {
+  display: table;
+  content: '';
+}
+
+.BtnGroup::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.BtnGroup-item {
+  position: relative;
+  float: left;
+  border-right-width: 0;
+  border-radius: 0;
+}
+
+.BtnGroup-item:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.BtnGroup-item:last-child {
+  border-right-width: var(--border-width);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.BtnGroup-item.selected,
+.BtnGroup-item[aria-selected='true'],
+.BtnGroup-item:focus,
+.BtnGroup-item:active,
+.BtnGroup-item:hover {
+  border-right-width: var(--border-width);
+}
+
+.BtnGroup-item.selected+.BtnGroup-item,
+.BtnGroup-item.selected+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-item[aria-selected='true']+.BtnGroup-item,
+.BtnGroup-item[aria-selected='true']+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-item:focus+.BtnGroup-item,
+.BtnGroup-item:focus+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-item:active+.BtnGroup-item,
+.BtnGroup-item:active+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-item:hover+.BtnGroup-item,
+.BtnGroup-item:hover+.BtnGroup-parent .BtnGroup-item {
+  border-left-width: 0;
+}
+
+
+.BtnGroup-parent {
+  float: left;
+}
+
+.BtnGroup-parent:first-child .BtnGroup-item {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.BtnGroup-parent:last-child .BtnGroup-item {
+  border-right-width: var(--border-width);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.BtnGroup-parent .BtnGroup-item {
+  border-right-width: 0;
+  border-radius: 0;
+}
+
+.BtnGroup-parent.selected .BtnGroup-item,
+.BtnGroup-parent[aria-selected='true'] .BtnGroup-item,
+.BtnGroup-parent:focus .BtnGroup-item,
+.BtnGroup-parent:active .BtnGroup-item,
+.BtnGroup-parent:hover .BtnGroup-item {
+  border-right-width: var(--border-width);
+}
+
+.BtnGroup-parent.selected+.BtnGroup-item,
+.BtnGroup-parent.selected+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-parent[aria-selected='true']+.BtnGroup-item,
+.BtnGroup-parent[aria-selected='true']+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-parent:focus+.BtnGroup-item,
+.BtnGroup-parent:focus+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-parent:active+.BtnGroup-item,
+.BtnGroup-parent:active+.BtnGroup-parent .BtnGroup-item,
+.BtnGroup-parent:hover+.BtnGroup-item,
+.BtnGroup-parent:hover+.BtnGroup-parent .BtnGroup-item {
+  border-left-width: 0;
+}
+
+
+/* ensure that the focus ring sits above the adjacent buttons */
+.BtnGroup-item:focus,
+.BtnGroup-item:active,
+.BtnGroup-parent:focus,
+.BtnGroup-parent:active {
+  z-index: 1;
+}
+
+/* Link-like buttons */
+/* This class is for styling <button> and <input> elements to look like links */
+.btn-link {
+  display: inline-block;
+  padding: 0;
+  font-size: inherit;
+  color: var(--text-blue);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-link:disabled,
+.btn-link:disabled:hover,
+.btn-link[aria-disabled='true'],
+.btn-link[aria-disabled='true']:hover {
+  color: rgba(var(--gray-600), 0.5);
+  cursor: default;
+}
+
+
+/* Invisible button */
+/* Typically used as a "cancel" button next to a .btn */
+.btn-invisible {
+  color: var(--text-blue);
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.btn-invisible:hover,
+.btn-invisible:active,
+.btn-invisible:focus,
+.btn-invisible.selected,
+.btn-invisible[aria-selected='true'],
+.btn-invisible.zeroclipboard-is-hover,
+.btn-invisible.zeroclipboard-is-active {
+  color: var(--text-blue);
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* Octicon button */
+/* Icon-only buttons */
+.btn-octicon {
+  display: inline-block;
+  padding: 5px;
+  margin-left: 5px;
+  line-height: var(--lh-condensed-ultra);
+  color: var(--text-gray);
+  vertical-align: middle;
+  /* For `<button>` elements */
+  background: transparent;
+  border: 0;
+}
+
+.btn-octicon:hover {
+  color: var(--text-blue);
+}
+
+.btn-octicon.disabled,
+.btn-octicon[aria-disabled='true'] {
+  color: var(--gray-400);
+  cursor: default;
+}
+
+.btn-octicon.disabled:hover,
+.btn-octicon[aria-disabled='true']:hover {
+  color: var(--gray-400);
+}
+
+
+.btn-octicon-danger:hover {
+  color: var(--text-red);
+}
+
+/* Close button */
+/* Typically used with an octicon-x */
+.close-button {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+/* Hidden text button */
+/* Use `.hidden-text-expander` to indicate and expand hidden text. */
+.hidden-text-expander {
+  display: block;
+}
+
+.hidden-text-expander.inline {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  margin-left: 5px;
+  line-height: 0;
+}
+
+.hidden-text-expander a,
+.ellipsis-expander {
+  display: inline-block;
+  height: 12px;
+  padding: 0 5px 5px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  line-height: 6px;
+  color: var(--gray-700);
+  text-decoration: none;
+  vertical-align: middle;
+  background: var(--gray-300);
+  border: 0;
+  border-radius: 1px;
+}
+
+.hidden-text-expander a:hover,
+.ellipsis-expander:hover {
+  text-decoration: none;
+  background-color: var(--gray-300);
+}
+
+.hidden-text-expander a:active,
+.ellipsis-expander:active {
+  color: var(--text-white);
+  background-color: var(--blue-400);
+}
+
+
+/* Social button count
+TODO: Deprecate? Use BtnGroup instead? */
+
+.btn-with-count {
+  float: left;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-with-count:focus {
+  z-index: 1;
+}
+
+/* Social count bubble */
+/* A container that is used for social bubbles counts. */
+
+.social-count {
+  position: relative;
+  float: left;
+  padding: 3px 12px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-gray-dark);
+  vertical-align: middle;
+  background-color: var(--bg-white);
+  border: var(--border-width) var(--border-style) var(--border-color-button);
+  border-left: 0;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  box-shadow: var(--box-shadow), var(--box-shadow-highlight);
+}
+
+.social-count:hover,
+.social-count:active {
+  text-decoration: none;
+}
+
+.social-count:hover {
+  color: var(--text-blue);
+  cursor: pointer;
+}
+
+.social-count:focus {
+  z-index: 1;
+  outline: 0;
+  box-shadow: var(--box-shadow-focus);
+}
+
+/* ******************************** forms ******************************** */
+/* Needs refactoring */
+
+/* Base form controls */
+/* Overrides for common inputs for easier styling. */
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+label {
+  font-weight: var(--font-weight-bold);
+}
+
+.form-control,
+.form-select {
+  padding: 5px 12px;
+  font-size: var(--body-font-size);
+  line-height: 20px;
+  color: var(--text-gray-dark);
+  vertical-align: middle;
+  background-color: var(--bg-white);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--border-radius);
+  outline: none;
+  box-shadow: var(--box-shadow-inset);
+  /* Ensures inputs don't zoom on mobile iPhone but are body-font size on iPad */
+}
+
+.form-control.focus,
+.form-control:focus,
+.form-select.focus,
+.form-select:focus {
+  border-color: var(--border-blue);
+  outline: none;
+  box-shadow: var(--box-shadow-focus);
+}
+
+.form-control[disabled],
+.form-select[disabled] {
+  color: var(--gray-400);
+  background-color: #f3f4f6;
+}
+
+@supports (-webkit-touch-callout: none) {
+
+  .form-control,
+  .form-select {
+    font-size: var(--h4-size);
+  }
+
+  @media (min-width: var(--width-md)) {
+
+    .form-control,
+    .form-select {
+      font-size: var(--body-font-size);
+    }
+  }
+}
+
+
+/* Textarea */
+textarea.form-control {
+  padding-top: var(--spacer-2);
+  padding-bottom: var(--spacer-2);
+  line-height: var(--lh-default);
+}
+
+/* Inputs with contrast for easy light gray backgrounds against white. */
+.input-contrast {
+  background-color: var(--bg-gray-light);
+}
+
+.input-contrast:focus {
+  background-color: var(--bg-white);
+}
+
+
+/* Inputs to be used against dark backgrounds. */
+.input-dark {
+  color: var(--text-white);
+  background-color: var(--white-fade-15);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.input-dark::placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.input-dark.focus,
+.input-dark:focus {
+  border-color: var(--black-fade-30);
+  box-shadow: 0 0 0 0.2em rgba(var(--blue-300), 0.4);
+}
+
+
+/* Custom styling for HTML5 validation bubbles (WebKit only) */
+::placeholder {
+  color: var(--text-gray-light);
+  opacity: 1;
+}
+
+/* Mini inputs, to match .minibutton */
+.input-sm {
+  padding-top: 3px;
+
+  padding-bottom: 3px;
+  font-size: var(--font-size-small);
+
+  line-height: 20px;
+}
+
+/* Large inputs */
+.input-lg {
+  font-size: var(--h4-size);
+}
+
+/* Full-width inputs */
+.input-block {
+  display: block;
+  width: 100%;
+}
+
+/* Inputs with monospace text */
+.input-monospace {
+  font-family: var(--mono-font);
+}
+
+/* Hide the icon that tries to autofill contact info in webkit */
+.input-hide-webkit-autofill::-webkit-contacts-auto-fill-button {
+  position: absolute;
+  right: 0;
+  display: none !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+
+/* Checkboxes and Radiobuttons
+For checkboxes and radio button selections. */
+.form-checkbox {
+  padding-left: 20px;
+  margin: 15px 0;
+  vertical-align: middle;
+}
+
+.form-checkbox label em.highlight {
+  position: relative;
+  left: -(var(--spacer-1));
+  padding: 2px var(--spacer-1);
+  font-style: normal;
+  background: var(--yellow-100);
+  border-radius: var(--border-radius);
+}
+
+.form-checkbox input[type='checkbox'],
+.form-checkbox input[type='radio'] {
+  float: left;
+  margin: 5px 0 0 -20px;
+  vertical-align: middle;
+}
+
+.form-checkbox .note {
+  display: block;
+  margin: 0;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-gray);
+}
+
+
+.form-checkbox-details {
+  display: none;
+}
+
+.form-checkbox-details-trigger:checked~* .form-checkbox-details,
+.form-checkbox-details-trigger:checked~.form-checkbox-details {
+  display: block;
+}
+
+/* Field groups
+Wrap field groups in `<div.hfields>` to lay them out horizontally - great for
+the top of pages with autosave. */
+.hfields {
+  margin: 15px 0;
+}
+
+.hfields .form-group {
+  float: left;
+  margin: 0 30px 0 0;
+}
+
+.hfields .form-group dt label,
+.hfields .form-group .form-group-header label {
+  display: inline-block;
+  margin: 5px 0 0;
+  color: var(--text-gray);
+}
+
+.hfields .form-group dt img,
+.hfields .form-group .form-group-header img {
+  position: relative;
+  top: -2px;
+}
+
+.hfields .btn {
+  float: left;
+  margin: 28px 25px 0 -20px;
+}
+
+.hfields .form-select {
+  margin-top: 5px;
+}
+
+.hfields::before {
+  display: table;
+  content: '';
+}
+
+.hfields::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+/* Hide the up/down buttons in <input type="number"> in the login form, the
+input is used for two-factor auth codes, type="number" makes it more usable
+on phones */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+/* Input groups */
+.form-actions::before {
+  display: table;
+  content: '';
+}
+
+.form-actions::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.form-actions .btn {
+  float: right;
+}
+
+.form-actions .btn+.btn {
+  margin-right: 5px;
+}
+
+.form-warning {
+  padding: var(--spacer-2) 10px;
+  margin: 10px 0;
+  font-size: var(--h5-size);
+  color: var(--yellow-900);
+  background: var(--yellow-100);
+  border: var(--border-width) var(--border-style) var(--border-yellow);
+  border-radius: var(--border-radius);
+}
+
+.form-warning p {
+  margin: 0;
+  line-height: var(--lh-default);
+}
+
+.form-warning a {
+  font-weight: var(--font-weight-bold);
+}
+
+
+/* Form groups
+Usage:
+<div class="form-group">
+  <div class="form-group-header"> containing the label
+  <div class="form-group-body"> containing the form elements
+</div> */
+.form-group {
+  margin: 15px 0;
+}
+
+.form-group .form-control {
+  width: 440px;
+  max-width: 100%;
+  margin-right: 5px;
+  background-color: var(--bg-gray-light);
+}
+
+.form-group .form-control:focus {
+  background-color: var(--bg-white);
+}
+
+.form-group .form-control.shorter {
+  width: 130px;
+}
+
+.form-group .form-control.short {
+  width: 250px;
+}
+
+.form-group .form-control.long {
+  width: 100%;
+}
+
+.form-group textarea.form-control {
+  width: 100%;
+  height: 200px;
+  min-height: 200px;
+}
+
+.form-group textarea.form-control.short {
+  height: 50px;
+  min-height: 50px;
+}
+
+.form-group dt,
+.form-group .form-group-header {
+  margin: 0 0 6px;
+}
+
+.form-group label {
+  position: relative;
+}
+
+.form-group.flattened dt,
+.form-group.flattened .form-group-header {
+  float: left;
+  margin: 0;
+  line-height: 32px;
+}
+
+.form-group.flattened dd,
+.form-group.flattened .form-group-body {
+  line-height: 32px;
+}
+
+.form-group dd h4,
+.form-group .form-group-body h4 {
+  margin: var(--spacer-1) 0 0;
+}
+
+.form-group dd h4.is-error,
+.form-group .form-group-body h4.is-error {
+  color: var(--text-red);
+}
+
+.form-group dd h4.is-success,
+.form-group .form-group-body h4.is-success {
+  color: var(--text-green);
+}
+
+.form-group dd h4+.note,
+.form-group .form-group-body h4+.note {
+  margin-top: 0;
+}
+
+.form-group.required dt label::after,
+.form-group.required .form-group-header label::after {
+  padding-left: 5px;
+  color: var(--text-red);
+  content: '*';
+}
+
+.form-group .success,
+.form-group .error,
+.form-group .indicator {
+  display: none;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+}
+
+.form-group.loading {
+  opacity: 0.5;
+}
+
+.form-group.loading .indicator {
+  display: inline;
+}
+
+.form-group.loading .spinner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form-group.successful .success {
+  display: inline;
+  color: var(--text-green);
+}
+
+.form-group.successed .success,
+.form-group.successed .warning,
+.form-group.successed .error,
+.form-group.warn .success,
+.form-group.warn .warning,
+.form-group.warn .error,
+.form-group.errored .success,
+.form-group.errored .warning,
+.form-group.errored .error {
+  position: absolute;
+  z-index: 10;
+  display: block;
+  max-width: 450px;
+  padding: var(--spacer-1) var(--spacer-2);
+  margin: var(--spacer-2) 0 0;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-normal);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+}
+
+.form-group.successed .success::after,
+.form-group.successed .success::before,
+.form-group.successed .warning::after,
+.form-group.successed .warning::before,
+.form-group.successed .error::after,
+.form-group.successed .error::before,
+.form-group.warn .success::after,
+.form-group.warn .success::before,
+.form-group.warn .warning::after,
+.form-group.warn .warning::before,
+.form-group.warn .error::after,
+.form-group.warn .error::before,
+.form-group.errored .success::after,
+.form-group.errored .success::before,
+.form-group.errored .warning::after,
+.form-group.errored .warning::before,
+.form-group.errored .error::after,
+.form-group.errored .error::before {
+  position: absolute;
+  bottom: 100%;
+  left: 10px;
+  z-index: 15;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  content: ' ';
+  border: var(--border-style) transparent;
+}
+
+.form-group.successed .success::after,
+.form-group.successed .warning::after,
+.form-group.successed .error::after,
+.form-group.warn .success::after,
+.form-group.warn .warning::after,
+.form-group.warn .error::after,
+.form-group.errored .success::after,
+.form-group.errored .warning::after,
+.form-group.errored .error::after {
+  border-width: 5px;
+}
+
+.form-group.successed .success::before,
+.form-group.successed .warning::before,
+.form-group.successed .error::before,
+.form-group.warn .success::before,
+.form-group.warn .warning::before,
+.form-group.warn .error::before,
+.form-group.errored .success::before,
+.form-group.errored .warning::before,
+.form-group.errored .error::before {
+  margin-left: -1px;
+  border-width: 6px;
+}
+
+.form-group.successed .success {
+  color: var(--green-900);
+  background-color: var(--green-100);
+  border-color: var(--border-green);
+}
+
+.form-group.successed .success::after {
+  border-bottom-color: var(--green-100);
+}
+
+.form-group.successed .success::before {
+  border-bottom-color: var(--border-green);
+}
+
+.form-group.warn .form-control {
+  border-color: var(--yellow-600);
+}
+
+.form-group.warn .warning {
+  background-color: var(--yellow-200);
+  border-color: var(--border-yellow);
+}
+
+.form-group.warn .warning::after {
+  border-bottom-color: var(--yellow-200);
+}
+
+.form-group.warn .warning::before {
+  border-bottom-color: var(--border-yellow);
+}
+
+.form-group.errored .form-control {
+  border-color: var(--red-600);
+}
+
+.form-group.errored label {
+  color: var(--text-red);
+}
+
+.form-group.errored .error {
+  background-color: var(--bg-red-light);
+  border-color: var(--border-red-light);
+}
+
+.form-group.errored .error::after {
+  border-bottom-color: var(--bg-red-light);
+}
+
+.form-group.errored .error::before {
+  border-bottom-color: var(--border-red-light);
+}
+
+
+.note {
+  min-height: 17px;
+  margin: var(--spacer-1) 0 2px;
+  font-size: var(--font-size-small);
+  color: var(--text-gray);
+}
+
+.note .spinner {
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+
+
+/* Custom select
+Apply `.select` to any `<select>` element for custom styles. */
+.form-select {
+  display: inline-block;
+  max-width: 100%;
+  height: var(--size-5);
+  padding-right: var(--spacer-4);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC');
+  background-color: var(--bg-white);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 8px 10px;
+  appearance: none;
+}
+
+.form-select::-ms-expand {
+  opacity: 0;
+}
+
+.form-select[multiple] {
+  height: auto;
+}
+
+.select-sm {
+  height: var(--size-4);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: var(--font-size-small);
+}
+
+.select-sm[multiple] {
+  height: auto;
+  min-height: 0;
+}
+
+.input-group {
+  display: table;
+}
+
+.input-group .form-control {
+  position: relative;
+  width: 100%;
+}
+
+.input-group .form-control:focus {
+  z-index: 2;
+}
+
+.input-group .form-control+.btn {
+  margin-left: 0;
+}
+
+.input-group.inline {
+  display: inline-table;
+}
+
+
+.input-group .form-control,
+.input-group-button {
+  display: table-cell;
+}
+
+.input-group-button {
+  width: 1%;
+  vertical-align: middle;
+}
+
+.input-group .form-control:first-child,
+.input-group-button:first-child .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group-button:first-child .btn {
+  margin-right: -1px;
+}
+
+.input-group .form-control:last-child,
+.input-group-button:last-child .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input-group-button:last-child .btn {
+  margin-left: -1px;
+}
+
+/* ******************************** markdown ******************************** */
+/* // All of our block level items should have the same margin
+
+// This is styling for generic markdownized text. Anything you put in a
+// container with .markdown-body on it should render generally well. It also
+// includes some GitHub Flavored Markdown specific styling (like @mentions) */
+.markdown-body {
+  font-family: var(--body-font);
+  font-size: var(--h4-size);
+  line-height: var(--body-line-height);
+  word-wrap: break-word;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: calc(var(--spacer-1) - 1) calc(var(--spacer-1) + 1);
+  font: 11px var(--mono-font);
+  line-height: 10px;
+  color: var(--gray-700);
+  vertical-align: middle;
+  background-color: var(--bg-gray-light);
+  border: var(--border-style) var(--border-width) var(--border-gray-dark);
+  border-bottom-color: var(--border-gray-dark);
+  border-radius: var(--border-radius);
+  box-shadow: inset 0 -1px 0 var(--border-gray-dark);
+}
+
+.markdown-body::before {
+  display: table;
+  content: '';
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .absent {
+  color: var(--text-red);
+}
+
+.markdown-body .anchor {
+  float: left;
+  padding-right: var(--spacer-1);
+  margin-left: -20px;
+  line-height: var(--lh-condensed-ultra);
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+  margin-top: 0;
+  margin-bottom: var(--spacer-3);
+}
+
+.markdown-body hr {
+  height: var(--em-spacer-3);
+  padding: 0;
+  margin: var(--spacer-4) 0;
+  background-color: var(--gray-200);
+  border: 0;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: var(--text-gray-light);
+  border-left: 0.25em var(--border-style) var(--gray-300);
+}
+
+.markdown-body blockquote> :first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote> :last-child {
+  margin-bottom: 0;
+}
+
+
+/* // Needs refactoring */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: var(--spacer-4);
+  margin-bottom: var(--spacer-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--lh-condensed);
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: var(--text-black);
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+  font-size: inherit;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: var(--border-width) var(--border-style) var(--border-gray-light);
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: var(--border-width) var(--border-style) var(--border-gray-light);
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-size: 0.875em;
+}
+
+.markdown-body h6 {
+  font-size: 0.85em;
+  color: var(--text-gray-light);
+}
+
+
+/* // Base styles */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li {
+  word-wrap: break-all;
+}
+
+.markdown-body li>p {
+  margin-top: var(--spacer-3);
+}
+
+.markdown-body li+li {
+  margin-top: var(--em-spacer-3);
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: var(--spacer-3);
+  font-size: 1em;
+  font-style: italic;
+  font-weight: var(--font-weight-bold);
+}
+
+.markdown-body dl dd {
+  padding: 0 var(--spacer-3);
+  margin-bottom: var(--spacer-3);
+}
+
+
+/* // Needs refactoring */
+.markdown-body table {
+  display: block;
+  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.markdown-body table th {
+  font-weight: var(--font-weight-bold);
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: var(--border-width) var(--border-style) var(--gray-300);
+}
+
+.markdown-body table tr {
+  background-color: var(--bg-white);
+  border-top: var(--border-width) var(--border-style) var(--gray-300);
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: --bg-gray;
+}
+
+.markdown-body table img {
+  background-color: transparent;
+}
+
+
+
+/* // Need to target base styles */
+.markdown-body img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: var(--bg-white);
+}
+
+.markdown-body img[align='right'] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align='left'] {
+  padding-right: 20px;
+}
+
+.markdown-body .emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+
+.markdown-body span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: var(--border-width) var(--border-style) var(--gray-300);
+}
+
+.markdown-body span.frame span img {
+  display: block;
+  float: left;
+}
+
+.markdown-body span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: var(--text-gray-dark);
+}
+
+.markdown-body span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-center>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.markdown-body span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.markdown-body span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-right>span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+.markdown-body span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+  margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(var(--black), 0.05);
+  border-radius: var(--border-radius);
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+  display: none;
+}
+
+.markdown-body del code {
+  text-decoration: inherit;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: --spacer-3;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: var(--spacer-3);
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--bg-gray);
+  border-radius: var(--border-radius);
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body .csv-data td,
+.markdown-body .csv-data th {
+  padding: 5px;
+  overflow: hidden;
+  font-size: var(--font-size-small);
+  line-height: var(--lh-condensed-ultra);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown-body .csv-data .blob-num {
+  padding: 10px var(--spacer-2) 9px;
+  text-align: right;
+  background: var(--bg-white);
+  border: 0;
+}
+
+.markdown-body .csv-data tr {
+  border-top: 0;
+}
+
+.markdown-body .csv-data th {
+  font-weight: var(--font-weight-bold);
+  background: var(--bg-gray);
+  border-top: 0;
+}
+
+/* ******************************** alerts ******************************** */
+/* Default flash */
+.flash {
+  position: relative;
+  padding: 20px var(--spacer-3);
+  color: var(--text-gray-dark);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+}
+
+.flash p:last-child {
+  margin-bottom: 0;
+}
+
+.flash .octicon {
+  margin-right: 12px;
+}
+
+/* Contain the flash messages */
+.flash-messages {
+  margin-bottom: var(--spacer-4);
+}
+
+/* Close button */
+.flash-close {
+  float: right;
+  padding: var(--spacer-3);
+  margin: -(var(--spacer-3));
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  appearance: none;
+}
+
+.flash-close:hover {
+  opacity: 0.7;
+}
+
+.flash-close:active {
+  opacity: 0.5;
+}
+
+.flash-close .octicon {
+  margin-right: 0;
+}
+
+
+/* Action button */
+.flash-action {
+  float: right;
+  margin-top: -3px;
+  margin-left: var(--spacer-4);
+  background-clip: padding-box;
+}
+
+
+/* Color variations */
+.flash {
+  background-color: var(--blue-100);
+  border-color: rgba(var(--blue-700), 0.2);
+}
+
+.flash .octicon {
+  color: rgba(var(--blue-700), 0.6);
+}
+
+.flash-warn {
+  background-color: var(--yellow-100);
+  border-color: rgba(var(--yellow-800), 0.2);
+}
+
+.flash-warn .octicon {
+  color: rgba(var(--yellow-800), 1);
+}
+
+.flash-error {
+  background-color: #ffe3e6;
+  border-color: rgba(var(--red-800), 0.2);
+}
+
+.flash-error .octicon {
+  color: rgba(var(--red-800), 0.6);
+}
+
+.flash-success {
+  background-color: var(--bg-green-light);
+  border-color: rgba(var(--green-700), 0.2);
+}
+
+.flash-success .octicon {
+  color: rgba(var(--green-700), 0.8);
+}
+
+/* Layout variations */
+.flash-full {
+  margin-top: -1px;
+  border-width: var(--border-width) 0;
+  border-radius: 0;
+}
+
+/* A banner rendered at the top of the page. */
+.flash-banner {
+  position: fixed;
+  top: 0;
+  z-index: 90;
+  width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+
+/* FIXME deprecate this */
+.warning {
+  padding: var(--em-spacer-5);
+  margin-bottom: 0.8em;
+  font-weight: var(--font-weight-bold);
+
+  background-color: var(--yellow-100);
+}
+
+/* ******************************** navigation ******************************** */
+/* Outer wrapper */
+
+.tabnav {
+  margin-top: 0;
+  margin-bottom: var(--spacer-3);
+  border-bottom: var(--border);
+}
+
+.tabnav-tabs {
+  display: flex;
+  margin-bottom: -1px;
+  overflow: auto;
+}
+
+.tabnav-tab {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: var(--spacer-2) var(--spacer-3);
+  font-size: var(--h5-size);
+  line-height: 23px;
+  color: var(--text-gray-dark);
+  text-decoration: none;
+  background-color: transparent;
+  border: var(--border-width) var(--border-style) transparent;
+  border-bottom: 0;
+}
+
+.tabnav-tab.selected,
+.tabnav-tab[aria-selected='true'],
+.tabnav-tab[aria-current]:not([aria-current='false']) {
+  background-color: var(--bg-white);
+  border-color: var(--border-gray);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.tabnav-tab:hover,
+.tabnav-tab:focus {
+  color: var(--text-gray);
+  text-decoration: none;
+}
+
+.tabnav-tab:active {
+  color: var(--text-gray-light);
+}
+
+.tabnav-tab .octicon {
+  margin-right: var(--spacer-1);
+  color: var(--gray-400);
+}
+
+.tabnav-tab .Counter {
+  margin-left: var(--spacer-1);
+}
+
+
+/* Tabnav extras
+Tabnav extras are non-tab elements that sit in the tabnav. Usually they're
+inline text or links. */
+
+.tabnav-extra {
+  display: inline-block;
+  padding-top: 10px;
+  margin-left: 10px;
+  font-size: var(--font-size-small);
+  color: var(--text-gray);
+}
+
+.tabnav-extra>.octicon {
+  margin-right: 2px;
+}
+
+
+/* When tabnav-extra are anchors */
+a.tabnav-extra:hover {
+  color: var(--text-blue);
+  text-decoration: none;
+}
+
+/* Tabnav buttons
+For when there are multiple buttons, space them out appropriately. Requires
+the buttons to be floated or inline-block. */
+
+.tabnav-btn {
+  margin-left: var(--spacer-2);
+}
+
+/* ******************************** popover ******************************** */
+.Popover {
+  position: absolute;
+  z-index: 100;
+}
+
+.Popover-message {
+  position: relative;
+  width: 232px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Popover-message::before,
+.Popover-message::after {
+  position: absolute;
+  left: 50%;
+  display: inline-block;
+  content: '';
+}
+
+.Popover-message::before {
+  top: -var(--spacer-3);
+  margin-left: -9px;
+  border: var(--spacer-2) var(--border-style) transparent;
+  border-bottom-color: var(--border-black-fade);
+}
+
+.Popover-message::after {
+  top: -14px;
+  margin-left: -var(--spacer-2);
+  border: 7px var(--border-style) transparent;
+  border-bottom-color: var(--bg-white);
+}
+
+
+/* Bottom-oriented carets */
+.Popover-message--bottom::before,
+.Popover-message--bottom::after,
+.Popover-message--bottom-right::before,
+.Popover-message--bottom-right::after,
+.Popover-message--bottom-left::before,
+.Popover-message--bottom-left::after {
+  top: auto;
+  border-bottom-color: transparent;
+}
+
+.Popover-message--bottom::before,
+.Popover-message--bottom-right::before,
+.Popover-message--bottom-left::before {
+  bottom: -var(--spacer-3);
+  border-top-color: var(--border-black-fade);
+}
+
+.Popover-message--bottom::after,
+.Popover-message--bottom-right::after,
+.Popover-message--bottom-left::after {
+  bottom: -14px;
+  border-top-color: var(--bg-white);
+}
+
+
+/* Top & Bottom: Right-oriented carets */
+.Popover-message--top-right,
+.Popover-message--bottom-right {
+  right: -9px;
+  margin-right: 0;
+}
+
+.Popover-message--top-right::before,
+.Popover-message--top-right::after,
+.Popover-message--bottom-right::before,
+.Popover-message--bottom-right::after {
+  left: auto;
+  margin-left: 0;
+}
+
+.Popover-message--top-right::before,
+.Popover-message--bottom-right::before {
+  right: 20px;
+}
+
+.Popover-message--top-right::after,
+.Popover-message--bottom-right::after {
+  right: 21px;
+}
+
+
+/* Top & Bottom: Left-oriented carets */
+.Popover-message--top-left,
+.Popover-message--bottom-left {
+  left: -9px;
+  margin-left: 0;
+}
+
+.Popover-message--top-left::before,
+.Popover-message--top-left::after,
+.Popover-message--bottom-left::before,
+.Popover-message--bottom-left::after {
+  left: var(--spacer-4);
+  margin-left: 0;
+}
+
+.Popover-message--top-left::after,
+.Popover-message--bottom-left::after {
+  left: calc(var(--spacer-4) + 1);
+}
+
+/* Right- & Left-oriented carets */
+.Popover-message--right::before,
+.Popover-message--right::after,
+.Popover-message--right-top::before,
+.Popover-message--right-top::after,
+.Popover-message--right-bottom::before,
+.Popover-message--right-bottom::after,
+.Popover-message--left::before,
+.Popover-message--left::after,
+.Popover-message--left-top::before,
+.Popover-message--left-top::after,
+.Popover-message--left-bottom::before,
+.Popover-message--left-bottom::after {
+  top: 50%;
+  left: auto;
+  margin-left: 0;
+  border-bottom-color: transparent;
+}
+
+.Popover-message--right::before,
+.Popover-message--right-top::before,
+.Popover-message--right-bottom::before,
+.Popover-message--left::before,
+.Popover-message--left-top::before,
+.Popover-message--left-bottom::before {
+  margin-top: calc(var(--spacer-2) - 1);
+}
+
+.Popover-message--right::after,
+.Popover-message--right-top::after,
+.Popover-message--right-bottom::after,
+.Popover-message--left::after,
+.Popover-message--left-top::after,
+.Popover-message--left-bottom::after {
+  margin-top: -var(--spacer-2);
+}
+
+
+/* Right-oriented carets */
+.Popover-message--right::before,
+.Popover-message--right-top::before,
+.Popover-message--right-bottom::before {
+  right: -var(--spacer-3);
+  border-left-color: var(--border-black-fade);
+}
+
+.Popover-message--right::after,
+.Popover-message--right-top::after,
+.Popover-message--right-bottom::after {
+  right: -14px;
+  border-left-color: var(--bg-white);
+}
+
+
+/* Left-oriented carets */
+.Popover-message--left::before,
+.Popover-message--left-top::before,
+.Popover-message--left-bottom::before {
+  left: -var(--spacer-3);
+  border-right-color: var(--border-black-fade);
+}
+
+.Popover-message--left::after,
+.Popover-message--left-top::after,
+.Popover-message--left-bottom::after {
+  left: -14px;
+  border-right-color: var(--bg-white);
+}
+
+
+/* Right & Left: Top-oriented carets */
+.Popover-message--right-top::before,
+.Popover-message--right-top::after,
+.Popover-message--left-top::before,
+.Popover-message--left-top::after {
+  top: var(--spacer-4);
+}
+
+.Popover-message--right-bottom::before,
+.Popover-message--right-bottom::after,
+.Popover-message--left-bottom::before,
+.Popover-message--left-bottom::after {
+  top: auto;
+}
+
+.Popover-message--right-bottom::before,
+.Popover-message--left-bottom::before {
+  bottom: var(--spacer-3);
+}
+
+.Popover-message--right-bottom::after,
+.Popover-message--left-bottom::after {
+  bottom: calc(var(--spacer-3) + 1);
+}
+
+@media (min-width: var(--width-sm)) {
+  .Popover-message--large {
+    min-width: 320px;
+  }
+}

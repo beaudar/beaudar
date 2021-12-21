@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "vite serve src --config vite.config.ts",
-    "build": "parcel build src/*.html src/client.ts --no-scope-hoist",
+    "build": "parcel build src/*.html src/client.ts --no-scope-hoist --no-source-maps",
     "lint": "tslint --project tsconfig.json",
     "predeploy": "yarn run build && echo beaudar.lipk.org > dist/CNAME",
     "deploy": "gh-pages --dist dist"
