@@ -1,0 +1,113 @@
+[theme='hugo-terminal-orange'],
+[theme='hugo-terminal-orange'] ::before,
+[theme='hugo-terminal-orange'] ::after {
+  --orange: rgb(255, 168, 106);
+  --orange-200: #ffd1ac;
+  --gray-000: #181818;
+  --gray-100: #2b303b;
+  --gray-200: #24292e;
+  --RGB_gray-200: 36, 41, 46;
+  --gray-300: #4e4c4b;
+  --gray-400: #586069;
+  --RGB_gray-400: 88, 96, 105;
+  --gray-600: #bbbbbb;
+  --RGB_gray-600: 187, 187, 187;
+  --gray-700: #959da5;
+  --gray-900: #24292e;
+  --bg-white: #222129;
+  --RGB_bg-white: 34, 33, 41;
+  --bg-gray: var(--gray-100);
+  --bg-gray-light: var(--bg-gray);
+  --border-gray: var(--gray-300);
+  --border-gray-dark: var(--border-gray);
+  --black-fade-15: rgba(#fff, 0.15);
+  --black-fade-30: rgba(#fff, 0.3);
+  --text-gray: #c9c9c9;
+  --text-gray-dark: #f7f7f7;
+  --text-blue: var(--orange);
+  --bg-blue-light: #212021;
+  --bg-page: #222129;
+
+  --highlight: var(--orange);
+  --line: #6f6e6e;
+}
+
+[theme='hugo-terminal-orange'] .btn-primary {
+  color: var(--text-gray-dark);
+  border-color: var(--gray-900);
+  background: var(--orange);
+}
+
+[theme='hugo-terminal-orange'] .btn-primary:hover,
+[theme='hugo-terminal-orange'] .btn-primary:active,
+[theme='hugo-terminal-orange'] .btn-primary:focus {
+  border-color: var(--gray-900);
+  background: var(--orange);
+}
+
+[theme='hugo-terminal-orange'] .btn-primary:disabled {
+  color: var(--gray-900);
+  background: var(--orange-200);
+}
+
+[theme='hugo-terminal-orange'] button[role='tab'] {
+  color: var(--gray-600);
+}
+
+[theme='hugo-terminal-orange'] button[role='tab'] .selected {
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] .tabnav-tab:focus-visible {
+  border-radius: 6px 6px 0 0 !important;
+}
+
+[theme='hugo-terminal-orange'] *:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0.2em 0.1em var(--highlight);
+  border-radius: 1px;
+}
+
+[theme='hugo-terminal-orange'] .form-control.focus,
+[theme='hugo-terminal-orange'] .form-control:focus,
+[theme='hugo-terminal-orange'] .form-select.focus,
+[theme='hugo-terminal-orange'] .form-select:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0.11em var(--highlight) !important;
+  outline-color: transparent;
+}
+
+[theme='hugo-terminal-orange'] .form-select {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUAgMAAAD5DFXkAAAACVBMVEXMzMzMzMzMzMzgWE1NAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCwMFBDi4mDGnAAAAR0lEQVQI123JIRUAIQAE0eUEgghEIAV5SEEEIiAQMCnZh74RX+xKr6+bNE3ZBjxBV4KpAlt/NTjKsBRhKED1ePzkZeIwoeoCtokT7bjAVYwAAAAASUVORK5CYII=) no-repeat right 8px center;
+  background-size: 8px 10px;
+}
+
+[theme='hugo-terminal-orange'] .markdown-body kbd {
+  background-color: transparent;
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] ::selection {
+  background: var(--highlight);
+  color: var(--text-gray-dark) !important;
+}
+
+[theme='hugo-terminal-orange'] img::selection {
+  background: var(--highlight);
+}
+
+[theme='hugo-terminal-orange'] ::placeholder {
+  color: var(--text-gray-dark);
+}
+
+[theme='hugo-terminal-orange'] .form-control,
+[theme='hugo-terminal-orange'] .form-select {
+  color: var(--text-gray-dark);
+  background-color: var(--bg-white) !important;
+  border-radius: 3px;
+}
+
+[theme='hugo-terminal-orange'] .bg-gray-light,
+[theme='hugo-terminal-orange'] .bg-white {
+  background-color: var(--bg-gray) !important;
+}

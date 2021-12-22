@@ -1,0 +1,41 @@
+[theme='icy-dark'],
+[theme='icy-dark'] ::before,
+[theme='icy-dark'] ::after {
+  --gray-000: #021012;
+  --gray-100: #051a1d;
+  --gray-200: #0a3238;
+  --RGB_gray-200: 10, 50, 56;
+  --gray-300: #10444d;
+  --gray-400: #18606d;
+  --RGB_gray-400: 24, 96, 109;
+  --gray-600: #278a97;
+  --RGB_gray-600: 39, 138, 151;
+  --gray-700: #39a9b8;
+  --bg-white: #021012;
+  --RGB_bg-white: 2, 16, 18;
+  --bg-gray: #06272c;
+  --bg-gray-light: var(--bg-gray);
+  --border-gray: var(--gray-300);
+  --border-gray-dark: var(--border-gray);
+  --text-gray: #fff;
+  --text-gray-dark: #fff;
+  --text-blue: rgb(38, 208, 231);
+  --bg-blue-light: #182c30;
+  --black-fade-15: rgba(#fff, 0.15);
+  --black-fade-30: rgba(#fff, 0.3);
+}
+
+[theme='icy-dark'] .btn-primary {
+  background: linear-gradient(#058d92, #025854);
+  border-color: #02c0c0;
+  color: #e2e2e2;
+}
+
+[theme='icy-dark'] .btn-primary:hover {
+  background: linear-gradient(#058d92, #025854);
+}
+
+[theme='icy-dark'] .btn-primary:disabled {
+  background: linear-gradient(#203535, #152727);
+  border-color: #004441;
+}

@@ -1,0 +1,114 @@
+.reaction-list>.reaction-button {
+  font-weight: normal;
+  border: var(--border) !important;
+  box-shadow: unset;
+  padding: 0 var(--spacer-2);
+  border-radius: 100px;
+  margin-left: var(--spacer-2);
+  line-height: 26px;
+}
+
+.reaction-list>.reaction-button[reaction-count='0'] {
+  display: none;
+}
+
+.reaction-list>.reaction-button::after {
+  display: inline-block;
+  margin-left: 2px;
+  content: attr(reaction-count);
+}
+
+.reactions-popover summary {
+  margin: -1px 0;
+  padding: var(--spacer-2) var(--spacer-3);
+  color: var(--text-gray);
+  white-space: nowrap;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.reactions-popover summary:hover {
+  color: var(--text-blue);
+}
+
+.reactions-popover .Popover {
+  margin-top: var(--spacer-2);
+}
+
+.reactions-popover .Popover .Popover-message--top-right::before {
+  right: 14px;
+}
+
+.reactions-popover .Popover .Popover-message--top-right::after {
+  right: 15px;
+}
+
+.reactions-popover .Popover .Popover-message--bottom-left::before {
+  border-bottom: none;
+  bottom: -8px;
+  left: 10px;
+}
+
+.reactions-popover .Popover .Popover-message--bottom-left::after {
+  left: 11px;
+}
+
+.reactions-popover .Popover-message {
+  position: relative;
+  padding: var(--spacer-1);
+  display: flex;
+  flex-wrap: wrap;
+  width: 220px;
+  background-color: var(--bg-white);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.reactions-popover .Popover-message::before {
+  border-bottom-color: var(--border-color);
+}
+
+.reactions-popover .BtnGroup {
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.reactions-popover .BtnGroup:first-of-type {
+  margin-top: var(--spacer-6);
+}
+
+.reactions-popover .BtnGroup .reaction-button+.reaction-name {
+  display: none;
+}
+
+.reactions-popover .BtnGroup .reaction-button:hover+.reaction-name {
+  display: block;
+}
+
+.reactions-popover .reaction-button {
+  border: 0;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
+  background: transparent !important;
+  white-space: nowrap;
+  box-shadow: unset;
+  border-radius: 0px;
+}
+
+.reactions-popover .reaction-button:hover {
+  transform: scale(1.2);
+  color: var(--text-blue) !important;
+}
+
+.reactions-popover .reaction-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: var(--border);
+  padding: var(--spacer-2) var(--spacer-3);
+  background-color: var(--bg-white);
+  pointer-events: none;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}

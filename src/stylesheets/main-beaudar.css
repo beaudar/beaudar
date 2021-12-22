@@ -1,0 +1,11 @@
+@import './beaudar.css';
+@import './github-syntax.css';
+
+/* themes */
+@import './themes/classic-dark.css';
+@import './themes/dark-blue.css';
+@import './themes/github-dark.css';
+@import './themes/github-dark-orange.css';
+@import './themes/hugo-terminal-orange.css';
+@import './themes/icy-dark.css';
+@import './themes/photon-dark.css';
