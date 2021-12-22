@@ -1094,7 +1094,7 @@ Box shadows */
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  border: var(--border-width) var(--border-style);
+  border: var(--border-width) var(--border-style) hsla(0, 0%, 100%, .15);
   border-radius: var(--border-radius);
   appearance: none;
 }
@@ -1153,7 +1153,6 @@ Box shadows */
   --bg-disabled: var(--bg-default);
   color: var(--text-gray-dark);
   background-color: var(--bg-default);
-  border-color: var(--border-color-button);
   box-shadow: var(--box-shadow), var(--box-shadow-highlight);
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   /* Keep :focus after :disabled. Allows to see the focus ring even on disabled buttons */
