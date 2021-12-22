@@ -1,0 +1,34 @@
+@import './primer.css';
+@import './util.css';
+@import './timeline.css';
+@import './timeline-comment.css';
+@import './permalink-code.css';
+@import './email-fragment.css';
+@import './zigzag.css';
+@import './reactions.css';
+
+html,
+body {
+  background-color: transparent;
+}
+
+body {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.form-control {
+  font-size: var(--body-font-size);
+}
+
+.flash-not-installed {
+  margin-bottom: var(--spacer-3);
+}
+
+textarea[disabled] {
+  cursor: not-allowed;
+}
+
+#reload-button {
+  float: right;
+}

@@ -1,0 +1,44 @@
+.zigzag,
+.zigzag::before,
+.zigzag::after {
+  --zz-height: 16px;
+  --zz-halfheight: calc(var(--zz-height) / 2);
+  --zz-thickness: 110%;
+  --zz-offset: 4px;
+  --zz-background-color: var(--bg-white);
+  --zz-line-color: var(--border-gray);
+}
+
+.zigzag {
+  background: var(--zz-background-color);
+  position: relative;
+  height: var(--zz-height);
+  z-index: 1;
+}
+
+.zigzag:before,
+.zigzag:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.zigzag:before {
+  height: calc(var(--zz-height) - var(--zz-offset));
+  top: calc(var(--zz-thickness) - var(--zz-height));
+  background: linear-gradient(-135deg, var(--zz-line-color) var(--zz-halfheight), transparent 0) 0 var(--zz-halfheight), linear-gradient(135deg, var(--zz-line-color) var(--zz-halfheight), transparent 0) 0 var(--zz-halfheight);
+  background-position: top left;
+  background-repeat: repeat-x;
+  background-size: var(--zz-height) var(--zz-height);
+}
+
+.zigzag:after {
+  height: var(--zz-height);
+  top: calc(100% - var(--zz-height));
+  background: linear-gradient(-135deg, var(--zz-background-color) var(--zz-halfheight), transparent 0) 0 var(--zz-halfheight), linear-gradient(135deg, var(--zz-background-color) var(--zz-halfheight), transparent 0) 0 var(--zz-halfheight);
+  background-position: top left;
+  background-repeat: repeat-x;
+  background-size: var(--zz-height) var(--zz-height);
+}

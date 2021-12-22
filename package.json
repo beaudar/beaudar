@@ -17,8 +17,8 @@
     "url": "https://github.com/beaudar/beaudar.git"
   },
   "scripts": {
-    "start": "vite serve src --config vite.config.ts",
-    "build": "parcel build src/*.html src/client.ts --no-scope-hoist",
+    "start": "vite serve src --config vite.config.ts --host",
+    "build": "parcel build src/*.html src/client.ts --no-scope-hoist --no-source-maps",
     "lint": "tslint --project tsconfig.json",
     "predeploy": "yarn run build && echo beaudar.lipk.org > dist/CNAME",
     "deploy": "gh-pages --dist dist"
@@ -28,16 +28,18 @@
   },
   "devDependencies": {
     "@parcel/packager-xml": "^2.0.1",
-    "@parcel/transformer-sass": "^2.0.1",
     "@parcel/transformer-xml": "^2.0.1",
     "autoprefixer": "^9.8.6",
     "gh-pages": "^3.1.0",
     "parcel": "^2.0.1",
     "parcel-plugin-clean-dist": "^0.0.6",
+    "postcss": "^8.0.0",
+    "postcss-custom-properties": "^12.0.1",
+    "postcss-import": "^14.0.2",
+    "postcss-url": "^10.1.3",
     "posthtml-expressions": "^1.7.1",
     "posthtml-include": "^1.6.0",
     "posthtml-md": "^1.1.0",
-    "sass": "^1.32.12",
     "tslint": "^6.1.3",
     "typescript": "^4.1.3",
     "vite": "2.6.4",
