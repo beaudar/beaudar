@@ -11,14 +11,7 @@
   vertical-align: bottom !important;
 }
 
-.markdown-body-scrollable {
-  max-height: 450px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.markdown-body .highlight-source-js > pre {
+.markdown-body .highlight-source-js>pre {
   -webkit-overflow-scrolling: touch;
 }
 
@@ -26,10 +19,10 @@
   position: relative;
 }
 
-.details-popover > summary {
+.details-popover>summary {
   list-style-type: none;
 }
 
-.details-popover > summary::-webkit-details-marker {
+.details-popover>summary::-webkit-details-marker {
   display: none;
 }
