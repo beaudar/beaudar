@@ -2894,6 +2894,10 @@ Apply `.select` to any `<select>` element for custom styles. */
   border-top: 0;
 }
 
+.markdown-body .footnotes .data-footnote-backref g-emoji {
+  font-family: monospace;
+}
+
 /* ******************************** alerts ******************************** */
 /* Default flash */
 .flash {
