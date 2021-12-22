@@ -29,6 +29,6 @@
 /* 关联隐藏 .avatar 头像 */
 @media screen and (min-width: 375px) {
   .timeline-header {
-    padding-left: calc(44 + var(--spacer-3));
+    padding-left: calc(44px + var(--spacer-3));
   }
 }
