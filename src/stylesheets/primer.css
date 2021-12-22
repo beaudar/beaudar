@@ -1305,6 +1305,9 @@ Box shadows */
 
 /* Outline button */
 .btn-outline {
+  border-color: var(--border-gray);
+  background-color: var(--bg-white);
+  box-shadow: initial;
   color: var(--blue-500);
   transition: none;
 }
