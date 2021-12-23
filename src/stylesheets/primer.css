@@ -845,7 +845,6 @@ body {
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
   color: var(--text-gray-dark);
-  background-color: var(--bg-white);
 }
 
 a {
