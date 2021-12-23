@@ -376,7 +376,7 @@ html {
   -ms-text-size-adjust: 100%;
   /* 2 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */
+  background-color: transparent;
 }
 
 /**
@@ -385,6 +385,7 @@ html {
 
 body {
   margin: 0;
+  background-color: transparent;
 }
 
 /* HTML5 display definitions
@@ -646,6 +647,10 @@ textarea {
   /* 2 */
 }
 
+input:not([type='radio']) {
+  margin: var(--spacer-1) 0;
+}
+
 /**
  * Restore the font weight unset by the previous rule.
  */
@@ -719,9 +724,9 @@ button:-moz-focusring,
  */
 
 fieldset {
-  border: var(--border-width) var(--border-style) #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em var(--em-spacer-6);
+  border: none;
+  margin: 0 var(--spacer-3);
+  padding: 0;
 }
 
 /**
@@ -752,6 +757,10 @@ legend {
 
 textarea {
   overflow: auto;
+}
+
+textarea[disabled] {
+  cursor: not-allowed;
 }
 
 /**
@@ -1957,6 +1966,11 @@ For checkboxes and radio button selections. */
   padding-left: 20px;
   margin: 15px 0;
   vertical-align: middle;
+}
+
+.form-checkbox label {
+  display: block;
+  cursor: pointer;
 }
 
 .form-checkbox label em.highlight {

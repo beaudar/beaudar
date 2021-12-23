@@ -17,7 +17,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-g-emoji {
+.g-emoji {
   font-weight: 400;
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -45,10 +45,15 @@ g-emoji {
   display: none;
 }
 
+#reload-button {
+  float: right;
+}
+
 /* timeline
    ========================================================================== */
 .timeline {
-  margin: var(--spacer-3) 0;
+  max-width: 760px;
+  margin: var(--spacer-3) auto;
   padding: 0 var(--spacer-1);
 }
 
@@ -631,4 +636,42 @@ g-emoji {
   pointer-events: none;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
+}
+
+/* custom index.html
+   ========================================================================== */
+.code-action {
+  float: right;
+  margin-top: -(var(--spacer-2));
+  margin-bottom: var(--spacer-3);
+}
+
+.clear-both {
+  clear: both;
+}
+
+.copyright {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.copyright a {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 100;
+}
+
+.copyright img {
+  float: left;
+}
+
+.copyright p {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  margin: 0px 0px 0px 5px;
+  color: #939393;
 }
