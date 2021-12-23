@@ -640,6 +640,10 @@
 
 /* custom index.html
    ========================================================================== */
+body.index {
+  background-color: var(--bg-white);
+}
+
 .code-action {
   float: right;
   margin-top: -(var(--spacer-2));
