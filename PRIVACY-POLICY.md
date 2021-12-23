@@ -46,4 +46,4 @@ Beaudar 设置了一个 cookie 用于存储 github api 令牌。
 
 如果您对我们的隐私政策有任何疑问或建议，请随时与我们联系。
 
-* mail：mail@lipk.org
+* email：mail#lipk.org（# → @）
