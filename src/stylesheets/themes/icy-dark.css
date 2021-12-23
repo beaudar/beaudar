@@ -39,3 +39,7 @@
   background: linear-gradient(#203535, #152727);
   border-color: #004441;
 }
+
+[theme='icy-dark'] img {
+  filter: brightness(80%);
+}
