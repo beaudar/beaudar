@@ -126,3 +126,7 @@
 [theme='github-dark-orange'] .bg-white {
   background-color: var(--bg-gray) !important;
 }
+
+[theme='github-dark-orange'] img {
+  filter: brightness(80%);
+}

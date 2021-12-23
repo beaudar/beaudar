@@ -51,3 +51,7 @@
   background: var(--button-normal);
   opacity: 0.4;
 }
+
+[theme='photon-dark'] img {
+  filter: brightness(80%);
+}

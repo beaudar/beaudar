@@ -39,3 +39,7 @@
   background: linear-gradient(#203522, #152715);
   border-color: #041;
 }
+
+[theme='github-dark'] img {
+  filter: brightness(80%);
+}

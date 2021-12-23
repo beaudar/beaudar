@@ -111,3 +111,7 @@
 [theme='hugo-terminal-orange'] .bg-white {
   background-color: var(--bg-gray) !important;
 }
+
+[theme='hugo-terminal-orange'] img {
+  filter: brightness(80%);
+}

@@ -1,4 +1,5 @@
-/* ******************************** support ******************************** */
+/* support
+   ========================================================================== */
 :root,
 ::before,
 ::after {
@@ -355,7 +356,8 @@
   --bg-diffstat-neutral: var(--gray-300);
 }
 
-/* ******************************** base ******************************** */
+/* base
+   ========================================================================== */
 /**
  * 1. Change the default font family in all browsers (opinionated).
  * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
@@ -1024,7 +1026,8 @@ instead of updating that upstream. */
   vertical-align: text-bottom;
 }
 
-/* ******************************** utilities ******************************** */
+/* utilities
+   ========================================================================== */
 /* Box shadow utilities
 
 Box shadows */
@@ -1081,7 +1084,8 @@ Box shadows */
   display: none;
 }
 
-/* ******************************** buttons ******************************** */
+/* buttons
+   ========================================================================== */
 /* Base button styles */
 .btn {
   position: relative;
@@ -1796,9 +1800,9 @@ TODO: Deprecate? Use BtnGroup instead? */
   box-shadow: var(--box-shadow-focus);
 }
 
-/* ******************************** forms ******************************** */
+/* forms
+   ========================================================================== */
 /* Needs refactoring */
-
 /* Base form controls */
 /* Overrides for common inputs for easier styling. */
 
@@ -2424,12 +2428,12 @@ Apply `.select` to any `<select>` element for custom styles. */
   margin-left: -1px;
 }
 
-/* ******************************** markdown ******************************** */
-/* // All of our block level items should have the same margin
-
-// This is styling for generic markdownized text. Anything you put in a
-// container with .markdown-body on it should render generally well. It also
-// includes some GitHub Flavored Markdown specific styling (like @mentions) */
+/* markdown
+   ========================================================================== */
+/* All of our block level items should have the same margin
+   This is styling for generic markdownized text. Anything you put in a
+   container with .markdown-body on it should render generally well. It also
+   includes some GitHub Flavored Markdown specific styling (like @mentions) */
 .markdown-body {
   font-family: var(--body-font);
   font-size: var(--h4-size);
@@ -2525,7 +2529,7 @@ Apply `.select` to any `<select>` element for custom styles. */
 }
 
 
-/* // Needs refactoring */
+/* Needs refactoring */
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -2612,7 +2616,7 @@ Apply `.select` to any `<select>` element for custom styles. */
 }
 
 
-/* // Base styles */
+/* Base styles */
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 2em;
@@ -2662,7 +2666,7 @@ Apply `.select` to any `<select>` element for custom styles. */
 }
 
 
-/* // Needs refactoring */
+/* Needs refactoring */
 .markdown-body table {
   display: block;
   width: 100%;
@@ -2696,7 +2700,7 @@ Apply `.select` to any `<select>` element for custom styles. */
 
 
 
-/* // Need to target base styles */
+/* Need to target base styles */
 .markdown-body img {
   max-width: 100%;
   box-sizing: content-box;
@@ -2900,7 +2904,8 @@ Apply `.select` to any `<select>` element for custom styles. */
   font-family: monospace;
 }
 
-/* ******************************** alerts ******************************** */
+/* alerts
+   ========================================================================== */
 /* Default flash */
 .flash {
   position: relative;
@@ -3023,7 +3028,8 @@ Apply `.select` to any `<select>` element for custom styles. */
   background-color: var(--yellow-100);
 }
 
-/* ******************************** navigation ******************************** */
+/* navigation
+   ========================================================================== */
 /* Outer wrapper */
 
 .tabnav {
@@ -3110,7 +3116,8 @@ the buttons to be floated or inline-block. */
   margin-left: var(--spacer-2);
 }
 
-/* ******************************** popover ******************************** */
+/* popover
+   ========================================================================== */
 .Popover {
   position: absolute;
   z-index: 100;

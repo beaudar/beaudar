@@ -37,3 +37,7 @@
 [theme='dark-blue'] .btn-primary:disabled {
   background: #1e4163;
 }
+
+[theme='dark-blue'] img {
+  filter: brightness(80%);
+}
