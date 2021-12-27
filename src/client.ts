@@ -3,7 +3,7 @@ import { ResizeMessage } from './measure';
 import { preferredThemeId, preferredTheme } from './preferred-theme';
 
 // slice session from query string
-const params = deparam(location.search.substr(1));
+const params = deparam(location.search.substring(1));
 const session = params.beaudar;
 if (session) {
   localStorage.setItem('beaudar-session', session);
@@ -51,7 +51,7 @@ attrs.origin = location.origin;
 attrs.pathname =
   location.pathname.length < 2
     ? 'index'
-    : location.pathname.substr(1).replace(/\.\w+$/, '');
+    : location.pathname.substring(1).replace(/\.\w+$/, '');
 attrs.title = document.title;
 const descriptionMeta = document.querySelector(
   `meta[name='description']`,

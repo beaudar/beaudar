@@ -2,7 +2,7 @@ import { deparam } from './deparam';
 import repoRegex from './repo-regex';
 
 function readPageAttributes() {
-  const params = deparam(location.search.substr(1));
+  const params = deparam(location.search.substring(1));
 
   let issueTerm: string | null = null;
   let issueNumber: number | null = null;
