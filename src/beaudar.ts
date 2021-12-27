@@ -11,13 +11,13 @@ import {
   PAGE_SIZE,
   IssueComment,
 } from './github';
-import { TimelineComponent } from './timeline-component';
-import { NewCommentComponent } from './new-comment-component';
+import { TimelineComponent } from './component/timeline-component';
+import { NewCommentComponent } from './component/new-comment-component';
 import { startMeasuring, scheduleMeasure } from './measure';
 import { getRepoConfig } from './repo-config';
 import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
-import { NewErrorElement } from './new-error-element';
+import { NewErrorComponent } from './component/new-error-component';
 import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
 import { loadTheme } from './theme';
 
@@ -57,7 +57,7 @@ async function bootstrap() {
     removeLoadingElement();
   } catch (error) {
     removeLoadingElement();
-    const errorElement = new NewErrorElement();
+    const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
       `无法从 GitHub 获取数据`,
       `<ol>
@@ -107,7 +107,7 @@ async function bootstrap() {
       timeline.insertComment(comment, true);
       newCommentComponent.clear();
     } else {
-      const errorElement = new NewErrorElement();
+      const errorElement = new NewErrorComponent();
       errorElement.createMsgElement(
         `错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`,
         `

@@ -1,7 +1,7 @@
-import { User, Issue, IssueComment } from './github';
+import { User, Issue, IssueComment } from '../github';
 import { CommentComponent } from './comment-component';
-import { scheduleMeasure } from './measure';
-import { pageAttributes as page } from './page-attributes';
+import { scheduleMeasure } from '../measure';
+import { pageAttributes as page } from '../page-attributes';
 
 export class TimelineComponent {
   public readonly element: HTMLElement;

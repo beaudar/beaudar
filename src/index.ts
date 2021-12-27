@@ -1,4 +1,4 @@
-import { ConfigurationComponent } from './configuration-component';
+import { ConfigurationComponent } from './component/configuration-component';
 
 document
   .querySelector('h2#configuration')!

@@ -1,7 +1,7 @@
-import { scheduleMeasure } from './measure';
-import { pageAttributes as page } from './page-attributes';
+import { scheduleMeasure } from '../measure';
+import { pageAttributes as page } from '../page-attributes';
 
-export class NewErrorElement {
+export class NewErrorComponent {
   public readonly element: Element;
   isTimelineNull: boolean;
   beaudarArticle = `

@@ -1,7 +1,7 @@
 import { BEAUDAR_API } from './beaudar-api';
 import { removeLoadingElement } from './beaudar-loading';
 import { param } from './deparam';
-import { NewErrorElement } from './new-error-element';
+import { NewErrorComponent } from './component/new-error-component';
 import { pageAttributes } from './page-attributes';
 
 export const token = { value: null as null | string };
@@ -28,7 +28,7 @@ export async function loadToken(): Promise<string | null> {
     },
     body: JSON.stringify(pageAttributes.session),
   }).catch((err) => {
-    const errorElement = new NewErrorElement();
+    const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
       `Token 请求失败`,
       `网络断开或网络不稳定，检查网络连接，点击<code>刷新</code>重试。`,
