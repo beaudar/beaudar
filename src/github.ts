@@ -1,7 +1,16 @@
 import { token } from './oauth';
-import { decodeBase64UTF8 } from './encoding';
-import { BEAUDAR_API } from './beaudar-api';
+import { decodeBase64UTF8 } from './utils';
+import { BEAUDAR_API, PAGE_SIZE } from './constant-data';
 import { NewErrorComponent } from './component/new-error-component';
+import {
+  ReactionID,
+  FileContentsResponse,
+  IssueSearchResponse,
+  IssueComment,
+  Issue,
+  User,
+  Reaction,
+} from './type-declare';
 
 const GITHUB_API = 'https://api.github.com/';
 const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
@@ -9,44 +18,21 @@ const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
 const GITHUB_ENCODING__REACTIONS_PREVIEW =
   'application/vnd.github.squirrel-girl-preview';
 
-export const PAGE_SIZE = 10;
-
-export type ReactionID =
-  | '+1'
-  | '-1'
-  | 'laugh'
-  | 'hooray'
-  | 'confused'
-  | 'heart'
-  | 'rocket'
-  | 'eyes';
-
-export const reactionTypes: ReactionID[] = [
-  '+1',
-  '-1',
-  'laugh',
-  'hooray',
-  'confused',
-  'heart',
-  'rocket',
-  'eyes',
-];
-
 let owner: string;
 let repo: string;
 let branch: string;
 
-export function setRepoContext(context: {
+export const setRepoContext = (context: {
   owner: string;
   repo: string;
   branch: string;
-}) {
+}) => {
   owner = context.owner;
   repo = context.repo;
   branch = context.branch;
-}
+};
 
-function githubRequest(relativeUrl: string, init?: RequestInit) {
+const githubRequest = (relativeUrl: string, init?: RequestInit) => {
   init = init || {};
   init.mode = 'cors';
   init.cache = 'no-cache'; // force conditional request
@@ -56,7 +42,7 @@ function githubRequest(relativeUrl: string, init?: RequestInit) {
     request.headers.set('Authorization', `token ${token.value}`);
   }
   return request;
-}
+};
 
 const rateLimit = {
   standard: {
@@ -71,7 +57,7 @@ const rateLimit = {
   },
 };
 
-function processRateLimit(response: Response) {
+const processRateLimit = (response: Response) => {
   const limit = response.headers.get('X-RateLimit-Limit')!;
   const remaining = response.headers.get('X-RateLimit-Remaining')!;
   const reset = response.headers.get('X-RateLimit-Reset')!;
@@ -98,9 +84,9 @@ function processRateLimit(response: Response) {
       true,
     );
   }
-}
+};
 
-export function readRelNext(response: Response) {
+export const readRelNext = (response: Response) => {
   const link = response.headers.get('link');
   if (link === null) {
     return 0;
@@ -110,9 +96,9 @@ export function readRelNext(response: Response) {
     return 0;
   }
   return +match[1];
-}
+};
 
-function githubFetch(request: Request): Promise<Response> {
+const githubFetch = (request: Request): Promise<Response> => {
   return fetch(request).then((response) => {
     if (response.status === 401) {
       token.value = null;
@@ -137,9 +123,9 @@ function githubFetch(request: Request): Promise<Response> {
     }
     return response;
   });
-}
+};
 
-export function loadJsonFile<T>(path: string, html = false) {
+export const loadJsonFile = <T>(path: string, html = false) => {
   const request = githubRequest(
     `repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
   );
@@ -172,9 +158,9 @@ export function loadJsonFile<T>(path: string, html = false) {
       const decoded = decodeBase64UTF8(content);
       return JSON.parse(decoded);
     });
-}
+};
 
-export function loadIssueByTerm(term: string) {
+export const loadIssueByTerm = (term: string) => {
   const q = `"${term}" type:issue in:title repo:${owner}/${repo}`;
   const request = githubRequest(
     `search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`,
@@ -204,9 +190,9 @@ export function loadIssueByTerm(term: string) {
       console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论。`);
       return null;
     });
-}
+};
 
-export function loadIssueByNumber(issueNumber: number) {
+export const loadIssueByNumber = (issueNumber: number) => {
   const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
   return githubFetch(request).then<Issue>((response) => {
     if (response === undefined || !response.ok) {
@@ -214,20 +200,20 @@ export function loadIssueByNumber(issueNumber: number) {
     }
     return response.json();
   });
-}
+};
 
-function commentsRequest(issueNumber: number, page: number) {
+const commentsRequest = (issueNumber: number, page: number) => {
   const url = `repos/${owner}/${repo}/issues/${issueNumber}/comments?page=${page}&per_page=${PAGE_SIZE}`;
   const request = githubRequest(url);
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
   request.headers.set('Accept', accept);
   return request;
-}
+};
 
-export function loadCommentsPage(
+export const loadCommentsPage = (
   issueNumber: number,
   page: number,
-): Promise<IssueComment[]> {
+): Promise<IssueComment[]> => {
   const request = commentsRequest(issueNumber, page);
   return githubFetch(request).then((response) => {
     if (response === undefined || !response.ok) {
@@ -235,9 +221,9 @@ export function loadCommentsPage(
     }
     return response.json();
   });
-}
+};
 
-export function loadUser(): Promise<User | null> {
+export const loadUser = (): Promise<User | null> => {
   if (token.value === null) {
     return Promise.resolve(null);
   }
@@ -247,15 +233,15 @@ export function loadUser(): Promise<User | null> {
     }
     return null;
   });
-}
+};
 
-export function createIssue(
+export const createIssue = (
   issueTerm: string,
   documentUrl: string,
   title: string,
   description: string,
   label: string,
-) {
+) => {
   const url = `${BEAUDAR_API}/repos/${owner}/${repo}/issues${
     label ? `?label=${encodeURIComponent(label)}` : ''
   }`;
@@ -274,9 +260,9 @@ export function createIssue(
     }
     return response.json();
   });
-}
+};
 
-export function postComment(issueNumber: number, markdown: string) {
+export const postComment = (issueNumber: number, markdown: string) => {
   const url = `repos/${owner}/${repo}/issues/${issueNumber}/comments`;
   const body = JSON.stringify({ body: markdown });
   const request = githubRequest(url, { method: 'POST', body });
@@ -288,7 +274,7 @@ export function postComment(issueNumber: number, markdown: string) {
     }
     return response.json();
   });
-}
+};
 
 export async function toggleReaction(url: string, content: ReactionID) {
   url = url.replace(GITHUB_API, '');
@@ -315,7 +301,7 @@ export async function toggleReaction(url: string, content: ReactionID) {
   return { reaction, deleted: true };
 }
 
-export function renderMarkdown(text: string) {
+export const renderMarkdown = (text: string) => {
   const body = JSON.stringify({
     text,
     mode: 'gfm',
@@ -324,170 +310,4 @@ export function renderMarkdown(text: string) {
   return githubFetch(githubRequest('markdown', { method: 'POST', body })).then(
     (response) => response.text(),
   );
-}
-
-interface IssueSearchResponse {
-  total_count: number;
-  incomplete_results: boolean;
-  items: Issue[];
-}
-
-export interface User {
-  login: string;
-  id: number;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-}
-
-export type CommentAuthorAssociation =
-  | 'COLLABORATOR'
-  | 'CONTRIBUTOR'
-  | 'FIRST_TIMER'
-  | 'FIRST_TIME_CONTRIBUTOR'
-  | 'MEMBER'
-  | 'NONE'
-  | 'OWNER';
-
-export interface Reactions {
-  url: string;
-  total_count: number;
-  '+1': number;
-  '-1': number;
-  laugh: number;
-  hooray: number;
-  confused: number;
-  heart: number;
-  rocket: number;
-  eyes: number;
-}
-
-export interface Reaction {
-  id: number;
-  user: User;
-  content: ReactionID;
-  created_at: string;
-}
-
-export interface Issue {
-  url: string;
-  repository_url: string;
-  labels_url: string;
-  comments_url: string;
-  events_url: string;
-  html_url: string;
-  id: number;
-  number: number;
-  title: string;
-  user: User;
-  locked: boolean;
-  labels: {
-    url: string;
-    name: string;
-    color: string;
-  }[];
-  state: string;
-  assignee: null; // todo,
-  milestone: null; // todo,
-  comments: number;
-  created_at: string;
-  updated_at: string;
-  closed_at: null; // todo,
-  pull_request: {
-    html_url: null; // todo,
-    diff_url: null; // todo,
-    patch_url: null; // todo
-  };
-  body: string;
-  score: number;
-  reactions: Reactions;
-  author_association: CommentAuthorAssociation;
-}
-
-interface FileContentsResponse {
-  type: string;
-  encoding: string;
-  size: number;
-  name: string;
-  path: string;
-  content: string;
-  sha: string;
-  url: string;
-  git_url: string;
-  html_url: string;
-  download_url: string;
-}
-
-export interface IssueComment {
-  id: number;
-  url: string;
-  html_url: string;
-  body_html: string;
-  user: User;
-  created_at: string;
-  updated_at: string;
-  author_association: CommentAuthorAssociation;
-  reactions: Reactions;
-}
-
-/*
-query IssueComments($owner: String!, $repo: String!, $issueQuery: String!) {
-  search(query: $issueQuery, type: ISSUE, first: 1) {
-    issueCount
-    edges {
-      node {
-        ... on Issue {
-          id
-          title,
-          comments(first: 100) {
-            totalCount
-            edges {
-              node {
-                id,
-                createdAt,
-                bodyHTML,
-                author {
-                  avatarUrl,
-                  login
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  rateLimit {
-    cost
-    limit
-    remaining
-    resetAt
-  }
-
-  repository(owner: $owner, name: $repo) {
-    object(expression: "master:beaudar.json") {
-      ... on Blob {
-        text
-      }
-    }
-  }
-}
-
-{
-  "issueQuery": "user:zsdycs repo:beaudar-demo debug",
-  "owner": "zsdycs",
-  "repo": "beaudar-demo"
-}
-*/
+};

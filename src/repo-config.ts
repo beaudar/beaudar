@@ -1,13 +1,12 @@
 import { loadJsonFile } from './github';
-import { pageAttributes } from './page-attributes';
+import { readPageAttributes } from './utils';
+import { RepoConfig } from './type-declare';
 
-export interface RepoConfig {
-  origins: string[];
-}
+const pageAttributes = readPageAttributes();
 
 let promise: Promise<RepoConfig>;
 
-export function getRepoConfig() {
+export const getRepoConfig = () => {
   if (!promise) {
     promise = loadJsonFile<RepoConfig>('beaudar.json').then(
       (data) => {
@@ -23,4 +22,4 @@ export function getRepoConfig() {
   }
 
   return promise;
-}
+};

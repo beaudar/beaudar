@@ -1,15 +1,16 @@
-import { BEAUDAR_API } from './beaudar-api';
+import { BEAUDAR_API } from './constant-data';
 import { removeLoadingElement } from './beaudar-loading';
-import { param } from './deparam';
+import { param, readPageAttributes } from './utils';
 import { NewErrorComponent } from './component/new-error-component';
-import { pageAttributes } from './page-attributes';
+
+const pageAttributes = readPageAttributes();
 
 export const token = { value: null as null | string };
 
 // tslint:disable-next-line:variable-name
-export function getLoginUrl(redirect_uri: string) {
+export const getLoginUrl = (redirect_uri: string) => {
   return `${BEAUDAR_API}/authorize?${param({ redirect_uri })}`;
-}
+};
 
 export async function loadToken(): Promise<string | null> {
   if (token.value) {

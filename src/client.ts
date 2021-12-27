@@ -1,6 +1,6 @@
-import { param, deparam } from './deparam';
-import { ResizeMessage } from './measure';
-import { preferredThemeId, preferredTheme } from './preferred-theme';
+import { param, deparam } from './utils';
+import { ResizeMessage } from './type-declare';
+import { preferredThemeId, preferredTheme } from './constant-data';
 
 // slice session from query string
 const params = deparam(location.search.substring(1));

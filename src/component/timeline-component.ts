@@ -1,7 +1,9 @@
-import { User, Issue, IssueComment } from '../github';
+import { Issue, IssueComment, User } from '../type-declare';
 import { CommentComponent } from './comment-component';
 import { scheduleMeasure } from '../measure';
-import { pageAttributes as page } from '../page-attributes';
+import { readPageAttributes } from '../utils';
+
+const page = readPageAttributes();
 
 export class TimelineComponent {
   public readonly element: HTMLElement;
