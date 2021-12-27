@@ -1,4 +1,4 @@
-import { preferredThemeId, preferredTheme } from './preferred-theme';
+import { preferredThemeId, preferredTheme } from '../preferred-theme';
 export class ConfigurationComponent {
   public readonly element: HTMLFormElement;
   private readonly script: HTMLDivElement;

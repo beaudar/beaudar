@@ -1,7 +1,7 @@
 import { token } from './oauth';
 import { decodeBase64UTF8 } from './encoding';
 import { BEAUDAR_API } from './beaudar-api';
-import { NewErrorElement } from './new-error-element';
+import { NewErrorComponent } from './component/new-error-component';
 
 const GITHUB_API = 'https://api.github.com/';
 const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
@@ -90,7 +90,7 @@ function processRateLimit(response: Response) {
       (resetDate.getTime() - new Date().getTime()) / 1000 / 60,
     );
     const apiType = isSearch ? 'search API' : 'non-search APIs';
-    const errorElement = new NewErrorElement();
+    const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
       `获取评论数据失败`,
       `<p>超出了 ${apiType} 的速率限制，在 ${mins} 分钟后重置</p>`,
@@ -149,7 +149,7 @@ export function loadJsonFile<T>(path: string, html = false) {
   return githubFetch(request)
     .then<FileContentsResponse | string>((response) => {
       if (response.status === 404) {
-        const errorElement = new NewErrorElement();
+        const errorElement = new NewErrorComponent();
         errorElement.createMsgElement(
           `缺少 "${path}" 配置`,
           `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`,

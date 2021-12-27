@@ -2,14 +2,14 @@ import {
   CommentAuthorAssociation,
   IssueComment,
   reactionTypes,
-} from './github';
-import { timeAgo } from './time-ago';
-import { scheduleMeasure } from './measure';
+} from '../github';
+import { timeAgo } from '../time-ago';
+import { scheduleMeasure } from '../measure';
 import {
   getReactionsMenuHtml,
   getReactionHtml,
   getSignInToReactMenuHtml,
-} from './reactions';
+} from '../reactions';
 
 const avatarArgs = '?v=3&s=88';
 const displayAssociations: Record<CommentAuthorAssociation, string> = {
