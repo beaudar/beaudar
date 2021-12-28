@@ -1,11 +1,9 @@
 import { toggleReaction } from './github';
 import { getLoginUrl } from './oauth';
-import { readPageAttributes } from './utils';
+import { pageAttrs } from './beaudar';
 import { scheduleMeasure } from './measure';
 import { ReactionID } from './type-declare';
-import { reactionTypes, reactionNames, reactionEmoji } from './constant-data';
-
-const pageAttributes = readPageAttributes();
+import { ReactionTypes, ReactionNames, ReactionEmoji } from './constant-data';
 
 export const getReactionHtml = (
   url: string,
@@ -21,10 +19,10 @@ export const getReactionHtml = (
     formaction="${url}"
     class="btn BtnGroup-item btn-outline reaction-button"
     value="${reaction}"
-    aria-label="Toggle ${reactionNames[reaction]} reaction"
+    aria-label="Toggle ${ReactionNames[reaction]} reaction"
     reaction-count="${count}"
     ${disabled ? 'disabled' : ''}>
-    ${reactionEmoji[reaction]}
+    ${ReactionEmoji[reaction]}
   </button>`;
 };
 
@@ -84,7 +82,7 @@ export const getReactionsMenuHtml = (
   }
   const getButtonAndSpan = (id: ReactionID) =>
     getReactionHtml(url, id, false, 0) +
-    `<span class="reaction-name" aria-hidden="true">${reactionNames[id]}</span>`;
+    `<span class="reaction-name" aria-hidden="true">${ReactionNames[id]}</span>`;
   return `
   <details class="details-overlay details-popover reactions-popover">
     <summary ${
@@ -94,10 +92,10 @@ export const getReactionsMenuHtml = (
       <form class="Popover-message ${alignmentClass} box-shadow-large" action="javascript:">
         <span class="reaction-name">选择你的表情符号</span>
         <div class="BtnGroup">
-          ${reactionTypes.slice(0, 4).map(getButtonAndSpan).join('')}
+          ${ReactionTypes.slice(0, 4).map(getButtonAndSpan).join('')}
         </div>
         <div class="BtnGroup">
-          ${reactionTypes.slice(4).map(getButtonAndSpan).join('')}
+          ${ReactionTypes.slice(4).map(getButtonAndSpan).join('')}
         </div>
       </form>
     </div>
@@ -124,7 +122,7 @@ export const getSignInToReactMenuHtml = (
     <div class="Popover" style="${position}">
       <div class="Popover-message ${alignmentClass} box-shadow-large" style="padding: 16px">
         <span><a href="${getLoginUrl(
-          pageAttributes.url,
+          pageAttrs.url,
         )}" target="_top">登录</a> 后你可以添加表情符号</span>
       </div>
     </div>

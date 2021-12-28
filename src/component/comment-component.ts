@@ -1,4 +1,4 @@
-import { reactionTypes } from '../constant-data';
+import { ReactionTypes } from '../constant-data';
 import { CommentAuthorAssociation, IssueComment } from '../type-declare';
 import { timeAgo } from '../utils';
 import { scheduleMeasure } from '../measure';
@@ -42,7 +42,7 @@ export class CommentComponent {
       this.element.classList.add('current-user');
     }
     const association = displayAssociations[author_association];
-    const reactionCount = reactionTypes.reduce(
+    const reactionCount = ReactionTypes.reduce(
       (sum, id) => sum + reactions[id],
       0,
     );
@@ -105,16 +105,14 @@ export class CommentComponent {
     }">
           ${footerReactionsMenu}
           <form class="reaction-list BtnGroup" action="javascript:">
-            ${reactionTypes
-              .map((id) =>
-                getReactionHtml(
-                  reactions.url,
-                  id,
-                  !currentUser || locked,
-                  reactions[id],
-                ),
-              )
-              .join('')}
+            ${ReactionTypes.map((id) =>
+              getReactionHtml(
+                reactions.url,
+                id,
+                !currentUser || locked,
+                reactions[id],
+              ),
+            ).join('')}
           </form>
         </div>
       </div>`;

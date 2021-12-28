@@ -1,6 +1,13 @@
 import { token } from './oauth';
 import { decodeBase64UTF8 } from './utils';
-import { BEAUDAR_API, PAGE_SIZE } from './constant-data';
+import {
+  BEAUDAR_API,
+  PAGE_SIZE,
+  GITHUB_API,
+  GITHUB_ENCODING__HTML_JSON,
+  GITHUB_ENCODING__HTML,
+  GITHUB_ENCODING__REACTIONS_PREVIEW,
+} from './constant-data';
 import { NewErrorComponent } from './component/new-error-component';
 import {
   ReactionID,
@@ -10,13 +17,10 @@ import {
   Issue,
   User,
   Reaction,
+  RepoConfig,
+  PageAttrs,
 } from './type-declare';
-
-const GITHUB_API = 'https://api.github.com/';
-const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
-const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
-const GITHUB_ENCODING__REACTIONS_PREVIEW =
-  'application/vnd.github.squirrel-girl-preview';
+import { removeLoadingElement } from './beaudar-loading';
 
 let owner: string;
 let repo: string;
@@ -311,3 +315,36 @@ export const renderMarkdown = (text: string) => {
     (response) => response.text(),
   );
 };
+
+export async function getRepoConfig(pageAttrs: PageAttrs) {
+  const response = await loadJsonFile<RepoConfig>('beaudar.json').then(
+    (data) => {
+      if (!Array.isArray(data.origins)) {
+        data.origins = [];
+      }
+      return data;
+    },
+  );
+
+  if (response.origins.indexOf(origin) === -1) {
+    const { origin, owner, repo } = pageAttrs;
+    removeLoadingElement();
+    const errorElement = new NewErrorComponent();
+    errorElement.createMsgElement(
+      `错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`,
+      `
+    <p>&emsp;&emsp;请确认 <code>${owner}/${repo}</code> 是本站点评论的正确仓库。如果您拥有此仓库，
+    <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
+      <strong>添加或更新 beaudar.json</strong>
+    </a>
+    添加 <code>${origin}</code> 到来源列表。</p>
+    <p>需要配置：</p>
+    <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
+    `,
+      '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
+    );
+    throw new Error(
+      `评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`,
+    );
+  }
+}

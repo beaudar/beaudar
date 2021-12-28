@@ -1,3 +1,5 @@
+import { Issue, IssueComment } from './type-declare';
+import { PAGE_SIZE } from './constant-data';
 import { readPageAttributes, loadTheme } from './utils';
 import {
   setRepoContext,
@@ -7,50 +9,49 @@ import {
   loadUser,
   postComment,
   createIssue,
+  getRepoConfig,
 } from './github';
-import { PAGE_SIZE } from './constant-data';
 import { TimelineComponent } from './component/timeline-component';
 import { NewCommentComponent } from './component/new-comment-component';
 import { startMeasuring, scheduleMeasure } from './measure';
-import { getRepoConfig } from './repo-config';
 import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorComponent } from './component/new-error-component';
 import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
-import { Issue, IssueComment } from './type-declare';
 
-const page = readPageAttributes();
+export const pageAttrs = readPageAttributes(location);
 
-setRepoContext(page);
+setRepoContext(pageAttrs);
 
 const loadIssue = (): Promise<Issue | null> => {
-  if (page.issueNumber !== null) {
-    return loadIssueByNumber(page.issueNumber);
+  if (pageAttrs.issueNumber !== null) {
+    return loadIssueByNumber(pageAttrs.issueNumber);
   }
-  return loadIssueByTerm(page.issueTerm as string);
+  return loadIssueByTerm(pageAttrs.issueTerm as string);
 };
 
 async function bootstrap() {
-  startMeasuring(page.origin);
+  startMeasuring(pageAttrs.origin);
 
-  addLoadingStatus(page);
+  addLoadingStatus(pageAttrs);
 
   if (
-    JSON.parse(page.keepTheme) &&
+    JSON.parse(pageAttrs.keepTheme) &&
     sessionStorage.getItem('beaudar-set-theme')
   ) {
     loadTheme(
       sessionStorage.getItem('beaudar-set-theme') as string,
-      page.origin,
-      page.keepTheme,
+      pageAttrs.origin,
+      pageAttrs.keepTheme,
     );
   } else {
-    loadTheme(page.theme, page.origin, page.keepTheme);
+    loadTheme(pageAttrs.theme, pageAttrs.origin, pageAttrs.keepTheme);
   }
 
   // tslint:disable-next-line
   let issue: any, user: any;
   await loadToken();
+  await getRepoConfig(pageAttrs);
 
   try {
     [issue, user] = await Promise.all([loadIssue(), loadUser()]);
@@ -64,7 +65,7 @@ async function bootstrap() {
       `<ol>
         <li>点击<code>刷新</code>按钮，尝试解决此问题。</li>
         <li>点击
-          <a href="https://github.com/${page.owner}/${page.repo}/issues" target="_blank">这里</a>
+          <a href="https://github.com/${pageAttrs.owner}/${pageAttrs.repo}/issues" target="_blank">这里</a>
           浏览或提交 Issue。
         </li>
       </ol>`,
@@ -91,45 +92,23 @@ async function bootstrap() {
   enableReactions(!!user);
 
   const submit = async (markdown: string) => {
-    const { origins } = await getRepoConfig();
-    const { origin, owner, repo } = page;
-    if (origins.indexOf(origin) !== -1) {
-      if (!issue) {
-        issue = await createIssue(
-          page.issueTerm as string,
-          page.url,
-          page.title,
-          page.description || '',
-          page.label,
-        );
-        timeline.setIssue(issue);
-      }
-      const comment = await postComment(issue.number, markdown);
-      timeline.insertComment(comment, true);
-      newCommentComponent.clear();
-    } else {
-      const errorElement = new NewErrorComponent();
-      errorElement.createMsgElement(
-        `错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`,
-        `
-      <p>&emsp;&emsp;请确认 <code>${owner}/${repo}</code> 是本站点评论的正确仓库。如果您拥有此仓库，
-      <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
-        <strong>添加或更新 beaudar.json</strong>
-      </a>
-      添加 <code>${origin}</code> 到来源列表。</p>
-      <p>需要配置：</p>
-      <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
-      `,
-        '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
+    if (!issue) {
+      issue = await createIssue(
+        pageAttrs.issueTerm as string,
+        pageAttrs.url,
+        pageAttrs.title,
+        pageAttrs.description || '',
+        pageAttrs.label,
       );
-      throw new Error(
-        `评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`,
-      );
+      timeline.setIssue(issue);
     }
+    const comment = await postComment(issue.number, markdown);
+    timeline.insertComment(comment, true);
+    newCommentComponent.clear();
   };
 
   const newCommentComponent = new NewCommentComponent(user, submit);
-  if (page.inputPosition === 'top') {
+  if (pageAttrs.inputPosition === 'top') {
     timeline.element.insertAdjacentElement(
       'afterbegin',
       newCommentComponent.element,
@@ -147,7 +126,7 @@ addEventListener('not-installed', function handleNotInstalled() {
     'afterbegin',
     `
   <div class="flash flash-error">
-    错误: Beaudar 没有安装在 <code>${page.owner}/${page.repo}</code>。
+    错误: Beaudar 没有安装在 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>。
     如果你拥有这仓库，
     <a href="https://github.com/apps/beaudar" target="_blank"><strong>安装 app</strong></a>。
   </div>`,

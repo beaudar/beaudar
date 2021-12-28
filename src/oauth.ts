@@ -1,9 +1,8 @@
 import { BEAUDAR_API } from './constant-data';
 import { removeLoadingElement } from './beaudar-loading';
-import { param, readPageAttributes } from './utils';
+import { param } from './utils';
 import { NewErrorComponent } from './component/new-error-component';
-
-const pageAttributes = readPageAttributes();
+import { pageAttrs } from './beaudar';
 
 export const token = { value: null as null | string };
 
@@ -12,13 +11,7 @@ export const getLoginUrl = (redirect_uri: string) => {
   return `${BEAUDAR_API}/authorize?${param({ redirect_uri })}`;
 };
 
-export async function loadToken(): Promise<string | null> {
-  if (token.value) {
-    return token.value;
-  }
-  if (!pageAttributes.session) {
-    return null;
-  }
+export async function loadToken() {
   const url = `${BEAUDAR_API}/token`;
   const response = await fetch(url, {
     method: 'POST',
@@ -27,7 +20,7 @@ export async function loadToken(): Promise<string | null> {
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(pageAttributes.session),
+    body: JSON.stringify(pageAttrs.session),
   }).catch((err) => {
     const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
@@ -43,7 +36,5 @@ export async function loadToken(): Promise<string | null> {
   if (response.ok) {
     const t = await response.json();
     token.value = t;
-    return t;
   }
-  return null;
 }

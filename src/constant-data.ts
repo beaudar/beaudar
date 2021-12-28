@@ -4,16 +4,23 @@ export const BEAUDAR_API = 'https://api.lipk.org';
 
 export const PAGE_SIZE = 10;
 
-export const repoRegex = /^([\w-_]+)\/([\w-_.]+)$/i;
+export const RepoRegex = /^([\w-_]+)\/([\w-_.]+)$/i;
 
-export const preferredThemeId = 'preferred-color-scheme';
+export const GITHUB_API = 'https://api.github.com/';
+export const GITHUB_ENCODING__HTML_JSON =
+  'application/vnd.github.VERSION.html+json';
+export const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
+export const GITHUB_ENCODING__REACTIONS_PREVIEW =
+  'application/vnd.github.squirrel-girl-preview';
 
-export const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)')
+export const PreferredThemeId = 'preferred-color-scheme';
+
+export const PreferredTheme = window.matchMedia('(prefers-color-scheme: dark)')
   .matches
   ? 'github-dark'
   : 'github-light';
 
-export const reactionNames: Record<ReactionID, string> = {
+export const ReactionNames: Record<ReactionID, string> = {
   '+1': '赞同',
   '-1': '不赞同',
   laugh: '笑脸',
@@ -24,7 +31,7 @@ export const reactionNames: Record<ReactionID, string> = {
   eyes: '瞩目',
 };
 
-export const reactionEmoji: Record<ReactionID, string> = {
+export const ReactionEmoji: Record<ReactionID, string> = {
   '+1': '👍',
   '-1': '👎',
   laugh: '️😄',
@@ -35,7 +42,7 @@ export const reactionEmoji: Record<ReactionID, string> = {
   eyes: '👀',
 };
 
-export const reactionTypes: ReactionID[] = [
+export const ReactionTypes: ReactionID[] = [
   '+1',
   '-1',
   'laugh',
@@ -46,7 +53,7 @@ export const reactionTypes: ReactionID[] = [
   'eyes',
 ];
 
-export const thresholds = [
+export const Thresholds = [
   1000,
   '秒',
   1000 * 60,
@@ -61,7 +68,7 @@ export const thresholds = [
   '个月',
 ];
 
-export const formatOptions: Intl.DateTimeFormatOptions = {
+export const FormatOptions: Intl.DateTimeFormatOptions = {
   month: 'short',
   day: 'numeric',
   year: 'numeric',
