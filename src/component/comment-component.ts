@@ -1,9 +1,6 @@
-import {
-  CommentAuthorAssociation,
-  IssueComment,
-  reactionTypes,
-} from '../github';
-import { timeAgo } from '../time-ago';
+import { reactionTypes } from '../constant-data';
+import { CommentAuthorAssociation, IssueComment } from '../type-declare';
+import { timeAgo } from '../utils';
 import { scheduleMeasure } from '../measure';
 import {
   getReactionsMenuHtml,

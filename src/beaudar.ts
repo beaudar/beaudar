@@ -1,6 +1,5 @@
-import { pageAttributes as page } from './page-attributes';
+import { readPageAttributes, loadTheme } from './utils';
 import {
-  Issue,
   setRepoContext,
   loadIssueByTerm,
   loadIssueByNumber,
@@ -8,9 +7,8 @@ import {
   loadUser,
   postComment,
   createIssue,
-  PAGE_SIZE,
-  IssueComment,
 } from './github';
+import { PAGE_SIZE } from './constant-data';
 import { TimelineComponent } from './component/timeline-component';
 import { NewCommentComponent } from './component/new-comment-component';
 import { startMeasuring, scheduleMeasure } from './measure';
@@ -19,16 +17,18 @@ import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorComponent } from './component/new-error-component';
 import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
-import { loadTheme } from './theme';
+import { Issue, IssueComment } from './type-declare';
+
+const page = readPageAttributes();
 
 setRepoContext(page);
 
-function loadIssue(): Promise<Issue | null> {
+const loadIssue = (): Promise<Issue | null> => {
   if (page.issueNumber !== null) {
     return loadIssueByNumber(page.issueNumber);
   }
   return loadIssueByTerm(page.issueTerm as string);
-}
+};
 
 async function bootstrap() {
   startMeasuring(page.origin);
@@ -42,9 +42,10 @@ async function bootstrap() {
     loadTheme(
       sessionStorage.getItem('beaudar-set-theme') as string,
       page.origin,
+      page.keepTheme,
     );
   } else {
-    loadTheme(page.theme, page.origin);
+    loadTheme(page.theme, page.origin, page.keepTheme);
   }
 
   // tslint:disable-next-line

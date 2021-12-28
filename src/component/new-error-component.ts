@@ -1,5 +1,7 @@
 import { scheduleMeasure } from '../measure';
-import { pageAttributes as page } from '../page-attributes';
+import { readPageAttributes } from '../utils';
+
+const page = readPageAttributes();
 
 export class NewErrorComponent {
   public readonly element: Element;

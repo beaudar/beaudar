@@ -1,19 +1,16 @@
-export interface ResizeMessage {
-  type: 'resize';
-  height: number;
-}
+import { ResizeMessage } from './type-declare';
 
 let hostOrigin: string;
 
-export function startMeasuring(origin: string) {
+export const startMeasuring = (origin: string) => {
   hostOrigin = origin;
   addEventListener('resize', scheduleMeasure);
   addEventListener('load', scheduleMeasure);
-}
+};
 
 let lastHeight = -1;
 
-function measure() {
+const measure = () => {
   const height = document.documentElement.scrollHeight;
   if (height === lastHeight) {
     return;
@@ -21,14 +18,14 @@ function measure() {
   lastHeight = height;
   const message: ResizeMessage = { type: 'resize', height };
   parent.postMessage(message, hostOrigin);
-}
+};
 
 let lastMeasure = 0;
 
-export function scheduleMeasure() {
+export const scheduleMeasure = () => {
   const now = Date.now();
   if (now - lastMeasure > 50) {
     lastMeasure = now;
     setTimeout(measure, 50);
   }
-}
+};

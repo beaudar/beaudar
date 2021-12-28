@@ -1,9 +1,11 @@
-import { pageAttributes as page } from '../page-attributes';
-import { User, renderMarkdown } from '../github';
+import { readPageAttributes } from '../utils';
+import { renderMarkdown } from '../github';
+import { User } from '../type-declare';
 import { scheduleMeasure } from '../measure';
 import { processRenderedMarkdown } from './comment-component';
-import { getRepoConfig } from '../repo-config';
 import { getLoginUrl } from '../oauth';
+
+const page = readPageAttributes();
 
 const beaudarAvatarUrl = `data:image/png;base64,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 MDowMKZDaTcAAAAASUVORK5CYII=`;
 
@@ -119,7 +121,6 @@ export class NewCommentComponent {
   }
 
   private handleInput = () => {
-    getRepoConfig(); // 预加载仓库 repo 配置
     const text = this.textarea.value;
     const isWhitespace = /^\s*$/.test(text);
     this.submitButton.disabled = isWhitespace;
