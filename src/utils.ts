@@ -1,4 +1,5 @@
-import { thresholds, formatOptions, repoRegex } from './constant-data';
+import { Thresholds, FormatOptions, RepoRegex } from './constant-data';
+import { PageAttrs } from './type-declare';
 
 export const timeAgo = (current: number, value: Date) => {
   const elapsed = current - value.getTime();
@@ -6,16 +7,16 @@ export const timeAgo = (current: number, value: Date) => {
     return ' 刚刚';
   }
   let i = 0;
-  while (i + 2 < thresholds.length && elapsed * 1.1 > thresholds[i + 2]) {
+  while (i + 2 < Thresholds.length && elapsed * 1.1 > Thresholds[i + 2]) {
     i += 2;
   }
 
-  const divisor = thresholds[i] as number;
-  const text = thresholds[i + 1] as string;
+  const divisor = Thresholds[i] as number;
+  const text = Thresholds[i + 1] as string;
   const units = Math.round(elapsed / divisor);
 
-  if (units > 3 && i === thresholds.length - 2) {
-    return `于 ${value.toLocaleDateString(undefined, formatOptions)}`;
+  if (units > 3 && i === Thresholds.length - 2) {
+    return `于 ${value.toLocaleDateString(undefined, FormatOptions)}`;
   }
   return units === 1 ? `于 1 ${text}前` : `于 ${units} ${text}前`;
 };
@@ -38,7 +39,7 @@ export const decodeBase64UTF8 = (encoded: string) => {
   return decodeURIComponent(window.atob(encoded));
 };
 
-export const deparam = (query: string): Record<string, string> => {
+export const decodeParam = (query: string): Record<string, string> => {
   let match: RegExpExecArray | null;
   const plus = /\+/g;
   const search = /([^&=]+)=?([^&]*)/g;
@@ -63,8 +64,8 @@ export const param = (obj: Record<string, string>) => {
   return parts.join('&');
 };
 
-export const readPageAttributes = () => {
-  const params = deparam(location.search.substring(1));
+export const readPageAttributes = (location: Location): PageAttrs => {
+  const params = decodeParam(location.search.substring(1));
 
   let issueTerm: string | null = null;
   let issueNumber: number | null = null;
@@ -98,7 +99,7 @@ export const readPageAttributes = () => {
     throw new Error('来源 "origin" 是必须项');
   }
 
-  const matches = repoRegex.exec(params.repo);
+  const matches = RepoRegex.exec(params.repo);
   if (matches === null) {
     throw new Error(`无效的仓库 repo: "${params.repo}"`);
   }

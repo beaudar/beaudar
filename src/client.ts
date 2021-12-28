@@ -1,9 +1,9 @@
-import { param, deparam } from './utils';
+import { param, decodeParam } from './utils';
 import { ResizeMessage } from './type-declare';
-import { preferredThemeId, preferredTheme } from './constant-data';
+import { PreferredThemeId, PreferredTheme } from './constant-data';
 
 // slice session from query string
-const params = deparam(location.search.substring(1));
+const params = decodeParam(location.search.substring(1));
 const session = params.beaudar;
 if (session) {
   localStorage.setItem('beaudar-session', session);
@@ -36,8 +36,8 @@ for (let i = 0; i < script.attributes.length; i++) {
 }
 
 // 如果是根据浏览器模式选择
-if (attrs.theme === preferredThemeId) {
-  attrs.theme = preferredTheme;
+if (attrs.theme === PreferredThemeId) {
+  attrs.theme = PreferredTheme;
 }
 
 // gather page attributes

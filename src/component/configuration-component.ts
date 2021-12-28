@@ -1,4 +1,4 @@
-import { preferredThemeId, preferredTheme } from '../constant-data';
+import { PreferredThemeId, PreferredTheme } from '../constant-data';
 export class ConfigurationComponent {
   public readonly element: HTMLFormElement;
   private readonly script: HTMLDivElement;
@@ -235,8 +235,8 @@ export class ConfigurationComponent {
     }
     this.theme.addEventListener('change', () => {
       let theme = this.theme.value;
-      if (theme === preferredThemeId) {
-        theme = preferredTheme;
+      if (theme === PreferredThemeId) {
+        theme = PreferredTheme;
       }
       document.documentElement.setAttribute('theme', theme);
       const message = {

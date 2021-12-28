@@ -131,3 +131,22 @@ export interface ResizeMessage {
   type: 'resize';
   height: number;
 }
+
+export interface PageAttrs {
+  owner: string;
+  repo: string;
+  branch: string;
+  issueTerm: string | null;
+  issueNumber: number | null;
+  origin: string;
+  url: string;
+  title: string;
+  description: string;
+  label: string;
+  theme: string;
+  keepTheme: string;
+  loading: string;
+  commentOrder: string;
+  inputPosition: string;
+  session: string;
+}

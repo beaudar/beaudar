@@ -1,7 +1,5 @@
 import { scheduleMeasure } from '../measure';
-import { readPageAttributes } from '../utils';
-
-const page = readPageAttributes();
+import { pageAttrs } from '../beaudar';
 
 export class NewErrorComponent {
   public readonly element: Element;
@@ -37,13 +35,13 @@ export class NewErrorComponent {
       this.element = timeline;
 
       if (document.querySelector('#beaudarMsg') === null) {
-        if (page.inputPosition === 'top') {
+        if (pageAttrs.inputPosition === 'top') {
           this.element!.firstElementChild!.insertAdjacentHTML(
             'afterend',
             this.beaudarArticle,
           );
         }
-        if (page.inputPosition === 'bottom') {
+        if (pageAttrs.inputPosition === 'bottom') {
           this.element!.lastElementChild!.insertAdjacentHTML(
             'beforebegin',
             this.beaudarArticle,

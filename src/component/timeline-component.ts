@@ -1,9 +1,7 @@
 import { Issue, IssueComment, User } from '../type-declare';
 import { CommentComponent } from './comment-component';
 import { scheduleMeasure } from '../measure';
-import { readPageAttributes } from '../utils';
-
-const page = readPageAttributes();
+import { pageAttrs } from '../beaudar';
 
 export class TimelineComponent {
   public readonly element: HTMLElement;
@@ -26,7 +24,7 @@ export class TimelineComponent {
     this.element.appendChild(this.marker);
     this.setIssue(this.issue);
     this.renderCount();
-    this.isDesc = page.commentOrder === 'desc';
+    this.isDesc = pageAttrs.commentOrder === 'desc';
   }
 
   public setUser(user: User | null) {
