@@ -51,7 +51,6 @@ async function bootstrap() {
   // tslint:disable-next-line
   let issue: any, user: any;
   await loadToken();
-  await getRepoConfig(pageAttrs);
 
   try {
     [issue, user] = await Promise.all([loadIssue(), loadUser()]);
@@ -92,6 +91,7 @@ async function bootstrap() {
   enableReactions(!!user);
 
   const submit = async (markdown: string) => {
+    await getRepoConfig(pageAttrs);
     if (!issue) {
       issue = await createIssue(
         pageAttrs.issueTerm as string,
