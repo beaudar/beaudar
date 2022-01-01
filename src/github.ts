@@ -25,6 +25,7 @@ import { removeLoadingElement } from './beaudar-loading';
 let owner: string;
 let repo: string;
 let branch: string;
+let beaudarJson: RepoConfig;
 
 export const setRepoContext = (context: {
   owner: string;
@@ -318,15 +319,16 @@ export const renderMarkdown = (text: string) => {
 
 export async function getRepoConfig(pageAttrs: PageAttrs) {
   const { origin, owner, repo } = pageAttrs;
-  const response = await loadJsonFile<RepoConfig>('beaudar.json').then(
-    (data) => {
-      if (!Array.isArray(data.origins)) {
-        data.origins = [];
-      }
-      return data;
-    },
-  );
-  if (response.origins.indexOf(origin) === -1) {
+  if (beaudarJson) {
+    return;
+  }
+  beaudarJson = await loadJsonFile<RepoConfig>('beaudar.json').then((data) => {
+    if (!Array.isArray(data.origins)) {
+      data.origins = [];
+    }
+    return data;
+  });
+  if (beaudarJson.origins.indexOf(origin) === -1) {
     removeLoadingElement();
     const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
