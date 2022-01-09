@@ -1177,13 +1177,6 @@ Box shadows */
   /* Keep :focus after :disabled. Allows to see the focus ring even on disabled buttons */
 }
 
-.btn:hover,
-.btn.hover,
-[open]>.btn {
-  background-color: var(--bg-hover);
-  transition-duration: 0.1s;
-}
-
 .btn:active,
 .btn.selected,
 .btn[aria-selected='true'] {
@@ -1225,12 +1218,6 @@ Box shadows */
   background-color: var(--bg-default);
   border-color: rgba(var(--RGB_black), 0.15);
   box-shadow: var(--box-shadow);
-}
-
-.btn-primary:hover,
-.btn-primary.hover,
-[open]>.btn-primary {
-  background-color: var(--bg-hover);
 }
 
 .btn-primary:active,
@@ -1329,14 +1316,6 @@ Box shadows */
   box-shadow: initial;
   color: var(--blue-500);
   transition: none;
-}
-
-.btn-outline:hover,
-[open]>.btn-outline {
-  color: var(--text-white);
-  background-color: var(--blue-500);
-  border-color: rgba(var(--RGB_black), 0.15);
-  box-shadow: 0 1px 0 rgba(var(--RGB_black), 0.1), inset 0 1px 0 rgba(var(--RGB_white), 0.03);
 }
 
 .btn-outline:hover .Counter,
