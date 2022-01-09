@@ -679,3 +679,11 @@ body.index {
   margin: 0px 0px 0px 5px;
   color: #939393;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.no-underline, .no-underline:hover {
+  text-decoration: none;
+}
