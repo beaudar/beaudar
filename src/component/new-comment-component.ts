@@ -8,7 +8,6 @@ import { scheduleMeasure } from '../measure';
 import { processRenderedMarkdown } from './comment-component';
 import { getLoginUrl } from '../oauth';
 import { BeaudarAvatarUrl, NothingToPreview } from '../constant-data';
-import '@github/text-expander-element';
 import { readPageAttributes } from '../utils';
 
 const pageAttrs = readPageAttributes(location);
