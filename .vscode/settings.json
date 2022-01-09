@@ -16,4 +16,8 @@
   "[jsonc]": {
     "editor.defaultFormatter": "HookyQR.beautify"
   },
+  "cSpell.words": [
+    "noopener",
+    "noreferrer"
+  ],
 }

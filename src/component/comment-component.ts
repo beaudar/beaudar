@@ -1,5 +1,9 @@
-import { ReactionTypes } from '../constant-data';
-import { CommentAuthorAssociation, IssueComment } from '../type-declare';
+import {
+  AvatarArgs,
+  DisplayAssociations,
+  ReactionTypes,
+} from '../constant-data';
+import { IssueComment } from '../type-declare';
 import { timeAgo } from '../utils';
 import { scheduleMeasure } from '../measure';
 import {
@@ -7,17 +11,6 @@ import {
   getReactionHtml,
   getSignInToReactMenuHtml,
 } from '../reactions';
-
-const avatarArgs = '?v=3&s=88';
-const displayAssociations: Record<CommentAuthorAssociation, string> = {
-  COLLABORATOR: '合作者',
-  CONTRIBUTOR: '贡献者',
-  MEMBER: '成员',
-  OWNER: '作者',
-  FIRST_TIME_CONTRIBUTOR: '初期贡献者',
-  FIRST_TIMER: '沙发',
-  NONE: '',
-};
 
 export class CommentComponent {
   public readonly element: HTMLElement;
@@ -41,7 +34,7 @@ export class CommentComponent {
     if (user.login === currentUser) {
       this.element.classList.add('current-user');
     }
-    const association = displayAssociations[author_association];
+    const association = DisplayAssociations[author_association];
     const reactionCount = ReactionTypes.reduce(
       (sum, id) => sum + reactions[id],
       0,
@@ -68,7 +61,7 @@ export class CommentComponent {
       user.login
     }">
         <img alt="@${user.login}" height="40" width="40"
-              src="${user.avatar_url}${avatarArgs}">
+              src="${user.avatar_url}${AvatarArgs}">
       </a>
       <div class="comment">
         <header class="comment-header">
@@ -78,7 +71,7 @@ export class CommentComponent {
             }" target="_blank" title="@${user.login}">
               <img alt="@${user.login}" height="20" width="20" src="${
       user.avatar_url
-    }${avatarArgs}">
+    }${AvatarArgs}">
             </a>
             <a class="text-link comment-author" href="${
               user.html_url
