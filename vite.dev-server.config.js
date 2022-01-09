@@ -5,6 +5,7 @@ import include from 'posthtml-include';
 import md from 'posthtml-md';
 
 export default defineConfig({
+  root: 'src',
   server: {
     open: true,
   },
