@@ -150,3 +150,21 @@ export interface PageAttrs {
   inputPosition: string;
   session: string;
 }
+
+type TextExpanderChangeResult = {
+  fragment: HTMLElement;
+  matched: boolean;
+};
+export interface CustomEventTextExpanderChange extends Event {
+  detail: {
+    provide: (
+      result: Promise<TextExpanderChangeResult> | TextExpanderChangeResult,
+    ) => number;
+    text: string;
+    key: string;
+  };
+}
+
+export interface CustomEventTextExpanderValue extends Event {
+  detail: { item: HTMLElement; key: string; value: null | string };
+}

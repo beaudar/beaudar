@@ -123,3 +123,21 @@ export const readPageAttributes = (location: Location): PageAttrs => {
     session: params.session,
   };
 };
+
+// 设置评论者列表用于 @
+export const setCommentUserList = (userLogin: string | undefined) => {
+  if (!userLogin) {
+    return;
+  }
+  let commentUserList = JSON.parse(
+    sessionStorage.getItem('commentUserList') as string,
+  );
+  if (!commentUserList) {
+    commentUserList = [];
+  }
+
+  if (!commentUserList.includes(`@${userLogin}`)) {
+    commentUserList.push(`@${userLogin}`);
+    sessionStorage.setItem('commentUserList', JSON.stringify(commentUserList));
+  }
+};

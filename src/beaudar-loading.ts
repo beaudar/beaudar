@@ -1,14 +1,11 @@
 import { scheduleMeasure } from './measure';
 
-let loadingElement: HTMLDivElement;
-
 export const addLoadingStatus = (page: { loading: string }) => {
-  loadingElement = document.createElement('div');
-
   // 添加加载状态
   if (JSON.parse(page.loading)) {
     const beaudarLoading = document.createElement('div');
     const beaudarLoadingPseudoBefore = document.createElement('div');
+    beaudarLoading.id = 'beaudar-loading';
     beaudarLoading.style.cssText = `
     position: relative;
     margin: 40px auto 60px auto;
@@ -36,12 +33,12 @@ export const addLoadingStatus = (page: { loading: string }) => {
         alt="Beaudar(表达)" title="Beaudar(表达)">
       </a>`;
     beaudarLoading.appendChild(beaudarLoadingPseudoBefore);
-    loadingElement.appendChild(beaudarLoading);
-    document.body.appendChild(loadingElement);
+    document.body.appendChild(beaudarLoading);
     scheduleMeasure();
   }
 };
 
 export const removeLoadingElement = () => {
-  loadingElement.remove();
+  const loadingElement = document.querySelector('#beaudar-loading');
+  loadingElement?.remove();
 };

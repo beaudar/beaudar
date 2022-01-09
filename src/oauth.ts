@@ -1,10 +1,11 @@
 import { BEAUDAR_API } from './constant-data';
 import { removeLoadingElement } from './beaudar-loading';
-import { param } from './utils';
+import { param, readPageAttributes } from './utils';
 import { NewErrorComponent } from './component/new-error-component';
-import { pageAttrs } from './beaudar';
 
 export const token = { value: null as null | string };
+
+const pageAttrs = readPageAttributes(location);
 
 // tslint:disable-next-line:variable-name
 export const getLoginUrl = (redirect_uri: string) => {

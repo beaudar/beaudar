@@ -1,5 +1,7 @@
 import { scheduleMeasure } from '../measure';
-import { pageAttrs } from '../beaudar';
+import { readPageAttributes } from '../utils';
+
+const pageAttrs = readPageAttributes(location);
 
 export class NewErrorComponent {
   public readonly element: Element;

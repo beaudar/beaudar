@@ -6,7 +6,7 @@ import md from 'posthtml-md';
 
 export default defineConfig({
   server: {
-    open: false,
+    open: true,
   },
   plugins: [
     posthtmlPlugin({

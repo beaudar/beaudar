@@ -2,7 +2,6 @@ import { Issue, IssueComment } from './type-declare';
 import { PAGE_SIZE } from './constant-data';
 import { readPageAttributes, loadTheme } from './utils';
 import {
-  setRepoContext,
   loadIssueByTerm,
   loadIssueByNumber,
   loadCommentsPage,
@@ -19,9 +18,7 @@ import { enableReactions } from './reactions';
 import { NewErrorComponent } from './component/new-error-component';
 import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
 
-export const pageAttrs = readPageAttributes(location);
-
-setRepoContext(pageAttrs);
+const pageAttrs = readPageAttributes(location);
 
 const loadIssue = (): Promise<Issue | null> => {
   if (pageAttrs.issueNumber !== null) {
@@ -91,7 +88,7 @@ async function bootstrap() {
   enableReactions(!!user);
 
   const submit = async (markdown: string) => {
-    await getRepoConfig(pageAttrs);
+    await getRepoConfig();
     if (!issue) {
       issue = await createIssue(
         pageAttrs.issueTerm as string,
