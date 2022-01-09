@@ -1,5 +1,5 @@
 import { token } from './oauth';
-import { decodeBase64UTF8 } from './utils';
+import { decodeBase64UTF8, readPageAttributes } from './utils';
 import {
   BEAUDAR_API,
   PAGE_SIZE,
@@ -18,24 +18,12 @@ import {
   User,
   Reaction,
   RepoConfig,
-  PageAttrs,
 } from './type-declare';
 import { removeLoadingElement } from './beaudar-loading';
 
-let owner: string;
-let repo: string;
-let branch: string;
-let beaudarJson: RepoConfig;
+const pageAttrs = readPageAttributes(location);
 
-export const setRepoContext = (context: {
-  owner: string;
-  repo: string;
-  branch: string;
-}) => {
-  owner = context.owner;
-  repo = context.repo;
-  branch = context.branch;
-};
+let beaudarJson: RepoConfig;
 
 const githubRequest = (relativeUrl: string, init?: RequestInit) => {
   init = init || {};
@@ -132,7 +120,7 @@ const githubFetch = (request: Request): Promise<Response> => {
 
 export const loadJsonFile = <T>(path: string, html = false) => {
   const request = githubRequest(
-    `repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
+    `repos/${pageAttrs.owner}/${pageAttrs.repo}/contents/${path}?ref=${pageAttrs.branch}`,
   );
   if (html) {
     request.headers.set('accept', GITHUB_ENCODING__HTML);
@@ -143,11 +131,11 @@ export const loadJsonFile = <T>(path: string, html = false) => {
         const errorElement = new NewErrorComponent();
         errorElement.createMsgElement(
           `缺少 "${path}" 配置`,
-          `<p>在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"。</p>`,
+          `<p>在存储库 "${pageAttrs.owner}/${pageAttrs.repo}" 中，"${pageAttrs.branch}" 分支下找不到 "${path}"。</p>`,
           '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
         );
         throw new Error(
-          `在存储库 "${owner}/${repo}" 中，"${branch}" 分支下找不到 "${path}"`,
+          `在存储库 "${pageAttrs.owner}/${pageAttrs.repo}" 中，"${pageAttrs.branch}" 分支下找不到 "${path}"`,
         );
       }
       if (response === undefined || !response.ok) {
@@ -166,7 +154,7 @@ export const loadJsonFile = <T>(path: string, html = false) => {
 };
 
 export const loadIssueByTerm = (term: string) => {
-  const q = `"${term}" type:issue in:title repo:${owner}/${repo}`;
+  const q = `"${term}" type:issue in:title repo:${pageAttrs.owner}/${pageAttrs.repo}`;
   const request = githubRequest(
     `search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`,
   );
@@ -198,7 +186,9 @@ export const loadIssueByTerm = (term: string) => {
 };
 
 export const loadIssueByNumber = (issueNumber: number) => {
-  const request = githubRequest(`repos/${owner}/${repo}/issues/${issueNumber}`);
+  const request = githubRequest(
+    `repos/${pageAttrs.owner}/${pageAttrs.repo}/issues/${issueNumber}`,
+  );
   return githubFetch(request).then<Issue>((response) => {
     if (response === undefined || !response.ok) {
       throw new Error(`通过 Issue 编号提取评论时出错`);
@@ -208,7 +198,7 @@ export const loadIssueByNumber = (issueNumber: number) => {
 };
 
 const commentsRequest = (issueNumber: number, page: number) => {
-  const url = `repos/${owner}/${repo}/issues/${issueNumber}/comments?page=${page}&per_page=${PAGE_SIZE}`;
+  const url = `repos/${pageAttrs.owner}/${pageAttrs.repo}/issues/${issueNumber}/comments?page=${page}&per_page=${PAGE_SIZE}`;
   const request = githubRequest(url);
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
   request.headers.set('Accept', accept);
@@ -247,9 +237,9 @@ export const createIssue = (
   description: string,
   label: string,
 ) => {
-  const url = `${BEAUDAR_API}/repos/${owner}/${repo}/issues${
-    label ? `?label=${encodeURIComponent(label)}` : ''
-  }`;
+  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${
+    pageAttrs.repo
+  }/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
@@ -268,7 +258,7 @@ export const createIssue = (
 };
 
 export const postComment = (issueNumber: number, markdown: string) => {
-  const url = `repos/${owner}/${repo}/issues/${issueNumber}/comments`;
+  const url = `repos/${pageAttrs.owner}/${pageAttrs.repo}/issues/${issueNumber}/comments`;
   const body = JSON.stringify({ body: markdown });
   const request = githubRequest(url, { method: 'POST', body });
   const accept = `${GITHUB_ENCODING__HTML_JSON},${GITHUB_ENCODING__REACTIONS_PREVIEW}`;
@@ -310,15 +300,14 @@ export const renderMarkdown = (text: string) => {
   const body = JSON.stringify({
     text,
     mode: 'gfm',
-    context: `${owner}/${repo}`,
+    context: `${pageAttrs.owner}/${pageAttrs.repo}`,
   });
   return githubFetch(githubRequest('markdown', { method: 'POST', body })).then(
     (response) => response.text(),
   );
 };
 
-export async function getRepoConfig(pageAttrs: PageAttrs) {
-  const { origin, owner, repo } = pageAttrs;
+export async function getRepoConfig() {
   if (beaudarJson) {
     return;
   }
@@ -328,24 +317,32 @@ export async function getRepoConfig(pageAttrs: PageAttrs) {
     }
     return data;
   });
-  if (beaudarJson.origins.indexOf(origin) === -1) {
+  if (beaudarJson.origins.indexOf(pageAttrs.origin) === -1) {
     removeLoadingElement();
     const errorElement = new NewErrorComponent();
     errorElement.createMsgElement(
-      `错误: <code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>`,
+      `错误: <code>${pageAttrs.origin}</code> 评论不允许发布到仓库 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>`,
       `
-    <p>&emsp;&emsp;请确认 <code>${owner}/${repo}</code> 是本站点评论的正确仓库。如果您拥有此仓库，
-    <a href="https://github.com/${owner}/${repo}/edit/master/beaudar.json" target="_blank">
+    <p>&emsp;&emsp;请确认 <code>${pageAttrs.owner}/${
+        pageAttrs.repo
+      }</code> 是本站点评论的正确仓库。如果您拥有此仓库，
+    <a href="https://github.com/${pageAttrs.owner}/${
+        pageAttrs.repo
+      }/edit/master/beaudar.json" target="_blank">
       <strong>添加或更新 beaudar.json</strong>
     </a>
-    添加 <code>${origin}</code> 到来源列表。</p>
+    添加 <code>${pageAttrs.origin}</code> 到来源列表。</p>
     <p>需要配置：</p>
-    <pre><code>${JSON.stringify({ origins: [origin] }, null, 2)}</code></pre>
+    <pre><code>${JSON.stringify(
+      { origins: [pageAttrs.origin] },
+      null,
+      2,
+    )}</code></pre>
     `,
       '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
     );
     throw new Error(
-      `评论发布被禁止，<code>${origin}</code> 评论不允许发布到仓库 <code>${owner}/${repo}</code>。`,
+      `评论发布被禁止，<code>${pageAttrs.origin}</code> 评论不允许发布到仓库 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>。`,
     );
   }
 }

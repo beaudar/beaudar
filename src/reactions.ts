@@ -1,6 +1,5 @@
 import { toggleReaction } from './github';
 import { getLoginUrl } from './oauth';
-import { pageAttrs } from './beaudar';
 import { scheduleMeasure } from './measure';
 import { ReactionID } from './type-declare';
 import {
@@ -9,6 +8,9 @@ import {
   ReactionEmoji,
   AddReactionSVG,
 } from './constant-data';
+import { readPageAttributes } from './utils';
+
+const pageAttrs = readPageAttributes(location);
 
 export const getReactionHtml = (
   url: string,

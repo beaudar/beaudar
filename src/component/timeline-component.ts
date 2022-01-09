@@ -1,7 +1,9 @@
 import { Issue, IssueComment, User } from '../type-declare';
 import { CommentComponent } from './comment-component';
 import { scheduleMeasure } from '../measure';
-import { pageAttrs } from '../beaudar';
+import { readPageAttributes, setCommentUserList } from '../utils';
+
+const pageAttrs = readPageAttributes(location);
 
 export class TimelineComponent {
   public readonly element: HTMLElement;
@@ -25,6 +27,7 @@ export class TimelineComponent {
     this.setIssue(this.issue);
     this.renderCount();
     this.isDesc = pageAttrs.commentOrder === 'desc';
+    sessionStorage.removeItem('commentUserList');
   }
 
   public setUser(user: User | null) {
@@ -48,6 +51,10 @@ export class TimelineComponent {
   }
 
   public insertComment(comment: IssueComment, incrementCount: boolean) {
+    if (this.user?.login !== comment.user?.login) {
+      setCommentUserList(comment.user?.login);
+    }
+
     const component = new CommentComponent(
       comment,
       this.user ? this.user.login : null,

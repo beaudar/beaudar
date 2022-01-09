@@ -1,10 +1,17 @@
 import { renderMarkdown } from '../github';
-import { User } from '../type-declare';
+import {
+  CustomEventTextExpanderChange,
+  CustomEventTextExpanderValue,
+  User,
+} from '../type-declare';
 import { scheduleMeasure } from '../measure';
 import { processRenderedMarkdown } from './comment-component';
 import { getLoginUrl } from '../oauth';
-import { pageAttrs } from '../beaudar';
 import { BeaudarAvatarUrl, NothingToPreview } from '../constant-data';
+import '../../node_modules/@github/text-expander-element';
+import { readPageAttributes } from '../utils';
+
+const pageAttrs = readPageAttributes(location);
 
 export class NewCommentComponent {
   public readonly element: HTMLElement;
@@ -12,6 +19,7 @@ export class NewCommentComponent {
   private avatarAnchor: HTMLAnchorElement;
   private avatar: HTMLImageElement;
   private form: HTMLFormElement;
+  private textExpander: HTMLElement;
   private textarea: HTMLTextAreaElement;
   private preview: HTMLDivElement;
   private submitButton: HTMLButtonElement;
@@ -45,22 +53,24 @@ export class NewCommentComponent {
           </nav>
         </header>
         <div class="comment-body">
-          <textarea class="form-control" placeholder="Leave a comment" aria-label="comment"></textarea>
+          <text-expander keys="@">
+            <textarea class="form-control" aria-label="comment"></textarea>
+          </text-expander>
           <div class="markdown-body" style="display: none">
             ${NothingToPreview}
           </div>
         </div>
         <footer class="new-comment-footer">
-          <a class="text-link markdown-info no-underline" target="_blank"
+          <a class="text-link markdown-info" target="_blank"
              href="https://guides.github.com/features/mastering-markdown/">
-            <svg class="octicon v-align-bottom underline" viewBox="0 0 16 16" version="1.1"
+            <svg class="octicon v-align-bottom" viewBox="0 0 16 16" version="1.1"
               width="16" height="16" aria-hidden="true">
               <path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15
                 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4
                 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z">
               </path>
             </svg>
-            <span class="underline">支持 Markdown 格式</span>
+            <span>支持 Markdown 格式</span>
           </a>
           <button class="btn btn-primary" type="submit" title="发表评论（Ctrl+Enter）">发表评论</button>
           <a class="btn btn-primary" href="${getLoginUrl(
@@ -73,8 +83,10 @@ export class NewCommentComponent {
     this.avatarAnchor = this.element.firstElementChild as HTMLAnchorElement;
     this.avatar = this.avatarAnchor.firstElementChild as HTMLImageElement;
     this.form = this.avatarAnchor.nextElementSibling as HTMLFormElement;
+    this.textExpander = this.form!.firstElementChild!.nextElementSibling!
+      .firstElementChild! as HTMLElement;
     this.textarea = this.form!.firstElementChild!.nextElementSibling!
-      .firstElementChild as HTMLTextAreaElement;
+      .firstElementChild!.firstElementChild! as HTMLTextAreaElement;
     this.preview = this.form!.firstElementChild!.nextElementSibling!
       .lastElementChild as HTMLDivElement;
     this.signInAnchor = this.form!.lastElementChild!
@@ -90,6 +102,7 @@ export class NewCommentComponent {
     this.form.addEventListener('click', this.handleClick);
     this.form.addEventListener('keydown', this.handleKeyDown);
     handleTextAreaResize(this.textarea);
+    this.textExpand();
   }
 
   public setUser(user: User | null) {
@@ -143,6 +156,45 @@ export class NewCommentComponent {
     }
   };
 
+  private textExpand = () => {
+    this.textExpander.addEventListener('text-expander-change', (event) => {
+      const customEvent = event as CustomEventTextExpanderChange;
+      const { key, provide, text } = customEvent.detail;
+      if (key === '@') {
+        const menu = document.createElement('ul');
+        menu.id = 'option-userList';
+        menu.classList.add(
+          ...['suggester', 'position-absolute', 'list-style-none'],
+        );
+        const commentUserList =
+          (JSON.parse(
+            sessionStorage.getItem('commentUserList') as string,
+          ) as string[]) || [];
+        if (commentUserList?.length > 0) {
+          for (const user of commentUserList) {
+            if (user.toLowerCase().includes(text.toLowerCase())) {
+              const item = document.createElement('li');
+              item.setAttribute('role', 'option');
+              item.textContent = user;
+              item.setAttribute('data-value', user.split(' ')[0]);
+              item.id = `option-${user.split(' ')[0]}`;
+              menu.append(item);
+            }
+          }
+          provide(Promise.resolve({ matched: true, fragment: menu }));
+        }
+      }
+    });
+
+    this.textExpander.addEventListener('text-expander-value', (event) => {
+      const customEvent = event as CustomEventTextExpanderValue;
+      const { key, item } = customEvent.detail;
+      if (key === '@')
+        customEvent.detail.value =
+          item.getAttribute('data-value') || item.textContent;
+    });
+  };
+
   private handleSubmit = async (event: Event) => {
     event.preventDefault();
     if (this.submitting) {
@@ -190,7 +242,7 @@ export class NewCommentComponent {
   };
 }
 
-function handleTextAreaResize(textarea: HTMLTextAreaElement) {
+const handleTextAreaResize = (textarea: HTMLTextAreaElement) => {
   const stopTracking = () => {
     removeEventListener('mousemove', scheduleMeasure);
     removeEventListener('mouseup', stopTracking);
@@ -200,4 +252,4 @@ function handleTextAreaResize(textarea: HTMLTextAreaElement) {
     addEventListener('mouseup', stopTracking);
   };
   textarea.addEventListener('mousedown', track);
-}
+};
