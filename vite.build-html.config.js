@@ -3,7 +3,6 @@ import { posthtmlPlugin } from './vite-plugin-posthtml';
 import expressions from 'posthtml-expressions';
 import include from 'posthtml-include';
 import md from 'posthtml-md';
-import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
 
 export default defineConfig({
@@ -34,15 +33,4 @@ export default defineConfig({
       ],
     }),
   ],
-  css: {
-    postcss: {
-      plugins: [
-        autoprefixer(
-          {
-            overrideBrowserslist: [">1%", "last 2 versions", "not ie < 99", "not ie_mob < 99"],
-          }
-        )
-      ]
-    }
-  }
 });
