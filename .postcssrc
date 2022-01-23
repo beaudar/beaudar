@@ -2,6 +2,9 @@
   "plugins": {
     "postcss-import": true,
     "postcss-url": true,
-    "postcss-custom-properties": true
+    "postcss-custom-properties": true,
+    "autoprefixer": {
+      "overrideBrowserslist": [">1%", "last 2 versions", "not ie < 99", "not ie_mob < 99"]
+    }
   }
 }
