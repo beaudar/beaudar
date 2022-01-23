@@ -200,6 +200,7 @@
 
 .comment-body text-expander {
   position: relative;
+  display: block;
 }
 
 .comment-body .suggester {
