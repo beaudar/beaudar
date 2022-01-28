@@ -170,7 +170,6 @@ export const loadIssueByTerm = (term: string) => {
         return null;
       }
       if (results.total_count > 1) {
-        // tslint:disable-next-line:no-console
         console.warn(`匹配到多个问题 "${q}"`);
       }
       term = term.toLowerCase();
@@ -179,7 +178,6 @@ export const loadIssueByTerm = (term: string) => {
           return result;
         }
       }
-      // tslint:disable-next-line:no-console
       console.warn(`Issue 搜索结果中没有与 "${term}" 标题匹配的评论。`);
       return null;
     });

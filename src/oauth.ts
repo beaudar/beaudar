@@ -7,7 +7,6 @@ export const token = { value: null as null | string };
 
 const pageAttrs = readPageAttributes(location);
 
-// tslint:disable-next-line:variable-name
 export const getLoginUrl = (redirect_uri: string) => {
   return `${BEAUDAR_API}/authorize?${param({ redirect_uri })}`;
 };

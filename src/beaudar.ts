@@ -45,7 +45,6 @@ async function bootstrap() {
     loadTheme(pageAttrs.theme, pageAttrs.origin, pageAttrs.keepTheme);
   }
 
-  // tslint:disable-next-line
   let issue: any, user: any;
   await loadToken();
 

@@ -264,7 +264,6 @@ export class ConfigurationComponent {
       'input[name="mapping"]:checked',
     ) as HTMLInputElement;
     let mappingAttr: string;
-    // tslint:disable-next-line:prefer-conditional-expression
     if (mapping.value === 'issue-number') {
       mappingAttr = this.makeConfigScriptAttribute(
         'issue-number',
@@ -314,25 +313,21 @@ export class ConfigurationComponent {
   }
 
   private makeConfigScriptAttribute(name: string, value: string) {
-    // tslint:disable-next-line:max-line-length
     return `<span class="pl-s1">        <span class="pl-e">${name}</span>=<span class="pl-s"><span class="pl-pds">"</span>${value}<span class="pl-pds">"</span></span></span>`;
   }
 
   private makeConfigScript(attrs: string) {
-    // tslint:disable-next-line:max-line-length
     return `<pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://beaudar.lipk.org/client.js<span class="pl-pds">"</span></span></span>\n${attrs}\n<span class="pl-s1">        <span class="pl-e">async</span>&gt;</span>\n<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre>`;
   }
 
   private copyTextToClipboard(text: string) {
     const textArea = document.createElement('textarea');
-    // tslint:disable-next-line:max-line-length
     textArea.style.cssText = `position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent`;
     textArea.value = text;
     document.body.appendChild(textArea);
     textArea.select();
     try {
       document.execCommand('copy');
-      // tslint:disable-next-line:no-empty
     } catch (err) {}
     document.body.removeChild(textArea);
   }
