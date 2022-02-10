@@ -92,21 +92,25 @@ export class CommentComponent {
         <div class="markdown-body markdown-body-scrollable">
           ${body_html}
         </div>
-        <div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
-      reactions.url
-    }">
-          ${footerReactionsMenu}
-          <form class="reaction-list BtnGroup" action="javascript:">
-            ${ReactionTypes.map((id) =>
-              getReactionHtml(
-                reactions.url,
-                id,
-                !currentUser || locked,
-                reactions[id],
-              ),
-            ).join('')}
-          </form>
-        </div>
+        ${
+          reactionCount > 0
+            ? `<div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
+                reactions.url
+              }">
+              ${footerReactionsMenu}
+              <form class="reaction-list BtnGroup" action="javascript:">
+                ${ReactionTypes.map((id) =>
+                  getReactionHtml(
+                    reactions.url,
+                    id,
+                    !currentUser || locked,
+                    reactions[id],
+                  ),
+                ).join('')}
+              </form>
+            </div>`
+            : ''
+        }
       </div>`;
 
     const markdownBody = this.element.querySelector('.markdown-body')!;
