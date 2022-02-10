@@ -4,8 +4,7 @@ import {
   ReactionTypes,
 } from '../constant-data';
 import { IssueComment } from '../type-declare';
-import { timeAgo } from '../utils';
-import { scheduleMeasure } from '../measure';
+import { processRenderedMarkdown, timeAgo } from '../utils';
 import {
   getReactionsMenuHtml,
   getReactionHtml,
@@ -93,21 +92,25 @@ export class CommentComponent {
         <div class="markdown-body markdown-body-scrollable">
           ${body_html}
         </div>
-        <div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
-      reactions.url
-    }">
-          ${footerReactionsMenu}
-          <form class="reaction-list BtnGroup" action="javascript:">
-            ${ReactionTypes.map((id) =>
-              getReactionHtml(
-                reactions.url,
-                id,
-                !currentUser || locked,
-                reactions[id],
-              ),
-            ).join('')}
-          </form>
-        </div>
+        ${
+          reactionCount > 0
+            ? `<div class="comment-footer" reaction-count="${reactionCount}" reaction-url="${
+                reactions.url
+              }">
+              ${footerReactionsMenu}
+              <form class="reaction-list BtnGroup" action="javascript:">
+                ${ReactionTypes.map((id) =>
+                  getReactionHtml(
+                    reactions.url,
+                    id,
+                    !currentUser || locked,
+                    reactions[id],
+                  ),
+                ).join('')}
+              </form>
+            </div>`
+            : ''
+        }
       </div>`;
 
     const markdownBody = this.element.querySelector('.markdown-body')!;
@@ -139,33 +142,4 @@ export class CommentComponent {
       this.element.classList.remove('current-user');
     }
   }
-}
-
-export function processRenderedMarkdown(markdownBody: Element) {
-  Array.from(
-    markdownBody.querySelectorAll<HTMLAnchorElement>(
-      ':not(.email-hidden-toggle) > a',
-    ),
-  ).forEach((a) => {
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-  });
-  Array.from(markdownBody.querySelectorAll<HTMLImageElement>('img')).forEach(
-    (img) => {
-      img.onload = scheduleMeasure;
-      img.title = img.alt;
-      const imgSrc =
-        img.getAttribute('data-canonical-src') ??
-        (img.getAttribute('src') as string);
-      img.src = imgSrc;
-      const parent = img.parentElement;
-      if (parent!.nodeName === 'A') {
-        // @ts-ignore
-        parent.href = imgSrc;
-      }
-    },
-  );
-  Array.from(
-    markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'),
-  ).forEach((a) => (a.href = 'https://github.com' + a.pathname));
 }

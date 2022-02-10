@@ -1,4 +1,5 @@
 import { Thresholds, FormatOptions, RepoRegex } from './constant-data';
+import { scheduleMeasure } from './measure';
 import { PageAttrs } from './type-declare';
 
 export const timeAgo = (current: number, value: Date) => {
@@ -45,7 +46,6 @@ export const decodeParam = (query: string): Record<string, string> => {
   const search = /([^&=]+)=?([^&]*)/g;
   const decode = (s: string) => decodeURIComponent(s.replace(plus, ' '));
   const params: Record<string, string> = {};
-  // tslint:disable-next-line:no-conditional-assignment
   while ((match = search.exec(query))) {
     params[decode(match[1])] = decode(match[2]);
   }
@@ -140,4 +140,33 @@ export const setCommentUserList = (userLogin: string | undefined) => {
     commentUserList.push(`@${userLogin}`);
     sessionStorage.setItem('commentUserList', JSON.stringify(commentUserList));
   }
+};
+
+export const processRenderedMarkdown = (markdownBody: Element) => {
+  Array.from(
+    markdownBody.querySelectorAll<HTMLAnchorElement>(
+      ':not(.email-hidden-toggle) > a',
+    ),
+  ).forEach((a) => {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+  Array.from(markdownBody.querySelectorAll<HTMLImageElement>('img')).forEach(
+    (img) => {
+      img.onload = scheduleMeasure;
+      img.title = img.alt;
+      const imgSrc =
+        img.getAttribute('data-canonical-src') ??
+        (img.getAttribute('src') as string);
+      img.src = imgSrc;
+      const parent = img.parentElement;
+      if (parent!.nodeName === 'A') {
+        // @ts-ignore
+        parent.href = imgSrc;
+      }
+    },
+  );
+  Array.from(
+    markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'),
+  ).forEach((a) => (a.href = 'https://github.com' + a.pathname));
 };
