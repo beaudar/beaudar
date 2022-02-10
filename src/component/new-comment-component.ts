@@ -5,7 +5,7 @@ import {
   User,
 } from '../type-declare';
 import { scheduleMeasure } from '../measure';
-import { processRenderedMarkdown } from './comment-component';
+import { processRenderedMarkdown } from '../utils';
 import { getLoginUrl } from '../oauth';
 import { BeaudarAvatarUrl, NothingToPreview } from '../constant-data';
 import '../../node_modules/@github/text-expander-element';
