@@ -1,22 +1,13 @@
-import { param, decodeParam } from './utils';
 import { ResizeMessage } from './type-declare';
 import { PreferredThemeId, PreferredTheme } from './constant-data';
 
+const url = new URL(location.href);
 // slice session from query string
-const params = decodeParam(location.search.substring(1));
-const session = params.beaudar;
+const session = url.searchParams.get('beaudar');
 if (session) {
   localStorage.setItem('beaudar-session', session);
-  delete params.beaudar;
-  let search = param(params);
-  if (search.length) {
-    search = '?' + search;
-  }
-  history.replaceState(
-    undefined,
-    document.title,
-    location.pathname + search + location.hash,
-  );
+  url.searchParams.delete('beaudar');
+  history.replaceState(undefined, document.title, url.href);
 }
 
 let script = document.currentScript as HTMLScriptElement;
@@ -46,12 +37,12 @@ const canonicalLink = document.querySelector(
 ) as HTMLLinkElement;
 attrs.url = canonicalLink
   ? canonicalLink.href
-  : location.origin + location.pathname + location.search;
-attrs.origin = location.origin;
+  : url.origin + url.pathname + url.search;
+attrs.origin = url.origin;
 attrs.pathname =
-  location.pathname.length < 2
+  url.pathname.length < 2
     ? 'index'
-    : location.pathname.substring(1).replace(/\.\w+$/, '');
+    : url.pathname.substring(1).replace(/\.\w+$/, '');
 attrs.title = document.title;
 const descriptionMeta = document.querySelector(
   `meta[name='description']`,
@@ -95,11 +86,11 @@ document.head.insertAdjacentHTML(
 const beaudarOrigin = script.src.match(
   /^https:\/\/beaudar.lipk\.org|http:\/\/localhost:\d+/,
 )![0];
-const url = `${beaudarOrigin}/beaudar.html`;
+const frameUrl = `${beaudarOrigin}/beaudar.html`;
 script.insertAdjacentHTML(
   'afterend',
   `<div class="beaudar">
-    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${url}?${param(
+    <iframe class="beaudar-frame" title="Comments" scrolling="no" src="${frameUrl}?${new URLSearchParams(
     attrs,
   )}" loading="lazy"></iframe>
   </div>`,

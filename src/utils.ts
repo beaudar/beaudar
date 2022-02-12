@@ -40,32 +40,8 @@ export const decodeBase64UTF8 = (encoded: string) => {
   return decodeURIComponent(window.atob(encoded));
 };
 
-export const decodeParam = (query: string): Record<string, string> => {
-  let match: RegExpExecArray | null;
-  const plus = /\+/g;
-  const search = /([^&=]+)=?([^&]*)/g;
-  const decode = (s: string) => decodeURIComponent(s.replace(plus, ' '));
-  const params: Record<string, string> = {};
-  while ((match = search.exec(query))) {
-    params[decode(match[1])] = decode(match[2]);
-  }
-  return params;
-};
-
-export const param = (obj: Record<string, string>) => {
-  const parts = [];
-  for (const name in obj) {
-    if (obj.hasOwnProperty(name) && obj[name]) {
-      parts.push(
-        `${encodeURIComponent(name)}=${encodeURIComponent(obj[name])}`,
-      );
-    }
-  }
-  return parts.join('&');
-};
-
 export const readPageAttributes = (location: Location): PageAttrs => {
-  const params = decodeParam(location.search.substring(1));
+  const params = Object.fromEntries(new URL(location.href).searchParams);
 
   let issueTerm: string | null = null;
   let issueNumber: number | null = null;

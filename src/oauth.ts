@@ -1,6 +1,6 @@
 import { BEAUDAR_API } from './constant-data';
 import { removeLoadingElement } from './beaudar-loading';
-import { param, readPageAttributes } from './utils';
+import { readPageAttributes } from './utils';
 import { NewErrorComponent } from './component/new-error-component';
 
 export const token = { value: null as null | string };
@@ -8,7 +8,7 @@ export const token = { value: null as null | string };
 const pageAttrs = readPageAttributes(location);
 
 export const getLoginUrl = (redirect_uri: string) => {
-  return `${BEAUDAR_API}/authorize?${param({ redirect_uri })}`;
+  return `${BEAUDAR_API}/authorize?${new URLSearchParams({ redirect_uri })}`;
 };
 
 export async function loadToken() {
