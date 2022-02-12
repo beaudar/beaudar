@@ -20,9 +20,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: yarn install
-      - name: run build
-        run: sudo npm run build
+      - run: npm install
+      - run: sudo npm run build
       - name: ssh-deploy
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
