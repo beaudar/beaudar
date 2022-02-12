@@ -2,10 +2,9 @@
 
 ### 本地运行
 
-**Node** 版本 v14
+**Node** 版本 v16
 
-1. 安装 yarn: [https://yarnpkg.com](https://yarnpkg.com)
-2. 克隆仓库
+1. 克隆仓库
 
 ```bash
 git clone https://github.com/beaudar/beaudar
@@ -15,13 +14,13 @@ git clone https://github.com/beaudar/beaudar
 
 ```bash
 cd beaudar
-yarn install
+npm install
 ```
 
 4. 运行
 
 ```bash
-yarn start
+npm start
 ```
 
 此命令将会编译源文件并启动开发 Web 服务器。 对源 TypeScript，HTML 和 CSS 文件所做的任何更改都会自动重新编译。

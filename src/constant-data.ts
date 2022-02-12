@@ -10,8 +10,7 @@ export const GITHUB_API = 'https://api.github.com/';
 export const GITHUB_ENCODING__HTML_JSON =
   'application/vnd.github.VERSION.html+json';
 export const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
-export const GITHUB_ENCODING__REACTIONS_PREVIEW =
-  'application/vnd.github.squirrel-girl-preview';
+export const GITHUB_ENCODING__REST_V3 = 'application/vnd.github.v3+json';
 
 export const PreferredThemeId = 'preferred-color-scheme';
 
