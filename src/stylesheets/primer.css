@@ -1348,7 +1348,6 @@ Box shadows */
   color: inherit;
 }
 
-.btn-outline:active,
 .btn-outline.selected,
 .btn-outline[aria-selected='true'] {
   color: var(--text-white);
