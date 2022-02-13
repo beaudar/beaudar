@@ -66,8 +66,8 @@
    ========================================================================== */
 .timeline {
   max-width: 760px;
-  margin: var(--spacer-3) auto;
-  padding: 0 var(--spacer-1);
+  margin: auto;
+  padding: 0 var(--spacer-1) var(--spacer-3);
 }
 
 .timeline-header {
