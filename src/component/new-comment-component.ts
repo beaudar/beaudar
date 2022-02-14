@@ -8,7 +8,7 @@ import { scheduleMeasure } from '../measure';
 import { processRenderedMarkdown } from '../utils';
 import { getLoginUrl } from '../oauth';
 import { BeaudarAvatarUrl, NothingToPreview } from '../constant-data';
-import '../../node_modules/@github/text-expander-element';
+import '@github/text-expander-element';
 import { readPageAttributes } from '../utils';
 
 const pageAttrs = readPageAttributes(location);
