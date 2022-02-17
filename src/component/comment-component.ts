@@ -5,7 +5,7 @@ import {
 } from '../constant-data';
 import { IssueComment } from '../type-declare';
 import { processRenderedMarkdown, timeAgo } from '../utils';
-import {} from '../reactions';
+import { getReactionsMenuHtml, getSignInToReactMenuHtml1 } from '../reactions';
 
 export class CommentComponent {
   public readonly element: HTMLElement;
