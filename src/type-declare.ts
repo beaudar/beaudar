@@ -176,3 +176,12 @@ export interface CreateMsgElement {
   helpHash: string;
   reload?: boolean;
 }
+
+export interface CreateIssue {
+  issueTerm: string;
+  documentUrl: string;
+  title: string;
+  description: string;
+  label?: string;
+  issueLabel: string | null;
+}

@@ -1,5 +1,5 @@
 import { token } from './oauth';
-import { decodeBase64UTF8, readPageAttributes } from './utils';
+import { decodeBase64UTF8, labelSubstring, readPageAttributes } from './utils';
 import {
   BEAUDAR_API,
   PAGE_SIZE,
@@ -18,6 +18,7 @@ import {
   User,
   Reaction,
   RepoConfig,
+  CreateIssue,
 } from './type-declare';
 import { removeLoadingElement } from './beaudar-loading';
 
@@ -156,9 +157,9 @@ export const loadJsonFile = <T>(path: string, html = false) => {
 export const loadIssueByTerm = (term: string) => {
   let issueLabel = ' ';
   if (pageAttrs.issueLabel) {
-    issueLabel = `label:"${pageAttrs.issueLabel}"`;
+    issueLabel = ` label:"${pageAttrs.issueLabel}" `;
   }
-  const q = `"${term}" type:issue in:title${issueLabel}repo:${pageAttrs.owner}/${pageAttrs.repo}`;
+  const q = `"${term}" in:title is:issue${issueLabel}repo:${pageAttrs.owner}/${pageAttrs.repo}`;
   const request = githubRequest(
     `search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`,
   );
@@ -232,24 +233,20 @@ export const loadUser = (): Promise<User | null> => {
   });
 };
 
-export const createIssue = (
-  issueTerm: string,
-  documentUrl: string,
-  title: string,
-  description: string,
-  label: string,
-) => {
-  if (label && label.length > 50) {
-    // Github label 最长 50 字符
-    label = label.substring(0, 49).concat('…');
-  }
+export const createIssue = (args: CreateIssue) => {
+  const { issueTerm, documentUrl, title, description, label, issueLabel } =
+    args;
 
-  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${
-    pageAttrs.repo
-  }/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
+  const labels: string[] = [];
+
+  labels.push(labelSubstring(label), labelSubstring(issueLabel));
+  labels.filter((item) => item);
+
+  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
+      labels, // 此字段将在 https://github.com/beaudar/beaudar-oauth 的 postIssueRequestHandler 方法中使用
       title: issueTerm,
       body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`,
     }),
@@ -260,6 +257,7 @@ export const createIssue = (
     if (response === undefined || !response.ok) {
       throw new Error(`创建评论 issue 时出错`);
     }
+
     return response.json();
   });
 };

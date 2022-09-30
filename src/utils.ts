@@ -160,3 +160,17 @@ export const processRenderedMarkdown = (markdownBody: Element) => {
     markdownBody.querySelectorAll<HTMLAnchorElement>('a.commit-tease-sha'),
   ).forEach((a) => (a.href = 'https://github.com' + a.pathname));
 };
+
+export const labelSubstring = (labelValue?: string | null) => {
+  let label = '';
+  if (labelValue) {
+    if (labelValue.length > 50) {
+      // Github label 最长 50 字符
+      label = labelValue.substring(0, 49).concat('…');
+    } else {
+      label = labelValue;
+    }
+  }
+
+  return label;
+};

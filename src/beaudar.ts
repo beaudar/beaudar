@@ -89,13 +89,15 @@ async function bootstrap() {
   const submit = async (markdown: string) => {
     await getRepoConfig();
     if (!issue) {
-      issue = await createIssue(
-        pageAttrs.issueTerm as string,
-        pageAttrs.url,
-        pageAttrs.title,
-        pageAttrs.description || '',
-        pageAttrs.label,
-      );
+      issue = await createIssue({
+        issueTerm: pageAttrs.issueTerm as string,
+        documentUrl: pageAttrs.url,
+        title: pageAttrs.title,
+        description: pageAttrs.description || '',
+        label: pageAttrs.label,
+        issueLabel: pageAttrs.issueLabel,
+      });
+
       timeline.setIssue(issue);
     }
     const comment = await postComment(issue.number, markdown);
