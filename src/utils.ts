@@ -44,6 +44,7 @@ export const readPageAttributes = (location: Location): PageAttrs => {
   const params = Object.fromEntries(new URL(location.href).searchParams);
 
   let issueTerm: string | null = null;
+  let issueLabel: string | null = null;
   let issueNumber: number | null = null;
   if ('issue-term' in params) {
     issueTerm = params['issue-term'];
@@ -53,7 +54,7 @@ export const readPageAttributes = (location: Location): PageAttrs => {
       }
       if (['title', 'url', 'pathname', 'og:title'].indexOf(issueTerm) !== -1) {
         if (!params[issueTerm]) {
-          throw new Error(`找不到 "${issueTerm}" 这个 issue 的信息`);
+          throw new Error(`找不到 "${issueTerm}" 这个值的信息`);
         }
         issueTerm = params[issueTerm];
       }
@@ -80,11 +81,24 @@ export const readPageAttributes = (location: Location): PageAttrs => {
     throw new Error(`无效的仓库 repo: "${params.repo}"`);
   }
 
+  if ('issue-label' in params) {
+    issueLabel = params['issue-label'];
+    if (issueLabel !== undefined) {
+      if (['url', 'pathname'].indexOf(issueLabel) !== -1) {
+        if (!params[issueLabel]) {
+          throw new Error(`找不到 "${issueLabel}" 这个值的信息`);
+        }
+        issueLabel = params[issueLabel];
+      }
+    }
+  }
+
   return {
     owner: matches[1],
     repo: matches[2],
     branch: params.branch || 'master',
     issueTerm,
+    issueLabel,
     issueNumber,
     origin: params.origin,
     url: params.url,

@@ -1,5 +1,6 @@
 import { scheduleMeasure } from '../measure';
 import { readPageAttributes } from '../utils';
+import { CreateMsgElement } from '../type-declare';
 
 const pageAttrs = readPageAttributes(location);
 
@@ -60,12 +61,9 @@ export class NewErrorComponent {
    * @param helpHash 错误信息锚点
    * @param reload 是否显示刷新按钮
    */
-  public createMsgElement(
-    header: string,
-    body: string,
-    helpHash: string,
-    reload?: boolean,
-  ) {
+  public createMsgElement(args: CreateMsgElement) {
+    const { header, body, helpHash, reload } = args;
+
     let reloadButtonStr = '';
     let qaLink = '';
     if (reload) {
