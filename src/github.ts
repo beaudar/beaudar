@@ -235,6 +235,11 @@ export const createIssue = (
   description: string,
   label: string,
 ) => {
+  if (label && label.length > 50) {
+    // Github label 最长 50 字符
+    label = label.substring(0, 49).concat("…");
+  }
+
   const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${
     pageAttrs.repo
   }/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
