@@ -1,5 +1,5 @@
 import { token } from './oauth';
-import { decodeBase64UTF8, readPageAttributes } from './utils';
+import { decodeBase64UTF8, labelSubstring, readPageAttributes } from './utils';
 import {
   BEAUDAR_API,
   PAGE_SIZE,
@@ -18,6 +18,7 @@ import {
   User,
   Reaction,
   RepoConfig,
+  CreateIssue,
 } from './type-declare';
 import { removeLoadingElement } from './beaudar-loading';
 
@@ -70,12 +71,12 @@ const processRateLimit = (response: Response) => {
     );
     const apiType = isSearch ? 'search API' : 'non-search APIs';
     const errorElement = new NewErrorComponent();
-    errorElement.createMsgElement(
-      `获取评论数据失败`,
-      `<p>超出了 ${apiType} 的速率限制，在 ${mins} 分钟后重置</p>`,
-      '',
-      true,
-    );
+    errorElement.createMsgElement({
+      header: `获取评论数据失败`,
+      body: `<p>超出了 ${apiType} 的速率限制，在 ${mins} 分钟后重置</p>`,
+      helpHash: '',
+      reload: true,
+    });
   }
 };
 
@@ -129,11 +130,11 @@ export const loadJsonFile = <T>(path: string, html = false) => {
     .then<FileContentsResponse | string>((response) => {
       if (response.status === 404) {
         const errorElement = new NewErrorComponent();
-        errorElement.createMsgElement(
-          `缺少 "${path}" 配置`,
-          `<p>在存储库 "${pageAttrs.owner}/${pageAttrs.repo}" 中，"${pageAttrs.branch}" 分支下找不到 "${path}"。</p>`,
-          '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
-        );
+        errorElement.createMsgElement({
+          header: `缺少 "${path}" 配置`,
+          body: `<p>在存储库 "${pageAttrs.owner}/${pageAttrs.repo}" 中，"${pageAttrs.branch}" 分支下找不到 "${path}"。</p>`,
+          helpHash: '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
+        });
         throw new Error(
           `在存储库 "${pageAttrs.owner}/${pageAttrs.repo}" 中，"${pageAttrs.branch}" 分支下找不到 "${path}"`,
         );
@@ -154,7 +155,11 @@ export const loadJsonFile = <T>(path: string, html = false) => {
 };
 
 export const loadIssueByTerm = (term: string) => {
-  const q = `"${term}" type:issue in:title repo:${pageAttrs.owner}/${pageAttrs.repo}`;
+  let issueLabel = ' ';
+  if (pageAttrs.issueLabel) {
+    issueLabel = ` label:"${pageAttrs.issueLabel}" `;
+  }
+  const q = `"${term}" in:title is:issue${issueLabel}repo:${pageAttrs.owner}/${pageAttrs.repo}`;
   const request = githubRequest(
     `search/issues?q=${encodeURIComponent(q)}&sort=created&order=asc`,
   );
@@ -228,19 +233,20 @@ export const loadUser = (): Promise<User | null> => {
   });
 };
 
-export const createIssue = (
-  issueTerm: string,
-  documentUrl: string,
-  title: string,
-  description: string,
-  label: string,
-) => {
-  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${
-    pageAttrs.repo
-  }/issues${label ? `?label=${encodeURIComponent(label)}` : ''}`;
+export const createIssue = (args: CreateIssue) => {
+  const { issueTerm, documentUrl, title, description, label, issueLabel } =
+    args;
+
+  const labels: string[] = [];
+
+  labels.push(labelSubstring(label), labelSubstring(issueLabel));
+  labels.filter((item) => item);
+
+  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
+      labels, // 此字段将在 https://github.com/beaudar/beaudar-oauth 的 postIssueRequestHandler 方法中使用
       title: issueTerm,
       body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`,
     }),
@@ -251,6 +257,7 @@ export const createIssue = (
     if (response === undefined || !response.ok) {
       throw new Error(`创建评论 issue 时出错`);
     }
+
     return response.json();
   });
 };
@@ -318,9 +325,9 @@ export async function getRepoConfig() {
   if (beaudarJson.origins.indexOf(pageAttrs.origin) === -1) {
     removeLoadingElement();
     const errorElement = new NewErrorComponent();
-    errorElement.createMsgElement(
-      `错误: <code>${pageAttrs.origin}</code> 评论不允许发布到仓库 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>`,
-      `
+    errorElement.createMsgElement({
+      header: `错误: <code>${pageAttrs.origin}</code> 评论不允许发布到仓库 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>`,
+      body: `
     <p>&emsp;&emsp;请确认 <code>${pageAttrs.owner}/${
         pageAttrs.repo
       }</code> 是本站点评论的正确仓库。如果您拥有此仓库，
@@ -337,8 +344,8 @@ export async function getRepoConfig() {
       2,
     )}</code></pre>
     `,
-      '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
-    );
+      helpHash: '#q缺少-beaudarjson-配置-或-不允许-xxx-发布到-xxxxxx',
+    });
     throw new Error(
       `评论发布被禁止，<code>${pageAttrs.origin}</code> 评论不允许发布到仓库 <code>${pageAttrs.owner}/${pageAttrs.repo}</code>。`,
     );

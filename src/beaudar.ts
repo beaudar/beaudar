@@ -55,18 +55,18 @@ async function bootstrap() {
   } catch (error) {
     removeLoadingElement();
     const errorElement = new NewErrorComponent();
-    errorElement.createMsgElement(
-      `无法从 GitHub 获取数据`,
-      `<ol>
+    errorElement.createMsgElement({
+      header: `无法从 GitHub 获取数据`,
+      body: `<ol>
         <li>点击<code>刷新</code>按钮，尝试解决此问题。</li>
         <li>点击
           <a href="https://github.com/${pageAttrs.owner}/${pageAttrs.repo}/issues" target="_blank">这里</a>
           浏览或提交 Issue。
         </li>
       </ol>`,
-      '#q无法从-github-获取数据',
-      true,
-    );
+      helpHash: '#q无法从-github-获取数据',
+      reload: true,
+    });
     throw new Error(`api.github.com 请求失败。${error}`);
   }
 
@@ -89,13 +89,15 @@ async function bootstrap() {
   const submit = async (markdown: string) => {
     await getRepoConfig();
     if (!issue) {
-      issue = await createIssue(
-        pageAttrs.issueTerm as string,
-        pageAttrs.url,
-        pageAttrs.title,
-        pageAttrs.description || '',
-        pageAttrs.label,
-      );
+      issue = await createIssue({
+        issueTerm: pageAttrs.issueTerm as string,
+        documentUrl: pageAttrs.url,
+        title: pageAttrs.title,
+        description: pageAttrs.description || '',
+        label: pageAttrs.label,
+        issueLabel: pageAttrs.issueLabel,
+      });
+
       timeline.setIssue(issue);
     }
     const comment = await postComment(issue.number, markdown);

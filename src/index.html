@@ -5,7 +5,6 @@
     <meta name="description" content="使用 GitHub issue 的轻量级评论插件。" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="baidu-site-verification" content="VJTgEhbeUg" />
     <link rel="preconnect" href="https://api.github.com" />
     <link rel="preconnect" href="https://avatars3.githubusercontent.com" />
     <link rel="stylesheet" href="./stylesheets/index.css" />
@@ -35,21 +34,6 @@
     <meta name="application-name" content="beaudar" />
     <meta name="msapplication-config" content="icons/browserconfig.xml" />
     <meta property="og:title" content="beaudar" />
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-154705931-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'UA-154705931-2');
-    </script>
   </head>
 
   <body class="index">
@@ -120,6 +104,7 @@
           src="http://localhost:3000/client.ts"
           repo="zsdycs/beaudar-demo"
           issue-term="pathname"
+          issue-label="homepage"
           label="💬 评论"
           theme="github-light"
           keep-theme="true"

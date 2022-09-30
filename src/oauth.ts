@@ -23,12 +23,12 @@ export async function loadToken() {
     body: JSON.stringify(pageAttrs.session),
   }).catch((err) => {
     const errorElement = new NewErrorComponent();
-    errorElement.createMsgElement(
-      `Token 请求失败`,
-      `网络断开或网络不稳定，检查网络连接，点击<code>刷新</code>重试。`,
-      '#qtoken-请求失败',
-      true,
-    );
+    errorElement.createMsgElement({
+      header: `Token 请求失败`,
+      body: `网络断开或网络不稳定，检查网络连接，点击<code>刷新</code>重试。`,
+      helpHash: '#qtoken-请求失败',
+      reload: true,
+    });
 
     removeLoadingElement();
     throw new Error(`token 请求失败，${err}`);

@@ -137,6 +137,7 @@ export interface PageAttrs {
   repo: string;
   branch: string;
   issueTerm: string | null;
+  issueLabel: string | null;
   issueNumber: number | null;
   origin: string;
   url: string;
@@ -167,4 +168,20 @@ export interface CustomEventTextExpanderChange extends Event {
 
 export interface CustomEventTextExpanderValue extends Event {
   detail: { item: HTMLElement; key: string; value: null | string };
+}
+
+export interface CreateMsgElement {
+  header: string;
+  body: string;
+  helpHash: string;
+  reload?: boolean;
+}
+
+export interface CreateIssue {
+  issueTerm: string;
+  documentUrl: string;
+  title: string;
+  description: string;
+  label?: string;
+  issueLabel: string | null;
 }
