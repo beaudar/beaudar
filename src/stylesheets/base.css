@@ -731,3 +731,29 @@ body.index {
   margin: 0px 0px 0px 5px;
   color: #939393;
 }
+
+body.index details summary>h3 {
+  display: inline-block;
+  margin: 0px;
+}
+
+body.index details {
+  padding: 16px 16px 0px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 8px;
+}
+
+body.index details summary {
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px 16px;
+  margin: -16px -16px -1px;
+}
+
+body.index details[open] {
+  padding-bottom: 16px;
+}
+
+body.index details[open] summary {
+  margin-bottom: 16px;
+}
