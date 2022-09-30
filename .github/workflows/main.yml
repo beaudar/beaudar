@@ -22,6 +22,7 @@ jobs:
           node-version: '16'
       - run: |
           npm install
+          npm install -g vite@2.7.13
           sudo vite build --config vite.build-html.config.js
           sudo vite build --config vite.build-script.config.js
       - name: ssh-deploy
