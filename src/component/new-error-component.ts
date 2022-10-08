@@ -1,6 +1,7 @@
 import { scheduleMeasure } from '../measure';
 import { readPageAttributes } from '../utils';
 import { CreateMsgElement } from '../type-declare';
+import { BeaudarAvatarUrl } from '../constant-data';
 
 const pageAttrs = readPageAttributes(location);
 
@@ -10,13 +11,13 @@ export class NewErrorComponent {
   beaudarArticle = `
   <article class="timeline-comment">
     <a class="avatar" href="https://github.com/beaudar" target="_blank">
-      <img alt="@beaudar" height="40" width="40" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-340.png">
+      <img alt="@beaudar" height="40" width="40" src="${BeaudarAvatarUrl}">
     </a>
     <div class="comment">
       <header class="comment-header">
         <span class="comment-meta">
           <a class="smallAvatar" href="https://github.com/beaudar" target="_blank">
-            <img alt="@beaudar" height="20" width="20" src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-340.png">
+            <img alt="@beaudar" height="20" width="20" src="${BeaudarAvatarUrl}">
           </a>
           <strong class="comment-author">Beaudar</strong> 系统消息
         </span>
