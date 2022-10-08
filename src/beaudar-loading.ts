@@ -1,3 +1,4 @@
+import { BeaudarAvatarUrl } from './constant-data';
 import { scheduleMeasure } from './measure';
 
 export const addLoadingStatus = (page: { loading: string }) => {
@@ -15,10 +16,10 @@ export const addLoadingStatus = (page: { loading: string }) => {
       <a href="https://beaudar.lipk.org" target="_blank">
         <div style="position: relative; margin: auto; background-color: rgb(225, 228, 233); border-radius: 50px; width: 100px; height: 100px;">
           <img
-            width="50px"
-            height="50px"
+            width="40px"
+            height="40px"
             style="position: absolute; top: 25px; left: 25px; z-index: 2;"
-            src="https://cdn.jsdelivr.net/gh/beaudar/beaudar/src/icons/Beaudar-240.png"
+            src="${BeaudarAvatarUrl}"
             alt="Beaudar(表达)"
             title="Beaudar(表达)"
           />
