@@ -1,6 +1,6 @@
 import { CommentAuthorAssociation, ReactionID } from './type-declare';
 
-export const BEAUDAR_API = 'https://api.lipk.org';
+export const BEAUDAR_API = 'http://api.lipk.org';
 
 export const PAGE_SIZE = 10;
 
