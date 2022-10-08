@@ -98,7 +98,7 @@ export const readPageAttributes = (location: Location): PageAttrs => {
     repo: matches[2],
     branch: params.branch || 'master',
     issueTerm,
-    issueLabel: labelSubstring(params.issueLabel),
+    issueLabel: labelSubstring(issueLabel),
     issueNumber,
     origin: params.origin,
     url: params.url,
