@@ -1,5 +1,5 @@
 import { token } from './oauth';
-import { decodeBase64UTF8, labelSubstring, readPageAttributes } from './utils';
+import { decodeBase64UTF8, readPageAttributes } from './utils';
 import {
   BEAUDAR_API,
   PAGE_SIZE,
@@ -239,7 +239,7 @@ export const createIssue = (args: CreateIssue) => {
 
   const labels: string[] = [];
 
-  labels.push(labelSubstring(label), labelSubstring(issueLabel));
+  labels.push(label || '', issueLabel || '');
   labels.filter((item) => item);
 
   const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
