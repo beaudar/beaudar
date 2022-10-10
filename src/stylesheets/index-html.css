@@ -1,0 +1,68 @@
+/* index-html
+   ========================================================================== */
+
+body.index {
+  background-color: var(--bg-white);
+}
+
+.code-action {
+  float: right;
+  margin-top: -(var(--spacer-2));
+  margin-bottom: var(--spacer-3);
+}
+
+.clear-both {
+  clear: both;
+}
+
+.copyright {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.copyright a {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 100;
+}
+
+.copyright img {
+  float: left;
+}
+
+.copyright p {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  margin: 0px 0px 0px 5px;
+  color: #939393;
+}
+
+body.index details summary>h3 {
+  display: inline-block;
+  margin: 0px;
+}
+
+body.index details {
+  padding: 16px 16px 0px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 8px;
+}
+
+body.index details summary {
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px 16px;
+  margin: -16px -16px -1px;
+}
+
+body.index details[open] {
+  padding-bottom: 16px;
+}
+
+body.index details[open] summary {
+  margin-bottom: 16px;
+}
