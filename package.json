@@ -17,10 +17,10 @@
     "url": "https://github.com/beaudar/beaudar.git"
   },
   "scripts": {
-    "start": "vite serve --config vite.dev-server.config.js --host",
+    "start": "vite serve --config ./config/vite.dev-server.config.js --host",
     "build": "npm run build-html && npm run build-script",
-    "build-html": "vite build --config vite.build-html.config.js",
-    "build-script": "vite build --config vite.build-script.config.js",
+    "build-html": "vite build --config ./config/vite.build-html.config.js",
+    "build-script": "vite build --config ./config/vite.build-script.config.js",
     "lint": "eslint -c .eslintrc.js --ext .ts",
     "predeploy": "yarn run build && echo beaudar.lipk.org > dist/CNAME",
     "deploy": "gh-pages --dist dist"
