@@ -8,6 +8,8 @@ export default defineConfig({
   root: 'src',
   server: {
     open: true,
+    port: 3000,
+    host: "0.0.0.0",
   },
   plugins: [
     posthtmlPlugin({

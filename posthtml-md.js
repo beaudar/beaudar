@@ -4,7 +4,7 @@
  */
 // const marked = require('marked');
 // const posthtml = require('posthtml');
-import marked from 'marked';
+import { marked } from 'marked';
 import posthtml from 'posthtml';
 const parser = posthtml();
 
