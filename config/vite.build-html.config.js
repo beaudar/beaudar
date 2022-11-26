@@ -6,16 +6,16 @@ import md from './posthtml-md';
 import { resolve } from 'path';
 
 export default defineConfig({
-  root: 'src',
+  root: resolve(__dirname, '../src'),
   build: {
     emptyOutDir: false,
     rollupOptions: {
       input: [
-        resolve(__dirname, 'src/index.html'),
-        resolve(__dirname, 'src/beaudar.html'),
+        resolve(__dirname, '../src/index.html'),
+        resolve(__dirname, '../src/beaudar.html'),
       ],
       output: {
-        dir: 'dist',
+        dir: resolve(__dirname, '../dist'),
       },
     },
   },
@@ -23,7 +23,7 @@ export default defineConfig({
     posthtmlPlugin({
       plugins: [
         expressions({
-          root: __dirname,
+          root: resolve(__dirname),
           locals: {
             NODE_ENV: process.env.NODE_ENV,
           },

@@ -5,7 +5,7 @@ import include from 'posthtml-include';
 import md from './posthtml-md';
 
 export default defineConfig({
-  root: 'src',
+  root: resolve(__dirname, '../src'),
   server: {
     open: true,
     port: 3000,
@@ -15,7 +15,7 @@ export default defineConfig({
     posthtmlPlugin({
       plugins: [
         expressions({
-          root: __dirname,
+          root: resolve(__dirname),
           locals: {
             NODE_ENV: process.env.NODE_ENV,
           },
