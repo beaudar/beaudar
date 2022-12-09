@@ -6,16 +6,13 @@
   --gray-000: #181818;
   --gray-100: #2b303b;
   --gray-200: #24292e;
-  --RGB_gray-200: 36, 41, 46;
+  --border-shadow-color: rgba(36, 41, 46, 0.2);
   --gray-300: #4e4c4b;
   --gray-400: #586069;
-  --RGB_gray-400: 88, 96, 105;
   --gray-600: #bbbbbb;
-  --RGB_gray-600: 187, 187, 187;
   --gray-700: #959da5;
   --gray-900: #24292e;
   --bg-white: #222129;
-  --RGB_bg-white: 34, 33, 41;
   --bg-gray: var(--gray-100);
   --bg-gray-light: var(--bg-gray);
   --border-gray: var(--gray-300);

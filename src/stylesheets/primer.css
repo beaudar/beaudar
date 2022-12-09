@@ -73,20 +73,15 @@
 
   /* Black based on same hue as --gray-900 */
   --black: #1b1f23;
-  --RGB_black: 27, 31, 35;
   --white: #fff;
-  --RGB_white: 255, 255, 255;
   /* -------- Grays -------- */
   --gray-000: #fafbfc;
   --gray-100: #f6f8fa;
   --gray-200: #e1e4e8;
-  --RGB_gray-200: 225, 228, 232;
   --gray-300: #d1d5da;
   --gray-400: #959da5;
-  --RGB_gray-400: 149, 157, 165;
   --gray-500: #6a737d;
   --gray-600: #586069;
-  --RGB_gray-600: 88, 96, 105;
   --gray-700: #444d56;
   --gray-800: #2f363d;
   --gray-900: #24292e;
@@ -96,16 +91,12 @@
   --blue-100: #dbedff;
   --blue-200: #c8e1ff;
   --blue-300: #79b8ff;
-  --RGB_blue-300: 121, 184, 255;
   --blue-400: #2188ff;
   --blue-500: #0366d6;
-  --RGB_blue-500: 3, 102, 214;
   --blue-600: #005cc5;
   --blue-700: #044289;
-  --RGB_blue-700: 4, 66, 137;
   --blue-800: #032f62;
   --blue-900: #05264c;
-  --RGB_blue-900: 5, 38, 76;
 
   /* -------- Green -------- */
   --green-000: #f0fff4;
@@ -116,10 +107,8 @@
   --green-500: #28a745;
   --green-600: #22863a;
   --green-700: #176f2c;
-  --RGB_green-700: 23, 111, 44;
   --green-800: #165c26;
   --green-900: #144620;
-  --RGB_green-900: 20, 70, 32;
 
   /* -------- Yellow -------- */
   --yellow-000: #fffdef;
@@ -131,7 +120,6 @@
   --yellow-600: #f9c513;
   --yellow-700: #dbab09;
   --yellow-800: #b08800;
-  --RGB_yellow-800: 176, 136, 0;
   --yellow-900: #735c0f;
 
   /* -------- Orange -------- */
@@ -154,12 +142,9 @@
   --red-400: #ea4a5a;
   --red-500: #d73a49;
   --red-600: #cb2431;
-  --RGB_red-600: 203, 36, 49;
   --red-700: #b31d28;
   --red-800: #9e1c23;
-  --RGB_red-800: 158, 28, 35;
   --red-900: #86181d;
-  --RGB_red-900: 134, 24, 29;
 
   /* -------- Purple -------- */
   --purple-000: #f5f0ff;
@@ -186,23 +171,22 @@
   --pink-900: #6d224f;
 
   /* -------- Fades -------- */
-  --black-fade-15: rgba(var(--RGB_black), 0.15);
-  --black-fade-30: rgba(var(--RGB_black), 0.3);
-  --black-fade-50: rgba(var(--RGB_black), 0.5);
-  --black-fade-70: rgba(var(--RGB_black), 0.7);
-  --black-fade-85: rgba(var(--RGB_black), 0.85);
+  --black-fade-15: rgba(27, 31, 35, 0.15);
+  --black-fade-30: rgba(27, 31, 35, 0.3);
+  --black-fade-50: rgba(27, 31, 35, 0.5);
+  --black-fade-70: rgba(27, 31, 35, 0.7);
+  --black-fade-85: rgba(27, 31, 35, 0.85);
 
-  --white-fade-15: rgba(var(--RGB_white), 0.15);
-  --white-fade-30: rgba(var(--RGB_white), 0.3);
-  --white-fade-50: rgba(var(--RGB_white), 0.5);
-  --white-fade-70: rgba(var(--RGB_white), 0.7);
-  --white-fade-85: rgba(var(--RGB_white), 0.85);
+  --white-fade-15: rgba(255, 255, 255, 0.15);
+  --white-fade-30: rgba(255, 255, 255, 0.3);
+  --white-fade-50: rgba(255, 255, 255, 0.5);
+  --white-fade-70: rgba(255, 255, 255, 0.7);
+  --white-fade-85: rgba(255, 255, 255, 0.85);
 
   /* -------- Color defaults -------- */
   --red: var(--red-500);
   --purple: var(--purple-500);
   --blue: var(--blue-500);
-  --RGB_blue: var(--RGB_blue-500);
   --green: var(--green-500);
   --yellow: var(--yellow-500);
   --orange: var(--orange-500);
@@ -219,9 +203,7 @@
   --border-gray-darker: var(--gray-700);
   --border-gray-light: var(--gray-200);
   --border-gray: var(--gray-200);
-  --RGB_border-gray: var(--RGB_gray-200);
   --border-blue: var(--blue-500);
-  --RGB_border-blue: var(--RGB_blue-500);
   --border-blue-light: var(--blue-200);
   --border-green: var(--green-400);
   --border-green-light: var(--green-300);
@@ -232,7 +214,6 @@
 
   /* Background colors */
   --bg-white: var(--white);
-  --RGB_bg-white: var(--RGB_white);
   --bg-black: var(--black);
   --bg-black-fade: var(--black-fade-50);
   --bg-blue-light: var(--blue-000);
@@ -255,7 +236,6 @@
   /* Text colors */
   --text-black: var(--black);
   --text-white: var(--white);
-  --RGB_text-white: var(--RGB_white);
   --text-blue: var(--blue-500);
   --text-gray-dark: var(--gray-900);
   --text-gray-light: var(--gray-500);
@@ -266,7 +246,6 @@
   --text-purple: var(--purple);
   --text-pink: var(--pink-500);
   --text-red: var(--red-600);
-  --RGB_text-red: var(--RGB_red-600);
   --text-yellow: var(--yellow-800);
   /* Layout variables */
 
@@ -338,7 +317,7 @@
   /* Border */
   --border-width: 1px;
   --border-color: var(--border-gray);
-  --RGB_border-color: var(--RGB_border-gray);
+  --border-shadow-color: rgba(225, 228, 232, 0.2);
   --border-style: solid;
   --border: var(--border-width) var(--border-color) var(--border-style);
 
@@ -349,26 +328,26 @@
   --border-radius: var(--border-radius-2);
 
   /* Box shadow */
-  --box-shadow: 0 1px 0 rgba(var(--RGB_black), 0.04);
-  --box-shadow-medium: 0 3px 6px rgba(var(--RGB_gray-400), 0.15);
-  --box-shadow-large: 0 8px 24px rgba(var(--RGB_gray-400), 0.2);
-  --box-shadow-extra-large: 0 12px 48px rgba(var(--RGB_gray-400), 0.3);
+  --box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04);
+  --box-shadow-medium: 0 3px 6px var(--border-shadow-color);
+  --box-shadow-large: 0 8px 24px var(--border-shadow-color);
+  --box-shadow-extra-large: 0 12px 48px var(--border-shadow-color);
 
-  --box-shadow-highlight: inset 0 1px 0 rgba(var(--RGB_white), 0.25);
-  --box-shadow-inset: inset 0 1px 0 rgba(var(--RGB_border-color), 0.2);
-  --box-shadow-focus: 0 0 0 3px rgba(var(--RGB_border-blue), 0.3);
+  --box-shadow-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --box-shadow-inset: inset 0 1px 0 var(--border-shadow-color);
+  --box-shadow-focus: 0 0 0 3px rgba(3, 102, 214, 0.3);
 
   /* Button variables */
   --border-color-button: var(--black-fade-15);
   --btn-active-shadow: inset 0 0.15em 0.3em var(--black-fade-15);
 
   /* Form variables */
-  --form-control-shadow: inset 0 1px 2px rgba(var(--RGB_black), 0.075);
-  --btn-input-focus-shadow: 0 0 0 0.2em rgba(var(--RGB_blue), 0.3);
+  --form-control-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
+  --btn-input-focus-shadow: 0 0 0 0.2em rgba(3, 102, 214, 0.3);
 
   /* Tooltips */
   --tooltip-max-width: 250px;
-  --tooltip-background-color: var(--RGB_black);
+  --tooltip-background-color: 27, 31, 35;
   --tooltip-text-color: var(--white);
   --tooltip-delay: 0.4s;
   --tooltip-duration: 0.1s;
@@ -1215,17 +1194,15 @@ Box shadows */
 
 .btn-primary {
   --bg-default: #2ea44f;
-  --RGB_bg-default: 46, 164, 79;
   --bg-hover: #2c974b;
   --bg-active: var(--bg-hover);
   --bg-disabled: #94d3a2;
   --shadow: var(--green-900);
-  --RGB_shadow: var(--RGB_green-900);
-  --box-shadow: 0 1px 0 rgba(var(--RGB_black), 0.1),
-    inset 0 1px 0 rgba(var(--RGB_white), 0.03);
+  --box-shadow: 0 1px 0 rgba(27, 31, 35, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
   color: var(--text-white);
   background-color: var(--bg-default);
-  border-color: rgba(var(--RGB_black), 0.15);
+  border-color: rgba(27, 31, 35, 0.15);
   box-shadow: var(--box-shadow);
 }
 
@@ -1233,25 +1210,25 @@ Box shadows */
 .btn-primary.selected,
 .btn-primary[aria-selected='true'] {
   background-color: var(--bg-active);
-  box-shadow: inset 0 1px 0 rgba(var(--RGB_shadow), 0.2);
+  box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
 }
 
 .btn-primary:disabled,
 .btn-primary.disabled,
 .btn-primary[aria-disabled='true'] {
-  color: rgba(var(--RGB_text-white), 0.8);
+  color: rgba(255, 255, 255, 0.8);
   background-color: var(--bg-disabled);
-  border-color: rgba(var(--RGB_black), 0.1);
+  border-color: rgba(27, 31, 35, 0.1);
   box-shadow: var(--box-shadow);
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  box-shadow: 0 0 0 3px rgba(var(--RGB_bg-default), 0.4);
+  box-shadow: 0 0 0 3px rgba(46, 164, 79, 0.4);
 }
 
 .btn-primary .octicon {
-  color: rgba(var(--RGB_text-white), 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Outline button */
@@ -1272,21 +1249,21 @@ Box shadows */
 .btn-outline[aria-selected='true'] {
   color: var(--text-white);
   background-color: var(--blue-500);
-  border-color: rgba(var(--RGB_black), 0.15);
-  box-shadow: inset 0 1px 0 rgba(var(--RGB_blue-900), 0.2);
+  border-color: rgba(27, 31, 35, 0.15);
+  box-shadow: inset 0 1px 0 rgba(5, 38, 76, 0.2);
 }
 
 .btn-outline:disabled,
 .btn-outline.disabled,
 .btn-outline[aria-disabled='true'] {
-  color: rgba(var(--RGB_blue-500), 0.5);
+  color: rgba(3, 102, 214, 0.5);
   background-color: var(--bg-gray-light);
   border-color: var(--border-color-button);
   box-shadow: var(--box-shadow), var(--box-shadow-highlight);
 }
 
 .btn-outline:focus {
-  box-shadow: 0 0 0 3px rgba(var(--RGB_blue-500), 0.4);
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.4);
 }
 
 /* Solid buttons TODO: Deprecate? */
@@ -1301,7 +1278,7 @@ Box shadows */
 
 .btn-blue:focus,
 .btn-blue.focus {
-  box-shadow: 0 0 0 0.2em rgba(var(--RGB_blue-500), 0.4);
+  box-shadow: 0 0 0 0.2em rgba(3, 102, 214, 0.4);
 }
 
 .btn-blue:hover,
@@ -1327,7 +1304,7 @@ Box shadows */
 .btn-blue:disabled,
 .btn-blue.disabled,
 .btn-blue[aria-disabled='true'] {
-  color: rgba(var(--RGB_text-white), 0.75);
+  color: rgba(255, 255, 255, 0.75);
   background-color: var(--blue-500);
   background-image: none;
   border-color: var(--border-color-button);
@@ -1344,7 +1321,7 @@ Box shadows */
 
 .btn-blue:focus,
 .btn-blue.focus {
-  box-shadow: 0 0 0 0.2em rgba(var(--RGB_blue-500), 0.4);
+  box-shadow: 0 0 0 0.2em rgba(3, 102, 214, 0.4);
 }
 
 .btn-blue:hover,
@@ -1370,7 +1347,7 @@ Box shadows */
 .btn-blue:disabled,
 .btn-blue.disabled,
 .btn-blue[aria-disabled='true'] {
-  color: rgba(var(--RGB_text-white), 0.75);
+  color: rgba(255, 255, 255, 0.75);
   background-color: var(--blue-500);
   background-image: none;
   border-color: var(--border-color-button);
@@ -1836,7 +1813,7 @@ of one visual button, but separated by rules to be separate. */
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(var(--RGB_black), 0.05);
+  background-color: rgba(27, 31, 35, 0.05);
   border-radius: var(--border-radius);
 }
 
