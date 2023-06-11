@@ -72,7 +72,7 @@ export class NewErrorComponent {
         '<button id="reload-button" type="button" class="btn btn-primary" >刷新</button>';
     }
     if (!!helpHash) {
-      qaLink = `<p><a href="https://lipk.org/blog/2020/06/08/beauder-qa/${helpHash}" target="_blank">获取此问题的帮助信息</a></p>`;
+      qaLink = `<p><a href="https://lipk.org/blog/2020-06-08-Beauder-Q&A${helpHash}" target="_blank">获取此问题的帮助信息</a></p>`;
     }
     this.element.querySelector('#beaudarMsg')!.insertAdjacentHTML(
       'beforeend',
