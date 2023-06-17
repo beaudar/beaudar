@@ -185,3 +185,11 @@ export interface CreateIssue {
   label?: string;
   issueLabel: string | null;
 }
+
+export interface MathJaxConfig {
+  tex: Record<string, any>;
+  chtml: Record<string, any>;
+  startup: Record<string, any>;
+  options: Record<string, any>;
+  typesetPromise: Function;
+}

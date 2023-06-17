@@ -1,4 +1,5 @@
 import { ConfigurationComponent } from './component/configuration-component';
+import('./vendor/math-renderer-element');
 
 document
   .querySelector('h2#configuration')!

@@ -17,6 +17,7 @@ import { loadToken } from './oauth';
 import { enableReactions } from './reactions';
 import { NewErrorComponent } from './component/new-error-component';
 import { addLoadingStatus, removeLoadingElement } from './beaudar-loading';
+import('./vendor/math-renderer-element');
 
 const pageAttrs = readPageAttributes(location);
 
