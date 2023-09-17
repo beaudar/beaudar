@@ -8,7 +8,10 @@ export const timeAgo = (current: number, value: Date) => {
     return ' 刚刚';
   }
   let i = 0;
-  while (i + 2 < Thresholds.length && elapsed * 1.1 > Thresholds[i + 2]) {
+  while (
+    i + 2 < Thresholds.length &&
+    elapsed * 1.1 > Number(Thresholds[i + 2])
+  ) {
     i += 2;
   }
 
@@ -173,4 +176,31 @@ export const labelSubstring = (labelValue?: string | null) => {
   }
 
   return label;
+};
+
+// 给 url 增加 query 参数
+export const appendUrlQuery = (url: string, query: Record<string, string>) => {
+  let privateUrl = url;
+  let urlQueryStr = ''; // urlQueryStr = key1=value1&key2=value2
+  if (query) {
+    Object.keys(query).forEach((itemKey, index) => {
+      const value = query[itemKey];
+      if (index > 0) {
+        // 不是第一项
+        urlQueryStr = `${urlQueryStr}&${itemKey}=${value}`;
+      } else if (index === 0) {
+        // 第一项
+        urlQueryStr = `${itemKey}=${value}`;
+      }
+    });
+    if (privateUrl.includes('?')) {
+      // 存在参数
+      privateUrl = `${privateUrl}&${urlQueryStr}`;
+    } else {
+      // 不存在参数
+      privateUrl = `${privateUrl}?${urlQueryStr}`;
+    }
+  }
+
+  return privateUrl;
 };

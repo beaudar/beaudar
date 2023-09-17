@@ -1,5 +1,5 @@
 import { token } from './oauth';
-import { decodeBase64UTF8, readPageAttributes } from './utils';
+import { decodeBase64UTF8, readPageAttributes, appendUrlQuery } from './utils';
 import {
   BEAUDAR_API,
   PAGE_SIZE,
@@ -241,12 +241,19 @@ export const createIssue = (args: CreateIssue) => {
 
   labels.push(label || '', issueLabel || '');
   labels = labels.filter((item) => item);
+  let encodedLabelStr = '';
+  if (labels.length) {
+    const labelsStr = JSON.stringify(labels);
+    encodedLabelStr = encodeURIComponent(labelsStr);
+  }
 
-  const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
+  let url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
+  url = appendUrlQuery(url, {
+    labels: encodedLabelStr,
+  });
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
-      labels, // 此字段将在 https://github.com/beaudar/beaudar-oauth 的 postIssueRequestHandler 方法中使用
       title: issueTerm,
       body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`,
     }),
