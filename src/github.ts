@@ -254,6 +254,7 @@ export const createIssue = (args: CreateIssue) => {
   const request = new Request(url, {
     method: 'POST',
     body: JSON.stringify({
+      labels,
       title: issueTerm,
       body: `# ${title}\n\n${description}\n\n[${documentUrl}](${documentUrl})`,
     }),
