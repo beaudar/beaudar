@@ -237,10 +237,10 @@ export const createIssue = (args: CreateIssue) => {
   const { issueTerm, documentUrl, title, description, label, issueLabel } =
     args;
 
-  const labels: string[] = [];
+  let labels: string[] = [];
 
   labels.push(label || '', issueLabel || '');
-  labels.filter((item) => item);
+  labels = labels.filter((item) => item);
 
   const url = `${BEAUDAR_API}/repos/${pageAttrs.owner}/${pageAttrs.repo}/issues`;
   const request = new Request(url, {
